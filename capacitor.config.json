@@ -1,0 +1,13 @@
+{
+  "appId": "com.salontrivia.tv",
+  "appName": "BİL BAKALIM",
+  "webDir": "public",
+  "server": {
+    "androidScheme": "http",
+    "cleartext": true,
+    "allowNavigation": ["*"]
+  },
+  "android": {
+    "allowMixedContent": true
+  }
+}

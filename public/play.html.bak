@@ -1,0 +1,1064 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>BİL BAKALIM - Oyuncu Kumandası</title>
+  <link rel="icon" type="image/png" href="icon.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@500;700;900&family=Space+Grotesk:wght@700;900&display=swap" rel="stylesheet">
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      touch-action: manipulation;
+      user-select: none;
+    }
+
+    body {
+      background: #090d16;
+      color: #f8fafc;
+      font-family: 'Outfit', sans-serif;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      padding: 12px;
+    }
+
+    #view-join {
+      margin: auto;
+      width: 100%;
+      max-width: 360px;
+      text-align: center;
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+    }
+
+    .join-title {
+      font-size: 30px;
+      font-weight: 900;
+      background: linear-gradient(135deg, #a855f7, #6366f1);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .input-field {
+      width: 100%;
+      padding: 15px 18px;
+      border-radius: 16px;
+      border: 2px solid rgba(255, 255, 255, 0.15);
+      background: rgba(30, 41, 59, 0.85);
+      color: #fff;
+      font-size: 19px;
+      text-align: center;
+      font-weight: 800;
+      outline: none;
+    }
+
+    .input-field:focus {
+      border-color: #8b5cf6;
+    }
+
+    .room-input-box {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+
+    .room-code-input {
+      font-family: 'Space Grotesk', sans-serif;
+      letter-spacing: 6px;
+      color: #facc15;
+      border-color: rgba(250, 204, 21, 0.4);
+      font-size: 24px;
+    }
+
+    .error-msg {
+      background: rgba(239, 68, 68, 0.2);
+      border: 1px solid #ef4444;
+      color: #fca5a5;
+      padding: 10px 14px;
+      border-radius: 12px;
+      font-size: 14px;
+      font-weight: 700;
+      display: none;
+    }
+
+    .btn-submit {
+      width: 100%;
+      padding: 18px;
+      border-radius: 18px;
+      border: none;
+      background: linear-gradient(135deg, #6366f1, #8b5cf6);
+      color: #fff;
+      font-size: 20px;
+      font-weight: 900;
+      cursor: pointer;
+      box-shadow: 0 10px 25px rgba(99, 102, 241, 0.4);
+    }
+
+    #view-game {
+      display: none;
+      flex-direction: column;
+      height: calc(100vh - 24px);
+      gap: 10px;
+    }
+
+    .player-header {
+      background: rgba(30, 41, 59, 0.9);
+      border-radius: 16px;
+      padding: 10px 16px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    .user-info {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-weight: 800;
+      font-size: 17px;
+      color: #c7d2fe;
+    }
+
+    .streak-pill {
+      background: linear-gradient(135deg, #f97316, #ef4444);
+      color: #fff;
+      font-size: 12px;
+      font-weight: 900;
+      padding: 3px 8px;
+      border-radius: 10px;
+      display: none;
+    }
+
+    .user-score {
+      font-size: 19px;
+      font-weight: 900;
+      color: #facc15;
+    }
+
+    /* Üst Bilgi & Joker Barı */
+    .top-Subbar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .mobile-double-badge {
+      background: linear-gradient(135deg, #f59e0b, #ef4444);
+      color: #fff;
+      font-weight: 900;
+      font-size: 13px;
+      padding: 8px 14px;
+      border-radius: 12px;
+      display: none;
+      align-items: center;
+      gap: 6px;
+      box-shadow: 0 4px 12px rgba(239, 68, 68, 0.4);
+    }
+
+    .tactics-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 6px;
+      width: 100%;
+    }
+
+    .tactic-btn {
+      background: rgba(30, 41, 59, 0.95);
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      color: #fff;
+      padding: 6px 2px;
+      border-radius: 12px;
+      font-size: 11px;
+      font-weight: 800;
+      cursor: pointer;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 2px;
+      transition: all 0.15s;
+    }
+
+    .tactic-btn:active {
+      transform: scale(0.95);
+    }
+
+    .tactic-btn:disabled {
+      opacity: 0.35;
+      cursor: not-allowed;
+      border-color: transparent;
+    }
+
+    .tactic-btn.active-wager {
+      background: linear-gradient(135deg, #ef4444, #f59e0b) !important;
+      border-color: #facc15 !important;
+      box-shadow: 0 0 14px rgba(239, 68, 68, 0.7);
+      animation: pulse 0.6s infinite alternate;
+    }
+
+    .tactic-btn.active-double {
+      background: linear-gradient(135deg, #8b5cf6, #ec4899) !important;
+      border-color: #f472b6 !important;
+      box-shadow: 0 0 14px rgba(236, 72, 153, 0.7);
+    }
+
+    #mobile-freeze-overlay {
+      position: fixed;
+      inset: 0;
+      background: rgba(15, 23, 42, 0.92);
+      backdrop-filter: blur(14px);
+      display: none;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      z-index: 99999;
+      color: #fff;
+      text-align: center;
+      padding: 24px;
+      border: 4px solid #38bdf8;
+      box-sizing: border-box;
+      animation: pop 0.3s ease;
+    }
+
+    .button-pad {
+      flex: 1;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      grid-template-rows: 1fr 1fr;
+      gap: 10px;
+    }
+
+    .pad-btn {
+      border: none;
+      border-radius: 20px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      font-size: 40px;
+      font-weight: 900;
+      color: #fff;
+      cursor: pointer;
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.35);
+      transition: transform 0.08s, opacity 0.2s;
+    }
+
+    .pad-btn:active {
+      transform: scale(0.94);
+    }
+
+    .pad-btn.eliminated {
+      opacity: 0.15;
+      pointer-events: none;
+      background: #334155 !important;
+      text-decoration: line-through;
+    }
+
+    .pad-0 { background: linear-gradient(135deg, #ef4444, #b91c1c); }
+    .pad-1 { background: linear-gradient(135deg, #3b82f6, #1d4ed8); }
+    .pad-2 { background: linear-gradient(135deg, #eab308, #a16207); }
+    .pad-3 { background: linear-gradient(135deg, #10b981, #047857); }
+
+    .btn-label {
+      font-size: 17px;
+      font-weight: 800;
+      margin-top: 4px;
+      opacity: 0.95;
+    }
+
+    .wait-state {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      gap: 14px;
+      font-size: 22px;
+      font-weight: 800;
+      color: #94a3b8;
+      padding: 12px;
+    }
+
+    .feedback-badge {
+      font-size: 64px;
+      animation: pop 0.35s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    }
+
+    /* CANLI EMOJİ FIRLATMA BARI */
+    .emoji-reaction-bar {
+      background: rgba(30, 41, 59, 0.9);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: 18px;
+      padding: 8px 10px;
+      display: flex;
+      justify-content: space-around;
+      align-items: center;
+    }
+
+    .emoji-btn {
+      background: rgba(255, 255, 255, 0.06);
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      border-radius: 12px;
+      font-size: 24px;
+      width: 46px;
+      height: 44px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      transition: transform 0.12s, background 0.2s;
+    }
+
+    .emoji-btn:active {
+      transform: scale(1.25);
+      background: rgba(250, 204, 21, 0.25);
+    }
+
+    /* 4. TAKIM TEZAHÜRATI VE SES BUTONLARI */
+    .cheer-btn {
+      background: rgba(255, 255, 255, 0.08);
+      border: 1px solid rgba(255, 255, 255, 0.18);
+      border-radius: 12px;
+      padding: 6px 2px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      font-size: 20px;
+      color: #fff;
+      transition: transform 0.1s, background 0.15s;
+    }
+
+    .cheer-btn:active {
+      transform: scale(1.15);
+      background: rgba(250, 204, 21, 0.3);
+      border-color: #facc15;
+    }
+
+    .cheer-lbl {
+      font-size: 10px;
+      font-weight: 800;
+      margin-top: 2px;
+      color: #cbd5e1;
+    }
+
+    @keyframes pop {
+      0% { transform: scale(0.2); }
+      100% { transform: scale(1); }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- 1. ODAYA KATILIM -->
+  <div id="view-join">
+    <div><img src="icon.png" alt="BİL BAKALIM" style="width: 88px; height: 88px; border-radius: 22px; object-fit: cover; box-shadow: 0 12px 30px rgba(99, 102, 241, 0.5), 0 0 20px rgba(250, 204, 21, 0.4); border: 2px solid rgba(255, 255, 255, 0.2);"></div>
+    <h1 class="join-title">BİL BAKALIM</h1>
+    <p style="color: #cbd5e1; font-size: 13px; font-weight: 700; margin-top:-6px;">Aile ve Arkadaşlar İçin TV Bilgi Yarışması</p>
+    <p style="color: #94a3b8; font-size: 13px;">TV ekranındaki 4 haneli Oda Kodunu ve adınızı girin:</p>
+
+    <div class="room-input-box">
+      <input type="text" id="room-input" class="input-field room-code-input" placeholder="ODA KODU" maxlength="4" inputmode="numeric">
+    </div>
+
+    <input type="text" id="name-input" class="input-field" placeholder="Adınız / Takma Adınız" maxlength="15">
+
+    <div style="display:flex; flex-direction:column; gap:6px; text-align:left;">
+      <span style="font-size:12px; color:#94a3b8; font-weight:700;">Takım Seçimi (Takım Modu İçin):</span>
+      <div style="display:grid; grid-template-columns:1fr 1fr 1fr; gap:6px;" id="team-selector-box">
+        <button type="button" class="team-pick-btn active" data-team="AUTO" style="padding:10px 4px; border-radius:12px; border:2px solid #6366f1; background:rgba(99,102,241,0.25); color:#fff; font-weight:800; font-size:12px; cursor:pointer;">⚖️ Otomatik</button>
+        <button type="button" class="team-pick-btn" data-team="RED" style="padding:10px 4px; border-radius:12px; border:2px solid rgba(239,68,68,0.4); background:rgba(239,68,68,0.15); color:#fca5a5; font-weight:800; font-size:12px; cursor:pointer;">🔴 Kırmızı</button>
+        <button type="button" class="team-pick-btn" data-team="BLUE" style="padding:10px 4px; border-radius:12px; border:2px solid rgba(59,130,246,0.4); background:rgba(59,130,246,0.15); color:#93c5fd; font-weight:800; font-size:12px; cursor:pointer;">🔵 Mavi</button>
+      </div>
+    </div>
+
+    <div id="join-error-box" class="error-msg"></div>
+
+    <button class="btn-submit" id="btn-join">Yarışmaya Katıl ➔</button>
+  </div>
+
+  <!-- 2. OYUNCU KUMANDASI -->
+  <div id="view-game">
+    <!-- MARKA & OYUNCU BİLGİ BAŞLIĞI -->
+    <div style="display:flex; justify-content:space-between; align-items:center; padding:2px 4px;">
+      <div style="font-size:16px; font-weight:900; background:linear-gradient(135deg, #fde047, #ffffff); -webkit-background-clip:text; -webkit-text-fill-color:transparent;">BİL BAKALIM</div>
+      <div style="display:flex; align-items:center; gap:8px;">
+        <button type="button" onclick="openMobileReport()" style="background:transparent; border:1px solid rgba(245,158,11,0.5); color:#fde68a; font-size:11px; font-weight:800; padding:2px 8px; border-radius:8px; cursor:pointer;" title="Soruda hata varsa bildir">🚩 Bildir</button>
+        <div style="font-size:11px; color:#94a3b8; font-weight:700;" id="mobile-room-display">ODA: ----</div>
+      </div>
+    </div>
+    <div class="player-header">
+      <div class="user-info">
+        <span id="display-avatar" style="font-size:24px;">🦁</span>
+        <span id="display-name">Oyuncu</span>
+        <span id="display-team-badge" style="font-size:11px; font-weight:900; padding:3px 8px; border-radius:8px; background:rgba(239,68,68,0.3); border:1px solid #ef4444; color:#fff;">🔴 Kırmızı</span>
+        <span id="display-streak" class="streak-pill">🔥 2x</span>
+      </div>
+      <div class="user-score" id="display-score">0 P</div>
+    </div>
+
+
+    <!-- 2X PUAN & ÇOCUK ROZETİ -->
+    <div style="display:flex; justify-content:space-between; align-items:center; gap:6px;">
+      <div class="mobile-double-badge" id="mobile-double-banner">🔥 2X ÇİFT PUAN!</div>
+      <div id="mobile-kids-banner" style="display:none; background:linear-gradient(135deg, #ec4899, #8b5cf6); color:#fff; font-weight:900; font-size:12px; padding:6px 10px; border-radius:10px; border:2px solid #f472b6; align-items:center; gap:4px;">🧒 Çocuk Sorusu!</div>
+    </div>
+
+    <!-- 4 TAKTİKSEL GÜÇ & JOKER BARI -->
+    <div class="tactics-grid" id="joker-container">
+      <button class="tactic-btn" id="btn-joker-fifty" onclick="useJokerFifty()">
+        <span style="font-size:16px;">⚡</span>
+        <span id="lbl-joker-fifty">%50 Joker</span>
+      </button>
+      <button class="tactic-btn" id="btn-joker-double" onclick="useJokerDoubleChance()">
+        <span style="font-size:16px;">✌️</span>
+        <span id="lbl-joker-double">Çifte Şans</span>
+      </button>
+      <button class="tactic-btn" id="btn-joker-freeze" onclick="useJokerFreeze()">
+        <span style="font-size:16px;">❄️</span>
+        <span id="lbl-joker-freeze">Dondur</span>
+      </button>
+      <button class="tactic-btn" id="btn-wager" onclick="toggleWager()">
+        <span style="font-size:16px;">🔥</span>
+        <span id="lbl-wager">Risk (+500)</span>
+      </button>
+    </div>
+
+    <!-- 4 CEVAP BUTONU -->
+    <div class="button-pad" id="answer-buttons">
+      <button class="pad-btn pad-0" id="btn-opt-0" onclick="sendAnswer(0)">
+        ▲ <span class="btn-label">A</span>
+      </button>
+      <button class="pad-btn pad-1" id="btn-opt-1" onclick="sendAnswer(1)">
+        ◆ <span class="btn-label">B</span>
+      </button>
+      <button class="pad-btn pad-2" id="btn-opt-2" onclick="sendAnswer(2)">
+        ● <span class="btn-label">C</span>
+      </button>
+      <button class="pad-btn pad-3" id="btn-opt-3" onclick="sendAnswer(3)">
+        ■ <span class="btn-label">D</span>
+      </button>
+    </div>
+
+    <!-- BEKLEME EKRANI -->
+    <div class="wait-state" id="wait-message" style="display: none;">
+      <div id="status-icon" class="feedback-badge">⏳</div>
+      <div id="status-text">Cevabın iletildi!<br><span style="font-size: 15px; font-weight:500;">TV ekranına bakın...</span></div>
+    </div>
+
+    <!-- 4. TAKIM TEZAHÜRATI & SES FIRLATMA BARI (Sadece Takım Modunda) -->
+    <div id="team-cheer-section" style="display:none; background:rgba(30,41,59,0.9); border:1px solid rgba(255,255,255,0.15); border-radius:18px; padding:8px 10px; flex-direction:column; gap:6px;">
+      <div style="display:flex; justify-content:space-between; align-items:center; padding:0 4px;">
+        <span style="font-size:12px; font-weight:900; color:#facc15;">📣 TAKIM TEZAHÜRATI (TV'DE ÇALAR)</span>
+        <span id="cheer-team-label" style="font-size:10px; font-weight:900; padding:2px 7px; border-radius:6px; background:#ef4444; color:#fff;">🔴 KIRMIZI</span>
+      </div>
+      <div style="display:grid; grid-template-columns:repeat(5, 1fr); gap:6px;">
+        <button type="button" class="cheer-btn" onclick="sendTeamCheer('cheer_horn')" title="Havalı Korna">📢<span class="cheer-lbl">Korna</span></button>
+        <button type="button" class="cheer-btn" onclick="sendTeamCheer('cheer_whistle')" title="Düdük">😙<span class="cheer-lbl">Düdük</span></button>
+        <button type="button" class="cheer-btn" onclick="sendTeamCheer('cheer_clap')" title="Alkış">👏<span class="cheer-lbl">Alkış</span></button>
+        <button type="button" class="cheer-btn" onclick="sendTeamCheer('cheer_fire')" title="Meşale">🔥<span class="cheer-lbl">Meşale</span></button>
+        <button type="button" class="cheer-btn" onclick="sendTeamCheer('cheer_flag')" title="Tezahürat">🚩<span class="cheer-lbl">Destek</span></button>
+      </div>
+    </div>
+
+    <!-- CANLI EMOJİ FIRLATMA BARI -->
+    <div class="emoji-reaction-bar">
+      <button class="emoji-btn" onclick="sendEmoji('🔥')">🔥</button>
+      <button class="emoji-btn" onclick="sendEmoji('😂')">😂</button>
+      <button class="emoji-btn" onclick="sendEmoji('👏')">👏</button>
+      <button class="emoji-btn" onclick="sendEmoji('😱')">😱</button>
+      <button class="emoji-btn" onclick="sendEmoji('😎')">😎</button>
+      <button class="emoji-btn" onclick="sendEmoji('🧿')">🧿</button>
+  </div>
+
+  <!-- ❄️ BUZ DONMA EKRANI (3.5 SANİYE) -->
+  <div id="mobile-freeze-overlay">
+    <div style="font-size:54px; margin-bottom:8px;">🥶❄️</div>
+    <h2 style="font-size:24px; font-weight:900; color:#38bdf8; margin-bottom:6px;">DONDURULDUN!</h2>
+    <p id="freeze-sender-desc" style="font-size:14px; color:#cbd5e1; margin-bottom:12px;">Rakip sana buz fırlattı! 3.5 saniye boyunca seçim yapamazsın.</p>
+    <div style="font-size:32px; font-weight:900; color:#facc15;" id="freeze-timer-val">3.5</div>
+  </div>
+
+  <!-- 3. OYUN SONU VİRAL ŞAMPİYONLUK KARTI & TV'YE İNDİR -->
+  <div id="view-game-over-viral" style="display:none; flex-direction:column; align-items:center; text-align:center; gap:12px; padding:18px 12px; height:calc(100vh - 24px); box-sizing:border-box; overflow-y:auto;">
+    <div style="font-size:48px;">🏆</div>
+    <h2 style="font-size:26px; font-weight:900; color:#facc15; margin:0;">YARIŞMA SONUCUN</h2>
+    
+    <!-- ŞAMPİYONLUK KARTI (WhatsApp İçin Paylaşılabilir Tasarım) -->
+    <div style="width:100%; background:linear-gradient(135deg, rgba(30,41,59,0.95), rgba(15,23,42,0.95)); border:2px solid #facc15; border-radius:20px; padding:18px 16px; box-shadow:0 12px 30px rgba(0,0,0,0.5); display:flex; flex-direction:column; align-items:center; gap:8px;">
+      <div id="viral-player-avatar" style="font-size:46px;">🦁</div>
+      <div id="viral-player-name" style="font-size:22px; font-weight:900; color:#fff;">Oyuncu</div>
+      <div id="viral-player-rank" style="font-size:17px; font-weight:900; color:#38bdf8; background:rgba(56,189,248,0.2); padding:4px 16px; border-radius:12px; border:1px solid #38bdf8;">1. Şampiyon 🥇</div>
+      <div id="viral-player-score" style="font-size:32px; font-weight:900; color:#facc15; font-family:'Space Grotesk',sans-serif; margin-top:4px;">0 P</div>
+      <div style="font-size:11px; color:#94a3b8; font-weight:700;">BİL BAKALIM TV BİLGİ YARIŞMASI</div>
+    </div>
+
+    <!-- WHATSAPP ŞAMPİYONLUK PAYLAŞMA BUTONU -->
+    <a id="btn-whatsapp-share" href="#" target="_blank" style="width:100%; padding:14px; border-radius:16px; background:#25D366; color:#fff; text-decoration:none; font-weight:900; font-size:16px; display:flex; align-items:center; justify-content:center; gap:8px; box-shadow:0 6px 18px rgba(37,211,102,0.4); box-sizing:border-box;">
+      <span>📱 WhatsApp'ta Zaferini Paylaş ➔</span>
+    </a>
+
+    <!-- TV'YE İNDİR BUTONU & REHBERİ -->
+    <div style="width:100%; background:rgba(255,255,255,0.05); border:1px solid rgba(255,255,255,0.15); border-radius:18px; padding:14px; text-align:left; display:flex; flex-direction:column; gap:8px;">
+      <div style="font-size:14px; font-weight:900; color:#facc15; display:flex; align-items:center; gap:6px;">
+        <span>📺 Kendi Televizyonuna Ücretsiz İndir!</span>
+      </div>
+      <div style="font-size:12px; color:#cbd5e1; line-height:1.4;">
+        1. Android TV veya Google TV'de <strong>Google Play Store</strong>'u açın.<br>
+        2. Arama çubuğuna <strong>"Bil Bakalım"</strong> yazıp ÜCRETSİZ yükleyin.<br>
+        3. Tüm aile bir araya gelsin ve salonda eğlence başlasın!
+      </div>
+      <button type="button" onclick="alert('Google TV & Android TV Play Store\'da &quot;Bil Bakalım&quot; adıyla aratıp televizyonunuza hemen ücretsiz yükleyebilirsiniz!');" style="padding:10px; border-radius:12px; border:none; background:#4f46e5; color:#fff; font-weight:800; font-size:13px; cursor:pointer;">
+        Google TV Mağaza Rehberi ➔
+      </button>
+    </div>
+  </div>
+
+  <script src="/socket.io/socket.io.js"></script>
+  <script>
+    const socket = io();
+
+    const viewJoin = document.getElementById('view-join');
+    const viewGame = document.getElementById('view-game');
+    const roomInput = document.getElementById('room-input');
+    const nameInput = document.getElementById('name-input');
+    const joinErrorBox = document.getElementById('join-error-box');
+    const btnJoin = document.getElementById('btn-join');
+    const displayAvatar = document.getElementById('display-avatar');
+    const displayName = document.getElementById('display-name');
+    const displayStreak = document.getElementById('display-streak');
+    const displayScore = document.getElementById('display-score');
+    const answerButtons = document.getElementById('answer-buttons');
+    const waitMessage = document.getElementById('wait-message');
+    const statusIcon = document.getElementById('status-icon');
+    const statusText = document.getElementById('status-text');
+    const jokerContainer = document.getElementById('joker-container');
+    const btnJokerFifty = document.getElementById('btn-joker-fifty');
+    const btnJokerDouble = document.getElementById('btn-joker-double');
+    const btnJokerFreeze = document.getElementById('btn-joker-freeze');
+    const btnWager = document.getElementById('btn-wager');
+    const mobileFreezeOverlay = document.getElementById('mobile-freeze-overlay');
+    const freezeTimerVal = document.getElementById('freeze-timer-val');
+    const freezeSenderDesc = document.getElementById('freeze-sender-desc');
+    const viewGameOverViral = document.getElementById('view-game-over-viral');
+    const mobileDoubleBanner = document.getElementById('mobile-double-banner');
+    const mobileKidsBanner = document.getElementById('mobile-kids-banner');
+
+    let myPlayerId = null;
+    let mySessionToken = localStorage.getItem('bil_bakalim_token') || null;
+    let hasAnsweredCurrentQuestion = false;
+    let lastRevealIndexVibed = -1;
+    let lastEmojiSentAt = 0;
+
+    // URL'den ?room=XXXX parametresini otomatik al
+    const urlParams = new URLSearchParams(window.location.search);
+    const roomFromUrl = urlParams.get('room');
+    if (roomFromUrl) {
+      roomInput.value = roomFromUrl.trim();
+    }
+
+    // Kayıtlı isim varsa inputa yerleştir
+    const savedName = localStorage.getItem('bil_bakalim_name');
+    if (savedName) {
+      nameInput.value = savedName;
+    }
+
+    // Haptic Titreşim Yardımcı Fonksiyonu
+    function triggerHaptic(pattern) {
+      try {
+        if (navigator.vibrate) {
+          navigator.vibrate(pattern);
+        }
+      } catch (e) {}
+    }
+
+    let selectedTeam = 'AUTO';
+    document.querySelectorAll('.team-pick-btn').forEach(btn => {
+      btn.addEventListener('click', () => {
+        document.querySelectorAll('.team-pick-btn').forEach(b => {
+          b.classList.remove('active');
+          b.style.borderColor = 'rgba(255,255,255,0.2)';
+        });
+        btn.classList.add('active');
+        btn.style.borderColor = btn.dataset.team === 'RED' ? '#ef4444' : btn.dataset.team === 'BLUE' ? '#3b82f6' : '#6366f1';
+        selectedTeam = btn.dataset.team;
+        triggerHaptic(25);
+      });
+    });
+
+    btnJoin.addEventListener('click', () => {
+      const name = nameInput.value.trim();
+      const roomCode = roomInput.value.trim();
+      joinErrorBox.style.display = 'none';
+      if (!name) {
+        joinErrorBox.textContent = 'Lütfen yarışmada görünecek adınızı yazın!';
+        joinErrorBox.style.display = 'block';
+        return;
+      }
+      localStorage.setItem('bil_bakalim_name', name);
+      triggerHaptic(35);
+      socket.emit('join_game', { name, roomCode, team: selectedTeam, sessionToken: mySessionToken });
+    });
+
+    // Sayfa yenilendiğinde veya geçici kopmalarda otomatik odaya geri bağlanma
+    socket.on('connect', () => {
+      const autoRoom = roomInput.value.trim();
+      const autoName = nameInput.value.trim();
+      if (mySessionToken && autoRoom && autoName) {
+        socket.emit('join_game', {
+          name: autoName,
+          roomCode: autoRoom,
+          team: selectedTeam,
+          sessionToken: mySessionToken
+        });
+      }
+    });
+
+    nameInput.addEventListener('keypress', (e) => {
+      if (e.key === 'Enter') btnJoin.click();
+    });
+
+    socket.on('join_error', ({ message }) => {
+      triggerHaptic([100, 50, 100]);
+      joinErrorBox.textContent = message;
+      joinErrorBox.style.display = 'block';
+    });
+
+    // ⚡ 4 TAKTİKSEL GÜÇ İŞLEVLERİ
+    window.useJokerFifty = function() {
+      if (hasAnsweredCurrentQuestion) return;
+      triggerHaptic([30, 40, 30]);
+      socket.emit('use_joker_fifty');
+    };
+
+    window.useJokerDoubleChance = function() {
+      if (hasAnsweredCurrentQuestion) return;
+      triggerHaptic([30, 40, 30]);
+      socket.emit('use_joker_double_chance');
+    };
+
+    window.useJokerFreeze = function() {
+      if (hasAnsweredCurrentQuestion) return;
+      triggerHaptic([40, 50, 40]);
+      socket.emit('use_joker_freeze');
+    };
+
+    window.toggleWager = function() {
+      if (hasAnsweredCurrentQuestion) return;
+      triggerHaptic(30);
+      socket.emit('toggle_wager');
+    };
+
+    window.sendEmoji = function(emoji) {
+      const now = Date.now();
+      if (now - lastEmojiSentAt < 700) return; // Çok hızlı spam önleme
+      lastEmojiSentAt = now;
+      triggerHaptic(20);
+      socket.emit('send_emoji', { emoji });
+    };
+
+    let lastCheerSentAt = 0;
+    window.sendTeamCheer = function(cheerType) {
+      const now = Date.now();
+      if (now - lastCheerSentAt < 400) return; // 400ms spam önleme
+      lastCheerSentAt = now;
+      triggerHaptic(30);
+      socket.emit('send_team_cheer', { cheerType });
+    };
+
+    const displayTeamBadge = document.getElementById('display-team-badge');
+
+    socket.on('joined', ({ id, name, avatar, team, hasJoker, sessionToken, roomCode }) => {
+      myPlayerId = id;
+      if (sessionToken) {
+        mySessionToken = sessionToken;
+        localStorage.setItem('bil_bakalim_token', sessionToken);
+      }
+      displayName.textContent = name;
+      displayAvatar.textContent = avatar;
+      hasJokerLeft = hasJoker;
+      const mobileRoomDisplay = document.getElementById('mobile-room-display');
+      if (mobileRoomDisplay && roomCode) {
+        mobileRoomDisplay.textContent = `ODA: ${roomCode}`;
+      }
+      if (displayTeamBadge) {
+        displayTeamBadge.textContent = team === 'RED' ? '🔴 Kırmızı Takım' : '🔵 Mavi Takım';
+        displayTeamBadge.style.background = team === 'RED' ? 'rgba(239,68,68,0.3)' : 'rgba(59,130,246,0.3)';
+        displayTeamBadge.style.borderColor = team === 'RED' ? '#ef4444' : '#3b82f6';
+      }
+      viewJoin.style.display = 'none';
+      viewGame.style.display = 'flex';
+      triggerHaptic(50);
+      showWaiting('Odaya Bağlandınız! 🎉', 'TV üzerinden oyun başlatılınca butonlar aktifleşecek. Aşağıdan TV\'ye emoji ve tezahürat gönderebilirsiniz!', '🛋️');
+    });
+
+
+    // ❄️ BUZ JOKERİ VE ÇİFTE ŞANS SOCKET DİNLİYİCİLERİ
+    socket.on('double_chance_activated', () => {
+      triggerHaptic([50, 50, 100]);
+      if (btnJokerDouble) btnJokerDouble.classList.add('active-double');
+      const lbl = document.getElementById('lbl-joker-double');
+      if (lbl) lbl.textContent = 'Çifte Şans ⚡';
+      alert('✌️ Çifte Şans Aktif! İlk cevabın yanlış olursa bir hak daha tanınacak!');
+    });
+
+    socket.on('double_chance_retry', ({ wrongIndex }) => {
+      triggerHaptic([100, 100, 200]);
+      hasAnsweredCurrentQuestion = false;
+      const wrongBtn = document.getElementById(`btn-opt-${wrongIndex}`);
+      if (wrongBtn) wrongBtn.classList.add('eliminated');
+      showAnswerPad();
+      if (wrongBtn) wrongBtn.classList.add('eliminated');
+      alert('✌️ İlk tercihin yanlış! Çifte Şans devrede: Kalan şıklardan birini hemen seç!');
+    });
+
+    socket.on('freeze_effect', ({ freezerName, duration }) => {
+      triggerHaptic([150, 100, 150, 100, 250]);
+      setButtonsDisabled(true);
+      mobileFreezeOverlay.style.display = 'flex';
+      freezeSenderDesc.textContent = `${freezerName} sana buz fırlattı! 3.5 saniye boyunca seçim yapamazsın.`;
+      let timeLeft = (duration || 3500) / 1000;
+      freezeTimerVal.textContent = timeLeft.toFixed(1);
+
+      const fIntv = setInterval(() => {
+        timeLeft -= 0.1;
+        if (timeLeft <= 0) {
+          clearInterval(fIntv);
+          mobileFreezeOverlay.style.display = 'none';
+          if (!hasAnsweredCurrentQuestion) setButtonsDisabled(false);
+        } else {
+          freezeTimerVal.textContent = timeLeft.toFixed(1);
+        }
+      }, 100);
+    });
+
+    socket.on('freeze_sent', ({ targetName }) => {
+      triggerHaptic(40);
+      alert(`❄️ Harika! ${targetName} 3.5 saniye donduruldu!`);
+    });
+
+    socket.on('freeze_error', ({ message }) => {
+      alert(message || 'Dondurulamadı!');
+    });
+
+    socket.on('answer_blocked_frozen', () => {
+      triggerHaptic([100, 50, 100]);
+      alert('❄️ Dondurulduğun için şu an seçim yapamazsın! Sürenin bitmesini bekle!');
+    });
+
+    socket.on('wager_updated', ({ wagerActive }) => {
+      triggerHaptic(30);
+      const lbl = document.getElementById('lbl-wager');
+      if (wagerActive) {
+        btnWager.classList.add('active-wager');
+        if (lbl) lbl.textContent = '🔥 Risk Aktif!';
+      } else {
+        btnWager.classList.remove('active-wager');
+        if (lbl) lbl.textContent = 'Risk (+500)';
+      }
+    });
+
+    socket.on('joker_result', ({ eliminatedIndices }) => {
+      eliminatedIndices.forEach(idx => {
+        const btn = document.getElementById(`btn-opt-${idx}`);
+        if (btn) btn.classList.add('eliminated');
+      });
+    });
+
+    socket.on('state_update', (state) => {
+      if (!myPlayerId) return;
+
+      const me = state.players.find(p => p.id === myPlayerId);
+      if (me) {
+        displayScore.textContent = `${me.score} P`;
+        if (displayTeamBadge) {
+          if (state.gameMode === 'TEAM') {
+            displayTeamBadge.style.display = 'inline-block';
+            displayTeamBadge.textContent = me.team === 'RED' ? '🔴 Kırmızı' : '🔵 Mavi';
+            displayTeamBadge.style.background = me.team === 'RED' ? 'rgba(239,68,68,0.3)' : 'rgba(59,130,246,0.3)';
+            displayTeamBadge.style.borderColor = me.team === 'RED' ? '#ef4444' : '#3b82f6';
+          } else {
+            displayTeamBadge.style.display = 'none';
+          }
+        }
+        if (me.streak >= 2) {
+          displayStreak.style.display = 'inline-block';
+          displayStreak.textContent = `🔥 ${me.streak}x`;
+        } else {
+          displayStreak.style.display = 'none';
+        }
+
+        // 4 TAKTİKSEL BUTON DURUMLARI
+        if (btnJokerFifty) {
+          btnJokerFifty.disabled = !me.hasJoker || me.answered;
+          const lbl = document.getElementById('lbl-joker-fifty');
+          if (lbl) lbl.textContent = me.hasJoker ? '%50 Joker' : 'Kullanıldı ✕';
+        }
+        if (btnJokerDouble) {
+          btnJokerDouble.disabled = !me.hasDoubleChance || me.answered || me.doubleChanceActive;
+          const lbl = document.getElementById('lbl-joker-double');
+          if (lbl) lbl.textContent = me.doubleChanceActive ? 'Aktif ✌️' : (me.hasDoubleChance ? 'Çifte Şans' : 'Kullanıldı ✕');
+          if (me.doubleChanceActive) btnJokerDouble.classList.add('active-double');
+          else btnJokerDouble.classList.remove('active-double');
+        }
+        if (btnJokerFreeze) {
+          btnJokerFreeze.disabled = !me.hasFreeze || me.answered;
+          const lbl = document.getElementById('lbl-joker-freeze');
+          if (lbl) lbl.textContent = me.hasFreeze ? 'Dondur ❄️' : 'Kullanıldı ✕';
+        }
+        if (btnWager) {
+          btnWager.disabled = me.answered;
+          const lbl = document.getElementById('lbl-wager');
+          if (me.wagerActive) {
+            btnWager.classList.add('active-wager');
+            if (lbl) lbl.textContent = '🔥 Risk Aktif!';
+          } else {
+            btnWager.classList.remove('active-wager');
+            if (lbl) lbl.textContent = 'Risk (+500)';
+          }
+        }
+      }
+
+      // Takım Tezahürat Barını Yönet
+      const teamCheerSection = document.getElementById('team-cheer-section');
+      const cheerTeamLabel = document.getElementById('cheer-team-label');
+      if (teamCheerSection) {
+        if (state.gameMode === 'TEAM') {
+          teamCheerSection.style.display = 'flex';
+          if (me && cheerTeamLabel) {
+            cheerTeamLabel.textContent = me.team === 'RED' ? '🔴 KIRMIZI' : '🔵 MAVİ';
+            cheerTeamLabel.style.background = me.team === 'RED' ? '#ef4444' : '#3b82f6';
+          }
+        } else {
+          teamCheerSection.style.display = 'none';
+        }
+      }
+
+      if (state.isDoublePoints) {
+        mobileDoubleBanner.style.display = 'inline-flex';
+        mobileDoubleBanner.textContent = state.isFinalDuel ? '⚡ KADER ANI: FİNAL DÜELLOSU (2X)!' : '🔥 2X ÇİFT PUAN!';
+        mobileDoubleBanner.style.background = state.isFinalDuel ? 'linear-gradient(135deg, #dc2626, #7c3aed)' : 'linear-gradient(135deg, #f59e0b, #ef4444)';
+      } else {
+        mobileDoubleBanner.style.display = 'none';
+      }
+
+      if (state.question) {
+        lastQuestionText = state.question.question || '';
+        lastCategoryName = state.question.category || '';
+      }
+
+      if (state.question && state.question.isKids) {
+        if (mobileKidsBanner) mobileKidsBanner.style.display = 'inline-flex';
+      } else {
+        if (mobileKidsBanner) mobileKidsBanner.style.display = 'none';
+      }
+
+      if (state.status !== 'GAME_OVER') {
+        if (viewGameOverViral) viewGameOverViral.style.display = 'none';
+      }
+
+      if (state.status === 'LOBBY') {
+        showWaiting(
+          'Lobi Hazır 🎉',
+          'TV ekranındaki <strong>Kategori Paneline Geç</strong> butonuna basabilir veya doğrudan aşağıdan başlatabilirsiniz:<br><button type="button" onclick="requestOpenCategories()" style="margin-top:14px; width:100%; padding:14px 18px; border-radius:14px; background:linear-gradient(135deg, #f59e0b, #ef4444); color:#fff; font-size:15px; font-weight:900; border:none; box-shadow:0 6px 18px rgba(245,158,11,0.4); cursor:pointer;">🗂️ TV\'de Kategorileri Aç / Başlat ➔</button>',
+          '🛋️'
+        );
+      }
+      else if (state.status === 'CATEGORY_SELECT') {
+        const catButtons = (state.categories || []).map(c => {
+          const isUnlocked = !c.isVip || c.isUnlocked || state.isPro || (state.unlockedCategories || []).includes(c.name);
+          return `
+          <button type="button" onclick="selectCategoryFromPhone('${c.name}', ${!isUnlocked}, '${c.price || ''}')" style="padding:10px 14px; border-radius:12px; background:rgba(30,41,59,0.95); border:1px solid ${isUnlocked ? 'rgba(16,185,129,0.5)' : '#facc15'}; color:#fff; font-size:13px; font-weight:800; cursor:pointer; text-align:left; display:flex; justify-content:space-between; align-items:center;">
+            <span>${c.icon} ${c.name}</span>
+            <span style="font-size:11px; color:${isUnlocked ? '#34d399' : '#facc15'}; font-weight:700;">${isUnlocked ? (c.isVip ? '👑 VIP (Açık)' : '✓ Ücretsiz') : '🔒 VIP (' + (c.price || '49,99 TL') + ')'}</span>
+          </button>
+        `;
+        }).join('');
+
+        showWaiting(
+          'Kategori Seçimi 🗂️',
+          `<span style="font-size:13px; color:#cbd5e1;">TV kumandasından seçebilir veya aşağıdan bir kategoriye dokunarak oyunu başlatabilirsiniz:</span>
+           <div style="display:flex; flex-direction:column; gap:6px; margin-top:10px; max-height:220px; overflow-y:auto; padding:2px;">
+             ${catButtons}
+           </div>`,
+          '🗂️'
+        );
+      }
+      else if (state.status === 'QUESTION') {
+        if (me && me.answered) {
+          showWaiting('Cevabın İletildi! ⚡', 'Diğer oyuncuların seçim yapması bekleniyor...', '🔒');
+        } else {
+          showAnswerPad();
+        }
+      } 
+      else if (state.status === 'ANSWER_REVEAL') {
+        if (me) {
+          if (lastRevealIndexVibed !== state.questionIndex) {
+            lastRevealIndexVibed = state.questionIndex;
+            if (me.isCorrect === true) {
+              triggerHaptic([80, 50, 140]);
+            } else {
+              triggerHaptic([220, 70, 220]);
+            }
+          }
+
+          if (me.isCorrect === true) {
+            const extraBadges = [];
+            if (me.isFastest) extraBadges.push('⚡ EN HIZLI CEVAP!');
+            if (me.streak >= 2) extraBadges.push(`🔥 ${me.streak}x KOMBO SERİSİ!`);
+            if (me.hadTeamCombo) extraBadges.push('🔥 1.5X TAKIM COMBOSU!');
+            if (me.wagerActive) extraBadges.push('🔥 +500 RİSK BONUSU!');
+            const subInfo = extraBadges.length > 0
+              ? `<span style="color:#facc15; font-weight:800;">${extraBadges.join(' • ')}</span><br>+${me.lastPointsEarned || 0} Puan Eklendi!`
+              : `+${me.lastPointsEarned || 0} Puan Eklendi!`;
+            showWaiting('Tebrikler, Bildiniz! 🎉', subInfo, '✅');
+          } else if (me.isCorrect === false) {
+            const penaltyInfo = me.wagerActive ? '🔥 Risk Alındı (-250 Puan Ceza!)' : 'Seri sıfırlandı, sıradaki soruya odaklanın!';
+            showWaiting('Maalesef Yanlış! 😢', penaltyInfo, '❌');
+          } else {
+            showWaiting('Süre Doldu!', 'Cevap veremediniz.', '⏰');
+          }
+        }
+      } 
+      else if (state.status === 'GAME_OVER') {
+        // 🏆 VİRAL ŞAMPİYONLUK KARTI & PAYLAŞIM
+        const sorted = (state.players || []).slice().sort((a,b) => (b.score || 0) - (a.score || 0));
+        const myRank = sorted.findIndex(p => p.id === myPlayerId) + 1;
+        const total = sorted.length;
+        const myScore = me ? me.score : 0;
+
+        viewGame.style.display = 'none';
+        if (viewGameOverViral) viewGameOverViral.style.display = 'flex';
+
+        document.getElementById('viral-player-avatar').textContent = me ? me.avatar : '🦁';
+        document.getElementById('viral-player-name').textContent = me ? me.name : 'Oyuncu';
+        document.getElementById('viral-player-score').textContent = `${myScore} P`;
+
+        const rankBadge = document.getElementById('viral-player-rank');
+        if (rankBadge) {
+          if (myRank === 1) {
+            rankBadge.textContent = '1. ŞAMPİYON! 👑🥇';
+            rankBadge.style.color = '#facc15';
+            rankBadge.style.borderColor = '#facc15';
+          } else if (myRank === 2) {
+            rankBadge.textContent = '2. Derece 🥈';
+            rankBadge.style.color = '#cbd5e1';
+            rankBadge.style.borderColor = '#94a3b8';
+          } else if (myRank === 3) {
+            rankBadge.textContent = '3. Derece 🥉';
+            rankBadge.style.color = '#f97316';
+            rankBadge.style.borderColor = '#ea580c';
+          } else {
+            rankBadge.textContent = `${myRank}. Sıra (${total} Oyuncu Arasında)`;
+            rankBadge.style.color = '#38bdf8';
+            rankBadge.style.borderColor = '#38bdf8';
+          }
+        }
+
+        const shareText = `🏆 BİL BAKALIM TV Bilgi Yarışması'nda ${myRank === 1 ? '1. ŞAMPİYON' : myRank + '. sırada'} tamamlayıp tam ${myScore} puan kazandım! 🎉 Sen de aileni topla, televizyona Ücretsiz indir ve yarış: https://bilbakalim.tv`;
+        const waBtn = document.getElementById('btn-whatsapp-share');
+        if (waBtn) {
+          waBtn.href = `https://api.whatsapp.com/send?text=${encodeURIComponent(shareText)}`;
+        }
+      }
+    });
+
+    function setButtonsDisabled(disabled) {
+      for (let i = 0; i < 4; i++) {
+        const btn = document.getElementById(`btn-opt-${i}`);
+        if (btn) {
+          btn.disabled = disabled;
+          if (disabled) {
+            btn.style.opacity = '0.5';
+            btn.style.pointerEvents = 'none';
+          } else {
+            btn.style.opacity = '1';
+            btn.style.pointerEvents = 'auto';
+          }
+        }
+      }
+    }
+
+    function showAnswerPad() {
+      if (viewGameOverViral) viewGameOverViral.style.display = 'none';
+      viewGame.style.display = 'flex';
+      answerButtons.style.display = 'grid';
+      jokerContainer.style.display = 'grid';
+      waitMessage.style.display = 'none';
+      hasAnsweredCurrentQuestion = false;
+      setButtonsDisabled(false);
+
+      for (let i = 0; i < 4; i++) {
+        const btn = document.getElementById(`btn-opt-${i}`);
+        if (btn) btn.classList.remove('eliminated');
+      }
+    }
+
+    function showWaiting(title, subtitle, icon) {
+      setButtonsDisabled(true);
+      answerButtons.style.display = 'none';
+      jokerContainer.style.display = 'none';
+      waitMessage.style.display = 'flex';
+      statusIcon.textContent = icon;
+      statusText.innerHTML = `${title}<br><span style="font-size:15px; font-weight:500;">${subtitle}</span>`;
+    }
+
+    window.sendAnswer = function(index) {
+      if (hasAnsweredCurrentQuestion) return;
+      hasAnsweredCurrentQuestion = true;
+      setButtonsDisabled(true);
+      triggerHaptic(45);
+      socket.emit('submit_answer', { answerIndex: index });
+      showWaiting('Cevabın İletildi! ⚡', 'TV ekranına bakın...', '🔒');
+    };
+
+    window.requestOpenCategories = function() {
+      triggerHaptic(35);
+      const roomVal = roomInput.value.trim() || null;
+      socket.emit('player_request_open_categories', { roomCode: roomVal });
+    };
+
+    window.selectCategoryFromPhone = function(categoryName, isLocked, price) {
+      triggerHaptic(40);
+      const roomVal = roomInput.value.trim() || null;
+      if (isLocked) {
+        const ok = confirm(`🔒 ${categoryName} paketi henüz kilitli!\n\nŞimdi güvenli mobil ödeme sayfasına gidip bu paketin kilidini açmak ister misiniz?`);
+        if (ok) {
+          window.location.href = `/pay.html?room=${encodeURIComponent(roomVal || '')}&type=VIP_PACK&name=${encodeURIComponent(categoryName)}&price=${encodeURIComponent(price || '49,99 TL')}`;
+        }
+        return;
+      }
+      socket.emit('player_select_category', { categoryName, roomCode: roomVal });
+    };
+
+    let lastQuestionText = '';
+    let lastCategoryName = '';
+
+    window.openMobileReport = function() {
+      triggerHaptic(30);
+      const reason = prompt('🚩 Bu sorudaki hatayı bildirin:\n(Örn: 1: Yazım/Anlatım, 2: Cevap Yanlış, 3: Anlaşılmıyor)\n\nAçıklamanız:', 'Yazım / İmla veya Anlatım Hatası');
+      if (reason) {
+        const roomVal = roomInput.value.trim() || null;
+        socket.emit('player_report_question', {
+          roomCode: roomVal,
+          questionText: lastQuestionText || 'Aktif Soru',
+          category: lastCategoryName || '',
+          reason: reason
+        });
+        alert('Geri bildiriminiz başarıyla iletildi! Teşekkür ederiz. 🙏');
+      }
+    };
+
+  </script>
+</body>
+</html>

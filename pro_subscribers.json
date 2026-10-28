@@ -1,0 +1,41 @@
+{
+  "rooms": {
+    "1234": {
+      "isPro": true,
+      "activatedAt": "2026-10-25T11:42:38.935Z",
+      "promoCode": "BIL2026",
+      "date": "2026-10-25T11:42:38.934Z"
+    },
+    "2238": {
+      "isPro": true,
+      "activatedAt": "2026-10-25T10:27:50.721Z",
+      "method": "CARD_QR",
+      "pkgName": "BİL BAKALIM PRO",
+      "date": "2026-10-25T10:27:50.719Z"
+    },
+    "3199": {
+      "isPro": true,
+      "activatedAt": "2026-10-25T11:44:24.308Z",
+      "method": "CARD_QR",
+      "pkgName": "BİL BAKALIM PRO (Tüm Paketler)",
+      "date": "2026-10-25T11:44:24.307Z"
+    },
+    "4321": {
+      "isPro": true,
+      "activatedAt": "2026-10-25T12:08:39.347Z",
+      "method": "SANDBOX",
+      "transactionId": "TXN-SBX-1792930119346-1834",
+      "pkgName": "BİL BAKALIM PRO",
+      "date": "2026-10-25T12:08:39.346Z"
+    },
+    "9999": {
+      "isPro": true,
+      "activatedAt": "2026-10-25T13:28:32.347Z",
+      "method": "SANDBOX",
+      "transactionId": "TXN-SBX-1792934912346-2321",
+      "pkgName": "BİL BAKALIM PRO",
+      "date": "2026-10-25T13:28:32.346Z"
+    }
+  },
+  "devices": {}
+}

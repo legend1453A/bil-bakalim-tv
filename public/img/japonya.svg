@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 300" width="100%" height="100%">
+  <rect width="400" height="300" rx="16" fill="#0f172a"/>
+  <!-- Bayrak Çerçevesi -->
+  <rect x="50" y="35" width="300" height="200" rx="10" fill="#ffffff" stroke="#94a3b8" stroke-width="4"/>
+  <!-- Kırmızı Güneş Diski -->
+  <circle cx="200" cy="135" r="60" fill="#bc002d"/>
+  <text x="200" y="275" font-family="'Outfit', sans-serif" font-weight="900" font-size="14" fill="#facc15" text-anchor="middle" letter-spacing="1">GÖRSEL SORU: BU BAYRAK HANGİ ASYA ÜLKESİNE AİTTİR?</text>
+</svg>

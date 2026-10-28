@@ -1,0 +1,3896 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+  <title>BİL BAKALIM - TV Bilgi Yarışması</title>
+  <link rel="icon" type="image/png" href="icon.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;800;900&family=Space+Grotesk:wght@700;900&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #070913;
+      --card-bg: rgba(22, 27, 46, 0.9);
+      --primary: #6366f1;
+      --accent: #ec4899;
+      --green: #10b981;
+      --yellow: #f59e0b;
+      --blue: #3b82f6;
+      --text: #f8fafc;
+      --text-muted: #94a3b8;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      user-select: none;
+    }
+
+    html, body {
+      width: 100%;
+      height: 100%;
+      margin: 0;
+      padding: 0;
+      overflow: hidden !important;
+    }
+
+    body {
+      background: radial-gradient(circle at 50% 15%, #1e1b4b 0%, #070913 85%);
+      color: var(--text);
+      font-family: 'Outfit', sans-serif;
+      height: 100vh;
+      max-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-start;
+      padding: 10px 24px;
+      box-sizing: border-box;
+      overflow: hidden !important;
+    }
+
+    header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding-bottom: 8px;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+      flex-shrink: 0;
+      gap: 10px;
+      margin-bottom: 8px;
+      height: 46px;
+      box-sizing: border-box;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .brand-logo-img {
+      width: 42px;
+      height: 42px;
+      border-radius: 12px;
+      object-fit: cover;
+      box-shadow: 0 6px 18px rgba(99, 102, 241, 0.5), 0 0 12px rgba(250, 204, 21, 0.4);
+      border: 1.5px solid rgba(255, 255, 255, 0.25);
+    }
+
+    .brand h1 {
+      font-size: 20px;
+      font-weight: 900;
+      letter-spacing: -0.5px;
+      background: linear-gradient(to right, #fde047, #ffffff, #6ee7b7);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      line-height: 1;
+    }
+
+    .brand-sub {
+      font-size: 11px;
+      color: var(--text-muted);
+      font-weight: 600;
+    }
+
+    .header-actions {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      flex-wrap: nowrap;
+    }
+
+    .room-code-pill {
+      background: linear-gradient(135deg, rgba(245, 158, 11, 0.25), rgba(234, 88, 12, 0.25));
+      border: 1.5px solid #facc15;
+      color: #fff;
+      padding: 4px 12px;
+      border-radius: 10px;
+      font-weight: 900;
+      font-size: 13px;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      box-shadow: 0 0 12px rgba(250, 204, 21, 0.25);
+      white-space: nowrap;
+    }
+
+    .room-code-pill span.code-digits {
+      font-family: 'Space Grotesk', sans-serif;
+      color: #facc15;
+      font-size: 17px;
+      letter-spacing: 1.5px;
+    }
+
+    .top-btn {
+      background: rgba(255, 255, 255, 0.08);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      color: #fff;
+      padding: 5px 12px;
+      border-radius: 10px;
+      font-weight: 800;
+      font-size: 12px;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      outline: none;
+      transition: all 0.2s;
+      white-space: nowrap;
+    }
+
+    .top-btn:focus, .top-btn:hover {
+      background: #4f46e5;
+      border-color: #facc15;
+      transform: scale(1.04);
+    }
+
+    .key-badge {
+      background: #4f46e5;
+      color: #fff;
+      font-weight: 800;
+      padding: 3px 8px;
+      border-radius: 8px;
+      font-size: 12px;
+    }
+
+    main {
+      flex: 1;
+      min-height: 0;
+      display: flex;
+      flex-direction: column;
+      position: relative;
+      width: 100%;
+    }
+
+    /* 1. LOBİ */
+    #screen-lobby {
+      display: flex;
+      align-items: stretch;
+      justify-content: space-between;
+      gap: 20px;
+      animation: fadeIn 0.4s ease;
+      width: 100%;
+      height: 100%;
+      max-height: 100%;
+      overflow: hidden !important;
+      box-sizing: border-box;
+    }
+
+    .qr-card {
+      background: linear-gradient(165deg, rgba(22, 27, 46, 0.85) 0%, rgba(10, 14, 26, 0.95) 100%);
+      backdrop-filter: blur(25px);
+      border: 1.5px solid rgba(255, 255, 255, 0.16);
+      padding: 14px 18px;
+      border-radius: 24px;
+      text-align: center;
+      box-shadow: 0 20px 50px rgba(0, 0, 0, 0.6), 0 0 35px rgba(99, 102, 241, 0.25);
+      width: 295px;
+      flex-shrink: 0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      box-sizing: border-box;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .qr-card::before {
+      content: '';
+      position: absolute;
+      top: -40px;
+      left: -40px;
+      width: 120px;
+      height: 120px;
+      background: radial-gradient(circle, rgba(250, 204, 21, 0.25) 0%, transparent 70%);
+      pointer-events: none;
+    }
+
+    .qr-room-badge {
+      background: linear-gradient(135deg, #f59e0b, #d97706);
+      color: #0f172a;
+      border-radius: 12px;
+      padding: 6px 16px;
+      font-size: 19px;
+      font-weight: 900;
+      letter-spacing: 1.5px;
+      box-shadow: 0 4px 18px rgba(245, 158, 11, 0.45);
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+      width: 100%;
+      box-sizing: border-box;
+    }
+
+    .qr-card p {
+      color: #cbd5e1;
+      font-size: 13px;
+      font-weight: 600;
+      margin: 0;
+    }
+
+    .qr-card img {
+      width: 165px;
+      height: 165px;
+      border-radius: 16px;
+      background: #ffffff;
+      padding: 8px;
+      margin: 2px 0;
+      box-shadow: 0 10px 25px rgba(0,0,0,0.5), 0 0 20px rgba(255, 255, 255, 0.15);
+      display: block;
+      object-fit: contain;
+    }
+
+    .lobby-room-box {
+      background: rgba(250, 204, 21, 0.12);
+      border: 1.5px dashed rgba(250, 204, 21, 0.7);
+      border-radius: 12px;
+      padding: 6px 12px;
+      font-size: 14px;
+      font-weight: 900;
+      color: #fef08a;
+      width: 100%;
+      letter-spacing: 1px;
+      box-sizing: border-box;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+    }
+
+    .join-url {
+      font-size: 12px;
+      color: #c7d2fe;
+      font-weight: 800;
+      background: rgba(0, 0, 0, 0.5);
+      border: 1px solid rgba(255, 255, 255, 0.14);
+      padding: 6px 12px;
+      border-radius: 10px;
+      width: 100%;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      box-sizing: border-box;
+    }
+
+    .lobby-players-box {
+      flex: 1;
+      min-width: 0;
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      overflow: hidden;
+    }
+
+    .lobby-info-banner {
+      background: linear-gradient(135deg, rgba(99, 102, 241, 0.22), rgba(168, 85, 247, 0.22));
+      backdrop-filter: blur(12px);
+      border: 1.5px solid rgba(168, 85, 247, 0.35);
+      border-radius: 16px;
+      padding: 6px 16px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+      flex-shrink: 0;
+    }
+
+    .lobby-header {
+      font-size: 16px;
+      font-weight: 900;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-shrink: 0;
+      color: #f8fafc;
+    }
+
+    .player-pill-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(130px, 1fr));
+      gap: 12px;
+      flex: 1;
+      min-height: 0;
+      overflow-y: auto;
+      padding: 14px;
+      background: rgba(10, 14, 26, 0.45);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      border-radius: 20px;
+      box-sizing: border-box;
+      align-content: flex-start;
+    }
+
+    /* 3D AVATAR OYUNCU KARTI */
+    .player-avatar-card {
+      background: linear-gradient(160deg, rgba(30, 41, 59, 0.6) 0%, rgba(15, 23, 42, 0.85) 100%);
+      border: 1.5px solid rgba(168, 85, 247, 0.35);
+      border-radius: 18px;
+      padding: 12px 8px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+      box-shadow: 0 10px 24px rgba(0, 0, 0, 0.4), 0 0 20px rgba(99, 102, 241, 0.12);
+      animation: avatarPopIn 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275) both;
+      transition: all 0.25s ease;
+      backdrop-filter: blur(10px);
+      box-sizing: border-box;
+    }
+
+    .player-avatar-card:hover {
+      transform: translateY(-4px) scale(1.03);
+      border-color: #a855f7;
+      box-shadow: 0 14px 30px rgba(0, 0, 0, 0.5), 0 0 25px rgba(168, 85, 247, 0.3);
+    }
+
+    .player-avatar-card.team-red {
+      border-color: rgba(239, 68, 68, 0.5);
+      background: linear-gradient(160deg, rgba(69, 10, 10, 0.6) 0%, rgba(15, 23, 42, 0.85) 100%);
+    }
+
+    .player-avatar-card.team-blue {
+      border-color: rgba(59, 130, 246, 0.5);
+      background: linear-gradient(160deg, rgba(30, 58, 138, 0.6) 0%, rgba(15, 23, 42, 0.85) 100%);
+    }
+
+    .avatar-circle {
+      width: 56px;
+      height: 56px;
+      border-radius: 50%;
+      background: radial-gradient(circle at 35% 35%, #4f46e5, #1e1b4b);
+      border: 2px solid #a855f7;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 0 18px rgba(168, 85, 247, 0.45);
+      animation: avatarFloat 3s ease-in-out infinite alternate;
+    }
+
+    .avatar-circle.avatar-red {
+      background: radial-gradient(circle at 35% 35%, #dc2626, #450a0a);
+      border-color: #ef4444;
+      box-shadow: 0 0 18px rgba(239, 68, 68, 0.5);
+    }
+
+    .avatar-circle.avatar-blue {
+      background: radial-gradient(circle at 35% 35%, #2563eb, #172554);
+      border-color: #3b82f6;
+      box-shadow: 0 0 18px rgba(59, 130, 246, 0.5);
+    }
+
+    .avatar-emoji {
+      font-size: 28px;
+      line-height: 1;
+      filter: drop-shadow(0 4px 6px rgba(0,0,0,0.5));
+    }
+
+    .avatar-name {
+      font-size: 13.5px;
+      font-weight: 900;
+      color: #f8fafc;
+      text-align: center;
+      max-width: 100%;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+      letter-spacing: -0.2px;
+      padding: 0 4px;
+    }
+
+    .team-badge {
+      font-size: 10px;
+      font-weight: 900;
+      padding: 2px 8px;
+      border-radius: 6px;
+      letter-spacing: 0.5px;
+      text-transform: uppercase;
+    }
+
+    .team-badge.badge-red {
+      background: #ef4444;
+      color: #fff;
+      box-shadow: 0 2px 8px rgba(239, 68, 68, 0.4);
+    }
+
+    .team-badge.badge-blue {
+      background: #3b82f6;
+      color: #fff;
+      box-shadow: 0 2px 8px rgba(59, 130, 246, 0.4);
+    }
+
+    .lobby-empty-arena {
+      grid-column: 1 / -1;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: clamp(16px, 2.5vh, 28px);
+      background: radial-gradient(circle at center, rgba(99, 102, 241, 0.08) 0%, rgba(255,255,255,0.02) 100%);
+      border: 2px dashed rgba(255, 255, 255, 0.15);
+      border-radius: 20px;
+      gap: 12px;
+      height: 100%;
+      box-sizing: border-box;
+    }
+
+    .arena-icon-ring {
+      display: flex;
+      gap: 16px;
+      font-size: 38px;
+      filter: drop-shadow(0 6px 12px rgba(0,0,0,0.4));
+      animation: avatarFloat 2.5s ease-in-out infinite alternate;
+    }
+
+    .arena-title {
+      font-size: clamp(18px, 2.4vh, 24px);
+      font-weight: 900;
+      color: #facc15;
+      letter-spacing: -0.5px;
+      text-shadow: 0 2px 10px rgba(250, 204, 21, 0.3);
+    }
+
+    .arena-desc {
+      font-size: clamp(12px, 1.5vh, 15px);
+      color: #cbd5e1;
+      max-width: 540px;
+      line-height: 1.5;
+    }
+
+    .arena-subhint {
+      color: #a5b4fc;
+      font-weight: 700;
+      display: block;
+      margin-top: 4px;
+    }
+
+    @keyframes avatarPopIn {
+      0% { opacity: 0; transform: scale(0.5) translateY(20px); }
+      70% { transform: scale(1.08) translateY(-4px); }
+      100% { opacity: 1; transform: scale(1) translateY(0); }
+    }
+
+    @keyframes avatarFloat {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-5px); }
+    }
+
+    .tv-btn {
+      background: linear-gradient(135deg, #f59e0b, #ec4899);
+      color: #fff;
+      border: 3px solid transparent;
+      padding: 10px 28px;
+      border-radius: 16px;
+      font-size: 18px;
+      font-weight: 900;
+      cursor: pointer;
+      box-shadow: 0 8px 25px rgba(245, 158, 11, 0.45);
+      transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      outline: none;
+    }
+
+    .tv-btn:focus, .tv-btn:hover {
+      transform: scale(1.05) !important;
+      outline: none !important;
+      border-color: #facc15 !important;
+      box-shadow: 0 0 35px rgba(250, 204, 21, 0.95), 0 0 15px #facc15 !important;
+      z-index: 50 !important;
+    }
+
+    /* ANDROID TV D-PAD GENEL ODAKLANMA KURALI */
+    button:focus, [tabindex="0"]:focus, .category-card:focus, .option-card:focus, .top-btn:focus, .tv-btn:focus {
+      transform: scale(1.05) !important;
+      outline: none !important;
+      border-color: #facc15 !important;
+      box-shadow: 0 0 28px rgba(250, 204, 21, 0.95), 0 0 10px rgba(255, 255, 255, 0.8) !important;
+      z-index: 50 !important;
+    }
+
+    /* 2. KATEGORİ SEÇİM PANELİ */
+    #screen-categories {
+      display: none;
+      flex-direction: column;
+      height: 100%;
+      max-height: 100%;
+      gap: 8px;
+      animation: fadeIn 0.4s ease;
+      width: 100%;
+      overflow: hidden !important;
+      box-sizing: border-box;
+    }
+
+    .pro-banner {
+      background: linear-gradient(90deg, rgba(245, 158, 11, 0.22) 0%, rgba(124, 58, 237, 0.3) 50%, rgba(236, 72, 153, 0.22) 100%);
+      border: 1.5px solid rgba(250, 204, 21, 0.45);
+      border-radius: 14px;
+      padding: 6px 16px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-shrink: 0;
+      height: 42px;
+      box-sizing: border-box;
+      box-shadow: 0 4px 20px rgba(245, 158, 11, 0.25);
+    }
+
+    .category-grid {
+      flex: 1;
+      min-height: 0;
+      display: grid;
+      grid-template-columns: repeat(6, 1fr);
+      grid-template-rows: repeat(2, 1fr);
+      gap: 12px;
+      width: 100%;
+      padding: 2px;
+      box-sizing: border-box;
+      overflow: hidden;
+    }
+
+    .category-card {
+      border: 2px solid rgba(255, 255, 255, 0.16);
+      border-radius: 20px;
+      padding: 12px 14px;
+      cursor: pointer;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      height: 100%;
+      min-height: 0;
+      position: relative;
+      outline: none;
+      transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+      text-align: left;
+      box-sizing: border-box;
+      box-shadow: 0 10px 24px rgba(0, 0, 0, 0.5), inset 0 1px 1px rgba(255, 255, 255, 0.18);
+      backdrop-filter: blur(14px);
+      overflow: hidden;
+    }
+
+    .category-card::before {
+      content: '';
+      position: absolute;
+      top: -25%;
+      right: -25%;
+      width: 130px;
+      height: 130px;
+      border-radius: 50%;
+      background: var(--card-glow, rgba(99, 102, 241, 0.25));
+      filter: blur(28px);
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    .cat-watermark {
+      position: absolute;
+      right: -8px;
+      bottom: 22px;
+      font-size: 78px;
+      opacity: 0.14;
+      pointer-events: none;
+      filter: blur(0.5px);
+      transform: rotate(-12deg);
+      user-select: none;
+      z-index: 0;
+      line-height: 1;
+    }
+
+    .category-card:focus, .category-card:hover {
+      transform: translateY(-5px) scale(1.04) !important;
+      border-color: #facc15 !important;
+      outline: none !important;
+      box-shadow: 0 18px 45px rgba(0, 0, 0, 0.75), 0 0 35px rgba(250, 204, 21, 0.85), inset 0 0 15px rgba(250, 204, 21, 0.2) !important;
+      z-index: 50 !important;
+    }
+
+    .category-card.vip-locked {
+      background: linear-gradient(145deg, rgba(24, 24, 27, 0.95), rgba(39, 39, 42, 0.85));
+      border: 2px solid rgba(234, 179, 8, 0.55);
+    }
+
+    .cat-top-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      position: relative;
+      z-index: 1;
+      width: 100%;
+    }
+
+    .cat-icon-pod {
+      width: 48px;
+      height: 48px;
+      border-radius: 14px;
+      background: rgba(255, 255, 255, 0.12);
+      border: 1px solid rgba(255, 255, 255, 0.25);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 26px;
+      position: relative;
+      z-index: 1;
+      backdrop-filter: blur(8px);
+      box-sizing: border-box;
+    }
+
+    .cat-content-middle {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+      position: relative;
+      z-index: 1;
+      margin: auto 0;
+    }
+
+    .cat-title {
+      font-size: 15.5px;
+      font-weight: 900;
+      color: #ffffff;
+      line-height: 1.25;
+      letter-spacing: -0.3px;
+    }
+
+    .cat-desc {
+      font-size: 11.5px;
+      color: #cbd5e1;
+      font-weight: 500;
+      line-height: 1.35;
+      display: -webkit-box;
+      -webkit-line-clamp: 2;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+    }
+
+    .cat-stats-row {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      flex-wrap: wrap;
+      margin-top: 2px;
+    }
+
+    .cat-stat-badge {
+      font-size: 10.5px;
+      font-weight: 800;
+      background: rgba(255, 255, 255, 0.08);
+      border: 1px solid rgba(255, 255, 255, 0.16);
+      border-radius: 6px;
+      padding: 2px 7px;
+      color: #e2e8f0;
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+    }
+
+    .cat-footer {
+      margin-top: auto;
+      padding-top: 6px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      position: relative;
+      z-index: 1;
+    }
+
+    .vip-tag {
+      background: linear-gradient(135deg, #f59e0b, #d97706);
+      color: #000;
+      font-weight: 900;
+      font-size: 10px;
+      padding: 3px 8px;
+      border-radius: 6px;
+      letter-spacing: 0.3px;
+      box-shadow: 0 2px 10px rgba(245, 158, 11, 0.4);
+      z-index: 2;
+      white-space: nowrap;
+    }
+
+    .free-tag {
+      background: rgba(16, 185, 129, 0.25);
+      color: #34d399;
+      font-weight: 800;
+      font-size: 10px;
+      padding: 3px 8px;
+      border-radius: 6px;
+      border: 1px solid rgba(16, 185, 129, 0.4);
+      z-index: 2;
+      white-space: nowrap;
+    }
+      border-radius: 6px;
+      border: 1px solid rgba(16, 185, 129, 0.4);
+      z-index: 2;
+      white-space: nowrap;
+    }
+
+    /* ÇOCUK SORUSU ROZETİ */
+    .kids-badge {
+      background: linear-gradient(135deg, #ec4899, #8b5cf6);
+      color: #fff;
+      font-weight: 900;
+      padding: 4px 10px;
+      border-radius: 10px;
+      border: 2px solid #f472b6;
+      box-shadow: 0 0 14px rgba(236, 72, 153, 0.7);
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      font-size: 13px;
+      animation: pulseSoft 1.5s infinite alternate;
+    }
+
+    @keyframes pulseSoft {
+      0% { transform: scale(1); }
+      100% { transform: scale(1.05); }
+    }
+
+    /* ÖZEL TV MODAL (POPUP) */
+    .tv-modal-backdrop {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      background: rgba(0, 0, 0, 0.88);
+      backdrop-filter: blur(8px);
+      z-index: 9999;
+      display: none;
+      align-items: center;
+      justify-content: center;
+      animation: fadeIn 0.25s ease;
+      padding: clamp(10px, 1.5vh, 20px);
+      box-sizing: border-box;
+    }
+
+    .tv-modal-box {
+      background: #0f172a;
+      border: 2px solid rgba(255, 255, 255, 0.2);
+      border-radius: 20px;
+      padding: clamp(12px, 1.8vh, 20px) clamp(16px, 2.2vw, 26px);
+      max-width: 740px;
+      width: 95%;
+      max-height: 90vh;
+      overflow-y: auto;
+      box-shadow: 0 25px 60px rgba(0, 0, 0, 0.85);
+      display: flex;
+      flex-direction: column;
+      gap: clamp(6px, 1vh, 12px);
+      margin: auto;
+      box-sizing: border-box;
+    }
+
+    /* 3. SORU EKRANI */
+    #screen-question {
+      display: none;
+      flex-direction: column;
+      justify-content: space-between;
+      height: 100%;
+      max-height: 100%;
+      gap: clamp(6px, 1vh, 10px);
+      animation: fadeIn 0.35s ease;
+      width: 100%;
+      overflow: hidden;
+      box-sizing: border-box;
+    }
+
+    .q-top-bar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-shrink: 0;
+    }
+
+    .category-tag {
+      background: rgba(99, 102, 241, 0.25);
+      color: #c7d2fe;
+      border: 1px solid #6366f1;
+      padding: 4px 12px;
+      border-radius: 12px;
+      font-size: 13px;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+
+    .double-points-badge {
+      background: linear-gradient(135deg, #f59e0b, #ef4444);
+      color: #fff;
+      font-weight: 900;
+      font-size: 13px;
+      padding: 4px 12px;
+      border-radius: 12px;
+      box-shadow: 0 0 16px rgba(239, 68, 68, 0.7);
+      animation: pulse 0.6s infinite alternate;
+      display: none;
+      align-items: center;
+      gap: 5px;
+    }
+
+    .timer-circle {
+      min-width: 72px;
+      height: 36px;
+      border-radius: 10px;
+      background: rgba(0, 0, 0, 0.6);
+      border: 2px solid #6366f1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 18px;
+      font-weight: 900;
+      color: #fff;
+      font-family: 'Space Grotesk', sans-serif;
+      padding: 2px 8px;
+      transition: all 0.2s;
+      box-sizing: border-box;
+    }
+
+    .timer-danger {
+      border-color: #ef4444 !important;
+      color: #ef4444 !important;
+      background: rgba(239, 68, 68, 0.25) !important;
+      animation: timerPulse 0.5s infinite alternate !important;
+    }
+
+    @keyframes timerPulse {
+      0% { transform: scale(1); }
+      100% { transform: scale(1.08); box-shadow: 0 0 20px rgba(239, 68, 68, 0.85); }
+    }
+
+    .question-box {
+      background: linear-gradient(165deg, rgba(22, 27, 46, 0.92) 0%, rgba(10, 14, 26, 0.98) 100%);
+      border: 2.5px solid rgba(255, 255, 255, 0.18);
+      border-radius: 24px;
+      padding: clamp(18px, 2.8vh, 32px) clamp(22px, 3vw, 42px);
+      font-size: clamp(26px, 3.4vh, 38px);
+      font-weight: 900;
+      line-height: 1.35;
+      text-align: center;
+      box-shadow: 0 16px 45px rgba(0, 0, 0, 0.6), inset 0 1px 1px rgba(255, 255, 255, 0.2);
+      flex: 1;
+      min-height: 140px;
+      max-height: 38vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #ffffff;
+      text-shadow: 0 2px 10px rgba(0,0,0,0.6);
+      overflow-y: auto;
+      box-sizing: border-box;
+    }
+
+    .question-box.double-active {
+      border-color: #f59e0b;
+      box-shadow: 0 0 35px rgba(245, 158, 11, 0.5), inset 0 0 20px rgba(245, 158, 11, 0.15);
+    }
+
+    .options-grid {
+      flex: 0 0 auto;
+      height: clamp(170px, 24vh, 210px);
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      grid-template-rows: 1fr 1fr;
+      gap: 14px;
+      margin: 8px 0;
+      width: 100%;
+      box-sizing: border-box;
+    }
+
+    .option-card {
+      background: linear-gradient(145deg, rgba(30, 41, 59, 0.92), rgba(15, 23, 42, 0.98));
+      border: 2px solid rgba(255, 255, 255, 0.16);
+      border-radius: 18px;
+      padding: 10px 22px;
+      height: 100%;
+      min-height: 0;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 14px;
+      cursor: pointer;
+      outline: none;
+      box-sizing: border-box;
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.4);
+      transition: transform 0.2s cubic-bezier(0.4, 0, 0.2, 1), box-shadow 0.2s, border-color 0.2s;
+    }
+
+    .option-card span[id^="opt-text-"] {
+      font-size: clamp(21px, 2.5vh, 27px);
+      font-weight: 800;
+      color: #ffffff;
+      line-height: 1.25;
+      display: -webkit-box;
+      -webkit-line-clamp: 2;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .option-card:focus, .option-card:hover {
+      outline: none !important;
+      transform: translateY(-3px) scale(1.03) !important;
+      border-color: #facc15 !important;
+      box-shadow: 0 12px 35px rgba(250, 204, 21, 0.85), 0 0 15px #facc15 !important;
+      z-index: 10;
+    }
+
+    .opt-left {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      min-width: 0;
+    }
+
+    .opt-icon {
+      width: 48px;
+      height: 48px;
+      border-radius: 14px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 900;
+      font-size: 22px;
+      color: #fff;
+      flex-shrink: 0;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.4);
+    }
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 900;
+      font-size: 18px;
+      color: #fff;
+      flex-shrink: 0;
+    }
+
+    .opt-0 .opt-icon { background: #ef4444; }
+    .opt-1 .opt-icon { background: #3b82f6; }
+    .opt-2 .opt-icon { background: #eab308; }
+    .opt-3 .opt-icon { background: #10b981; }
+
+    .option-correct {
+      background: #059669 !important;
+      border: 3px solid #10b981 !important;
+      box-shadow: 0 0 35px rgba(16, 185, 129, 0.9) !important;
+      color: #ffffff !important;
+    }
+
+    .option-correct:focus {
+      background: #059669 !important;
+      border: 3px solid #34d399 !important;
+      outline: 4px solid #ffffff !important;
+    }
+
+    .option-wrong {
+      background: #b91c1c !important;
+      border: 3px solid #ef4444 !important;
+      box-shadow: 0 0 35px rgba(239, 68, 68, 0.9) !important;
+      color: #ffffff !important;
+    }
+
+    .option-wrong:focus {
+      background: #b91c1c !important;
+      border: 3px solid #f87171 !important;
+      outline: 4px solid #ffffff !important;
+    }
+
+    .option-dimmed {
+      opacity: 0.45;
+      filter: grayscale(0.4);
+    }
+
+    .voters-avatars {
+      display: flex;
+      gap: 6px;
+      font-size: 22px;
+    }
+
+    /* 1. HALAT ÇEKME (TUG OF WAR) GÖRSEL PUAN ÇUBUĞU */
+    .tug-of-war-arena {
+      background: rgba(15, 23, 42, 0.95);
+      border: 2px solid rgba(250, 204, 21, 0.4);
+      border-radius: 18px;
+      padding: 10px 22px;
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.6);
+      position: relative;
+      overflow: visible;
+      transition: all 0.3s ease;
+    }
+
+    .tug-arena-final {
+      border-color: #facc15 !important;
+      box-shadow: 0 0 35px rgba(250, 204, 21, 0.85), 0 0 60px rgba(239, 68, 68, 0.5) !important;
+      animation: finalDuelGlow 1s infinite alternate;
+    }
+
+    @keyframes finalDuelGlow {
+      0% { transform: scale(1); border-color: #facc15; }
+      100% { transform: scale(1.015); border-color: #ef4444; }
+    }
+
+    .tug-header-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .tug-team-pill {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .tug-team-red {
+      color: #f87171;
+    }
+
+    .tug-team-blue {
+      color: #60a5fa;
+    }
+
+    .tug-score-badge {
+      font-size: 24px;
+      font-weight: 900;
+      font-family: 'Space Grotesk', sans-serif;
+      color: #fff;
+      padding: 2px 10px;
+      border-radius: 10px;
+    }
+
+    .tug-score-red {
+      background: rgba(239, 68, 68, 0.3);
+      border: 1px solid #ef4444;
+      text-shadow: 0 0 10px rgba(239, 68, 68, 0.8);
+    }
+
+    .tug-score-blue {
+      background: rgba(59, 130, 246, 0.3);
+      border: 1px solid #3b82f6;
+      text-shadow: 0 0 10px rgba(59, 130, 246, 0.8);
+    }
+
+    /* Halat Kanalı ve Çekme İbresi */
+    .tug-track-wrapper {
+      position: relative;
+      height: 24px;
+      background: #0f172a;
+      border-radius: 12px;
+      overflow: visible;
+      border: 2px solid rgba(255, 255, 255, 0.2);
+      display: flex;
+      margin: 4px 0 2px 0;
+    }
+
+    .tug-bar-red {
+      height: 100%;
+      background: linear-gradient(90deg, #b91c1c, #ef4444);
+      transition: width 0.7s cubic-bezier(0.34, 1.56, 0.64, 1);
+      border-radius: 10px 0 0 10px;
+    }
+
+    .tug-bar-blue {
+      height: 100%;
+      background: linear-gradient(90deg, #3b82f6, #1d4ed8);
+      transition: width 0.7s cubic-bezier(0.34, 1.56, 0.64, 1);
+      border-radius: 0 10px 10px 0;
+      flex: 1;
+    }
+
+    /* Halatın Düğümü / İbre İkonu */
+    .tug-knot-indicator {
+      position: absolute;
+      top: 50%;
+      transform: translate(-50%, -50%);
+      width: 38px;
+      height: 38px;
+      border-radius: 50%;
+      background: #1e293b;
+      border: 3px solid #facc15;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 20px;
+      box-shadow: 0 0 20px rgba(250, 204, 21, 0.95);
+      transition: left 0.7s cubic-bezier(0.34, 1.56, 0.64, 1);
+      z-index: 5;
+    }
+
+    .tug-status-text {
+      font-size: 13px;
+      font-weight: 800;
+      text-align: center;
+      color: #facc15;
+      letter-spacing: 0.3px;
+      text-shadow: 0 2px 4px rgba(0,0,0,0.8);
+    }
+
+    /* 2. TAKIM COMBOSU PATLAMA OVERLAY */
+    .team-combo-popup {
+      position: absolute;
+      top: 30%;
+      left: 50%;
+      transform: translate(-50%, -50%) scale(0);
+      background: linear-gradient(135deg, rgba(239, 68, 68, 0.96), rgba(245, 158, 11, 0.96));
+      border: 4px solid #fff;
+      border-radius: 24px;
+      padding: 18px 40px;
+      color: #fff;
+      font-size: 28px;
+      font-weight: 900;
+      text-align: center;
+      box-shadow: 0 0 50px rgba(245, 158, 11, 0.9), 0 10px 30px rgba(0,0,0,0.8);
+      z-index: 999;
+      pointer-events: none;
+      transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275), opacity 0.4s ease;
+      opacity: 0;
+    }
+
+    .team-combo-popup.show {
+      transform: translate(-50%, -50%) scale(1);
+      opacity: 1;
+      animation: comboPulse 0.5s infinite alternate;
+    }
+
+    @keyframes comboPulse {
+      0% { transform: translate(-50%, -50%) scale(1); }
+      100% { transform: translate(-50%, -50%) scale(1.05); }
+    }
+
+    /* 4. TAKIM TEZAHÜRATI BALONCUĞU */
+    .floating-team-cheer-bubble {
+      position: absolute;
+      bottom: 20px;
+      background: rgba(15, 23, 42, 0.95);
+      border: 3px solid #facc15;
+      border-radius: 20px;
+      padding: 10px 18px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      animation: floatUpSlow 3.5s cubic-bezier(0.25, 1, 0.5, 1) forwards;
+      pointer-events: none;
+      z-index: 1000;
+    }
+
+    @keyframes floatUpSlow {
+      0% { opacity: 0; transform: translateY(40px) scale(0.85); }
+      15% { opacity: 1; transform: translateY(0px) scale(1.05); }
+      80% { opacity: 1; transform: translateY(-380px) scale(1); }
+      100% { opacity: 0; transform: translateY(-460px) scale(0.9); }
+    }
+
+    /* 3D PODYUM STİLLERİ (TUR SONU İLK 3) */
+    .podium-container {
+      display: flex;
+      justify-content: center;
+      align-items: flex-end;
+      gap: 16px;
+      margin: 12px 0 20px 0;
+      height: 220px;
+    }
+
+    .podium-step {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      width: 140px;
+      animation: popIn 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    }
+
+    .podium-rank-1 { order: 2; height: 100%; }
+    .podium-rank-2 { order: 1; height: 82%; }
+    .podium-rank-3 { order: 3; height: 68%; }
+
+    .podium-pillar {
+      width: 100%;
+      flex: 1;
+      border-radius: 16px 16px 0 0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      font-weight: 900;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+      border: 2px solid rgba(255,255,255,0.2);
+    }
+
+    .pillar-1 { background: linear-gradient(180deg, #f59e0b, #b45309); border-color: #fde047; }
+    .pillar-2 { background: linear-gradient(180deg, #94a3b8, #475569); border-color: #e2e8f0; }
+    .pillar-3 { background: linear-gradient(180deg, #d97706, #78350f); border-color: #fcd34d; }
+
+    .podium-user-badge {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      margin-bottom: 8px;
+    }
+
+    .podium-avatar {
+      font-size: 38px;
+      filter: drop-shadow(0 4px 10px rgba(0,0,0,0.5));
+    }
+
+    .podium-username {
+      font-size: 15px;
+      font-weight: 800;
+      color: #fff;
+      max-width: 130px;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .podium-score {
+      font-size: 14px;
+      font-weight: 900;
+      color: #fef08a;
+    }
+
+    /* 4. REKLAM GEÇİŞ EKRANI */
+    #screen-ad {
+      display: none;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      gap: 18px;
+      background: rgba(15, 23, 42, 0.95);
+      border: 3px solid rgba(245, 158, 11, 0.5);
+      border-radius: 26px;
+      padding: 32px;
+      box-shadow: 0 25px 60px rgba(0,0,0,0.6);
+      animation: fadeIn 0.4s ease;
+    }
+
+    /* ÇIKIŞ ONAY PENCERESİ */
+    #tv-exit-dialog {
+      display: none;
+      position: fixed;
+      top: 0; left: 0; right: 0; bottom: 0;
+      background: rgba(0, 0, 0, 0.85);
+      backdrop-filter: blur(14px);
+      z-index: 99999;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .exit-dialog-box {
+      background: #1e293b;
+      border: 3px solid #f43f5e;
+      border-radius: 24px;
+      padding: 30px 40px;
+      max-width: 480px;
+      text-align: center;
+      box-shadow: 0 25px 60px rgba(0,0,0,0.8);
+      animation: popIn 0.3s ease;
+    }
+
+
+    /* 5. KALICI LİDERLİK TABLOSU (HALL OF FAME) */
+    #screen-hall-of-fame {
+      display: none;
+      flex-direction: column;
+      justify-content: space-between;
+      height: 100%;
+      max-height: 100%;
+      gap: clamp(6px, 1vh, 12px);
+      animation: fadeIn 0.4s ease;
+      overflow: hidden;
+      box-sizing: border-box;
+    }
+
+    .hof-container {
+      background: rgba(30, 41, 59, 0.85);
+      border: 2px solid rgba(255, 255, 255, 0.12);
+      border-radius: 16px;
+      padding: clamp(8px, 1.2vh, 14px) clamp(12px, 1.5vw, 18px);
+      flex: 1;
+      min-height: 0;
+      max-height: none;
+      overflow-y: auto;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .hof-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: clamp(6px, 0.9vh, 10px) clamp(10px, 1.2vw, 16px);
+      border-radius: 12px;
+      background: rgba(15, 23, 42, 0.7);
+      font-size: clamp(13px, 1.6vh, 17px);
+      font-weight: 800;
+    }
+
+    .players-live-bar {
+      background: rgba(15, 23, 42, 0.85);
+      border-radius: 14px;
+      padding: clamp(6px, 0.8vh, 9px) clamp(10px, 1.2vw, 16px);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      flex-shrink: 0;
+    }
+
+    .live-player-tags {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+      align-items: center;
+    }
+
+    .player-tag {
+      background: rgba(255, 255, 255, 0.08);
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      border-radius: 20px;
+      padding: clamp(3px, 0.5vh, 5px) clamp(8px, 1vw, 12px);
+      font-size: clamp(11px, 1.3vh, 14px);
+      font-weight: 700;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .player-tag.has-voted {
+      background: rgba(99, 102, 241, 0.25);
+      border-color: #6366f1;
+      color: #c7d2fe;
+    }
+
+    .player-tag.has-correct {
+      background: rgba(16, 185, 129, 0.25);
+      border-color: #10b981;
+      color: #34d399;
+    }
+
+    .player-tag.has-wrong {
+      background: rgba(239, 68, 68, 0.25);
+      border-color: #ef4444;
+      color: #f87171;
+    }
+
+    .mini-badge-fastest {
+      background: #facc15;
+      color: #000;
+      font-size: 10px;
+      font-weight: 900;
+      padding: 1px 6px;
+      border-radius: 6px;
+    }
+
+    .mini-badge-streak {
+      background: linear-gradient(135deg, #f97316, #ef4444);
+      color: #fff;
+      font-size: 10px;
+      font-weight: 900;
+      padding: 1px 6px;
+      border-radius: 6px;
+    }
+
+    /* CANLI EMOJİ YAĞMURU KATMANI */
+    #emoji-overlay-container {
+      position: fixed;
+      bottom: 20px;
+      right: 40px;
+      width: 340px;
+      height: 80vh;
+      pointer-events: none;
+      z-index: 9500;
+      overflow: hidden;
+    }
+
+    .floating-emoji-bubble {
+      position: absolute;
+      bottom: 0;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      background: rgba(15, 23, 42, 0.9);
+      border: 2px solid rgba(250, 204, 21, 0.6);
+      padding: 8px 16px;
+      border-radius: 30px;
+      box-shadow: 0 10px 25px rgba(0,0,0,0.5);
+      animation: floatUpEmoji 3.2s cubic-bezier(0.2, 0.8, 0.4, 1) forwards;
+    }
+
+    /* ANDROID TV DİKEY TAŞMAYI ENGELLEYEN VE HER EKRANA SIĞAN KORUMA */
+    @media (max-height: 720px) {
+      body { padding: 10px 24px; }
+      header { padding-bottom: 6px; margin-bottom: 8px; }
+      .qr-card { width: 260px; padding: 14px; }
+      .qr-card img { width: 140px; height: 140px; }
+      .category-card { padding: 10px 12px; min-height: 140px; }
+      .category-grid { gap: 8px; }
+      .cat-icon { font-size: 24px; }
+      .cat-title { font-size: 14px; }
+      .cat-desc { font-size: 11px; }
+      .question-box { padding: 14px 24px; font-size: 25px; min-height: 110px; }
+      .options-grid { height: 155px; gap: 10px; }
+      .option-card { padding: 8px 18px; }
+      .opt-icon { width: 42px; height: 42px; font-size: 20px; }
+      .option-card span[id^="opt-text-"] { font-size: 20px; }
+    }
+
+    @keyframes floatUpEmoji {
+      0% {
+        transform: translateY(40px) scale(0.5);
+        opacity: 0;
+      }
+      15% {
+        transform: translateY(0px) scale(1.08);
+        opacity: 1;
+      }
+      80% {
+        opacity: 1;
+      }
+      100% {
+        transform: translateY(-480px) scale(0.9);
+        opacity: 0;
+      }
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(8px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    @keyframes popIn {
+      0% { transform: scale(0.6); opacity: 0; }
+      100% { transform: scale(1); opacity: 1; }
+    }
+
+    @keyframes pulse {
+      from { transform: scale(1); }
+      to { transform: scale(1.08); }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- TV BİLDİRİM TOAST KATMANI -->
+  <div id="tv-toast-box" style="position:fixed; top:24px; left:50%; transform:translateX(-50%); z-index:999999; display:none; align-items:center; gap:12px; background:linear-gradient(135deg, #059669, #10b981); color:#fff; font-size:18px; font-weight:900; padding:14px 28px; border-radius:18px; box-shadow:0 10px 40px rgba(16,185,129,0.7), 0 0 20px rgba(250,204,21,0.6); border:2px solid #facc15; pointer-events:none; transition:all 0.3s ease;">
+    <span id="tv-toast-icon" style="font-size:26px;">🎉</span>
+    <span id="tv-toast-msg">Tebrikler!</span>
+  </div>
+
+  <!-- CANLI EMOJİ KATMANI -->
+  <canvas id="tv-confetti-canvas" style="position:fixed; top:0; left:0; width:100vw; height:100vh; pointer-events:none; z-index:99998; display:none;"></canvas>
+  <div id="emoji-overlay-container"></div>
+
+  <!-- TV ÜST BAŞLIK -->
+  <header>
+    <div class="brand" style="cursor:pointer;" onclick="goHomeLobby()" title="Ana Sayfaya Dön">
+      <img src="icon.png" alt="BİL BAKALIM" class="brand-logo-img">
+      <div>
+        <h1>BİL BAKALIM</h1>
+        <div class="brand-sub">Aile ve Arkadaşlar İçin TV Bilgi Yarışması</div>
+      </div>
+
+    </div>
+    <div class="header-actions">
+      <div class="room-code-pill" title="Telefonla katılırken kullanılan özel oda kodunuz">
+        <span>🔑 ODA:</span>
+        <span class="code-digits" id="header-room-code">----</span>
+      </div>
+      <button class="top-btn" id="btn-tts-toggle" onclick="toggleTts()" title="Soruları sesli okuyan Türkçe spiker">🎙️ Spiker: Açık</button>
+      <button class="top-btn" id="btn-header-pro" onclick="openProModal()" style="background:linear-gradient(135deg, #f59e0b, #d97706); color:#000; font-weight:900; border:none; box-shadow:0 0 14px rgba(245,158,11,0.5);">👑 PRO Al</button>
+      <button class="top-btn" onclick="goHomeLobby()">🏠 Ana Sayfa</button>
+      <button class="top-btn" onclick="goCategories()">🗂️ Kategoriler</button>
+      <button class="top-btn" id="btn-open-hof">🏆 Liderlik Tablosu</button>
+    </div>
+  </header>
+
+  <!-- ANA OYUN ALANI -->
+  <main>
+    <!-- 1. LOBİ (QR KOD OKUTUP İSİM GİRME) -->
+    <div id="screen-lobby">
+      <div class="qr-card">
+        <div class="qr-room-badge">
+          <span>🔑 ODA:</span> <span id="lobby-room-code-top">----</span>
+        </div>
+        <p>Kameranı aç ve hemen odaya katıl:</p>
+        <img id="qr-image" src="" alt="QR Kod">
+        <div class="lobby-room-box">
+          <span>GİRİŞ KODU:</span> <span id="lobby-room-code" style="font-size:22px; color:#fff; letter-spacing:2px; font-family:'Space Grotesk',sans-serif;">----</span>
+        </div>
+        <div class="join-url" id="join-url-text">📱 Yükleniyor...</div>
+      </div>
+
+      <div class="lobby-players-box">
+        <!-- OYUN MODU SEÇİCİ & DEV HAVUZ BİLGİLENDİRME ROZETİ -->
+        <div class="lobby-info-banner">
+          <div style="display:flex; align-items:center; gap:10px;">
+            <span style="font-size:26px;">🎮</span>
+            <div>
+              <div style="font-size:13px; font-weight:900; color:#facc15;">YARIŞMA MODU:</div>
+              <div style="display:flex; gap:6px; margin-top:2px;">
+                <button type="button" id="btn-mode-solo" class="top-btn active-mode" onclick="setTvGameMode('SOLO')" style="padding:6px 14px; font-size:13px; font-weight:900; background:linear-gradient(135deg, #4f46e5, #6366f1); border-color:#facc15; color:#fff;">👤 Bireysel</button>
+                <button type="button" id="btn-mode-team" class="top-btn" onclick="setTvGameMode('TEAM')" style="padding:6px 14px; font-size:13px; font-weight:900; background:rgba(255,255,255,0.06); border-color:rgba(255,255,255,0.2); color:#94a3b8;">⚔️ Takım</button>
+              </div>
+            </div>
+          </div>
+
+          <!-- YENİ: YAŞ / OYUN MODU (KLASİK, ÇOCUK, AİLE KARMASI) -->
+          <div style="display:flex; align-items:center; gap:10px; border-left: 2px solid rgba(255,255,255,0.18); padding-left: 12px;">
+            <span style="font-size:26px;">🎯</span>
+            <div>
+              <div style="font-size:13px; font-weight:900; color:#38bdf8;">YAŞ & OYUN DÜZEYİ:</div>
+              <div style="display:flex; gap:6px; margin-top:2px;">
+                <button type="button" id="btn-age-classic" class="top-btn active-mode" onclick="setTvAgeMode('CLASSIC')" style="padding:6px 12px; font-size:13px; font-weight:900; background:linear-gradient(135deg, #4f46e5, #6366f1); border-color:#facc15; color:#fff;">👔 Klasik</button>
+                <button type="button" id="btn-age-kids" class="top-btn" onclick="setTvAgeMode('KIDS')" style="padding:6px 12px; font-size:13px; font-weight:900; background:rgba(255,255,255,0.06); border-color:rgba(255,255,255,0.2); color:#94a3b8;">🧒 Çocuk</button>
+                <button type="button" id="btn-age-family" class="top-btn" onclick="setTvAgeMode('FAMILY')" style="padding:6px 12px; font-size:13px; font-weight:900; background:rgba(255,255,255,0.06); border-color:rgba(255,255,255,0.2); color:#94a3b8;">👨‍👩‍👧‍👦 Aile</button>
+              </div>
+            </div>
+          </div>
+
+          <div style="background:rgba(255,255,255,0.08); border:1px solid rgba(255,255,255,0.2); padding:6px 12px; border-radius:12px; font-weight:900; font-size:13px; white-space:nowrap; color:#34d399;">
+            ✓ 0 Tekrar
+          </div>
+        </div>
+
+        <div class="lobby-header">
+          <span>Odadaki Oyuncular (<span id="player-count">0</span>)</span>
+          <span style="font-size: 14.5px; color: #a5b4fc; font-weight:700;">Telefonunuzdan Emoji Fırlatabilirsiniz 🔥👏</span>
+        </div>
+        <div class="player-pill-grid" id="players-list">
+          <div class="lobby-empty-arena">
+            <div class="arena-icon-ring">
+              <span>🎮</span><span>📱</span><span>👥</span><span>🔥</span>
+            </div>
+            <div class="arena-title">Yarışmacılar Bekleniyor!</div>
+            <div class="arena-desc">
+              Soldaki <strong>QR Kodu</strong> telefonunuzun kamerasıyla okutup isminizi girerek yarışmaya katılabilirsiniz.<br>
+              <span class="arena-subhint">💡 Tek kişi oynamak için kumandadan hemen <strong>"Kategori Paneline Geç"</strong> butonuna basabilirsiniz!</span>
+            </div>
+          </div>
+        </div>
+        <div style="margin-top: 8px; text-align: right; flex-shrink: 0;">
+          <button id="btn-lobby-continue" class="tv-btn" onclick="goCategories()" onkeydown="if(event.key==='Enter'||event.key===' ')goCategories()" autofocus style="padding:10px 28px; font-size:18px;">Kategori Paneline Geç ➔</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- 2. KATEGORİ SEÇİM PANELİ -->
+    <div id="screen-categories">
+      <div style="display:flex; justify-content:space-between; align-items:center; flex-shrink:0; height:34px;">
+        <div style="display:flex; align-items:center; gap:10px;">
+          <h2 style="font-size: 19px; font-weight: 900; color:#f8fafc; margin:0;">Kategori & Paket Seçin</h2>
+          <span style="color:var(--text-muted); font-size:12px;">(Paket seçin veya kumandayla gezin)</span>
+        </div>
+
+        <!-- HIZLI MOD SEÇİCİ (TV KUMANDASI İÇİN) -->
+        <div style="display:flex; align-items:center; gap:6px; background:rgba(0,0,0,0.35); padding:3px 10px; border-radius:10px; border:1px solid rgba(255,255,255,0.15);">
+          <span style="font-size:11px; font-weight:900; color:#facc15;">MOD:</span>
+          <button type="button" id="btn-cat-age-classic" class="top-btn" onclick="setTvAgeMode('CLASSIC')" style="padding:3px 8px; font-size:11px; background:#4f46e5; border-color:#facc15;">👔 Klasik</button>
+          <button type="button" id="btn-cat-age-kids" class="top-btn" onclick="setTvAgeMode('KIDS')" style="padding:3px 8px; font-size:11px;">🧒 Çocuk</button>
+          <button type="button" id="btn-cat-age-family" class="top-btn" onclick="setTvAgeMode('FAMILY')" style="padding:3px 8px; font-size:11px;">👨‍👩‍👧‍👦 Aile</button>
+        </div>
+
+        <div style="display:flex; gap:8px;">
+          <button class="top-btn" id="btn-back-lobby" onclick="goHomeLobby()" style="padding:3px 10px; font-size:12px;">◀ Lobiye Dön</button>
+        </div>
+      </div>
+
+      <!-- PRO BANNER -->
+      <div class="pro-banner">
+        <div style="display:flex; align-items:center; gap:10px;">
+          <span style="font-size:20px;">👑</span>
+          <div style="display:flex; align-items:baseline; gap:8px;">
+            <span style="font-size:13px; font-weight:900; color:#facc15;" id="lbl-pro-banner-title">PRO AVANTAJLARI:</span>
+            <span style="font-size:11.5px; color:#FFFFFF; font-weight:500;">Tüm VIP paketler açık • Sıfır reklam • Sınırsız oyuncu</span>
+          </div>
+        </div>
+
+        <div style="display:flex; align-items:center; gap:10px;">
+          <span style="font-size:14px; font-weight:900; color:#fff;" id="lbl-pro-price-tag">59,99 TL <span style="font-size:11px; color:var(--text-muted); font-weight:600;">/ay</span></span>
+          <button class="tv-btn" onclick="openProModal()" style="padding:4px 14px; font-size:12px;">PRO'ya Geç ➔</button>
+        </div>
+      </div>
+
+      <div class="category-grid" id="category-cards-container"></div>
+    </div>
+
+    <!-- 3. SORU VE YARIŞMA ALANI -->
+    <div id="screen-question">
+      <!-- TAKIM SAVAŞI CANLI SKOR VE HALAT ÇEKME (TUG OF WAR) TABELASI -->
+      <div id="team-scoreboard-bar" class="tug-of-war-arena" style="display:none;">
+        <div class="tug-header-row">
+          <div class="tug-team-pill tug-team-red">
+            <span style="font-size:26px;">🔴</span>
+            <div>
+              <div style="font-size:15px; font-weight:900;">KIRMIZI TAKIM</div>
+              <div id="lbl-red-members" style="font-size:11px; color:#fca5a5;">0 Oyuncu</div>
+            </div>
+            <span id="lbl-red-score" class="tug-score-badge tug-score-red">0 P</span>
+          </div>
+
+          <div style="text-align:center;">
+            <div id="lbl-tug-title" style="font-size:13px; font-weight:900; color:#facc15; letter-spacing:1px;">
+              ⚔️ HALAT ÇEKME ARENASI ⚔️
+            </div>
+            <div id="lbl-tug-advantage" class="tug-status-text">⚔️ Halat Tam Ortada (Berabere)</div>
+          </div>
+
+          <div class="tug-team-pill tug-team-blue" style="flex-direction:row-reverse; text-align:right;">
+            <span style="font-size:26px;">🔵</span>
+            <div>
+              <div style="font-size:15px; font-weight:900;">MAVİ TAKIM</div>
+              <div id="lbl-blue-members" style="font-size:11px; color:#93c5fd;">0 Oyuncu</div>
+            </div>
+            <span id="lbl-blue-score" class="tug-score-badge tug-score-blue">0 P</span>
+          </div>
+        </div>
+
+        <!-- HALAT ÇEKME İBRESİ VE RENK KANALI -->
+        <div class="tug-track-wrapper" id="tug-track">
+          <div class="tug-bar-red" id="tug-bar-red" style="width: 50%;"></div>
+          <div class="tug-bar-blue" id="tug-bar-blue"></div>
+          <div class="tug-knot-indicator" id="tug-knot" style="left: 50%;">
+            ⚔️
+          </div>
+        </div>
+      </div>
+
+      <!-- TAKIM COMBOSU (1.5X) KUTLAMA OVERLAY -->
+      <div id="team-combo-popup" class="team-combo-popup">
+        🔥 TAKIM COMBOSU! TAM İSABET! (1.5X PUAN) 🔥
+      </div>
+
+      <div class="q-top-bar">
+        <div style="display:flex; align-items:center; gap:14px;">
+          <div class="category-tag" id="q-category">TARİH</div>
+          <div class="kids-badge" id="q-kids-badge" style="display:none; font-size:18px;">🧒 Çocuk Sorusu!</div>
+          <div class="double-points-badge" id="double-points-banner">🔥 2X ÇİFT PUAN TURU!</div>
+        </div>
+        <div style="font-size: 28px; font-weight: 900; color: #facc15; text-shadow:0 2px 10px rgba(0,0,0,0.6);">
+          Soru <span id="q-current">1</span> / <span id="q-total">10</span>
+        </div>
+        <div class="timer-circle" id="timer-box">20 sn</div>
+      </div>
+
+      <!-- RESİMLİ / GÖRSEL SORU ALANI -->
+      <div id="q-image-box" style="display:none; text-align:center; margin: 0 auto 10px auto; max-height:160px; overflow:hidden; border-radius:16px; border:2px solid rgba(255,255,255,0.2); background:rgba(0,0,0,0.4); box-shadow:0 8px 24px rgba(0,0,0,0.5);">
+        <img id="q-image-el" src="" alt="Görsel Soru" style="max-height:160px; width:auto; object-fit:contain; display:block; margin:0 auto;">
+      </div>
+
+      <div class="question-box" id="q-text">
+        Soru yükleniyor...
+      </div>
+
+      <div class="options-grid" id="options-container">
+        <div class="option-card opt-0" id="opt-card-0" tabindex="0" onclick="tvSelectOption(0)" onkeydown="if(event.key==='Enter'||event.key===' ')tvSelectOption(0)">
+          <div class="opt-left"><div class="opt-icon">A</div><span id="opt-text-0">A</span></div>
+          <div class="voters-avatars" id="opt-voters-0"></div>
+        </div>
+        <div class="option-card opt-1" id="opt-card-1" tabindex="0" onclick="tvSelectOption(1)" onkeydown="if(event.key==='Enter'||event.key===' ')tvSelectOption(1)">
+          <div class="opt-left"><div class="opt-icon">B</div><span id="opt-text-1">B</span></div>
+          <div class="voters-avatars" id="opt-voters-1"></div>
+        </div>
+        <div class="option-card opt-2" id="opt-card-2" tabindex="0" onclick="tvSelectOption(2)" onkeydown="if(event.key==='Enter'||event.key===' ')tvSelectOption(2)">
+          <div class="opt-left"><div class="opt-icon">C</div><span id="opt-text-2">C</span></div>
+          <div class="voters-avatars" id="opt-voters-2"></div>
+        </div>
+        <div class="option-card opt-3" id="opt-card-3" tabindex="0" onclick="tvSelectOption(3)" onkeydown="if(event.key==='Enter'||event.key===' ')tvSelectOption(3)">
+          <div class="opt-left"><div class="opt-icon">D</div><span id="opt-text-3">D</span></div>
+          <div class="voters-avatars" id="opt-voters-3"></div>
+        </div>
+      </div>
+
+      <div class="players-live-bar" style="margin-top:0; display:flex; align-items:center; justify-content:space-between; height:38px; padding:3px 12px; box-sizing:border-box; flex-shrink:0;">
+        <div style="display:flex; align-items:center; gap:8px; flex:1; min-width:0; overflow:hidden;">
+          <span style="font-size:13px; font-weight:800; color:#f8fafc; white-space:nowrap;" id="status-voting-label">Gizli Seçim (0/0 cevap):</span>
+          <div class="live-player-tags" id="live-players-container" style="display:flex; gap:6px; overflow-x:auto;"></div>
+        </div>
+        <div style="display:flex; gap:6px; align-items:center; flex-shrink:0;">
+          <button class="top-btn" id="btn-q-report" onclick="openReportModal()" style="border-color:#f59e0b; color:#fde68a; font-size:11px; padding:3px 8px;" title="Bu soruda bir hata mı var? Tıkla ve bildir">🚩 Hata Bildir</button>
+          <button class="top-btn" id="btn-q-categories" onclick="goCategories()" style="font-size:11px; padding:3px 8px;">🗂️ Kategori</button>
+          <button class="top-btn" id="btn-q-lobby" onclick="goHomeLobby()" style="border-color:#f43f5e; color:#fda4af; font-size:11px; padding:3px 8px;">🏠 Ana Sayfa</button>
+          <div id="next-action-box" style="display:none;">
+            <button id="btn-next" class="tv-btn" style="padding:4px 14px; font-size:12px; background:linear-gradient(135deg, #10b981, #059669); color:#fff;">Sıradaki Soru ➔</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 4. REKLAM MOLASI EKRANI (5 Soruda Bir) -->
+    <div id="screen-ad">
+      <div style="font-size: 48px;">📺</div>
+      <div>
+        <h2 style="font-size: 30px; font-weight: 900; color: #facc15;">REKLAM ARASI / SPONSOR GEÇİŞİ</h2>
+        <p style="font-size: 16px; color: var(--text-muted); margin-top: 6px;">
+          Yarışma devam ediyor! VIP Sürümde reklamlar tamamen kaldırılır.
+        </p>
+      </div>
+      <div style="font-size: 22px; font-weight: 900; background: rgba(0,0,0,0.4); padding: 10px 24px; border-radius: 16px;">
+        Kalan Süre: <span id="ad-timer" style="color: #f43f5e;">5</span> sn
+      </div>
+      <button class="tv-btn" id="btn-skip-ad" style="padding: 10px 24px; font-size: 16px;">Reklamı Geç ➔</button>
+    </div>
+
+    <!-- 5. KALICI LİDERLİK TABLOSU (HALL OF FAME & SIFIRLAMA) -->
+    <div id="screen-hall-of-fame">
+      <div style="display:flex; justify-content:space-between; align-items:center;">
+        <div>
+          <h2 style="font-size: 28px; font-weight: 900; color: #facc15;">🏆 TÜM ZAMANLARIN LİDERLİK TABLOSU</h2>
+          <p style="color: var(--text-muted); font-size: 14px;">Salonda bu cihazda oynanmış en yüksek rekorlar:</p>
+        </div>
+        <div style="display:flex; gap:10px;">
+          <button class="top-btn" id="btn-reset-hof" style="border-color:#ef4444; color:#fca5a5;">🗑️ Tabloyu Sıfırla</button>
+          <button class="top-btn" id="btn-close-hof">◀ Geri Dön</button>
+        </div>
+      </div>
+
+      <div class="hof-container" id="hof-list-container"></div>
+    </div>
+
+    <!-- 6. OYUN SONU EKRANI -->
+    <div id="screen-game-over" style="display: none; animation: fadeIn 0.4s ease;">
+      <h2 style="font-size: 32px; font-weight: 900; text-align: center; margin-bottom: 8px; color: #facc15;">
+        👑 YARIŞMA ŞAMPİYONLARI & PODYUM
+      </h2>
+      <div id="game-over-team-banner"></div>
+      <!-- 3D PODYUM (İLK 3) -->
+      <div class="podium-container" id="podium-display-area"></div>
+      <!-- DİĞER SIRALAMALAR -->
+      <div class="hof-container" id="game-over-list" style="max-height:160px;"></div>
+
+      <!-- 📱 DOMİNO ETKİSİ: MİSAFİR KENDİ TV'SİNE İNDİRME ÇAĞRISI -->
+      <div style="margin-top: 14px; padding: 10px 18px; background: rgba(255,255,255,0.06); border: 2px dashed rgba(250,204,21,0.5); border-radius: 16px; display: flex; align-items: center; justify-content: space-between; gap: 14px;">
+        <div style="display:flex; align-items:center; gap:12px;">
+          <span style="font-size:28px;">📱</span>
+          <div style="text-align:left;">
+            <div style="font-size:15px; font-weight:900; color:#facc15;">Misafir misiniz? Kendi Evinize & TV'nize de İndirin!</div>
+            <div style="font-size:12px; color:#cbd5e1;">Google TV & Android TV'de "Bil Bakalım" aratın veya telefonunuzdan anında oynamaya başlayın.</div>
+          </div>
+        </div>
+        <div style="font-size:12px; font-weight:900; background:#4f46e5; color:#fff; padding:6px 14px; border-radius:10px; border:1px solid #818cf8; white-space:nowrap;">✓ %100 ÜCRETSİZ İNDİR</div>
+      </div>
+
+      <div style="text-align: center; margin-top: 16px; display:flex; justify-content:center; gap:16px;">
+        <button id="btn-restart-game" class="tv-btn">Yeni Tura Başla 🚀</button>
+        <button id="btn-return-categories" class="top-btn" style="padding: 12px 24px; font-size:17px;">Kategori Değiştir 🗂️</button>
+      </div>
+    </div>
+
+    <!-- 6.5. ANDROID TV ÇIKIŞ ONAY PENCERESİ (GERİ TUŞU KORUMASI) -->
+    <div id="tv-exit-dialog">
+      <div class="exit-dialog-box">
+        <div style="font-size: 48px; margin-bottom: 8px;">🚪</div>
+        <h2 style="font-size: 26px; font-weight: 900; color: #fff; margin-bottom: 8px;">Çıkmak İstiyor Musunuz?</h2>
+        <p style="color: #cbd5e1; font-size: 15px; margin-bottom: 24px;">Yarışmadan çıkmak üzeresiniz. Devam etmek istiyor musunuz?</p>
+        <div style="display: flex; justify-content: center; gap: 14px;">
+          <button id="btn-exit-cancel" class="tv-btn" style="background:#475569; padding:10px 24px; font-size:16px;">Hayır, Oyuna Devam Et ◀</button>
+          <button id="btn-exit-confirm" class="top-btn" style="background:#e11d48; border-color:#fda4af; padding:10px 24px; font-size:16px; color:#fff;">Evet, Çık ✕</button>
+        </div>
+      </div>
+    </div>
+
+
+    <!-- 7. ÖZEL TV PRO MODAL (POPUP) -->
+    <div id="tv-pro-modal" class="tv-modal-backdrop">
+      <div class="tv-modal-box">
+        <div style="display:flex; justify-content:space-between; align-items:center;">
+          <div style="display:flex; align-items:center; gap:14px;">
+            <span style="font-size:36px;">👑</span>
+            <h2 style="font-size:26px; font-weight:900; color:#facc15;">BİL BAKALIM PRO ÜYELİK</h2>
+          </div>
+          <button class="top-btn" onclick="closeProModal()" style="font-size:18px;">✕ Kapat</button>
+        </div>
+
+        <!-- 2 SEÇENEKLİ PLAN SEÇİM KARTLARI -->
+        <div style="display:grid; grid-template-columns:1fr 1fr; gap:16px;">
+          <div id="pro-opt-monthly" onclick="selectProOption('MONTHLY', '59,99 TL')" style="background:rgba(79,70,229,0.3); border:3px solid #facc15; border-radius:18px; padding:18px; display:flex; flex-direction:column; gap:8px; cursor:pointer; transition:all 0.2s; box-shadow:0 0 24px rgba(250,204,21,0.4); opacity:1;">
+            <div style="display:flex; justify-content:space-between; align-items:center;">
+              <span style="background:#4f46e5; color:#fff; font-size:13px; font-weight:900; padding:4px 10px; border-radius:8px;">1. SEÇENEK</span>
+              <span id="pro-badge-monthly" style="color:#34d399; font-size:20px; font-weight:900;">✓</span>
+            </div>
+            <div style="font-size:22px; font-weight:900; color:#fff;">Aylık Abonelik</div>
+            <div style="font-size:28px; font-weight:900; color:#facc15;">59,99 TL <span style="font-size:16px; color:#cbd5e1; font-weight:600;">/ay</span></div>
+            <div style="font-size:14px; color:#cbd5e1; line-height:1.4;">✓ Tüm 12 VIP Kategori Açık<br>✓ Reklamsız Sınırsız Oyun</div>
+          </div>
+
+          <div id="pro-opt-lifetime" onclick="selectProOption('LIFETIME', '149,99 TL')" style="background:rgba(255,255,255,0.06); border:1px solid rgba(255,255,255,0.18); border-radius:18px; padding:18px; display:flex; flex-direction:column; gap:8px; cursor:pointer; transition:all 0.2s; opacity:0.55;">
+            <div style="display:flex; justify-content:space-between; align-items:center;">
+              <span style="background:#eab308; color:#000; font-size:13px; font-weight:900; padding:4px 10px; border-radius:8px;">2. SEÇENEK (ÖMÜR BOYU)</span>
+              <span id="pro-badge-lifetime" style="display:none; color:#34d399; font-size:20px; font-weight:900;">✓</span>
+            </div>
+            <div style="font-size:22px; font-weight:900; color:#fff;">Ömür Boyu Sınırsız</div>
+            <div style="font-size:28px; font-weight:900; color:#facc15;">149,99 TL <span style="font-size:16px; color:#cbd5e1; font-weight:600;">(Tek Sefer)</span></div>
+            <div style="font-size:14px; color:#cbd5e1; line-height:1.4;">✓ Ömür Boyu Reklamsız<br>✓ Gelecek Tüm VIP Paketler Bedava</div>
+          </div>
+        </div>
+
+        <!-- DOĞRUDAN PRO SATIN AL BUTONU (KOYU LACİVERT YAZI İLE YÜKSEK KONTRAST) -->
+        <button id="btn-pro-direct-buy" class="tv-btn" onclick="directBuyPro()" style="background:linear-gradient(135deg, #10b981, #059669); color:#0f172a; border-color:#34d399; font-size:22px; font-weight:900; padding:16px 24px; width:100%; border-radius:16px; justify-content:center; box-shadow:0 6px 24px rgba(16, 185, 129, 0.45); cursor:pointer;">
+          💳 Hemen Satın Al & Tümünü Aç (<span id="pro-buy-btn-price">59,99 TL</span>) ➔
+        </button>
+
+        <!-- KUPON ALANI VE TELEFONLA QR ÖDEME - YAN YANA 2 SÜTUNLU YERLEŞİM (DİKEY TAŞMAYI ÖNLER) -->
+        <div style="display:grid; grid-template-columns:1fr 1fr; gap:16px; align-items:stretch;">
+          <!-- SOL SÜTUN: VIP KUPON DOĞRULAMA -->
+          <div style="display:flex; flex-direction:column; justify-content:space-between; gap:10px; background:rgba(255,255,255,0.04); border:1px solid rgba(255,255,255,0.12); border-radius:16px; padding:14px 18px;">
+            <div>
+              <div style="font-size:18px; color:#cbd5e1; font-weight:800; margin-bottom:8px;">🎁 Kupon / Promosyon Kodu:</div>
+              <input type="text" id="pro-promo-input" placeholder="KUPON KODU GİRİN" class="top-btn" style="width:100%; text-align:center; background:rgba(0,0,0,0.6); text-transform:uppercase; font-size:22px; font-weight:800; padding:12px 14px; box-sizing:border-box; border:2px solid rgba(255,255,255,0.2);">
+            </div>
+            <button class="top-btn" onclick="applyTvPromo('pro-promo-input')" style="background:#4f46e5; border-color:#facc15; font-size:20px; font-weight:900; justify-content:center; padding:12px 16px;">Aktif Et</button>
+          </div>
+
+          <!-- SAĞ SÜTUN: TELEFONLA QR KOD İLE ÖDEME -->
+          <div style="display:flex; flex-direction:column; align-items:center; justify-content:space-between; background:rgba(255,255,255,0.04); border:1px solid rgba(250,204,21,0.3); border-radius:16px; padding:14px 18px; text-align:center; gap:8px;">
+            <div style="font-size:16px; font-weight:800; color:#facc15;">
+              📱 Telefonunla Tara & Kartla Öde:
+            </div>
+            <div style="display:flex; align-items:center; justify-content:center; gap:14px;">
+              <div id="pro-qr-container" style="position:relative; background:#fff; padding:6px; border-radius:12px; box-shadow:0 6px 18px rgba(0,0,0,0.5); min-width:110px; min-height:110px; display:flex; align-items:center; justify-content:center;">
+                <img id="pro-qr-img" src="" alt="PRO QR" style="width:110px; height:110px; display:block;">
+                <div id="pro-qr-error-box" style="display:none; color:#b91c1c; font-size:12px; font-weight:800; width:110px; text-align:center;">
+                  QR Hatası<br>
+                  <button type="button" class="top-btn" onclick="refreshProQr()" style="font-size:11px; padding:3px 6px; margin-top:4px;">🔄 Yenile</button>
+                </div>
+              </div>
+              <div style="text-align:left; display:flex; flex-direction:column; gap:4px;">
+                <div style="font-size:14px; color:#cbd5e1;">QR Süresi: <span id="pro-qr-countdown" style="font-weight:900; color:#34d399;">04:59</span></div>
+                <div style="font-size:12px; color:#94a3b8;">İyzico • PayTR Güvenli Ödeme</div>
+                <button class="top-btn" onclick="openProOnPc()" style="font-size:14px; padding:6px 12px; margin-top:4px;">🌐 Tarayıcıda Aç ➔</button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div style="text-align:right;">
+          <button class="top-btn" onclick="closeProModal()" style="font-size:18px;">Kapat</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- 8. ÖZEL TV VIP PAKET MODAL (POPUP) -->
+    <div id="tv-vip-modal" class="tv-modal-backdrop">
+      <div class="tv-modal-box" style="max-width:720px;">
+        <div style="display:flex; justify-content:space-between; align-items:center;">
+          <div style="display:flex; align-items:center; gap:14px;">
+            <span id="vip-modal-icon" style="font-size:36px;">🎬</span>
+            <h2 id="vip-modal-title" style="font-size:24px; font-weight:900; color:#facc15;">VIP Paket</h2>
+          </div>
+          <button class="top-btn" onclick="closeVipModal()" style="font-size:18px;">✕</button>
+        </div>
+
+        <div style="background:rgba(255,255,255,0.05); border:1px solid rgba(255,255,255,0.15); border-radius:18px; padding:14px; text-align:center;">
+          <div style="font-size:14px; color:#cbd5e1; margin-bottom:2px;">Paket Fiyatı:</div>
+          <div id="vip-modal-price" style="font-size:30px; font-weight:900; color:#34d399; margin-bottom:4px;">49,99 TL</div>
+          <div style="font-size:14px; color:#e2e8f0; line-height:1.4;">
+            Bu paketi açarak <strong>500+ Özel Soru</strong> havuzunun kilidini kalıcı olarak açabilirsiniz.
+          </div>
+        </div>
+
+        <!-- DOĞRUDAN VIP SATIN AL BUTONU (KOYU LACİVERT YAZI) -->
+        <button id="btn-vip-direct-buy" class="tv-btn" onclick="directBuyVip()" style="background:linear-gradient(135deg, #f59e0b, #d97706); color:#0f172a; border-color:#facc15; font-size:20px; font-weight:900; padding:15px 22px; width:100%; border-radius:16px; justify-content:center; box-shadow:0 6px 24px rgba(245, 158, 11, 0.45); cursor:pointer;">
+          💳 Bu Paketi Hemen Satın Al (<span id="vip-modal-price-btn">49,99 TL</span>) ➔
+        </button>
+
+        <!-- KUPON GİRİŞİ VE TELEFONLA QR ÖDEME - YAN YANA -->
+        <div style="display:grid; grid-template-columns:1fr 1fr; gap:14px; align-items:stretch;">
+          <div style="display:flex; flex-direction:column; justify-content:space-between; gap:8px; background:rgba(255,255,255,0.03); border:1px solid rgba(255,255,255,0.1); border-radius:16px; padding:12px 16px;">
+            <div>
+              <div style="font-size:16px; color:#cbd5e1; font-weight:800; margin-bottom:6px;">🎁 VIP Kupon Kodu:</div>
+              <input type="text" id="vip-promo-input" placeholder="KUPON KODU GİRİN" class="top-btn" style="width:100%; text-align:center; background:rgba(0,0,0,0.6); text-transform:uppercase; font-size:22px; font-weight:800; padding:10px 14px; box-sizing:border-box;">
+            </div>
+            <button class="top-btn" onclick="applyTvPromo('vip-promo-input')" style="background:#4f46e5; font-size:18px; font-weight:900; justify-content:center; padding:10px 14px;">Aktif Et</button>
+          </div>
+
+          <!-- VIP QR KOD ÖDEME -->
+          <div style="display:flex; flex-direction:column; align-items:center; justify-content:space-between; background:rgba(255,255,255,0.04); border:1px solid rgba(250,204,21,0.3); border-radius:16px; padding:12px 14px; text-align:center; gap:6px;">
+            <div style="font-size:14px; font-weight:800; color:#facc15;">
+              📱 Telefonunla Tara & Öde:
+            </div>
+            <div style="display:flex; align-items:center; justify-content:center; gap:12px;">
+              <div id="vip-qr-container" style="background:#fff; padding:5px; border-radius:12px; box-shadow:0 4px 14px rgba(0,0,0,0.5); min-width:100px; min-height:100px; display:flex; align-items:center; justify-content:center;">
+                <img id="vip-qr-img" src="" alt="VIP QR" style="width:100px; height:100px; display:block;">
+                <div id="vip-qr-error-box" style="display:none; color:#b91c1c; font-size:11px; font-weight:800; width:100px; text-align:center;">
+                  QR Hatası<br>
+                  <button type="button" class="top-btn" onclick="refreshVipQr()" style="font-size:10px; padding:3px 5px; margin-top:3px;">🔄 Yenile</button>
+                </div>
+              </div>
+              <div style="text-align:left; display:flex; flex-direction:column; gap:3px;">
+                <div style="font-size:13px; color:#cbd5e1;">Kalan Süre: <span id="vip-qr-countdown" style="font-weight:900; color:#34d399;">04:59</span></div>
+                <div style="font-size:11px; color:#94a3b8;">Güvenli Ödeme Ekranı</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- 🎬 ÖDÜLLÜ REKLAMLA VIP AÇMA -->
+        <button class="tv-btn" id="btn-vip-rewarded-ad" onclick="watchRewardedAdForVip()" style="background:linear-gradient(135deg, #10b981, #059669); border-color:#34d399; font-size:16px; padding:12px 20px; width:100%; border-radius:14px; justify-content:center; box-shadow:0 4px 18px rgba(16, 185, 129, 0.45); cursor:pointer;">
+          🎬 1 Kısa Reklam İzle & Bu Turluk Ücretsiz Oyna ➔
+        </button>
+
+        <div style="text-align:right;">
+          <button class="top-btn" onclick="closeVipModal()" style="font-size:18px;">Vazgeç</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- 8.5. ÖZEL TV SORU HATA BİLDİRİM MODALI (FLAG/REPORT POPUP) -->
+    <div id="tv-report-modal" class="tv-modal-backdrop">
+      <div class="tv-modal-box" style="border-color:#f59e0b; max-width:540px;">
+        <div style="display:flex; justify-content:space-between; align-items:center;">
+          <div style="display:flex; align-items:center; gap:10px;">
+            <span style="font-size:28px;">🚩</span>
+            <h2 style="font-size:22px; font-weight:900; color:#facc15;">Soruda Hata Bildir</h2>
+          </div>
+          <button class="top-btn" onclick="closeReportModal()">✕</button>
+        </div>
+
+        <div style="background:rgba(255,255,255,0.05); border:1px solid rgba(255,255,255,0.12); border-radius:14px; padding:10px 14px; font-size:13px; color:#cbd5e1;">
+          <div style="font-size:11px; color:#94a3b8; margin-bottom:4px; font-weight:800;">BİLDİRİLEN SORU:</div>
+          <div id="report-question-preview" style="font-weight:700; color:#fff; max-height:60px; overflow:hidden; text-overflow:ellipsis;">...</div>
+        </div>
+
+        <div style="display:flex; flex-direction:column; gap:8px;">
+          <label style="font-size:12px; font-weight:800; color:#cbd5e1;">Hata Türünü Seçin:</label>
+          <div style="display:grid; grid-template-columns:1fr 1fr; gap:8px;" id="report-reasons-grid">
+            <button type="button" class="top-btn report-reason-btn" onclick="selectReportReason(this, 'Yazım / İmla veya Anlatım Hatası')" style="padding:8px 10px; font-size:12px; text-align:left; background:#4f46e5; border-color:#facc15;">✍️ Yazım / Anlatım</button>
+            <button type="button" class="top-btn report-reason-btn" onclick="selectReportReason(this, 'Doğru Cevap Yanlış')" style="padding:8px 10px; font-size:12px; text-align:left;">❌ Cevap Yanlış</button>
+            <button type="button" class="top-btn report-reason-btn" onclick="selectReportReason(this, 'Soru Anlaşılmıyor / Eksik')" style="padding:8px 10px; font-size:12px; text-align:left;">❓ Soru Anlaşılmıyor</button>
+            <button type="button" class="top-btn report-reason-btn" onclick="selectReportReason(this, 'Diğer')" style="padding:8px 10px; font-size:12px; text-align:left;">💬 Diğer</button>
+          </div>
+        </div>
+
+        <div>
+          <input type="text" id="report-note-input" placeholder="İsteğe bağlı kısa açıklama yazabilirsiniz..." class="top-btn" style="width:100%; text-align:left; background:rgba(0,0,0,0.5); font-size:13px; padding:8px 12px;">
+        </div>
+
+        <div style="display:flex; justify-content:space-between; gap:12px; margin-top:4px;">
+          <button class="top-btn" onclick="closeReportModal()" style="flex:1; padding:9px; font-size:14px; justify-content:center;">Vazgeç</button>
+          <button class="tv-btn" onclick="submitQuestionReport()" style="flex:1; padding:9px; font-size:14px; justify-content:center; background:linear-gradient(135deg, #f59e0b, #d97706); border-color:#facc15;">🚩 Bildirimi Gönder</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- 9. ÖDÜLLÜ REKLAM SİMÜLATÖRÜ (8 SANİYELİK SPONSOR VİDEOSU) -->
+    <div id="tv-rewarded-ad-modal" class="tv-modal-backdrop" style="display:none; z-index:9999;">
+      <div class="tv-modal-box" style="border-color:#10b981; max-width:540px; text-align:center;">
+        <div style="font-size:42px; margin-bottom:8px;">🎬</div>
+        <h2 style="font-size:24px; font-weight:900; color:#34d399; margin-bottom:4px;">Ödüllü Sponsor Reklamı</h2>
+        <p style="color:#cbd5e1; font-size:14px; margin-bottom:14px;">Reklam tamamlandığında <strong>VIP Paket</strong> bu tur için tamamen ücretsiz açılacaktır!</p>
+        <div style="background:rgba(0,0,0,0.4); border-radius:12px; height:14px; width:100%; overflow:hidden; border:1px solid rgba(255,255,255,0.2); margin-bottom:12px;">
+          <div id="rewarded-ad-bar" style="background:linear-gradient(90deg, #10b981, #34d399); height:100%; width:0%; transition:width 8s linear;"></div>
+        </div>
+        <div style="font-size:20px; font-weight:900; color:#facc15;">
+          Kalan Süre: <span id="rewarded-ad-countdown">8</span> sn
+        </div>
+      </div>
+    </div>
+
+  </main>
+
+  <script src="sounds.js"></script>
+  <script src="socket.io.min.js"></script>
+  <script>
+    if (typeof soundFX === 'undefined' || !soundFX) {
+      window.soundFX = {
+        init() {}, playTick() {}, playUrgentTick() {}, playCorrect() {}, playWrong() {},
+        playGameStart() {}, playTimerWarning() {}, playPop() {}, playHorn() {},
+        playWhistle() {}, playApplause() {}, playTugStruggle() {}, playComboFanfare() {},
+        playFreeze() {}, playRewardSuccess() {}
+      };
+    }
+    const BACKEND_URL = (window.location.port === '3000') ? '' : (localStorage.getItem('bil_bakalim_backend_url') || 'http://192.168.1.9:3000');
+    const socket = io(BACKEND_URL, { reconnectionAttempts: 10, timeout: 4000 });
+
+    // Gömülü Varsayılan QR Kod (Sunucu yanıtını beklemeden ilk saniyede ekranda görünür)
+    const FALLBACK_QR_DATA_URL = 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAMYAAADGCAYAAACJm/9dAAAAAklEQVR4AewaftIAAAXXSURBVO3BQY4kiQ0EQXei///lUEM3gdQhgSzUzG6YmV9U1f8YqmoZqmoZqmoZqmoZqmoZqmoZqmoZqmoZqmoZqmoZqmr54SGVv0ES3qDyhiRcVC5JeIPKJQkXlUsSLip/gyQ8MVTVMlTVMlTVMlTVMlTV8sNLkvANKk+oXJJwScITKheVSxI+KQnfkIRvUHnDUFXLUFXLUFXLUFXLUFXLDx+m8oYkvCEJT6g8kYQ3qFyS8AaVb1B5QxI+aaiqZaiqZaiqZaiqZaiq5Yf6L5VLEi4qT6hcknBJwkXlkoSLyiUJ9f8NVbUMVbUMVbUMVbUMVbX88C+jcknCReUJlfr7DVW1DFW1DFW1DFW1DFW1/PBhSfiTJOGicknCReWJJFxUPikJF5VLEj4pCX+DoaqWoaqWoaqWoaqWoaqWH16i8jdQuSThonJJwkXlDUm4qDyhcknCReWShCdU/mZDVS1DVS1DVS1DVS1DVS3mF/WYyiUJb1C5JOGi8oYkFAxVtQxVtQxVtQxVtQxVtfzwkMolCReVSxIuKpckXFQuSXhC5ZKEb0jCReWShIvKJQkXlUsS3qByScITKpckvGGoqmWoqmWoqmWoqmWoqsX84gGVJ5LwhMolCU+oXJJwUfmGJFxUnkjCJ6k8kYQnVC5JeELlkoQnhqpahqpahqpahqpahqpazC9eoPJPlISLyiUJT6j8SZJwUbkk4aLyRBIuKm9IwhNDVS1DVS1DVS1DVS1DVS3mF/9AKk8k4aLyRBIuKk8k4aJyScJF5U+ShIvKJQkXlUsS3jBU1TJU1TJU1TJU1TJU1WJ+8QKVSxIuKp+UhIvKE0n4JJUnkvANKpckXFSeSMITKk8k4YmhqpahqpahqpahqpahqpYfXpKEb0jCReWShIvKEypPJOFPonJJwjeoXJJwScJF5Q1DVS1DVS1DVS1DVS1DVS3mFy9QeSIJF5VLEi4qTyThk1SeSMInqVyScFH5hiRcVN6QhCeGqlqGqlqGqlqGqlqGqlrMLx5QuSThb6bySUl4QuWShIvKG5LwhMoTSbiovCEJbxiqahmqahmqahmqahmqavnhS1QuSbiovCEJTyThonJJwhuScFF5IglPqDyRhIvKE0l4QuWicknCE0NVLUNVLUNVLUNVLUNVLeYXL1C5JOENKpckXFSeSMInqVyScFH5hiS8QeWJJFxULkm4qFyS8MRQVctQVctQVctQVctQVcsPD6lcknBReUMSLiqXJHySyhNJuKh8QxK+IQkXlUsSLiqfNFTVMlTVMlTVMlTVMlTVYn7xApUnkvBJKpckfIPKE0m4qLwhCReVJ5LwhMolCReVJ5LwhqGqlqGqlqGqlqGqlqGqFvOLB1QuSbioPJGEi8oTSfgklUsSnlB5QxLeoPINSfiTDFW1DFW1DFW1DFW1DFW1mF/8i6hckvANKk8k4aJyScJF5YkkvEHlkoQnVJ5IwhNDVS1DVS1DVS1DVS1DVS0/PKTyN0jCJQmfpPJEEp5QeULlkoSLyhMqlyQ8oXJJwjcMVbUMVbUMVbUMVbUMVbX88JIkfIPKG1QuSbioXJLwBpVLEp5Quai8IQlvSMJF5YkkvGGoqmWoqmWoqmWoqmWoquWHD1N5QxLeoPKEyjck4aLyDSqfpHJJwkXlonJJwhNDVS1DVS1DVS1DVS1DVS0//Msk4aJyScJF5aLyRBI+KQkXlUsSnlC5JOEJlTck4Q1DVS1DVS1DVS1DVS1DVS0//MuofEMS3pCEi8pF5ZKEi8olCU+oPJGEJ5JwUbkk4YmhqpahqpahqpahqpahqpYfPiwJf5IkXFSeSMJF5QmVSxI+SeUJlUsSLipPqFyScFG5JOENQ1UtQ1UtQ1UtQ1UtQ1UtP7xE5W+gcknCReWTknBReUMSLipvUHlDEi4qT6hckvDEUFXLUFXLUFXLUFXLUFWL+UVV/Y+hqpahqpahqpahqpahqpahqpahqpahqpahqpahqpahqpb/AE+PWp0y8CXfAAAAAElFTkSuQmCC';
+
+    const DEFAULT_CATEGORIES = [
+      { id: 'Tarih', name: 'Tarih (Giriş Seviyesi)', isVip: false, price: 'Ücretsiz', questionCount: 300, icon: '🏛️', desc: 'Osmanlı, Kurtuluş Savaşı ve Dünya Tarihine temel giriş', badge: '300 Soru' },
+      { id: 'Genel Kültür', name: 'Genel Kültür (Temel)', isVip: false, price: 'Ücretsiz', questionCount: 300, icon: '🌍', desc: 'Günlük yaşam, Türkiye ve Dünya coğrafyası temel soruları', badge: '300 Soru' },
+      { id: 'Bilim & Teknoloji', name: 'Bilim & Teknoloji', isVip: false, price: 'Ücretsiz', questionCount: 200, icon: '🔬', desc: 'Kimya, fizik, uzay, mucitler ve keşifler', badge: '200 Soru' },
+      { id: 'İslam & Dini Bilgiler', name: 'İslam & Din Kültürü', isVip: false, price: 'Ücretsiz', questionCount: 200, icon: '🕌', desc: 'İslam tarihi, peygamberler, Kuran-ı Kerim ve fıkıh', badge: '200 Soru' },
+      { id: 'Çocuk Dünyası', name: 'Çocuk Dünyası (7-12 Yaş)', isVip: false, price: 'Ücretsiz', questionCount: 250, icon: '🚀', desc: 'Çizgi filmler, hayvanlar alemi, masallar ve eğlenceli okul bilgileri', badge: '250 Soru' },
+      { id: 'VIP: Çocuk Bilim & Zeka', name: 'VIP: Çocuk Bilim & Zeka', isVip: true, price: '49,99 TL', questionCount: 500, icon: '🌟', desc: 'Dinozorlar, uzay, eğlenceli bilmeceler ve oyun dünyası', badge: '👑 500 VIP Soru' },
+      { id: 'VIP: Tarih Ustası', name: 'VIP: Tarih Ustası', isVip: true, price: '59,99 TL', questionCount: 1200, icon: '🏛️', desc: 'Osmanlı, Kurtuluş Savaşı, Antik Çağ ve Dünya Tarihinin derinlikleri', badge: '👑 1.200 Soru' },
+      { id: 'VIP: Genel Kültür Master', name: 'VIP: Genel Kültür Master', isVip: true, price: '59,99 TL', questionCount: 1000, icon: '👑', desc: 'Dünya coğrafyası, başkentler, ilginç bilgiler ve rekorlar', badge: '👑 1.000 Soru' },
+      { id: 'Sanat & Sinema', name: 'VIP: Sinema & Dizi', isVip: true, price: '49,99 TL', questionCount: 500, icon: '🎬', desc: 'Yeşilçam klasikleri, kült filmler, Netflix ve efsane diziler', badge: '👑 500 VIP Soru' },
+      { id: 'Matematik & Mantık', name: 'VIP: Zeka & Mantık', isVip: true, price: '49,99 TL', questionCount: 500, icon: '⚡', desc: 'Hızlı hesaplamalar, mantık bilmeceleri ve zeka soruları', badge: '👑 500 VIP Soru' },
+      { id: 'Spor', name: 'VIP: Futbol & Spor Tarihi', isVip: true, price: '49,99 TL', questionCount: 500, icon: '⚽', desc: 'Süper Lig, Dünya Kupası, Şampiyonlar Ligi ve olimpiyatlar', badge: '👑 500 VIP Soru' },
+      { id: 'Sanat & Edebiyat', name: 'VIP: Edebiyat & Romanlar', isVip: true, price: '49,99 TL', questionCount: 500, icon: '📖', desc: 'Dünya klasikleri, Türk edebiyatı, şairler ve yazarlar', badge: '👑 500 VIP Soru' }
+    ];
+
+
+
+    // Ekranlar
+    const screenLobby = document.getElementById('screen-lobby');
+    const screenCategories = document.getElementById('screen-categories');
+    const screenQuestion = document.getElementById('screen-question');
+    const screenAd = document.getElementById('screen-ad');
+    const screenHallOfFame = document.getElementById('screen-hall-of-fame');
+    const screenGameOver = document.getElementById('screen-game-over');
+
+    // Butonlar
+    const btnLobbyContinue = document.getElementById('btn-lobby-continue');
+    const btnBackLobby = document.getElementById('btn-back-lobby');
+    const btnNext = document.getElementById('btn-next');
+    const btnSkipAd = document.getElementById('btn-skip-ad');
+    const btnOpenHof = document.getElementById('btn-open-hof');
+    const btnCloseHof = document.getElementById('btn-close-hof');
+    const btnResetHof = document.getElementById('btn-reset-hof');
+    const btnRestartGame = document.getElementById('btn-restart-game');
+    const btnReturnCategories = document.getElementById('btn-return-categories');
+
+    // Veri Alanları
+    const qrImage = document.getElementById('qr-image');
+    const joinUrlText = document.getElementById('join-url-text');
+    const headerRoomCode = document.getElementById('header-room-code');
+    const lobbyRoomCode = document.getElementById('lobby-room-code');
+    const playersList = document.getElementById('players-list');
+    const playerCount = document.getElementById('player-count');
+    const categoryCardsContainer = document.getElementById('category-cards-container');
+    const nextActionBox = document.getElementById('next-action-box');
+    const livePlayersContainer = document.getElementById('live-players-container');
+    const statusVotingLabel = document.getElementById('status-voting-label');
+    const adTimer = document.getElementById('ad-timer');
+    const hofListContainer = document.getElementById('hof-list-container');
+    const gameOverList = document.getElementById('game-over-list');
+    const emojiOverlayContainer = document.getElementById('emoji-overlay-container');
+
+    const qCategory = document.getElementById('q-category');
+    const qKidsBadge = document.getElementById('q-kids-badge');
+    const doublePointsBanner = document.getElementById('double-points-banner');
+    const qCurrent = document.getElementById('q-current');
+    const qTotal = document.getElementById('q-total');
+    const timerBox = document.getElementById('timer-box');
+    const qText = document.getElementById('q-text');
+
+    let isProActive = false;
+    let unlockedCategoriesList = [];
+    try {
+      isProActive = (localStorage.getItem('bil_bakalim_is_pro') === 'true');
+      unlockedCategoriesList = JSON.parse(localStorage.getItem('bil_bakalim_unlocked_cats') || '[]');
+    } catch(e) {}
+
+    let allCategories = [...DEFAULT_CATEGORIES];
+    let activeSelectedCategory = 'Tarih';
+    let myRoomCode = localStorage.getItem('salon_trivia_room_code');
+    if (!myRoomCode || !/^\d{4}$/.test(myRoomCode)) {
+      myRoomCode = Math.floor(1000 + Math.random() * 9000).toString();
+      localStorage.setItem('salon_trivia_room_code', myRoomCode);
+    }
+
+    // 1. İLK MİLİSANİYEDE ODA KODUNU, QR KODU VE KATEGORİLERİ ANINDA GÖSTER (Asla boş kalmaz!)
+    headerRoomCode.textContent = myRoomCode;
+    lobbyRoomCode.textContent = myRoomCode;
+    const lobbyRoomCodeTopEl = document.getElementById('lobby-room-code-top');
+    if (lobbyRoomCodeTopEl) lobbyRoomCodeTopEl.textContent = myRoomCode;
+    qrImage.src = FALLBACK_QR_DATA_URL;
+    joinUrlText.textContent = `${window.location.origin}/play.html?room=${myRoomCode}`;
+    setTimeout(() => renderCategoryCards(allCategories), 0);
+
+    // Yerel (Offline/Kumanda) Yedek Oyun Motoru Verileri
+    let localQuestionsPool = [];
+    let localAskedSet = new Set();
+    let localRoundQuestions = [];
+    let localQIndex = -1;
+    let localScore = 0;
+    let localTimer = null;
+    let localTimeLeft = 20;
+
+    fetch('questions.json')
+      .then(r => r.json())
+      .then(qs => { localQuestionsPool = qs; })
+      .catch(() => {});
+
+    function refreshRoomQr(roomCode) {
+      fetch(`${BACKEND_URL}/api/info?room=${encodeURIComponent(roomCode)}`)
+        .then(res => res.json())
+        .then(data => {
+          if (data.qrDataUrl) qrImage.src = data.qrDataUrl;
+          if (data.joinUrl) joinUrlText.textContent = data.joinUrl;
+          if (data.categories) {
+            allCategories = data.categories;
+            renderCategoryCards(allCategories);
+          }
+        })
+        .catch(() => {});
+    }
+
+    refreshRoomQr(myRoomCode);
+
+    // GÜVENLİK: TV açılışında yerel hafızadan isPro bildirilmez, sunucuya durum sorulur
+    function sendTvInit() {
+      socket.emit('tv_init', {
+        roomCode: myRoomCode
+      });
+    }
+
+    socket.on('connect', sendTvInit);
+    sendTvInit();
+
+    socket.on('pro_status_response', ({ isPro, unlockedCategories }) => {
+      isProActive = !!isPro;
+      try { localStorage.setItem('bil_bakalim_is_pro', isPro ? 'true' : 'false'); } catch(e) {}
+      if (Array.isArray(unlockedCategories)) {
+        unlockedCategoriesList = unlockedCategories;
+        try { localStorage.setItem('bil_bakalim_unlocked_cats', JSON.stringify(unlockedCategoriesList)); } catch(e) {}
+      }
+      const proTitle = document.getElementById('lbl-pro-banner-title');
+      const proPrice = document.getElementById('lbl-pro-price-tag');
+      if (proTitle) proTitle.textContent = isPro ? '👑 BİL BAKALIM PRO AKTİF! (TÜM PAKETLER AÇIK)' : 'BİL BAKALIM PRO AVANTAJLARI';
+      if (proPrice) proPrice.textContent = isPro ? '✓ AKTİF' : '59,99 TL /ay';
+      renderCategoryCards(allCategories);
+    });
+
+    socket.on('category_locked', ({ categoryName, message }) => {
+      soundFX.playPop();
+      showTvToast(message || 'Bu kategori VIP pakettir!', '🔒', true);
+      speakText('Bu kategori VIP pakettir. Lütfen PRO üyeliğe geçin veya paketi açın.');
+      if (categoryName) {
+        selectCategory(categoryName, true, '49,99 TL', '👑 VIP');
+      }
+    });
+
+    socket.on('tv_room_ready', ({ roomCode }) => {
+      myRoomCode = roomCode;
+      localStorage.setItem('salon_trivia_room_code', roomCode);
+      headerRoomCode.textContent = roomCode;
+      lobbyRoomCode.textContent = roomCode;
+      const lobbyTop = document.getElementById('lobby-room-code-top');
+      if (lobbyTop) lobbyTop.textContent = roomCode;
+      refreshRoomQr(roomCode);
+    });
+
+    socket.on('state_update', (state) => {
+      if (state.roomCode) {
+        headerRoomCode.textContent = state.roomCode;
+        lobbyRoomCode.textContent = state.roomCode;
+        const lobbyTop = document.getElementById('lobby-room-code-top');
+        if (lobbyTop) lobbyTop.textContent = state.roomCode;
+      }
+      if (state.selectedCategory) {
+        activeSelectedCategory = state.selectedCategory;
+      }
+      renderState(state);
+    });
+
+    socket.on('timer_tick', ({ timeLeft }) => {
+      timerBox.textContent = `${timeLeft} sn`;
+      if (timeLeft <= 5) {
+        timerBox.classList.add('timer-danger');
+        soundFX.playHeartbeat();
+      } else {
+        timerBox.classList.remove('timer-danger');
+        soundFX.playTick();
+      }
+    });
+
+    socket.on('player_answered', ({ totalAnswered, totalPlayers }) => {
+      soundFX.playPop();
+      if (totalPlayers !== undefined) {
+        const isTeam = (currentTvGameMode === 'TEAM');
+        statusVotingLabel.textContent = isTeam 
+          ? `Takım Cevap Durumu (${totalAnswered}/${totalPlayers} cevapladı):`
+          : `Gizli Seçim (${totalAnswered}/${totalPlayers} oyuncu cevapladı):`;
+      }
+    });
+
+    socket.on('ad_tick', ({ adTimeLeft }) => {
+      adTimer.textContent = adTimeLeft;
+    });
+
+    socket.on('player_answered', () => {
+      soundFX.playPop();
+    });
+
+    // TELEFONDAN GELEN CANLI EMOJİ YAĞMURU
+    socket.on('player_emoji', ({ name, avatar, emoji }) => {
+      soundFX.playPop();
+      const bubble = document.createElement('div');
+      bubble.className = 'floating-emoji-bubble';
+      const randomRight = Math.floor(Math.random() * 90);
+      bubble.style.right = `${randomRight}px`;
+      bubble.innerHTML = `
+        <span style="font-size:36px;">${emoji}</span>
+        <div style="display:flex; flex-direction:column;">
+          <span style="font-size:14px; font-weight:900; color:#facc15;">${avatar} ${name}</span>
+        </div>
+      `;
+      emojiOverlayContainer.appendChild(bubble);
+      setTimeout(() => {
+        if (bubble.parentNode) bubble.parentNode.removeChild(bubble);
+      }, 3200);
+    });
+
+    // 4. TELEFONDAN GELEN TAKIM TEZAHÜRATI & SES EFEKTLERİ (KORNA, ISLIK, ALKIŞ)
+    socket.on('team_cheer_event', ({ name, avatar, team, cheerType }) => {
+      const isRed = team === 'RED';
+      const teamColor = isRed ? '#ef4444' : '#3b82f6';
+      const teamName = isRed ? 'KIRMIZI' : 'MAVİ';
+
+      let cheerIcon = '📢';
+      let cheerTitle = 'HAVALI KORNA!';
+
+      if (cheerType === 'cheer_horn') {
+        soundFX.playHorn();
+        cheerIcon = '📢';
+        cheerTitle = 'HAVALI KORNA! 🔊';
+      } else if (cheerType === 'cheer_whistle') {
+        soundFX.playWhistle();
+        cheerIcon = '😙';
+        cheerTitle = 'TARAFTAR DÜDÜĞÜ! 🎶';
+      } else if (cheerType === 'cheer_clap') {
+        soundFX.playApplause();
+        cheerIcon = '👏';
+        cheerTitle = 'ALKIŞ TUFANI! 👏';
+      } else if (cheerType === 'cheer_fire') {
+        soundFX.playComboFanfare();
+        cheerIcon = '🔥';
+        cheerTitle = 'MEŞALE YANDI! 🔥';
+      } else if (cheerType === 'cheer_flag') {
+        soundFX.playHorn();
+        cheerIcon = isRed ? '🔴' : '🔵';
+        cheerTitle = `${teamName} TEZAHÜRATI! 📣`;
+      }
+
+      const bubble = document.createElement('div');
+      bubble.className = 'floating-team-cheer-bubble';
+      bubble.style.borderColor = teamColor;
+      bubble.style.boxShadow = `0 0 25px ${teamColor}`;
+      const randomRight = Math.floor(Math.random() * 80) + 10;
+      bubble.style.right = `${randomRight}px`;
+      bubble.innerHTML = `
+        <span style="font-size:36px;">${cheerIcon}</span>
+        <div style="display:flex; flex-direction:column;">
+          <span style="font-size:11px; font-weight:900; color:${teamColor};">${teamName} TARAFTARI</span>
+          <span style="font-size:14px; font-weight:900; color:#fff;">${avatar} ${name}</span>
+          <span style="font-size:12px; color:#facc15; font-weight:800;">${cheerTitle}</span>
+        </div>
+      `;
+      emojiOverlayContainer.appendChild(bubble);
+      setTimeout(() => {
+        if (bubble.parentNode) bubble.parentNode.removeChild(bubble);
+      }, 3500);
+    });
+
+    // ❄️ TELEFONDAN GELEN BUZ JOKERİ (TV EKRANINDA BUZ ANİMASYONU VE SESİ)
+    socket.on('player_freeze_event', ({ freezerName, freezerAvatar, targetName, targetAvatar }) => {
+      if (soundFX && soundFX.playFreeze) soundFX.playFreeze();
+      const bubble = document.createElement('div');
+      bubble.className = 'floating-team-cheer-bubble';
+      bubble.style.borderColor = '#38bdf8';
+      bubble.style.boxShadow = '0 0 35px #38bdf8';
+      bubble.style.background = 'linear-gradient(135deg, rgba(14, 165, 233, 0.4), rgba(30, 58, 138, 0.85))';
+      bubble.style.top = '22%';
+      bubble.style.right = '40px';
+      bubble.innerHTML = `
+        <span style="font-size:42px;">❄️</span>
+        <div style="display:flex; flex-direction:column;">
+          <span style="font-size:11px; font-weight:900; color:#7dd3fc;">BUZ JOKERİ FIRLATILDI!</span>
+          <span style="font-size:15px; font-weight:900; color:#fff;">${freezerAvatar} ${freezerName} ➔ ${targetAvatar} ${targetName}</span>
+          <span style="font-size:12px; color:#facc15; font-weight:800;">3.5 Saniye Donduruldu! 🥶</span>
+        </div>
+      `;
+      emojiOverlayContainer.appendChild(bubble);
+      setTimeout(() => {
+        if (bubble.parentNode) bubble.parentNode.removeChild(bubble);
+      }, 3800);
+    });
+
+    function hideAllScreens() {
+      screenLobby.style.display = 'none';
+      screenCategories.style.display = 'none';
+      screenQuestion.style.display = 'none';
+      screenAd.style.display = 'none';
+      screenHallOfFame.style.display = 'none';
+      screenGameOver.style.display = 'none';
+    }
+
+    function isCategoryUnlocked(cat) {
+      if (!cat.isVip) return true;
+      if (isProActive) return true;
+      if (cat.isUnlocked) return true;
+      if (unlockedCategoriesList.includes(cat.name)) return true;
+      return false;
+    }
+
+    function getCategoryCardTheme(cat) {
+      const name = (cat.name || cat.id || '').toLowerCase();
+      if (name.includes('bilim') || name.includes('teknoloji')) {
+        return {
+          bg: 'linear-gradient(150deg, rgba(30, 27, 75, 0.95), rgba(15, 23, 42, 0.98))',
+          glow: 'rgba(99, 102, 241, 0.45)',
+          border: 'rgba(129, 140, 248, 0.4)',
+          iconBg: 'radial-gradient(circle, #4338ca, #1e1b4b)',
+          iconShadow: '0 0 20px rgba(99, 102, 241, 0.7)'
+        };
+      } else if (name.includes('tarih')) {
+        return {
+          bg: 'linear-gradient(150deg, rgba(69, 26, 3, 0.92), rgba(15, 23, 42, 0.98))',
+          glow: 'rgba(245, 158, 11, 0.45)',
+          border: 'rgba(251, 191, 36, 0.4)',
+          iconBg: 'radial-gradient(circle, #b45309, #451a03)',
+          iconShadow: '0 0 20px rgba(245, 158, 11, 0.7)'
+        };
+      } else if (name.includes('spor') || name.includes('futbol')) {
+        return {
+          bg: 'linear-gradient(150deg, rgba(6, 78, 59, 0.92), rgba(15, 23, 42, 0.98))',
+          glow: 'rgba(16, 185, 129, 0.45)',
+          border: 'rgba(52, 211, 153, 0.4)',
+          iconBg: 'radial-gradient(circle, #047857, #064e3b)',
+          iconShadow: '0 0 20px rgba(16, 185, 129, 0.7)'
+        };
+      } else if (name.includes('sinema') || name.includes('dizi') || name.includes('film')) {
+        return {
+          bg: 'linear-gradient(150deg, rgba(136, 19, 55, 0.92), rgba(15, 23, 42, 0.98))',
+          glow: 'rgba(244, 63, 94, 0.45)',
+          border: 'rgba(251, 113, 133, 0.4)',
+          iconBg: 'radial-gradient(circle, #be123c, #881337)',
+          iconShadow: '0 0 20px rgba(244, 63, 94, 0.7)'
+        };
+      } else if (name.includes('islam') || name.includes('din')) {
+        return {
+          bg: 'linear-gradient(150deg, rgba(19, 78, 74, 0.92), rgba(15, 23, 42, 0.98))',
+          glow: 'rgba(20, 184, 166, 0.45)',
+          border: 'rgba(45, 212, 191, 0.4)',
+          iconBg: 'radial-gradient(circle, #0f766e, #134e4a)',
+          iconShadow: '0 0 20px rgba(20, 184, 166, 0.7)'
+        };
+      } else if (name.includes('çocuk')) {
+        return {
+          bg: 'linear-gradient(150deg, rgba(112, 26, 117, 0.92), rgba(15, 23, 42, 0.98))',
+          glow: 'rgba(217, 70, 239, 0.45)',
+          border: 'rgba(232, 121, 249, 0.4)',
+          iconBg: 'radial-gradient(circle, #a21caf, #701a75)',
+          iconShadow: '0 0 20px rgba(217, 70, 239, 0.7)'
+        };
+      } else if (name.includes('zeka') || name.includes('mantık')) {
+        return {
+          bg: 'linear-gradient(150deg, rgba(88, 28, 135, 0.92), rgba(15, 23, 42, 0.98))',
+          glow: 'rgba(168, 85, 247, 0.45)',
+          border: 'rgba(192, 132, 252, 0.4)',
+          iconBg: 'radial-gradient(circle, #7e22ce, #581c87)',
+          iconShadow: '0 0 20px rgba(168, 85, 247, 0.7)'
+        };
+      }
+      return {
+        bg: 'linear-gradient(150deg, rgba(30, 58, 138, 0.92), rgba(15, 23, 42, 0.98))',
+        glow: 'rgba(59, 130, 246, 0.45)',
+        border: 'rgba(96, 165, 250, 0.4)',
+        iconBg: 'radial-gradient(circle, #1d4ed8, #1e3a8a)',
+        iconShadow: '0 0 20px rgba(59, 130, 246, 0.7)'
+      };
+    }
+
+    function renderCategoryCards(categories) {
+      categoryCardsContainer.innerHTML = categories.map((cat, idx) => {
+        const unlocked = isCategoryUnlocked(cat);
+        const theme = getCategoryCardTheme(cat);
+        const badgeText = unlocked 
+          ? (cat.isVip ? '👑 VIP (AÇIK)' : 'ÜCRETSİZ') 
+          : (cat.badge ? cat.badge.replace(' Dev Paket', '').replace(' (Ücretsiz)', '') : '👑 ' + (cat.price || 'VIP'));
+        const qCount = cat.questionCount || (cat.badge && cat.badge.includes('1.') ? '1000+' : (cat.badge && cat.badge.includes('1.2') ? '1200+' : '500+'));
+        return `
+        <button class="category-card ${!unlocked ? 'vip-locked' : 'vip-unlocked'}" id="cat-card-${idx}" tabindex="0" onclick="selectCategory('${cat.name}', ${!unlocked}, '${cat.price || ''}', '${cat.badge || ''}')" style="background:${theme.bg}; border-color:${theme.border}; --card-glow:${theme.glow};">
+          <div class="cat-watermark">${cat.icon}</div>
+          <div class="cat-top-header">
+            <div class="cat-icon-pod" style="background:${theme.iconBg}; box-shadow:${theme.iconShadow};">
+              ${cat.icon}
+            </div>
+            <span class="${unlocked ? 'free-tag' : 'vip-tag'}" style="${unlocked && cat.isVip ? 'background:rgba(16,185,129,0.3); color:#34d399; border:1px solid #10b981;' : ''}">
+              ${badgeText}
+            </span>
+          </div>
+          <div class="cat-content-middle">
+            <div class="cat-title">${cat.name}</div>
+            <div class="cat-desc">${cat.desc}</div>
+            <div class="cat-stats-row">
+              <span class="cat-stat-badge">📚 ${qCount} Soru</span>
+              <span class="cat-stat-badge">${unlocked ? '✨ Hazır' : '⭐ Özel Seri'}</span>
+            </div>
+          </div>
+          <div class="cat-footer" style="color:${unlocked ? '#34d399' : '#facc15'};">
+            ${!unlocked 
+              ? `<span style="font-size:12px; font-weight:800; display:flex; align-items:center; gap:4px;">🔒 KİLİTLİ</span><span style="font-size:12.5px; font-weight:900; background:rgba(0,0,0,0.6); padding:4px 10px; border-radius:8px; color:#facc15; border:1px solid rgba(250,204,21,0.4);">${cat.price}</span>` 
+              : `<span style="font-size:12.5px; font-weight:900; background:rgba(16,185,129,0.25); border:1px solid rgba(16,185,129,0.5); padding:5px 12px; border-radius:8px; width:100%; text-align:center; color:#34d399;">✓ PAKET AÇIK • OYNA ➔</span>`
+            }
+          </div>
+        </button>
+      `;
+      }).join('');
+    }
+
+
+
+    let pendingVipCategory = null;
+    let isLocalModeActive = false;
+    let localCurrentAnswer = null;
+    let localStreak = 0;
+
+    function startCategoryGameHybrid(catName) {
+      activeSelectedCategory = catName;
+      soundFX.playGameStart();
+      if (socket && socket.connected) {
+        isLocalModeActive = false;
+        socket.emit('host_select_category', { categoryName: catName, roomCode: myRoomCode });
+      } else {
+        isLocalModeActive = true;
+        startLocalCategoryGame(catName);
+      }
+    }
+
+    function getStrictCategoryPoolClient(allQuestions, selectedCategory) {
+      const name = (selectedCategory || '').trim();
+      if (name.includes('Çocuk Bilim') || name.includes('VIP: Çocuk Bilim')) {
+        return allQuestions.filter(item => item.category === 'VIP: Çocuk Bilim & Zeka');
+      }
+      if (name.includes('Çocuk Dünyası') || name.includes('Çizgi Film') || (name.includes('Çocuk') && !name.includes('Bilim'))) {
+        return allQuestions.filter(item => item.category === 'Çocuk Dünyası & Çizgi Film');
+      }
+      if (name.includes('İslam') || name.includes('Dini') || name.includes('Din')) {
+        return allQuestions.filter(item => item.category === 'İslam & Dini Bilgiler');
+      }
+      if (name.includes('Spor') || name.includes('Futbol')) {
+        return allQuestions.filter(item => item.category === 'Spor');
+      }
+      if (name.includes('Sinema') || name.includes('Dizi')) {
+        return allQuestions.filter(item => item.category === 'Sanat & Sinema');
+      }
+      if (name.includes('Edebiyat') || name.includes('Roman')) {
+        return allQuestions.filter(item => item.category === 'Sanat & Edebiyat');
+      }
+      if (name.includes('Zeka') || name.includes('Mantık') || name.includes('Matematik')) {
+        return allQuestions.filter(item => item.category === 'Matematik & Mantık');
+      }
+      if (name.includes('Bilim') || name.includes('Teknoloji')) {
+        return allQuestions.filter(item => item.category === 'Bilim & Teknoloji');
+      }
+      if (name.includes('Tarih')) {
+        return allQuestions.filter(item => item.category === 'Tarih');
+      }
+      if (name.includes('Genel Kültür')) {
+        return allQuestions.filter(item => item.category === 'Genel Kültür');
+      }
+      const direct = allQuestions.filter(item => item.category === name);
+      if (direct.length > 0) return direct;
+      return allQuestions.filter(item => !item.isKids && item.category !== 'Çocuk Dünyası & Çizgi Film' && item.category !== 'VIP: Çocuk Bilim & Zeka');
+    }
+
+    // Kalıcı Sıfır Tekrar Hafızası (Kategori Bazlı ve LocalStorage Korumalı)
+    let localAskedByCategory = {};
+    try {
+      localAskedByCategory = JSON.parse(localStorage.getItem('bil_bakalim_asked_by_cat') || '{}');
+    } catch(e) {
+      localAskedByCategory = {};
+    }
+
+    function startLocalCategoryGame(catName) {
+      const catObj = allCategories.find(c => c.name === catName);
+      if (catObj && !isCategoryUnlocked(catObj)) {
+        selectCategory(catName, true, catObj.price || '49,99 TL', catObj.badge || '👑 VIP');
+        return;
+      }
+      const isKidsCat = (catName || '').includes('Çocuk');
+      let pool = getStrictCategoryPoolClient(localQuestionsPool, catName);
+      if (pool.length === 0) {
+        pool = localQuestionsPool.filter(q => !q.isKids);
+      }
+
+      if (!localAskedByCategory[catName]) {
+        localAskedByCategory[catName] = [];
+      }
+      const catAskedList = localAskedByCategory[catName];
+      const catAskedSet = new Set(catAskedList.map(s => (s || '').trim().toLowerCase()));
+
+      let unasked = pool.filter(q => !catAskedSet.has((q.question || '').trim().toLowerCase()));
+
+      // Sıfır Tekrar Koruması: Kategori havuzu tamamlandığında son 20 soruyu kilitli tut
+      if (unasked.length < 10) {
+        const recent = catAskedList.slice(-20);
+        localAskedByCategory[catName] = recent;
+        const freshSet = new Set(recent.map(s => (s || '').trim().toLowerCase()));
+        unasked = pool.filter(q => !freshSet.has((q.question || '').trim().toLowerCase()));
+        if (unasked.length < 10) unasked = [...pool];
+      }
+
+      for (let i = unasked.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [unasked[i], unasked[j]] = [unasked[j], unasked[i]];
+      }
+
+      localRoundQuestions = unasked.slice(0, 10).map(q => {
+        const optsWithIdx = q.options.map((opt, idx) => ({ text: opt, isCorrect: idx === q.answer }));
+        for (let i = optsWithIdx.length - 1; i > 0; i--) {
+          const j = Math.floor(Math.random() * (i + 1));
+          [optsWithIdx[i], optsWithIdx[j]] = [optsWithIdx[j], optsWithIdx[i]];
+        }
+        return {
+          ...q,
+          options: optsWithIdx.map(o => o.text),
+          answer: optsWithIdx.findIndex(o => o.isCorrect),
+          isKids: isKidsCat || !!q.isKids
+        };
+      });
+
+      // Çıkan soruları kalıcı kategori hafızasına kaydet
+      localRoundQuestions.forEach(q => {
+        const key = (q.question || '').trim().toLowerCase();
+        if (!localAskedByCategory[catName].includes(key)) {
+          localAskedByCategory[catName].push(key);
+        }
+      });
+      try {
+        localStorage.setItem('bil_bakalim_asked_by_cat', JSON.stringify(localAskedByCategory));
+      } catch(e) {}
+
+      localQIndex = -1;
+      localScore = 0;
+      localStreak = 0;
+      nextLocalQuestion();
+    }
+
+    function nextLocalQuestion() {
+      clearInterval(localTimer);
+      localQIndex++;
+      if (localQIndex >= localRoundQuestions.length) {
+        renderState({
+          status: 'GAME_OVER',
+          players: [{ id: 'tv', name: 'TV Kumanda Oyuncusu', avatar: '📺', score: localScore }]
+        });
+        return;
+      }
+      localCurrentAnswer = null;
+      const q = localRoundQuestions[localQIndex];
+      localTimeLeft = q.time || 20;
+      timerBox.textContent = `${localTimeLeft} sn`;
+      timerBox.classList.remove('timer-danger');
+
+      renderState({
+        status: 'QUESTION',
+        questionIndex: localQIndex,
+        totalQuestions: localRoundQuestions.length,
+        isDoublePoints: (localQIndex === 9),
+        question: q,
+        players: [{ id: 'tv', name: 'TV Kumanda', avatar: '📺', score: localScore, answered: false, streak: localStreak }]
+      });
+
+
+      const firstOpt = document.getElementById('opt-card-0');
+      if (firstOpt) firstOpt.focus();
+
+      localTimer = setInterval(() => {
+        localTimeLeft--;
+        timerBox.textContent = `${localTimeLeft} sn`;
+        if (localTimeLeft <= 5) {
+          timerBox.classList.add('timer-danger');
+          soundFX.playHeartbeat();
+        } else {
+          soundFX.playTick();
+        }
+        if (localTimeLeft <= 0) {
+          clearInterval(localTimer);
+          revealLocalAnswer(null);
+        }
+      }, 1000);
+    }
+
+    function revealLocalAnswer(chosenIdx) {
+      clearInterval(localTimer);
+      const q = localRoundQuestions[localQIndex];
+      const isCorrect = (chosenIdx === q.answer);
+      const isDouble = (localQIndex === 9);
+      let earned = 0;
+      if (isCorrect) {
+        localStreak++;
+        earned = (500 + (localTimeLeft * 25) + (localStreak >= 2 ? localStreak * 100 : 0)) * (isDouble ? 2 : 1);
+        localScore += earned;
+      } else {
+        localStreak = 0;
+      }
+      renderState({
+        status: 'ANSWER_REVEAL',
+        questionIndex: localQIndex,
+        totalQuestions: localRoundQuestions.length,
+        isDoublePoints: isDouble,
+        question: q,
+        correctAnswer: q.answer,
+        players: [{
+          id: 'tv',
+          name: 'TV Kumanda',
+          avatar: '📺',
+          score: localScore,
+          lastAnswer: chosenIdx,
+          isCorrect: isCorrect,
+          isFastest: isCorrect,
+          lastPointsEarned: earned,
+          streak: localStreak
+        }]
+      });
+    }
+
+
+    window.tvSelectOption = function(idx) {
+      if (isLocalModeActive) {
+        if (localCurrentAnswer !== null) return;
+        localCurrentAnswer = idx;
+        soundFX.playPop();
+        revealLocalAnswer(idx);
+      } else if (socket && socket.connected) {
+        soundFX.playPop();
+        socket.emit('host_tv_answer', { answerIndex: idx });
+      }
+    };
+
+    // 🎙️ TÜRKÇE SESLİ YARIŞMA SUNUCUSU (TTS SPİKER)
+    let isTtsEnabled = true;
+    function toggleTts() {
+      isTtsEnabled = !isTtsEnabled;
+      const btn = document.getElementById('btn-tts-toggle');
+      if (btn) btn.textContent = isTtsEnabled ? '🎙️ Spiker: Açık' : '🔇 Spiker: Kapalı';
+      if (!isTtsEnabled && 'speechSynthesis' in window) {
+        window.speechSynthesis.cancel();
+      }
+      soundFX.playPop();
+    }
+
+    function speakText(text) {
+      if (!isTtsEnabled || !('speechSynthesis' in window)) return;
+      window.speechSynthesis.cancel();
+      const u = new SpeechSynthesisUtterance(text);
+      u.lang = 'tr-TR';
+      u.rate = 1.12;
+      u.pitch = 1.0;
+      const voices = window.speechSynthesis.getVoices();
+      const trVoice = voices.find(v => v.lang && v.lang.toLowerCase().includes('tr'));
+      if (trVoice) u.voice = trVoice;
+      window.speechSynthesis.speak(u);
+    }
+
+    // ⚔️ TAKIM MODU YÖNETİMİ
+    let currentTvGameMode = 'SOLO';
+    window.setTvGameMode = function(mode) {
+      currentTvGameMode = mode;
+      const btnSolo = document.getElementById('btn-mode-solo');
+      const btnTeam = document.getElementById('btn-mode-team');
+      if (btnSolo) {
+        btnSolo.style.background = mode === 'SOLO' ? 'linear-gradient(135deg, #4f46e5, #6366f1)' : 'rgba(255,255,255,0.06)';
+        btnSolo.style.borderColor = mode === 'SOLO' ? '#facc15' : 'rgba(255,255,255,0.2)';
+        btnSolo.style.color = mode === 'SOLO' ? '#fff' : '#94a3b8';
+        btnSolo.style.boxShadow = mode === 'SOLO' ? '0 0 16px rgba(250,204,21,0.5)' : 'none';
+      }
+      if (btnTeam) {
+        btnTeam.style.background = mode === 'TEAM' ? 'linear-gradient(135deg, #4f46e5, #6366f1)' : 'rgba(255,255,255,0.06)';
+        btnTeam.style.borderColor = mode === 'TEAM' ? '#facc15' : 'rgba(255,255,255,0.2)';
+        btnTeam.style.color = mode === 'TEAM' ? '#fff' : '#94a3b8';
+        btnTeam.style.boxShadow = mode === 'TEAM' ? '0 0 16px rgba(250,204,21,0.5)' : 'none';
+      }
+      soundFX.playPop();
+      if (socket && socket.connected) {
+        socket.emit('host_set_game_mode', { gameMode: mode });
+      }
+    };
+
+    // 🎯 YAŞ & OYUN DÜZEYİ YÖNETİMİ (KLASİK, ÇOCUK 7-12, AİLE KARMASI)
+    let currentTvAgeMode = 'CLASSIC';
+    window.setTvAgeMode = function(mode) {
+      currentTvAgeMode = mode;
+      const modes = ['CLASSIC', 'KIDS', 'FAMILY'];
+      modes.forEach(m => {
+        const btnLobby = document.getElementById(`btn-age-${m.toLowerCase()}`);
+        const btnCat = document.getElementById(`btn-cat-age-${m.toLowerCase()}`);
+        const isActive = (m === mode);
+        [btnLobby, btnCat].forEach(b => {
+          if (b) {
+            b.style.background = isActive ? 'linear-gradient(135deg, #4f46e5, #6366f1)' : 'rgba(255,255,255,0.06)';
+            b.style.borderColor = isActive ? '#facc15' : 'rgba(255,255,255,0.2)';
+            b.style.color = isActive ? '#fff' : '#94a3b8';
+            b.style.boxShadow = isActive ? '0 0 16px rgba(250,204,21,0.5)' : 'none';
+          }
+        });
+      });
+      soundFX.playPop();
+      if (socket && socket.connected) {
+        socket.emit('host_set_age_mode', { ageMode: mode });
+      }
+    };
+
+    const btnVipTestPlay = document.getElementById('btn-vip-test-play');
+    if (btnVipTestPlay) {
+      btnVipTestPlay.addEventListener('click', () => {
+        if (pendingVipCategory) {
+          const cat = pendingVipCategory;
+          closeVipModal();
+          startCategoryGameHybrid(cat);
+        }
+      });
+    }
+
+    // 📱 ÖDEME QR KODU VE PRO/VIP AÇMA FONKSİYONLARI (GERİ SAYIM & DİNAMİK QR)
+    let proCountdownTimer = null;
+    let vipCountdownTimer = null;
+
+
+    function startModalCountdown(elementId, durationSeconds, timerRefName) {
+      clearInterval(window[timerRefName]);
+      let timeLeft = durationSeconds;
+      const el = document.getElementById(elementId);
+      function formatTime(s) {
+        const m = Math.floor(s / 60);
+        const rem = s % 60;
+        return `${m < 10 ? '0' : ''}${m}:${rem < 10 ? '0' : ''}${rem}`;
+      }
+      if (el) el.textContent = formatTime(timeLeft);
+
+      window[timerRefName] = setInterval(() => {
+        timeLeft--;
+        if (el) el.textContent = formatTime(timeLeft);
+        if (timeLeft <= 0) {
+          clearInterval(window[timerRefName]);
+          if (el) el.textContent = '00:00 (Yenileniyor)';
+        }
+      }, 1000);
+    }
+
+    let selectedProPlan = 'MONTHLY';
+    let selectedProPrice = '59,99 TL';
+
+    window.refreshProQr = function() {
+      const qrImg = document.getElementById('pro-qr-img');
+      const errBox = document.getElementById('pro-qr-error-box');
+      if (errBox) errBox.style.display = 'none';
+
+      fetch(`${BACKEND_URL}/api/pay-qr?room=${encodeURIComponent(myRoomCode)}&type=PRO&name=${encodeURIComponent('BİL BAKALIM PRO')}&price=${encodeURIComponent(selectedProPrice)}`)
+        .then(r => r.json())
+        .then(d => {
+          if (d && d.qrDataUrl && qrImg) {
+            qrImg.src = d.qrDataUrl;
+            qrImg.style.display = 'block';
+            if (errBox) errBox.style.display = 'none';
+          } else {
+            handleProQrError();
+          }
+        })
+        .catch(() => {
+          handleProQrError();
+        });
+    };
+
+    window.handleProQrError = function() {
+      const qrImg = document.getElementById('pro-qr-img');
+      const errBox = document.getElementById('pro-qr-error-box');
+      if (qrImg) qrImg.style.display = 'none';
+      if (errBox) errBox.style.display = 'block';
+    };
+
+    window.refreshVipQr = function() {
+      const qrImg = document.getElementById('vip-qr-img');
+      const errBox = document.getElementById('vip-qr-error-box');
+      if (errBox) errBox.style.display = 'none';
+
+      const targetPrice = (pendingVipCategory && allCategories.find(c => c.name === pendingVipCategory)?.price) || '49,99 TL';
+      fetch(`${BACKEND_URL}/api/pay-qr?room=${encodeURIComponent(myRoomCode)}&type=VIP_PACK&name=${encodeURIComponent(pendingVipCategory || 'VIP Paket')}&price=${encodeURIComponent(targetPrice)}`)
+        .then(r => r.json())
+        .then(d => {
+          if (d && d.qrDataUrl && qrImg) {
+            qrImg.src = d.qrDataUrl;
+            qrImg.style.display = 'block';
+            if (errBox) errBox.style.display = 'none';
+          } else {
+            handleVipQrError();
+          }
+        })
+        .catch(() => {
+          handleVipQrError();
+        });
+    };
+
+    window.handleVipQrError = function() {
+      const qrImg = document.getElementById('vip-qr-img');
+      const errBox = document.getElementById('vip-qr-error-box');
+      if (qrImg) qrImg.style.display = 'none';
+      if (errBox) errBox.style.display = 'block';
+    };
+
+    window.selectProOption = function(planType, priceText) {
+      soundFX.playPop();
+      selectedProPlan = planType;
+      selectedProPrice = priceText;
+      const optMonthly = document.getElementById('pro-opt-monthly');
+      const optLifetime = document.getElementById('pro-opt-lifetime');
+      const badgeMonthly = document.getElementById('pro-badge-monthly');
+      const badgeLifetime = document.getElementById('pro-badge-lifetime');
+      const buyPrice = document.getElementById('pro-buy-btn-price');
+      if (buyPrice) buyPrice.textContent = priceText;
+
+      if (planType === 'MONTHLY') {
+        if (optMonthly) {
+          optMonthly.style.background = 'rgba(79,70,229,0.3)';
+          optMonthly.style.border = '3px solid #facc15';
+          optMonthly.style.boxShadow = '0 0 24px rgba(250,204,21,0.4)';
+          optMonthly.style.opacity = '1';
+        }
+        if (optLifetime) {
+          optLifetime.style.background = 'rgba(255,255,255,0.06)';
+          optLifetime.style.border = '1px solid rgba(255,255,255,0.18)';
+          optLifetime.style.boxShadow = 'none';
+          optLifetime.style.opacity = '0.55';
+        }
+        if (badgeMonthly) badgeMonthly.style.display = 'inline';
+        if (badgeLifetime) badgeLifetime.style.display = 'none';
+      } else {
+        if (optMonthly) {
+          optMonthly.style.background = 'rgba(255,255,255,0.06)';
+          optMonthly.style.border = '1px solid rgba(255,255,255,0.18)';
+          optMonthly.style.boxShadow = 'none';
+          optMonthly.style.opacity = '0.55';
+        }
+        if (optLifetime) {
+          optLifetime.style.background = 'rgba(234,179,8,0.25)';
+          optLifetime.style.border = '3px solid #facc15';
+          optLifetime.style.boxShadow = '0 0 24px rgba(250,204,21,0.4)';
+          optLifetime.style.opacity = '1';
+        }
+        if (badgeMonthly) badgeMonthly.style.display = 'none';
+        if (badgeLifetime) badgeLifetime.style.display = 'inline';
+      }
+
+      refreshProQr();
+    };
+
+    window.selectCategory = function(catName, isLocked, price, badge) {
+      const actuallyLocked = isLocked && !isProActive && !unlockedCategoriesList.includes(catName);
+      if (actuallyLocked) {
+        pendingVipCategory = catName;
+        const targetPrice = price || '49,99 TL';
+        const titleEl = document.getElementById('vip-modal-title');
+        const priceEl = document.getElementById('vip-modal-price');
+        const priceBtn = document.getElementById('vip-modal-price-btn');
+        if (titleEl) titleEl.textContent = catName;
+        if (priceEl) priceEl.textContent = targetPrice;
+        if (priceBtn) priceBtn.textContent = targetPrice;
+        soundFX.playPop();
+
+        // Dinamik VIP QR Kodu üret ve 5 dakikalık geri sayımı başlat
+        startModalCountdown('vip-qr-countdown', 300, 'vipCountdownTimer');
+        refreshVipQr();
+
+        document.getElementById('tv-vip-modal').style.display = 'flex';
+        const directBuyBtn = document.getElementById('btn-vip-direct-buy');
+        if (directBuyBtn) directBuyBtn.focus();
+        return;
+      }
+      startCategoryGameHybrid(catName);
+    };
+
+    window.closeVipModal = function() {
+      soundFX.playPop();
+      clearInterval(window.vipCountdownTimer);
+      document.getElementById('tv-vip-modal').style.display = 'none';
+      pendingVipCategory = null;
+    };
+
+    window.openProModal = function() {
+      soundFX.playPop();
+      selectProOption('MONTHLY', '59,99 TL');
+      startModalCountdown('pro-qr-countdown', 300, 'proCountdownTimer');
+      refreshProQr();
+      document.getElementById('tv-pro-modal').style.display = 'flex';
+      const buyBtn = document.getElementById('btn-pro-direct-buy');
+      if (buyBtn) buyBtn.focus();
+    };
+
+    window.closeProModal = function() {
+      soundFX.playPop();
+      clearInterval(window.proCountdownTimer);
+      document.getElementById('tv-pro-modal').style.display = 'none';
+    };
+
+    window.openProOnPc = function() {
+      window.open(`/pay.html?room=${encodeURIComponent(myRoomCode)}&type=PRO&name=${encodeURIComponent('BİL BAKALIM PRO')}&price=${encodeURIComponent(selectedProPrice || '59,99 TL')}`, '_blank');
+    };
+
+    // GÜVENLİK DÜZELTMESİ: İstemci doğrudan isPro=true yapamaz. Ödeme talimatı verir.
+    window.directBuyPro = function() {
+      soundFX.playPop();
+      showTvToast('Ödemeyi tamamlamak için lütfen QR kodu telefonunuzla tarayın!', '📱');
+      speakText('Lütfen telefonunuzun kamerasıyla QR kodu tarayarak güvenli ödemeyi tamamlayın.');
+      const openBtn = document.querySelector('#tv-pro-modal .top-btn[onclick="openProOnPc()"]');
+      if (openBtn) openBtn.focus();
+    };
+
+    window.directBuyVip = function() {
+      soundFX.playPop();
+      showTvToast('VIP paketi açmak için lütfen QR kodu telefonunuzla okutun!', '📱');
+      speakText('Lütfen telefonunuzla QR kodu okutarak güvenli ödemeyi tamamlayın.');
+    };
+
+    // 🚩 SORU HATA BİLDİRİM FONKSİYONLARI
+    let selectedReportReason = 'Yazım / İmla veya Anlatım Hatası';
+    let currentQuestionReportText = '';
+    let currentQuestionReportCat = '';
+
+    window.openReportModal = function() {
+      soundFX.playPop();
+      const qTextEl = document.getElementById('q-text');
+      const qCatEl = document.getElementById('q-category');
+      currentQuestionReportText = qTextEl ? qTextEl.textContent.trim() : '';
+      currentQuestionReportCat = qCatEl ? qCatEl.textContent.trim() : '';
+
+      const preview = document.getElementById('report-question-preview');
+      if (preview) preview.textContent = currentQuestionReportText;
+
+      const noteInput = document.getElementById('report-note-input');
+      if (noteInput) noteInput.value = '';
+
+      const modal = document.getElementById('tv-report-modal');
+      if (modal) modal.style.display = 'flex';
+    };
+
+    window.closeReportModal = function() {
+      soundFX.playPop();
+      const modal = document.getElementById('tv-report-modal');
+      if (modal) modal.style.display = 'none';
+    };
+
+    window.selectReportReason = function(btn, reason) {
+      soundFX.playPop();
+      selectedReportReason = reason;
+      document.querySelectorAll('.report-reason-btn').forEach(b => {
+        b.style.background = 'rgba(255,255,255,0.08)';
+        b.style.borderColor = 'rgba(255,255,255,0.2)';
+      });
+      btn.style.background = '#4f46e5';
+      btn.style.borderColor = '#facc15';
+    };
+
+    window.submitQuestionReport = function() {
+      const noteInput = document.getElementById('report-note-input');
+      const note = noteInput ? noteInput.value.trim() : '';
+      fetch('/api/report-question', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          roomCode: myRoomCode,
+          questionText: currentQuestionReportText,
+          category: currentQuestionReportCat,
+          reason: selectedReportReason,
+          details: note
+        })
+      }).then(() => {}).catch(() => {});
+
+      closeReportModal();
+      soundFX.playRewardSuccess();
+      showTvToast('Geri bildiriminiz kaydedildi, teşekkürler! 🙏', '🚩');
+    };
+
+    function showTvToast(msg, icon = '🎉', isError = false) {
+      const box = document.getElementById('tv-toast-box');
+      const iconEl = document.getElementById('tv-toast-icon');
+      const msgEl = document.getElementById('tv-toast-msg');
+      if (!box || !msgEl) return;
+      if (iconEl) iconEl.textContent = icon;
+      msgEl.textContent = msg;
+      box.style.background = isError 
+        ? 'linear-gradient(135deg, #b91c1c, #ef4444)' 
+        : 'linear-gradient(135deg, #059669, #10b981)';
+      box.style.borderColor = isError ? '#f87171' : '#facc15';
+      box.style.display = 'flex';
+      clearTimeout(window.tvToastTimer);
+      window.tvToastTimer = setTimeout(() => {
+        box.style.display = 'none';
+      }, 4000);
+    }
+
+    window.applyTvPromo = function(inputId) {
+      const code = (document.getElementById(inputId).value || '').trim().toUpperCase();
+      if (!code) return;
+      fetch('/api/unlock', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ roomCode: myRoomCode, method: 'PROMO_CODE', promoCode: code })
+      }).then(r => r.json()).then(d => {
+        if (d.success) {
+          isProActive = true;
+          try { localStorage.setItem('bil_bakalim_is_pro', 'true'); } catch(e) {}
+          const proTitle = document.getElementById('lbl-pro-banner-title');
+          const proPrice = document.getElementById('lbl-pro-price-tag');
+          if (proTitle) proTitle.textContent = '👑 BİL BAKALIM PRO AKTİF! (TÜM PAKETLER AÇIK)';
+          if (proPrice) proPrice.textContent = '✓ AKTİF';
+          renderCategoryCards(allCategories);
+          closeProModal();
+          closeVipModal();
+          soundFX.playRewardSuccess();
+          speakText('Tebrikler! Promosyon kodu kabul edildi! Tüm sorular açıldı!');
+          showTvToast('🎉 Promosyon Kodu Aktif: Tüm VIP Paketler Açıldı!', '👑');
+        } else {
+          showTvToast(d.message || 'Geçersiz Kod!', '⚠️', true);
+        }
+      }).catch(()=>{
+        showTvToast('Sunucu bağlantı hatası!', '⚠️', true);
+      });
+    };
+
+    window.watchRewardedAdForVip = function() {
+      if (!pendingVipCategory) return;
+      document.getElementById('tv-vip-modal').style.display = 'none';
+      const rewardedModal = document.getElementById('tv-rewarded-ad-modal');
+      const bar = document.getElementById('rewarded-ad-bar');
+      const cd = document.getElementById('rewarded-ad-countdown');
+      rewardedModal.style.display = 'flex';
+      let sec = 8;
+      cd.textContent = sec;
+      bar.style.width = '0%';
+      setTimeout(() => { bar.style.width = '100%'; }, 50);
+
+      const targetCat = pendingVipCategory;
+      const intv = setInterval(() => {
+        sec--;
+        cd.textContent = sec;
+        if (soundFX && soundFX.playTick) soundFX.playTick();
+        if (sec <= 0) {
+          clearInterval(intv);
+          rewardedModal.style.display = 'none';
+          if (!unlockedCategoriesList.includes(targetCat)) unlockedCategoriesList.push(targetCat);
+          try { localStorage.setItem('bil_bakalim_unlocked_cats', JSON.stringify(unlockedCategoriesList)); } catch(e) {}
+          renderCategoryCards(allCategories);
+          if (soundFX && soundFX.playRewardSuccess) soundFX.playRewardSuccess();
+          speakText('Tebrikler! Reklam izlendi, ' + targetCat + ' bu tur için açıldı!');
+          showTvToast(targetCat + ' Bu Tur İçin Ücretsiz Açıldı!', '🎬');
+          socket.emit('host_watch_rewarded_ad', { categoryName: targetCat, roomCode: myRoomCode });
+        }
+      }, 1000);
+    };
+
+    socket.on('payment_unlocked', ({ isPro, unlockedCategories, pkgName, method }) => {
+      if (isPro) {
+        isProActive = true;
+        try { localStorage.setItem('bil_bakalim_is_pro', 'true'); } catch(e) {}
+        const proTitle = document.getElementById('lbl-pro-banner-title');
+        const proPrice = document.getElementById('lbl-pro-price-tag');
+        if (proTitle) proTitle.textContent = '👑 BİL BAKALIM PRO AKTİF! (TÜM PAKETLER AÇIK)';
+        if (proPrice) proPrice.textContent = '✓ AKTİF';
+      }
+      if (Array.isArray(unlockedCategories)) {
+        unlockedCategories.forEach(cat => {
+          if (!unlockedCategoriesList.includes(cat)) unlockedCategoriesList.push(cat);
+        });
+        try { localStorage.setItem('bil_bakalim_unlocked_cats', JSON.stringify(unlockedCategoriesList)); } catch(e) {}
+      }
+      renderCategoryCards(allCategories);
+      closeProModal();
+      closeVipModal();
+      soundFX.playRewardSuccess();
+      speakText('Tebrikler! ' + (pkgName || 'Paket') + ' başarıyla aktif edildi! Tüm sorular açıldı!');
+      showTvToast((pkgName || 'Paket') + ' Başarıyla Açıldı!', '🎉');
+    });
+
+    function renderState(state) {
+      hideAllScreens();
+
+      const teamScoreBar = document.getElementById('team-scoreboard-bar');
+      const isTeamMode = state.gameMode === 'TEAM';
+      if (teamScoreBar) {
+        teamScoreBar.style.display = isTeamMode ? 'flex' : 'none';
+        if (state.teamScores) {
+          const redScore = state.teamScores.RED || 0;
+          const blueScore = state.teamScores.BLUE || 0;
+          const lblRed = document.getElementById('lbl-red-score');
+          const lblBlue = document.getElementById('lbl-blue-score');
+          if (lblRed) lblRed.textContent = `${redScore} P`;
+          if (lblBlue) lblBlue.textContent = `${blueScore} P`;
+
+          // Üye sayıları
+          const redCount = (state.players || []).filter(p => p.team === 'RED').length;
+          const blueCount = (state.players || []).filter(p => p.team === 'BLUE').length;
+          const lblRedM = document.getElementById('lbl-red-members');
+          const lblBlueM = document.getElementById('lbl-blue-members');
+          if (lblRedM) lblRedM.textContent = `${redCount} Oyuncu`;
+          if (lblBlueM) lblBlueM.textContent = `${blueCount} Oyuncu`;
+
+          // Halat Çekme İbresi & Genişlik Oranı
+          const totalScore = redScore + blueScore;
+          let redPct = 50;
+          if (totalScore > 0) {
+            redPct = Math.round((redScore / totalScore) * 100);
+            redPct = Math.max(15, Math.min(85, redPct));
+          }
+          const barRed = document.getElementById('tug-bar-red');
+          const knot = document.getElementById('tug-knot');
+          const lblAdv = document.getElementById('lbl-tug-advantage');
+          if (barRed) barRed.style.width = `${redPct}%`;
+          if (knot) knot.style.left = `${redPct}%`;
+
+          if (lblAdv) {
+            if (redScore > blueScore) {
+              const diff = redScore - blueScore;
+              lblAdv.innerHTML = `🔴 Kırmızı Takım +${diff} Puan Önde! Halatı Çekiyor!`;
+              lblAdv.style.color = '#f87171';
+            } else if (blueScore > redScore) {
+              const diff = blueScore - redScore;
+              lblAdv.innerHTML = `🔵 Mavi Takım +${diff} Puan Önde! Halatı Çekiyor!`;
+              lblAdv.style.color = '#60a5fa';
+            } else {
+              lblAdv.innerHTML = `⚔️ Halat Tam Ortada (Berabere - ${redScore} P)`;
+              lblAdv.style.color = '#facc15';
+            }
+          }
+
+          if (state.isFinalDuel) {
+            teamScoreBar.classList.add('tug-arena-final');
+          } else {
+            teamScoreBar.classList.remove('tug-arena-final');
+          }
+        }
+      }
+
+      if (state.gameMode) {
+        currentTvGameMode = state.gameMode;
+        const btnSolo = document.getElementById('btn-mode-solo');
+        const btnTeam = document.getElementById('btn-mode-team');
+        if (btnSolo) {
+          btnSolo.style.background = state.gameMode === 'SOLO' ? 'linear-gradient(135deg, #4f46e5, #6366f1)' : 'rgba(255,255,255,0.06)';
+          btnSolo.style.borderColor = state.gameMode === 'SOLO' ? '#facc15' : 'rgba(255,255,255,0.2)';
+          btnSolo.style.color = state.gameMode === 'SOLO' ? '#fff' : '#94a3b8';
+          btnSolo.style.boxShadow = state.gameMode === 'SOLO' ? '0 0 16px rgba(250,204,21,0.5)' : 'none';
+        }
+        if (btnTeam) {
+          btnTeam.style.background = state.gameMode === 'TEAM' ? 'linear-gradient(135deg, #4f46e5, #6366f1)' : 'rgba(255,255,255,0.06)';
+          btnTeam.style.borderColor = state.gameMode === 'TEAM' ? '#facc15' : 'rgba(255,255,255,0.2)';
+          btnTeam.style.color = state.gameMode === 'TEAM' ? '#fff' : '#94a3b8';
+          btnTeam.style.boxShadow = state.gameMode === 'TEAM' ? '0 0 16px rgba(250,204,21,0.5)' : 'none';
+        }
+      }
+
+      if (state.ageMode) {
+        currentTvAgeMode = state.ageMode;
+        ['CLASSIC', 'KIDS', 'FAMILY'].forEach(m => {
+          const btnLobby = document.getElementById(`btn-age-${m.toLowerCase()}`);
+          const btnCat = document.getElementById(`btn-cat-age-${m.toLowerCase()}`);
+          const isActive = (m === state.ageMode);
+          [btnLobby, btnCat].forEach(b => {
+            if (b) {
+              b.style.background = isActive ? 'linear-gradient(135deg, #4f46e5, #6366f1)' : 'rgba(255,255,255,0.06)';
+              b.style.borderColor = isActive ? '#facc15' : 'rgba(255,255,255,0.2)';
+              b.style.color = isActive ? '#fff' : '#94a3b8';
+              b.style.boxShadow = isActive ? '0 0 16px rgba(250,204,21,0.5)' : 'none';
+            }
+          });
+        });
+      }
+
+      if (state.isPro !== undefined) {
+        isProActive = !!state.isPro;
+        try { localStorage.setItem('bil_bakalim_is_pro', state.isPro ? 'true' : 'false'); } catch(e) {}
+        const proTitle = document.getElementById('lbl-pro-banner-title');
+        const proPrice = document.getElementById('lbl-pro-price-tag');
+        if (proTitle) proTitle.textContent = state.isPro ? '👑 BİL BAKALIM PRO AKTİF! (TÜM PAKETLER AÇIK)' : 'BİL BAKALIM PRO AVANTAJLARI';
+        if (proPrice) proPrice.textContent = state.isPro ? '✓ AKTİF' : '59,99 TL /ay';
+      }
+
+      if (Array.isArray(state.unlockedCategories)) {
+        state.unlockedCategories.forEach(cat => {
+          if (!unlockedCategoriesList.includes(cat)) unlockedCategoriesList.push(cat);
+        });
+        try { localStorage.setItem('bil_bakalim_unlocked_cats', JSON.stringify(unlockedCategoriesList)); } catch(e) {}
+      }
+
+      if (state.categories) {
+        allCategories = state.categories;
+        renderCategoryCards(state.categories);
+      }
+
+      if (state.status === 'LOBBY') {
+        screenLobby.style.display = 'flex';
+        playerCount.textContent = (state.players || []).length;
+        playersList.innerHTML = (state.players || []).map((p, idx) => `
+          <div class="player-avatar-card ${isTeamMode ? (p.team === 'RED' ? 'team-red' : 'team-blue') : ''}" style="animation-delay: ${idx * 0.05}s;">
+            <div class="avatar-circle ${isTeamMode ? (p.team === 'RED' ? 'avatar-red' : 'avatar-blue') : ''}">
+              <span class="avatar-emoji">${p.avatar || '😎'}</span>
+            </div>
+            <div class="avatar-name">${p.name || 'Oyuncu'}</div>
+            ${isTeamMode ? `<div class="team-badge ${p.team === 'RED' ? 'badge-red' : 'badge-blue'}">${p.team === 'RED' ? '🔴 KIRMIZI' : '🔵 MAVİ'}</div>` : ''}
+          </div>
+        `).join('') || `
+          <div class="lobby-empty-arena">
+            <div class="arena-icon-ring">
+              <span>🎮</span><span>📱</span><span>👥</span><span>🔥</span>
+            </div>
+            <div class="arena-title">Yarışmacılar Bekleniyor!</div>
+            <div class="arena-desc">
+              Soldaki <strong>QR Kodu</strong> telefonunuzun kamerasıyla okutup isminizi girerek yarışmaya katılabilirsiniz.<br>
+              <span class="arena-subhint">💡 Tek kişi oynamak için kumandadan hemen <strong>"Kategori Paneline Geç"</strong> butonuna basabilirsiniz!</span>
+            </div>
+          </div>
+        `;
+        btnLobbyContinue.focus();
+      }
+      else if (state.status === 'CATEGORY_SELECT') {
+        if (!state.categories || !categoryCardsContainer.children.length) {
+          renderCategoryCards(allCategories);
+        }
+        screenCategories.style.display = 'flex';
+        const firstCard = categoryCardsContainer.querySelector('.category-card');
+        if (firstCard) firstCard.focus();
+      }
+      else if (state.status === 'QUESTION' || state.status === 'ANSWER_REVEAL') {
+        screenQuestion.style.display = 'flex';
+
+        if (state.isDoublePoints) {
+          if (state.isFinalDuel) {
+            doublePointsBanner.innerHTML = '⚡ KADER ANI: BÜYÜK FİNAL DÜELLOSU (2X ÇİFT PUAN)! ⚡';
+            doublePointsBanner.style.background = 'linear-gradient(135deg, #dc2626, #7c3aed)';
+          } else {
+            doublePointsBanner.innerHTML = '🌟 BÜYÜK FİNAL SORUSU (2X ÇİFT PUAN)!';
+            doublePointsBanner.style.background = 'linear-gradient(135deg, #ef4444, #f59e0b)';
+          }
+          doublePointsBanner.style.display = 'inline-flex';
+          doublePointsBanner.style.boxShadow = '0 0 25px rgba(239, 68, 68, 0.8)';
+          qText.classList.add('double-active');
+        } else {
+          doublePointsBanner.style.display = 'none';
+          qText.classList.remove('double-active');
+        }
+
+        if (state.question && state.question.isKids) {
+          if (qKidsBadge) qKidsBadge.style.display = 'inline-flex';
+        } else {
+          if (qKidsBadge) qKidsBadge.style.display = 'none';
+        }
+
+        if (state.question) {
+          qCategory.textContent = state.question.category;
+          qCurrent.textContent = state.questionIndex + 1;
+          qTotal.textContent = state.totalQuestions;
+          qText.textContent = state.question.question;
+
+          // 🖼️ GÖRSEL / RESİMLİ SORU KONTROLÜ
+          const imgBox = document.getElementById('q-image-box');
+          const imgEl = document.getElementById('q-image-el');
+          if (imgBox && imgEl) {
+            if (state.question.image) {
+              imgEl.src = state.question.image;
+              imgBox.style.display = 'block';
+            } else {
+              imgBox.style.display = 'none';
+            }
+          }
+
+          state.question.options.forEach((opt, idx) => {
+            const card = document.getElementById(`opt-card-${idx}`);
+            const text = document.getElementById(`opt-text-${idx}`);
+            const votersEl = document.getElementById(`opt-voters-${idx}`);
+            text.textContent = opt;
+
+            card.classList.remove('option-correct', 'option-wrong', 'option-dimmed');
+            votersEl.innerHTML = '';
+
+            if (state.status === 'ANSWER_REVEAL') {
+              const choosers = (state.players || []).filter(p => p.lastAnswer === idx);
+              const anyWrong = choosers.length > 0 && idx !== state.correctAnswer;
+              const tvHostWrong = (state.players || []).some(p => p.id === 'tv_host' && p.lastAnswer === idx && idx !== state.correctAnswer);
+
+              if (idx === state.correctAnswer) {
+                card.classList.add('option-correct');
+              } else if (anyWrong || tvHostWrong || (localCurrentAnswer !== null && localCurrentAnswer === idx && idx !== state.correctAnswer)) {
+                card.classList.add('option-wrong');
+              } else {
+                card.classList.add('option-dimmed');
+              }
+
+              votersEl.innerHTML = choosers.map(p => `<span title="${p.name}">${p.avatar}</span>`).join('');
+            }
+          });
+        }
+
+        if (state.status === 'QUESTION') {
+          // Takım kombosu popup'ını sıfırla
+          const comboPopup = document.getElementById('team-combo-popup');
+          if (comboPopup) comboPopup.classList.remove('show');
+
+          // 🎙️ TÜRKÇE SESLİ SPİKER İLE SORUYU OKUMA (ŞIKLARI OKUMADAN SERİ VE AKICI)
+          if (state.question) {
+            let doublePrefix = '';
+            if (state.isFinalDuel) {
+              doublePrefix = 'Kader Anı! Büyük Final Düellosu! ';
+            } else if (state.isDoublePoints) {
+              doublePrefix = 'Büyük Final Sorusu! ';
+            }
+            const kidsPrefix = state.question.isKids ? 'Çocuk Sorusu: ' : '';
+            speakText(`${doublePrefix}${kidsPrefix}${state.question.question}`);
+          }
+
+          const answeredCount = (state.players || []).filter(p => p.answered).length;
+          const totalCount = (state.players || []).length;
+          statusVotingLabel.textContent = isTeamMode 
+            ? `Takım Cevap Durumu (${answeredCount}/${totalCount} cevapladı):`
+            : `Gizli Seçim (${answeredCount}/${totalCount} oyuncu cevapladı):`;
+          livePlayersContainer.innerHTML = (state.players || []).map(p => `
+            <div class="player-tag ${p.answered ? 'has-voted' : ''}" style="border-color:${isTeamMode ? (p.team === 'RED' ? '#ef4444' : '#3b82f6') : 'rgba(255,255,255,0.15)'};">
+              <span>${p.avatar}</span>
+              <span>${p.name}</span>
+              ${p.streak >= 2 ? `<span class="mini-badge-streak">🔥 ${p.streak}x</span>` : ''}
+              <span>${p.answered ? '🔒 Seçti' : 'Düşünüyor...'}</span>
+            </div>
+          `).join('');
+          nextActionBox.style.display = 'none';
+          const firstOpt = document.getElementById('opt-card-0');
+          if (firstOpt) firstOpt.focus();
+        } else if (state.status === 'ANSWER_REVEAL') {
+          soundFX.playCorrect();
+          if (state.question && state.correctAnswer !== null) {
+            const optLetter = ['A', 'B', 'C', 'D'][state.correctAnswer];
+            speakText(`Doğru cevap: ${optLetter} şıkkı, ${state.question.options[state.correctAnswer]}!`);
+          }
+
+          // 2. TAKIM COMBOSU (1.5X) KUTLAMASI
+          const comboPopup = document.getElementById('team-combo-popup');
+          if (state.teamCombo && state.teamCombo.active && comboPopup) {
+            const teamName = state.teamCombo.red ? '🔴 KIRMIZI TAKIM' : '🔵 MAVİ TAKIM';
+            comboPopup.innerHTML = `🔥 ${teamName} COMBOSU! 🔥<br><span style="font-size:20px; font-weight:700;">TÜM EKİP DOĞRU BİLDİ (1.5X BONUS PUAN)!</span>`;
+            comboPopup.classList.add('show');
+            if (soundFX && soundFX.playComboFanfare) soundFX.playComboFanfare();
+            speakText(`Harika! ${state.teamCombo.red ? 'Kırmızı' : 'Mavi'} Takımdan tam isabet takım kombosu!`);
+            setTimeout(() => {
+              comboPopup.classList.remove('show');
+            }, 3500);
+          }
+
+          statusVotingLabel.textContent = 'Sonuçlar:';
+          livePlayersContainer.innerHTML = (state.players || []).map(p => `
+            <div class="player-tag ${p.isCorrect ? 'has-correct' : 'has-wrong'}">
+              <span>${p.avatar}</span>
+              <span>${p.name}</span>
+              <span>${p.isCorrect ? `✅ +${p.lastPointsEarned || 0} P` : '❌ 0 P'}</span>
+              ${p.isFastest ? '<span class="mini-badge-fastest">⚡ EN HIZLI</span>' : ''}
+              ${p.streak >= 2 ? `<span class="mini-badge-streak">🔥 ${p.streak}x</span>` : ''}
+              ${p.hadTeamCombo ? '<span style="font-size:11px; font-weight:900; background:#f59e0b; color:#000; padding:2px 5px; border-radius:6px;">🔥 1.5X COMBO</span>' : ''}
+            </div>
+          `).join('');
+          nextActionBox.style.display = 'block';
+          btnNext.focus();
+        }
+      }
+      else if (state.status === 'AD_BREAK') {
+        screenAd.style.display = 'flex';
+        btnSkipAd.focus();
+      }
+      else if (state.status === 'HALL_OF_FAME') {
+        screenHallOfFame.style.display = 'flex';
+        const hofData = state.persistentLeaderboard || [];
+        hofListContainer.innerHTML = hofData.map((item, idx) => `
+          <div class="hof-row">
+            <div style="display:flex; align-items:center; gap:16px;">
+              <span style="font-size:26px;">${idx === 0 ? '👑' : idx === 1 ? '🥈' : idx === 2 ? '🥉' : `#${idx+1}`}</span>
+              <span style="font-size:26px;">${item.avatar}</span>
+              <span>${item.name}</span>
+              <span style="font-size:14px; color:var(--text-muted);">(${item.date || 'Yeni'})</span>
+            </div>
+            <div style="color:#facc15; font-size:26px;">${item.score} P</div>
+          </div>
+        `).join('') || '<div style="color:var(--text-muted); font-size:20px; text-align:center;">Henüz kayıtlı rekor yok.</div>';
+        btnCloseHof.focus();
+      }
+      else if (state.status === 'GAME_OVER') {
+        screenGameOver.style.display = 'block';
+        soundFX.playCorrect();
+
+        const sortedPlayers = (state.players || []).slice().sort((a,b) => (b.score || 0) - (a.score || 0));
+        const podiumArea = document.getElementById('podium-display-area');
+        const teamBanner = document.getElementById('game-over-team-banner');
+
+        if (isTeamMode && state.teamScores) {
+          const redW = state.teamScores.RED > state.teamScores.BLUE;
+          const tie = state.teamScores.RED === state.teamScores.BLUE;
+          const winnerMsg = tie ? 'Dostluk kazandı! Berabere!' : (redW ? '🔴 Kırmızı Takım Şampiyon Oldu!' : '🔵 Mavi Takım Şampiyon Oldu!');
+          speakText(winnerMsg);
+          teamBanner.innerHTML = `
+            <div style="text-align:center; padding:14px; background:linear-gradient(135deg,rgba(250,204,21,0.2),rgba(99,102,241,0.25)); border-radius:18px; margin-bottom:14px;">
+              <div style="font-size:24px; font-weight:900; color:#facc15;">🏆 ${winnerMsg}</div>
+              <div style="font-size:16px; color:#fff; margin-top:4px;">
+                🔴 Kırmızı: <strong>${state.teamScores.RED} P</strong> &nbsp;|&nbsp; 🔵 Mavi: <strong>${state.teamScores.BLUE} P</strong>
+              </div>
+            </div>
+          `;
+        } else {
+          teamBanner.innerHTML = '';
+          const topPlayer = sortedPlayers[0];
+          if (topPlayer) speakText(`Tebrikler! 10 soruluk turun şampiyonu ${topPlayer.name}!`);
+        }
+
+        // 🏆 ŞAMPİYONLUK FANFARI VE HAVAİ FİŞEK / KONFETİ
+        soundFX.playVictoryFanfare();
+        triggerTvConfetti();
+
+        // 3D Podyum (İlk 3 Oyuncu)
+        if (sortedPlayers.length > 0) {
+          const p1 = sortedPlayers[0];
+          const p2 = sortedPlayers[1];
+          const p3 = sortedPlayers[2];
+
+          podiumArea.innerHTML = `
+            ${p2 ? `
+              <div class="podium-step podium-rank-2">
+                <div class="podium-user-badge">
+                  <div class="podium-avatar">${p2.avatar}</div>
+                  <div class="podium-username">${p2.name}</div>
+                  <div class="podium-score">${p2.score} P</div>
+                </div>
+                <div class="podium-pillar pillar-2">
+                  <div style="font-size:28px;">🥈</div>
+                  <div style="font-size:18px;">2.</div>
+                </div>
+              </div>
+            ` : ''}
+
+            <div class="podium-step podium-rank-1">
+              <div class="podium-user-badge">
+                <div style="font-size:24px;">👑</div>
+                <div class="podium-avatar">${p1.avatar}</div>
+                <div class="podium-username">${p1.name}</div>
+                <div class="podium-score" style="font-size:17px; color:#fde047;">${p1.score} P</div>
+              </div>
+              <div class="podium-pillar pillar-1">
+                <div style="font-size:32px;">🥇</div>
+                <div style="font-size:22px;">ŞAMPİYON</div>
+              </div>
+            </div>
+
+            ${p3 ? `
+              <div class="podium-step podium-rank-3">
+                <div class="podium-user-badge">
+                  <div class="podium-avatar">${p3.avatar}</div>
+                  <div class="podium-username">${p3.name}</div>
+                  <div class="podium-score">${p3.score} P</div>
+                </div>
+                <div class="podium-pillar pillar-3">
+                  <div style="font-size:26px;">🥉</div>
+                  <div style="font-size:16px;">3.</div>
+                </div>
+              </div>
+            ` : ''}
+          `;
+        } else {
+          podiumArea.innerHTML = '<div style="color:var(--text-muted); font-size:18px;">Oyuncu verisi yok.</div>';
+        }
+
+        // Podyum harici 4. ve sonrasını liste olarak göster
+        const restPlayers = sortedPlayers.slice(3);
+        if (restPlayers.length > 0) {
+          gameOverList.innerHTML = restPlayers.map((p, idx) => `
+            <div class="hof-row">
+              <div style="display:flex; align-items:center; gap:14px;">
+                <span>#${idx+4}</span>
+                <span style="font-size:24px;">${p.avatar}</span>
+                <span>${p.name} ${isTeamMode ? (p.team === 'RED' ? '(🔴)' : '(🔵)') : ''}</span>
+              </div>
+              <div style="color:#facc15; font-size:22px;">${p.score} P</div>
+            </div>
+          `).join('');
+          gameOverList.style.display = 'flex';
+        } else {
+          gameOverList.innerHTML = '';
+          gameOverList.style.display = 'none';
+        }
+
+        btnRestartGame.focus();
+      }
+
+    }
+
+    function triggerTvConfetti() {
+      const canvas = document.getElementById('tv-confetti-canvas');
+      if (!canvas) return;
+      canvas.width = window.innerWidth;
+      canvas.height = window.innerHeight;
+      canvas.style.display = 'block';
+      const ctx = canvas.getContext('2d');
+      const colors = ['#f59e0b', '#ec4899', '#3b82f6', '#10b981', '#a855f7', '#fde047', '#38bdf8'];
+      const particles = [];
+      for (let i = 0; i < 140; i++) {
+        particles.push({
+          x: Math.random() * canvas.width,
+          y: Math.random() * -canvas.height * 0.8,
+          w: Math.random() * 12 + 6,
+          h: Math.random() * 8 + 4,
+          color: colors[Math.floor(Math.random() * colors.length)],
+          vx: (Math.random() - 0.5) * 4,
+          vy: Math.random() * 4 + 3.5,
+          rot: Math.random() * 360,
+          vRot: (Math.random() - 0.5) * 10
+        });
+      }
+      let frames = 0;
+      function animate() {
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+        particles.forEach(p => {
+          p.x += p.vx;
+          p.y += p.vy;
+          p.rot += p.vRot;
+          ctx.save();
+          ctx.translate(p.x, p.y);
+          ctx.rotate((p.rot * Math.PI) / 180);
+          ctx.fillStyle = p.color;
+          ctx.fillRect(-p.w / 2, -p.h / 2, p.w, p.h);
+          ctx.restore();
+        });
+        frames++;
+        if (frames < 360) {
+          requestAnimationFrame(animate);
+        } else {
+          canvas.style.display = 'none';
+        }
+      }
+      animate();
+    }
+
+    // Buton Dinleyicileri (Hem Sunucu Hem Yerel Modda Anında Çalışır)
+    btnLobbyContinue.addEventListener('click', () => {
+      window.goCategories();
+    });
+
+    btnBackLobby.addEventListener('click', () => {
+      window.goHomeLobby();
+    });
+
+    btnNext.addEventListener('click', () => {
+      soundFX.playPop();
+      if (isLocalModeActive || !socket.connected) {
+        nextLocalQuestion();
+      } else {
+        socket.emit('host_next_question');
+      }
+    });
+
+    btnSkipAd.addEventListener('click', () => {
+      soundFX.playPop();
+      if (isLocalModeActive || !socket.connected) {
+        nextLocalQuestion();
+      } else {
+        socket.emit('host_next_question');
+      }
+    });
+
+    btnOpenHof.addEventListener('click', () => {
+      soundFX.playPop();
+      if (socket && socket.connected) {
+        socket.emit('host_open_hall_of_fame');
+      } else {
+        renderState({ status: 'HALL_OF_FAME', persistentLeaderboard: [] });
+      }
+    });
+
+    btnCloseHof.addEventListener('click', () => {
+      window.goHomeLobby();
+    });
+
+    btnResetHof.addEventListener('click', () => {
+      soundFX.playPop();
+      if (socket && socket.connected) {
+        socket.emit('host_reset_hall_of_fame');
+      }
+    });
+
+    // 3. REKLAM YERLEŞİMİ (ADMOB / INTERSTITIAL AD SIMULATION & BRIDGING)
+    // Soru aralarında reklam yok; sadece 10 soruluk tur tamamlanıp "Yeni Tura Başla" butonuna basıldığında tetiklenir.
+    function triggerPostRoundAd(callback) {
+      // Android / Capacitor AdMob entegrasyonu varsa çağır, yoksa pürüzsüz geçiş ekranı aç
+      if (window.Capacitor && window.Capacitor.Plugins && window.Capacitor.Plugins.AdMob) {
+        try {
+          window.Capacitor.Plugins.AdMob.showInterstitial().then(callback).catch(callback);
+          return;
+        } catch(e) {}
+      }
+
+      // Web / TV Simülasyonu: Ekran donması veya siyah ekran olmaması için pürüzsüz yükleme geçişi
+      screenGameOver.style.display = 'none';
+      screenAd.style.display = 'flex';
+      let adCount = 4;
+      const adTimerEl = document.getElementById('ad-timer');
+      if (adTimerEl) adTimerEl.textContent = adCount;
+
+      const adInterval = setInterval(() => {
+        adCount--;
+        if (adTimerEl) adTimerEl.textContent = adCount;
+        if (adCount <= 0) {
+          clearInterval(adInterval);
+          screenAd.style.display = 'none';
+          if (typeof callback === 'function') callback();
+        }
+      }, 1000);
+    }
+
+    btnRestartGame.addEventListener('click', () => {
+      soundFX.playPop();
+      triggerPostRoundAd(() => {
+        startCategoryGameHybrid(activeSelectedCategory);
+      });
+    });
+
+    // 6. ANDROID TV KUMANDA GERİ TUŞU KORUMASI (D-PAD BACK DIALOG)
+    const tvExitDialog = document.getElementById('tv-exit-dialog');
+    const btnExitCancel = document.getElementById('btn-exit-cancel');
+    const btnExitConfirm = document.getElementById('btn-exit-confirm');
+
+    function showExitDialog() {
+      if (tvExitDialog) {
+        tvExitDialog.style.display = 'flex';
+        btnExitCancel.focus();
+      }
+    }
+
+    function hideExitDialog() {
+      if (tvExitDialog) {
+        tvExitDialog.style.display = 'none';
+      }
+    }
+
+    btnExitCancel.addEventListener('click', () => {
+      soundFX.playPop();
+      hideExitDialog();
+    });
+
+    btnExitConfirm.addEventListener('click', () => {
+      if (window.navigator && window.navigator.app && window.navigator.app.exitApp) {
+        window.navigator.app.exitApp();
+      } else {
+        window.location.reload();
+      }
+    });
+
+    // TV KUMANDASI D-PAD & GERİ (BACK) TUŞU KAPSAMLI NAVİGASYON MOTORU
+    window.addEventListener('keydown', (e) => {
+      const isRight = (e.key === 'ArrowRight' || e.keyCode === 39);
+      const isLeft = (e.key === 'ArrowLeft' || e.keyCode === 37);
+      const isDown = (e.key === 'ArrowDown' || e.keyCode === 40);
+      const isUp = (e.key === 'ArrowUp' || e.keyCode === 38);
+      const isEnter = (e.key === 'Enter' || e.keyCode === 13 || e.key === 'Select');
+      const isBack = (e.key === 'Escape' || e.key === 'Back' || e.keyCode === 27 || e.keyCode === 10009 || e.keyCode === 4);
+
+      // 1. GERİ (BACK/ESCAPE) TUŞU KURALI (Hiyerarşik Ekran Geçişi)
+      if (isBack) {
+        e.preventDefault();
+        // A. Açık modal varsa önce onu kapat
+        const proModal = document.getElementById('tv-pro-modal');
+        const vipModal = document.getElementById('tv-vip-modal');
+        const reportModal = document.getElementById('tv-report-modal');
+        if (proModal && proModal.style.display === 'flex') { closeProModal(); return; }
+        if (vipModal && vipModal.style.display === 'flex') { closeVipModal(); return; }
+        if (reportModal && reportModal.style.display === 'flex') { closeReportModal(); return; }
+        if (tvExitDialog && tvExitDialog.style.display === 'flex') { hideExitDialog(); return; }
+
+        // B. Soru ekranındaysa Kategori paneline dön
+        if (screenQuestion && screenQuestion.style.display === 'flex') {
+          goCategories();
+          return;
+        }
+        // C. Kategori ekranındaysa Lobiye dön
+        if (screenCategories && screenCategories.style.display === 'flex') {
+          goHomeLobby();
+          return;
+        }
+        // D. Lobideyse TV Çıkış onayını aç
+        showExitDialog();
+        return;
+      }
+
+      // 2. KATEGORİ EKRANINDA 6x2 D-PAD GEZİNME
+      if (screenCategories && screenCategories.style.display === 'flex') {
+        const activeEl = document.activeElement;
+        if (activeEl && activeEl.id && activeEl.id.startsWith('cat-card-')) {
+          const currentIdx = parseInt(activeEl.id.replace('cat-card-', ''), 10);
+          let targetIdx = -1;
+
+          if (isRight) {
+            if (currentIdx < 11) targetIdx = currentIdx + 1;
+          } else if (isLeft) {
+            if (currentIdx > 0) targetIdx = currentIdx - 1;
+          } else if (isDown) {
+            if (currentIdx < 6) targetIdx = currentIdx + 6;
+          } else if (isUp) {
+            if (currentIdx >= 6) {
+              targetIdx = currentIdx - 6;
+            } else {
+              const catAgeBtn = document.getElementById('btn-cat-age-classic');
+              if (catAgeBtn) { e.preventDefault(); catAgeBtn.focus(); return; }
+            }
+          }
+
+          if (targetIdx >= 0 && targetIdx < 12) {
+            const nextCard = document.getElementById(`cat-card-${targetIdx}`);
+            if (nextCard) { e.preventDefault(); nextCard.focus(); return; }
+          }
+        }
+      }
+
+      // 3. SORU EKRANINDA 2x2 ŞIKLAR (A-D) VE ALT BUTONLARDA D-PAD GEZİNME
+      if (screenQuestion && screenQuestion.style.display === 'flex') {
+        const activeEl = document.activeElement;
+        if (activeEl && activeEl.id && activeEl.id.startsWith('opt-card-')) {
+          const optIdx = parseInt(activeEl.id.replace('opt-card-', ''), 10);
+          let nextOpt = -1;
+
+          if (isRight) {
+            if (optIdx === 0) nextOpt = 1; // A -> B
+            if (optIdx === 2) nextOpt = 3; // C -> D
+          } else if (isLeft) {
+            if (optIdx === 1) nextOpt = 0; // B -> A
+            if (optIdx === 3) nextOpt = 2; // D -> C
+          } else if (isDown) {
+            if (optIdx === 0) nextOpt = 2; // A -> C
+            else if (optIdx === 1) nextOpt = 3; // B -> D
+            else {
+              // C veya D'den alt işlem butonlarına geç
+              e.preventDefault();
+              const nextBtnEl = document.getElementById('btn-next');
+              const nextBox = document.getElementById('next-action-box');
+              if (nextBox && nextBox.style.display !== 'none' && nextBtnEl) {
+                nextBtnEl.focus();
+              } else {
+                const repBtn = document.getElementById('btn-q-report');
+                if (repBtn) repBtn.focus();
+              }
+              return;
+            }
+          } else if (isUp) {
+            if (optIdx === 2) nextOpt = 0; // C -> A
+            if (optIdx === 3) nextOpt = 1; // D -> B
+          }
+
+          if (nextOpt >= 0 && nextOpt <= 3) {
+            const targetEl = document.getElementById(`opt-card-${nextOpt}`);
+            if (targetEl) { e.preventDefault(); targetEl.focus(); return; }
+          }
+        } else if (activeEl && (activeEl.id === 'btn-q-report' || activeEl.id === 'btn-q-categories' || activeEl.id === 'btn-q-lobby' || activeEl.id === 'btn-next')) {
+          if (isUp) {
+            e.preventDefault();
+            const optC = document.getElementById('opt-card-2');
+            if (optC) optC.focus();
+            return;
+          }
+          if (isRight) {
+            if (activeEl.id === 'btn-q-report') { document.getElementById('btn-q-categories').focus(); e.preventDefault(); }
+            else if (activeEl.id === 'btn-q-categories') { document.getElementById('btn-q-lobby').focus(); e.preventDefault(); }
+            else if (activeEl.id === 'btn-q-lobby') {
+              const nextBtn = document.getElementById('btn-next');
+              const nextBox = document.getElementById('next-action-box');
+              if (nextBox && nextBox.style.display !== 'none' && nextBtn) { nextBtn.focus(); e.preventDefault(); }
+            }
+          } else if (isLeft) {
+            if (activeEl.id === 'btn-next') { document.getElementById('btn-q-lobby').focus(); e.preventDefault(); }
+            else if (activeEl.id === 'btn-q-lobby') { document.getElementById('btn-q-categories').focus(); e.preventDefault(); }
+            else if (activeEl.id === 'btn-q-categories') { document.getElementById('btn-q-report').focus(); e.preventDefault(); }
+          }
+        }
+      }
+
+      // 4. LOBİ EKRANINDA D-PAD GEZİNME
+      if (screenLobby && screenLobby.style.display === 'flex') {
+        const activeEl = document.activeElement;
+        if (activeEl === btnLobbyContinue) {
+          if (isUp) {
+            e.preventDefault();
+            const btnMode = document.getElementById('btn-age-classic');
+            if (btnMode) btnMode.focus();
+          }
+        } else if (activeEl && (activeEl.id.startsWith('btn-mode-') || activeEl.id.startsWith('btn-age-'))) {
+          if (isDown) {
+            e.preventDefault();
+            if (btnLobbyContinue) btnLobbyContinue.focus();
+          } else if (isRight) {
+            if (activeEl.id === 'btn-mode-solo') document.getElementById('btn-mode-team').focus();
+            else if (activeEl.id === 'btn-mode-team') document.getElementById('btn-age-classic').focus();
+            else if (activeEl.id === 'btn-age-classic') document.getElementById('btn-age-kids').focus();
+            else if (activeEl.id === 'btn-age-kids') document.getElementById('btn-age-family').focus();
+            e.preventDefault();
+          } else if (isLeft) {
+            if (activeEl.id === 'btn-age-family') document.getElementById('btn-age-kids').focus();
+            else if (activeEl.id === 'btn-age-kids') document.getElementById('btn-age-classic').focus();
+            else if (activeEl.id === 'btn-age-classic') document.getElementById('btn-mode-team').focus();
+            else if (activeEl.id === 'btn-mode-team') document.getElementById('btn-mode-solo').focus();
+            e.preventDefault();
+          }
+        }
+      }
+    });
+
+
+    if (btnLobbyContinue) {
+      btnLobbyContinue.addEventListener('click', () => {
+        window.goCategories();
+      });
+    }
+
+    if (btnBackLobby) {
+      btnBackLobby.addEventListener('click', () => {
+        window.goHomeLobby();
+      });
+    }
+
+    if (btnReturnCategories) {
+      btnReturnCategories.addEventListener('click', () => {
+        window.goCategories();
+      });
+    }
+
+    window.goHomeLobby = function() {
+      soundFX.playPop();
+      clearInterval(localTimer);
+      if ('speechSynthesis' in window) {
+        try { window.speechSynthesis.cancel(); } catch(e) {}
+      }
+      closeProModal();
+      closeVipModal();
+      hideExitDialog();
+      renderState({
+        status: 'LOBBY',
+        categories: allCategories,
+        roomCode: myRoomCode,
+        gameMode: currentTvGameMode,
+        ageMode: currentTvAgeMode
+      });
+      if (socket && socket.connected) {
+        socket.emit('host_back_to_lobby', { roomCode: myRoomCode });
+      }
+    };
+
+    window.goCategories = function() {
+      soundFX.playPop();
+      clearInterval(localTimer);
+      if ('speechSynthesis' in window) {
+        try { window.speechSynthesis.cancel(); } catch(e) {}
+      }
+      closeProModal();
+      closeVipModal();
+      hideExitDialog();
+      renderState({
+        status: 'CATEGORY_SELECT',
+        categories: allCategories,
+        roomCode: myRoomCode,
+        gameMode: currentTvGameMode,
+        ageMode: currentTvAgeMode
+      });
+      if (socket && socket.connected) {
+        socket.emit('host_open_categories', { roomCode: myRoomCode });
+      }
+    };
+
+    const btnShowProModal = document.getElementById('btn-show-pro-modal');
+    if (btnShowProModal) {
+      btnShowProModal.addEventListener('click', () => {
+        openProModal();
+      });
+    }
+  </script>
+</body>
+</html>
+

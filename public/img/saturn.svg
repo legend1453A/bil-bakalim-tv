@@ -1,0 +1,33 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 300" width="100%" height="100%">
+  <defs>
+    <radialGradient id="space" cx="50%" cy="50%" r="75%">
+      <stop offset="0%" stop-color="#1e1b4b"/>
+      <stop offset="100%" stop-color="#020617"/>
+    </radialGradient>
+    <linearGradient id="planet" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#fde047"/>
+      <stop offset="50%" stop-color="#d97706"/>
+      <stop offset="100%" stop-color="#78350f"/>
+    </linearGradient>
+  </defs>
+  <rect width="400" height="300" rx="16" fill="url(#space)"/>
+  <!-- Stars -->
+  <circle cx="50" cy="40" r="1.5" fill="#fff"/>
+  <circle cx="120" cy="80" r="2" fill="#fff"/>
+  <circle cx="340" cy="50" r="1.5" fill="#fff"/>
+  <circle cx="320" cy="220" r="2" fill="#fff"/>
+  <circle cx="70" cy="240" r="1.5" fill="#fff"/>
+  
+  <!-- Back Rings -->
+  <ellipse cx="200" cy="135" rx="150" ry="38" fill="none" stroke="#facc15" stroke-width="8" opacity="0.6" transform="rotate(-15 200 135)"/>
+  <ellipse cx="200" cy="135" rx="130" ry="30" fill="none" stroke="#fbbf24" stroke-width="12" opacity="0.8" transform="rotate(-15 200 135)"/>
+  
+  <!-- Planet Body -->
+  <circle cx="200" cy="135" r="68" fill="url(#planet)"/>
+  
+  <!-- Front Rings (cut) -->
+  <ellipse cx="200" cy="135" rx="150" ry="38" fill="none" stroke="#fde68a" stroke-width="8" opacity="0.9" stroke-dasharray="280 200" transform="rotate(-15 200 135)"/>
+  <ellipse cx="200" cy="135" rx="130" ry="30" fill="none" stroke="#f59e0b" stroke-width="12" stroke-dasharray="240 200" transform="rotate(-15 200 135)"/>
+  
+  <text x="200" y="275" font-family="'Outfit', sans-serif" font-weight="900" font-size="13" fill="#facc15" text-anchor="middle" letter-spacing="1">GÖRSEL SORU: GÖRKEMLİ HALKALARIYLA BİLİNEN BU GEZEGEN HANGİSİDİR?</text>
+</svg>

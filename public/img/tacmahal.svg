@@ -1,0 +1,29 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 300" width="100%" height="100%">
+  <defs>
+    <linearGradient id="tajsky" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#0284c7"/>
+      <stop offset="100%" stop-color="#0f172a"/>
+    </linearGradient>
+    <linearGradient id="marble" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#ffffff"/>
+      <stop offset="100%" stop-color="#cbd5e1"/>
+    </linearGradient>
+  </defs>
+  <rect width="400" height="300" rx="16" fill="url(#tajsky)"/>
+  <!-- Pool Reflection base -->
+  <rect x="0" y="240" width="400" height="60" fill="#0369a1" opacity="0.5"/>
+  <!-- Minarets -->
+  <rect x="70" y="90" width="10" height="150" fill="url(#marble)"/>
+  <rect x="320" y="90" width="10" height="150" fill="url(#marble)"/>
+  <!-- Main building -->
+  <rect x="120" y="130" width="160" height="110" rx="4" fill="url(#marble)"/>
+  <!-- Big Arch -->
+  <path d="M 160 240 L 160 180 Q 200 145 240 180 L 240 240 Z" fill="#0f172a"/>
+  <!-- Main Dome -->
+  <path d="M 165 130 Q 200 65 235 130 Z" fill="url(#marble)"/>
+  <line x1="200" y1="50" x2="200" y2="70" stroke="#facc15" stroke-width="4"/>
+  <!-- Side domes -->
+  <path d="M 130 130 Q 145 100 160 130 Z" fill="url(#marble)"/>
+  <path d="M 240 130 Q 255 100 270 130 Z" fill="url(#marble)"/>
+  <text x="200" y="280" font-family="'Outfit', sans-serif" font-weight="900" font-size="13" fill="#facc15" text-anchor="middle" letter-spacing="1">GÖRSEL SORU: DÜNYANIN 7 HARİKASINDAN TAC MAHAL HANGİ ÜLKEDEDİR?</text>
+</svg>

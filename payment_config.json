@@ -1,0 +1,25 @@
+{
+  "activeProvider": "SANDBOX",
+  "comment": "Gerçek ödeme almak için activeProvider değerini 'IYZICO' veya 'PAYTR' yapıp ilgili API anahtarlarınızı girin.",
+  "providers": {
+    "SANDBOX": {
+      "enabled": true,
+      "title": "Geliştirici & Test Simülatörü (Tüm test kartlarıyla anında TV açılır)",
+      "autoApprove": true
+    },
+    "IYZICO": {
+      "enabled": false,
+      "apiKey": "IYZICO_API_KEY_BURAYA",
+      "secretKey": "IYZICO_SECRET_KEY_BURAYA",
+      "baseUrl": "https://api.iyzipay.com",
+      "sandboxUrl": "https://sandbox-api.iyzipay.com"
+    },
+    "PAYTR": {
+      "enabled": false,
+      "merchantId": "PAYTR_MAGAZA_NO_BURAYA",
+      "merchantKey": "PAYTR_MERCHANT_KEY_BURAYA",
+      "merchantSalt": "PAYTR_MERCHANT_SALT_BURAYA",
+      "testMode": 0
+    }
+  }
+}
