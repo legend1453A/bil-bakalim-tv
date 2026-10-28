@@ -605,10 +605,10 @@
     }
 
     .category-card:focus, .category-card:hover {
-      transform: translateY(-5px) scale(1.04) !important;
-      border-color: #facc15 !important;
+      transform: translateY(-8px) scale(1.05) !important;
+      border-color: #00ff88 !important; /* TV Mockup'ındaki gibi canlı yeşil neon odak! */
       outline: none !important;
-      box-shadow: 0 18px 45px rgba(0, 0, 0, 0.75), 0 0 35px rgba(250, 204, 21, 0.85), inset 0 0 15px rgba(250, 204, 21, 0.2) !important;
+      box-shadow: 0 20px 50px rgba(0, 0, 0, 0.8), 0 0 35px rgba(0, 255, 136, 0.8), inset 0 0 15px rgba(0, 255, 136, 0.25) !important;
       z-index: 50 !important;
     }
 
@@ -2340,11 +2340,11 @@
         };
       } else if (name.includes('tarih')) {
         return {
-          bg: 'linear-gradient(150deg, rgba(69, 26, 3, 0.92), rgba(15, 23, 42, 0.98))',
-          glow: 'rgba(245, 158, 11, 0.45)',
-          border: 'rgba(251, 191, 36, 0.4)',
-          iconBg: 'radial-gradient(circle, #b45309, #451a03)',
-          iconShadow: '0 0 20px rgba(245, 158, 11, 0.7)'
+          bg: 'linear-gradient(150deg, rgba(180, 83, 9, 0.88), rgba(24, 24, 38, 0.98))',
+          glow: 'rgba(245, 158, 11, 0.7)',
+          border: 'rgba(252, 211, 77, 0.6)',
+          iconBg: 'radial-gradient(circle, #d97706, #78350f)',
+          iconShadow: '0 0 25px rgba(245, 158, 11, 0.9)'
         };
       } else if (name.includes('spor') || name.includes('futbol')) {
         return {
@@ -2667,17 +2667,49 @@
       soundFX.playPop();
     }
 
-    function speakText(text) {
+    let cachedVoices = [];
+    function loadVoices() {
+      if ('speechSynthesis' in window) {
+        cachedVoices = window.speechSynthesis.getVoices();
+      }
+    }
+    if ('speechSynthesis' in window) {
+      loadVoices();
+      window.speechSynthesis.onvoiceschanged = loadVoices;
+    }
+
+    function speakText(text, mood = 'normal') {
       if (!isTtsEnabled || !('speechSynthesis' in window)) return;
-      window.speechSynthesis.cancel();
-      const u = new SpeechSynthesisUtterance(text);
-      u.lang = 'tr-TR';
-      u.rate = 1.12;
-      u.pitch = 1.0;
-      const voices = window.speechSynthesis.getVoices();
-      const trVoice = voices.find(v => v.lang && v.lang.toLowerCase().includes('tr'));
-      if (trVoice) u.voice = trVoice;
-      window.speechSynthesis.speak(u);
+      try {
+        window.speechSynthesis.cancel();
+        const u = new SpeechSynthesisUtterance(text);
+        u.lang = 'tr-TR';
+
+        // Heyecan ve ruh haline göre dinamik hız ve tonlama (TV Spikeri Akıcılığı)
+        if (mood === 'excited' || mood === 'cheer') {
+          u.rate = 1.15;
+          u.pitch = 1.08;
+        } else if (mood === 'victory') {
+          u.rate = 1.12;
+          u.pitch = 1.10;
+        } else if (mood === 'suspense') {
+          u.rate = 1.05;
+          u.pitch = 0.98;
+        } else {
+          u.rate = 1.10;
+          u.pitch = 1.04;
+        }
+
+        const voices = cachedVoices.length ? cachedVoices : window.speechSynthesis.getVoices();
+        // Doğal Türkçe sesleri önceliklendir (Google Türkçe, Microsoft Tolga/Emel vb.)
+        const trVoice = voices.find(v => v.lang && v.lang.toLowerCase().includes('tr') && (v.name.includes('Google') || v.name.includes('Natural') || v.name.includes('Tolga') || v.name.includes('Emel')))
+          || voices.find(v => v.lang && v.lang.toLowerCase().includes('tr'));
+        if (trVoice) u.voice = trVoice;
+
+        window.speechSynthesis.speak(u);
+      } catch(e) {
+        console.warn('TTS Spiker hatası:', e);
+      }
     }
 
     // ⚔️ TAKIM MODU YÖNETİMİ
@@ -3323,14 +3355,17 @@
 
           // 🎙️ TÜRKÇE SESLİ SPİKER İLE SORUYU OKUMA (ŞIKLARI OKUMADAN SERİ VE AKICI)
           if (state.question) {
-            let doublePrefix = '';
+            let introMsg = '';
+            let mood = 'normal';
             if (state.isFinalDuel) {
-              doublePrefix = 'Kader Anı! Büyük Final Düellosu! ';
+              introMsg = 'Ve işte kader anı! Büyük final düellosu sorusu geliyor! ';
+              mood = 'excited';
             } else if (state.isDoublePoints) {
-              doublePrefix = 'Büyük Final Sorusu! ';
+              introMsg = 'Dikkatler toplansın! Bu soru tam iki kat puan değerinde! ';
+              mood = 'excited';
             }
-            const kidsPrefix = state.question.isKids ? 'Çocuk Sorusu: ' : '';
-            speakText(`${doublePrefix}${kidsPrefix}${state.question.question}`);
+            const kidsPrefix = state.question.isKids ? 'Çocuk sorusu: ' : '';
+            speakText(`${introMsg}${kidsPrefix}${state.question.question}`, mood);
           }
 
           const answeredCount = (state.players || []).filter(p => p.answered).length;
@@ -3353,7 +3388,7 @@
           soundFX.playCorrect();
           if (state.question && state.correctAnswer !== null) {
             const optLetter = ['A', 'B', 'C', 'D'][state.correctAnswer];
-            speakText(`Doğru cevap: ${optLetter} şıkkı, ${state.question.options[state.correctAnswer]}!`);
+            speakText(`Harika! Doğru cevap: ${optLetter} şıkkı! ${state.question.options[state.correctAnswer]}!`, 'cheer');
           }
 
           // 2. TAKIM COMBOSU (1.5X) KUTLAMASI
@@ -3428,7 +3463,7 @@
         } else {
           teamBanner.innerHTML = '';
           const topPlayer = sortedPlayers[0];
-          if (topPlayer) speakText(`Tebrikler! 10 soruluk turun şampiyonu ${topPlayer.name}!`);
+          if (topPlayer) speakText(`İnanılmaz bir mücadele! Ve işte 10 soruluk turun büyük şampiyonu: ${topPlayer.name}! Alkışlar şampiyona!`, 'victory');
         }
 
         // 🏆 ŞAMPİYONLUK FANFARI VE HAVAİ FİŞEK / KONFETİ
