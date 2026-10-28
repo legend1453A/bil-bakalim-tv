@@ -2008,7 +2008,11 @@
         playFreeze() {}, playRewardSuccess() {}
       };
     }
-    const BACKEND_URL = (window.location.port === '3000') ? '' : (localStorage.getItem('bil_bakalim_backend_url') || 'http://192.168.1.9:3000');
+    const BACKEND_URL = (window.location.port === '3000' && window.location.hostname === 'localhost')
+      ? ''
+      : (window.location.protocol.startsWith('http') && !window.location.hostname.includes('localhost'))
+        ? window.location.origin
+        : (localStorage.getItem('bil_bakalim_backend_url') || 'https://bil-bakalim-tv.onrender.com');
     const socket = io(BACKEND_URL, { reconnectionAttempts: 10, timeout: 4000 });
 
     // Gömülü Varsayılan QR Kod (Sunucu yanıtını beklemeden ilk saniyede ekranda görünür)

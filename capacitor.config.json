@@ -3,7 +3,7 @@
   "appName": "BİL BAKALIM",
   "webDir": "public",
   "server": {
-    "androidScheme": "http",
+    "url": "https://bil-bakalim-tv.onrender.com",
     "cleartext": true,
     "allowNavigation": ["*"]
   },
