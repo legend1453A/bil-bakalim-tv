@@ -1543,7 +1543,8 @@
       </div>
       <button class="top-btn" id="btn-tts-toggle" onclick="toggleTts()" title="Soruları sesli okuyan Türkçe spiker">🎙️ Spiker: Açık</button>
       <button class="top-btn" id="btn-header-pro" onclick="openProModal()" style="background:linear-gradient(135deg, #f59e0b, #d97706); color:#000; font-weight:900; border:none; box-shadow:0 0 14px rgba(245,158,11,0.5);">👑 PRO Al</button>
-      <button class="top-btn" onclick="openAdMobTestModal()" style="background:rgba(16,185,129,0.22); border-color:#10b981; color:#34d399; font-weight:900;" title="Google AdMob Test Reklamını Canlı İzle">📺 Test Reklamı</button>
+      <button class="top-btn" onclick="openAdMobTestModal()" style="background:rgba(16,185,129,0.22); border-color:#10b981; color:#34d399; font-weight:900;" title="VIP Paket Açma Reklamı (Rewarded Video)">🎬 Paket Açma Reklamı</button>
+      <button class="top-btn" onclick="openInterstitialTestAd()" style="background:rgba(99,102,241,0.22); border-color:#818cf8; color:#a5b4fc; font-weight:900;" title="Tam Ekran Geçiş Reklamı (Interstitial)">📺 Geçiş Reklamı</button>
       <button class="top-btn" onclick="goHomeLobby()">🏠 Ana Sayfa</button>
       <button class="top-btn" onclick="goCategories()">🗂️ Kategoriler</button>
       <button class="top-btn" id="btn-open-hof">🏆 Liderlik Tablosu</button>
@@ -1707,6 +1708,7 @@
       <div class="q-top-bar">
         <div style="display:flex; align-items:center; gap:10px;">
           <div class="category-tag" id="q-category">TARİH</div>
+          <div id="q-vip-pass-badge" style="display:none; font-size:12px; font-weight:900; padding:3px 9px; border-radius:8px; background:linear-gradient(135deg, #10b981, #059669); border:1px solid #34d399; color:#fff; box-shadow:0 0 12px rgba(16,185,129,0.5);">🎬 10 Soruluk VIP Tur</div>
           <div id="q-diff-badge" style="display:none; font-size:12.5px; font-weight:900; padding:3px 8px; border-radius:8px; border:1px solid rgba(255,255,255,0.2);">🟢 KOLAY</div>
           <div id="q-type-badge" style="display:none; font-size:12.5px; font-weight:900; padding:3px 8px; border-radius:8px; background:linear-gradient(135deg, #8b5cf6, #ec4899); color:#fff;">✍️ BOŞLUK DOLDURMA</div>
           <div class="kids-badge" id="q-kids-badge" style="display:none; font-size:16px;">🧒 Çocuk Sorusu!</div>
@@ -1822,6 +1824,9 @@
         </div>
         <div style="font-size:12px; font-weight:900; background:#4f46e5; color:#fff; padding:6px 14px; border-radius:10px; border:1px solid #818cf8; white-space:nowrap;">✓ %100 ÜCRETSİZ İNDİR</div>
       </div>
+
+      <!-- 🎬 10 SORULUK VIP TURU BİTİNCE ÇIKAN REKLAMLI DEVAM ALANI -->
+      <div id="vip-expired-container" style="display:none; width:100%; margin-top:14px;"></div>
 
       <div style="text-align: center; margin-top: 16px; display:flex; justify-content:center; gap:16px;">
         <button id="btn-restart-game" class="tv-btn">Yeni Tura Başla 🚀</button>
@@ -1974,7 +1979,7 @@
 
         <!-- 🎬 ÖDÜLLÜ REKLAMLA VIP AÇMA -->
         <button class="tv-btn" id="btn-vip-rewarded-ad" onclick="watchRewardedAdForVip()" style="background:linear-gradient(135deg, #10b981, #059669); border-color:#34d399; font-size:16px; padding:12px 20px; width:100%; border-radius:14px; justify-content:center; box-shadow:0 4px 18px rgba(16, 185, 129, 0.45); cursor:pointer;">
-          🎬 1 Kısa Reklam İzle & Bu Turluk Ücretsiz Oyna ➔
+          🎬 1 Kısa Reklam İzle & 10 Soru Ücretsiz Oyna ➔
         </button>
 
         <div style="text-align:right;">
@@ -2038,7 +2043,7 @@
         <div style="font-size:44px; margin-bottom:4px;">🎁</div>
         <h2 style="font-size:23px; font-weight:900; color:#34d399; margin-bottom:4px;">Google AdMob Ödüllü Video Reklamı</h2>
         <p style="color:#e2e8f0; font-size:13.5px; margin-bottom:12px; line-height:1.4;">
-          Video reklam tamamlandığında seçtiğiniz <strong id="rewarded-ad-cat-name" style="color:#fde047;">VIP Paket</strong> bu tur için <strong>ücretsiz</strong> açılacaktır!
+          Video reklam tamamlandığında seçtiğiniz <strong id="rewarded-ad-cat-name" style="color:#fde047;">VIP Paket</strong> <strong>10 soru boyunca ücretsiz</strong> açılacaktır!
         </p>
 
         <!-- CANLI VİDEO OYNATMA SİMÜLASYONU -->
@@ -3164,14 +3169,19 @@
       });
     };
 
-    window.openAdMobTestModal = function() {
+    window.openAdMobTestModal = function(categoryToUnlock) {
       if (soundFX && soundFX.playPop) soundFX.playPop();
-      pendingVipCategory = 'VIP: Sinema & Dizi';
+      const targetCat = categoryToUnlock || pendingVipCategory || 'VIP: Sinema & Dizi';
+      pendingVipCategory = targetCat;
+
+      const vipModal = document.getElementById('tv-vip-modal');
+      if (vipModal) vipModal.style.display = 'none';
+
       const rewardedModal = document.getElementById('tv-rewarded-ad-modal');
       const bar = document.getElementById('rewarded-ad-bar');
       const cd = document.getElementById('rewarded-ad-countdown');
       const catEl = document.getElementById('rewarded-ad-cat-name');
-      if (catEl) catEl.textContent = 'VIP: Sinema & Dizi';
+      if (catEl) catEl.textContent = targetCat;
 
       if (rewardedModal) {
         rewardedModal.style.display = 'flex';
@@ -3196,12 +3206,19 @@
             clearInterval(window.adMobTestInterval);
             rewardedModal.style.display = 'none';
             if (soundFX && soundFX.playRewardSuccess) soundFX.playRewardSuccess();
-            speakText('Tebrikler! Google AdMob test reklamı başarıyla izlendi, VIP Sinema ve Dizi paketi açıldı!');
-            showTvToast('🎉 Google AdMob Test Reklamı Başarılı! VIP Paket Açıldı!', '🎁');
-            if (!unlockedCategoriesList.includes('VIP: Sinema & Dizi')) {
-              unlockedCategoriesList.push('VIP: Sinema & Dizi');
-              try { localStorage.setItem('bil_bakalim_unlocked_cats', JSON.stringify(unlockedCategoriesList)); } catch(e) {}
+            speakText(`Tebrikler! Google AdMob reklamı başarıyla izlendi, ${targetCat} paketi 10 soru için açıldı! Salonda yarışma başlıyor!`);
+            showTvToast(`🎉 ${targetCat} Paketi 10 Soru İçin Açıldı!`, '🎁');
+
+            // 1. Sunucuya haber ver ve 10 soruluk VIP oyununu sunucudan başlat
+            if (socket && socket.connected) {
+              socket.emit('host_watch_rewarded_ad', { categoryName: targetCat, roomCode: myRoomCode });
+            } else {
+              if (!unlockedCategoriesList.includes(targetCat)) {
+                unlockedCategoriesList.push(targetCat);
+                try { localStorage.setItem('bil_bakalim_unlocked_cats', JSON.stringify(unlockedCategoriesList)); } catch(e) {}
+              }
               renderCategoryCards(allCategories);
+              startCategoryGameHybrid(targetCat);
             }
           }
         }, 1000);
@@ -3215,12 +3232,49 @@
       if (rewardedModal) rewardedModal.style.display = 'none';
     };
 
+    window.watchRewardedAdForVip = function() {
+      openAdMobTestModal(pendingVipCategory || 'VIP: Sinema & Dizi');
+    };
+
+    window.continueVipPackageWithAd = function(catName) {
+      openAdMobTestModal(catName);
+    };
+
     window.testAdMobRewardedDirect = function() {
       openAdMobTestModal();
     };
 
-    window.watchRewardedAdForVip = function() {
-      openAdMobTestModal();
+    window.openInterstitialTestAd = function(callback) {
+      if (soundFX && soundFX.playPop) soundFX.playPop();
+      screenLobby.style.display = 'none';
+      screenCategories.style.display = 'none';
+      screenQuestion.style.display = 'none';
+      screenGameOver.style.display = 'none';
+      screenAd.style.display = 'flex';
+      screenAd.style.zIndex = '999999';
+
+      let count = 4;
+      const timerEl = document.getElementById('ad-timer');
+      if (timerEl) timerEl.textContent = count;
+      if (btnSkipAd) btnSkipAd.focus();
+
+      window.pendingAdCallback = callback;
+      if (window.interstitialAdInterval) clearInterval(window.interstitialAdInterval);
+      window.interstitialAdInterval = setInterval(() => {
+        count--;
+        if (timerEl) timerEl.textContent = count;
+        if (count <= 0) {
+          clearInterval(window.interstitialAdInterval);
+          screenAd.style.display = 'none';
+          if (typeof window.pendingAdCallback === 'function') {
+            const cb = window.pendingAdCallback;
+            window.pendingAdCallback = null;
+            cb();
+          } else {
+            goCategories();
+          }
+        }
+      }, 1000);
     };
 
     socket.on('payment_unlocked', ({ isPro, unlockedCategories, pkgName, method }) => {
@@ -3423,6 +3477,11 @@
           qCategory.textContent = state.question.category;
           qCurrent.textContent = state.questionIndex + 1;
           qTotal.textContent = state.totalQuestions;
+
+          const vipPassBadge = document.getElementById('q-vip-pass-badge');
+          if (vipPassBadge) {
+            vipPassBadge.style.display = state.isVipPassActive ? 'inline-flex' : 'none';
+          }
 
           // 1. ZORLUK ROZETİ (Difficulty Badge)
           const diffEl = document.getElementById('q-diff-badge');
@@ -3795,6 +3854,36 @@
           gameOverList.style.display = 'none';
         }
 
+        // 🎬 10 Soruluk VIP Reklamlı Pas Süresi Dolduysa Göster
+        const vipExpiredBox = document.getElementById('vip-expired-container');
+        if (vipExpiredBox) {
+          if (state.vipPassExpiredCategory) {
+            vipExpiredBox.style.display = 'block';
+            vipExpiredBox.innerHTML = `
+              <div style="background:linear-gradient(135deg, rgba(245,158,11,0.22), rgba(180,83,9,0.35)); border:2px solid #f59e0b; border-radius:18px; padding:16px 20px; text-align:center; box-shadow:0 0 30px rgba(245,158,11,0.35); animation:popIn 0.3s ease;">
+                <div style="font-size:36px;">🎬🔒</div>
+                <div style="font-size:22px; font-weight:900; color:#fde047; margin:4px 0;">10 Soruluk VIP Turunuz Tamamlandı!</div>
+                <p style="font-size:14.5px; color:#e2e8f0; margin:0 0 14px 0;">
+                  <strong>"${state.vipPassExpiredCategory}"</strong> paketi tekrar kilitlendi.<br>
+                  Kaldığınız yerden devam etmek için 1 kısa reklam daha izleyebilirsiniz (+10 Yeni Soru)!
+                </p>
+                <div style="display:flex; justify-content:center; gap:12px; flex-wrap:wrap;">
+                  <button type="button" class="tv-btn" onclick="continueVipPackageWithAd('${state.vipPassExpiredCategory}')" style="background:linear-gradient(135deg, #10b981, #059669); border-color:#34d399; font-size:16px; padding:12px 26px; box-shadow:0 0 20px rgba(16,185,129,0.5);">
+                    🎬 1 Reklam İzle & Kaldığın Yerden Devam Et (+10 Soru) ➔
+                  </button>
+                  <button type="button" class="top-btn" onclick="goCategories()" style="font-size:15px; padding:10px 20px;">
+                    🗂️ Kategorilere Dön
+                  </button>
+                </div>
+              </div>
+            `;
+            if (btnRestartGame) btnRestartGame.style.display = 'none';
+          } else {
+            vipExpiredBox.style.display = 'none';
+            if (btnRestartGame) btnRestartGame.style.display = 'inline-flex';
+          }
+        }
+
         btnRestartGame.focus();
       }
 
@@ -3866,7 +3955,13 @@
 
     btnSkipAd.addEventListener('click', () => {
       soundFX.playPop();
-      if (isLocalModeActive || !socket.connected) {
+      if (window.interstitialAdInterval) clearInterval(window.interstitialAdInterval);
+      screenAd.style.display = 'none';
+      if (typeof window.pendingAdCallback === 'function') {
+        const cb = window.pendingAdCallback;
+        window.pendingAdCallback = null;
+        cb();
+      } else if (isLocalModeActive || !socket.connected) {
         nextLocalQuestion();
       } else {
         socket.emit('host_next_question');

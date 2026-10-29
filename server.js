@@ -1159,23 +1159,34 @@ io.on('connection', (socket) => {
     const room = resolveRoom(data);
     if (!room) return;
     const categoryName = data ? data.categoryName : null;
-    if (categoryName && !room.unlockedCategories.includes(categoryName)) {
+    if (!categoryName) return;
+
+    if (!room.adUnlockedVipPasses) room.adUnlockedVipPasses = {};
+    // 🎬 10 SORULUK VIP PASSI: Reklam izlendiğinde 10 soru için geçici açılır
+    room.adUnlockedVipPasses[categoryName] = {
+      questionsGranted: 10,
+      timestamp: Date.now()
+    };
+    if (!room.unlockedCategories.includes(categoryName)) {
       room.unlockedCategories.push(categoryName);
     }
+    room.selectedCategory = categoryName;
+    room.vipPassExpiredCategory = null;
+
     const payload = {
       isPro: room.isPro,
       unlockedCategories: room.unlockedCategories,
-      pkgName: categoryName || 'VIP Paket (Ödüllü Reklam)',
-      method: 'REWARDED_AD'
+      pkgName: categoryName,
+      method: 'REWARDED_AD',
+      questionsGranted: 10
     };
     io.to(`room_${room.roomCode}`).emit('payment_unlocked', payload);
     io.to(`tv_${room.roomCode}`).emit('payment_unlocked', payload);
     io.emit('payment_unlocked', payload);
     io.to(`room_${room.roomCode}`).emit('state_update', getPublicGameState(room));
-    if (categoryName) {
-      room.selectedCategory = categoryName;
-      startNewGame(room);
-    }
+
+    console.log(`[AdMob Rewarded] Oda ${room.roomCode}: "${categoryName}" paketi 10 soru için açıldı.`);
+    startNewGame(room);
   });
 
   socket.on('submit_answer', ({ answerIndex }) => {
@@ -1337,6 +1348,8 @@ function getPublicGameState(room) {
     totalPoolSize: allQuestionsPool.length,
     selectedCategory: room.selectedCategory,
     isDoublePoints: isDouble,
+    vipPassExpiredCategory: room.vipPassExpiredCategory || null,
+    isVipPassActive: !!(room.selectedCategory && room.adUnlockedVipPasses && room.adUnlockedVipPasses[room.selectedCategory]),
     categories: CATEGORY_CONFIG.map(c => ({
       ...c,
       isUnlocked: !c.isVip || room.isPro || (room.unlockedCategories || []).includes(c.name)
@@ -1723,6 +1736,19 @@ function revealAnswers(room) {
 
 function endGame(room) {
   room.status = 'GAME_OVER';
+
+  // 🎬 10 SORULUK VIP REKLAMLI PAS KONTROLÜ:
+  // Eğer kategori reklam izlenerek geçici (10 soru) açıldıysa, tur bitince tekrar kilitlenir!
+  const currentCat = room.selectedCategory;
+  if (currentCat && room.adUnlockedVipPasses && room.adUnlockedVipPasses[currentCat]) {
+    room.vipPassExpiredCategory = currentCat;
+    // Paketi kilitli hale getir (tekrar reklam izlenmesi gerekecek)
+    room.unlockedCategories = (room.unlockedCategories || []).filter(c => c !== currentCat);
+    delete room.adUnlockedVipPasses[currentCat];
+    console.log(`[VIP Pası Bitti] Oda ${room.roomCode}: "${currentCat}" için 10 soru bitti, paket tekrar kilitlendi.`);
+  } else {
+    room.vipPassExpiredCategory = null;
+  }
 
   const playersSorted = Object.values(room.players).sort((a,b) => b.score - a.score);
   playersSorted.forEach(p => {
