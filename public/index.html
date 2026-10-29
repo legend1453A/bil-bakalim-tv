@@ -2149,9 +2149,13 @@
 
     let isProActive = false;
     let unlockedCategoriesList = [];
+    let temporaryAdVipCategory = null; // Sadece o anki 10 soruluk tur için geçerli geçici VIP pası
     try {
       isProActive = (localStorage.getItem('bil_bakalim_is_pro') === 'true');
-      unlockedCategoriesList = JSON.parse(localStorage.getItem('bil_bakalim_unlocked_cats') || '[]');
+      // Reklamlı geçici VIP kategoriler kalıcı listede tutulmaz, temizle
+      const savedCats = JSON.parse(localStorage.getItem('bil_bakalim_unlocked_cats') || '[]');
+      unlockedCategoriesList = savedCats.filter(c => !c.startsWith('VIP:') && c !== 'Sanat & Sinema' && c !== 'Sanat & Edebiyat' && c !== 'Matematik & Mantık' && c !== 'Spor');
+      localStorage.setItem('bil_bakalim_unlocked_cats', JSON.stringify(unlockedCategoriesList));
     } catch(e) {}
 
     let allCategories = [...DEFAULT_CATEGORIES];
@@ -2397,8 +2401,12 @@
     function isCategoryUnlocked(cat) {
       if (!cat.isVip) return true;
       if (isProActive) return true;
-      if (cat.isUnlocked) return true;
-      if (unlockedCategoriesList.includes(cat.name)) return true;
+      // Kalıcı satın alma veya kupon kodu
+      if (unlockedCategoriesList.includes(cat.name) || unlockedCategoriesList.includes(cat.id)) return true;
+      // Reklam izlenerek sadece o anki 10 soru için geçici açılan VIP pası
+      if (temporaryAdVipCategory && (cat.name === temporaryAdVipCategory || cat.id === temporaryAdVipCategory)) {
+        return true;
+      }
       return false;
     }
 
@@ -3211,14 +3219,8 @@
             speakText(`Tebrikler! Google AdMob reklamı başarıyla izlendi, ${targetCat} paketi 10 soru için açıldı! Salonda yarışma başlıyor!`);
             showTvToast(`🎉 ${targetCat} Paketi 10 Soru İçin Açıldı!`, '🎁');
 
-            // 1. Yerel istemci listesine ekle ve kartları "PAKET AÇIK" yap
-            if (!unlockedCategoriesList.includes(targetCat)) {
-              unlockedCategoriesList.push(targetCat);
-              try { localStorage.setItem('bil_bakalim_unlocked_cats', JSON.stringify(unlockedCategoriesList)); } catch(e) {}
-            }
-            allCategories.forEach(c => {
-              if (c.name === targetCat || c.id === targetCat) c.isUnlocked = true;
-            });
+            // 1. Sadece bu tur (10 soru) için geçici VIP pasını aktif et (Kalıcı hafızaya ASLA yazılmaz)
+            temporaryAdVipCategory = targetCat;
             renderCategoryCards(allCategories);
 
             // 2. Sunucuya bildir
@@ -3761,13 +3763,14 @@
         btnCloseHof.focus();
       }
       else if (state.status === 'GAME_OVER') {
-        // 🎬 1. KATEGORİ KİLİTLEME: Eğer 10 soruluk VIP pası bittiyse kategoriyi hem hafızadan hem ekrandan hemen kilitle
-        if (state.vipPassExpiredCategory) {
-          const expiredCat = state.vipPassExpiredCategory;
-          unlockedCategoriesList = unlockedCategoriesList.filter(c => c !== expiredCat);
+        // 🎬 1. KATEGORİ KİLİTLEME: 10 soru bitti, VIP pasını İPTAL ET ve kategorileri kilitli yap!
+        temporaryAdVipCategory = null;
+        const expiredCat = state.vipPassExpiredCategory || activeSelectedCategory;
+        if (expiredCat) {
+          unlockedCategoriesList = unlockedCategoriesList.filter(c => c !== expiredCat && !c.startsWith('VIP:') && c !== 'Sanat & Sinema' && c !== 'Sanat & Edebiyat' && c !== 'Matematik & Mantık' && c !== 'Spor');
           try { localStorage.setItem('bil_bakalim_unlocked_cats', JSON.stringify(unlockedCategoriesList)); } catch(e) {}
           allCategories.forEach(c => {
-            if (c.name === expiredCat || c.id === expiredCat) c.isUnlocked = false;
+            if (c.isVip) c.isUnlocked = false;
           });
           renderCategoryCards(allCategories);
         }
@@ -3794,6 +3797,9 @@
               screenGameOver.style.display = 'block';
               soundFX.playVictoryFanfare();
               triggerTvConfetti();
+              // Reklamdan sonra kategorilerin kilitlendiğini garantiye al
+              temporaryAdVipCategory = null;
+              renderCategoryCards(allCategories);
             }
           }, 1000);
           return;
@@ -4310,6 +4316,14 @@
       closeProModal();
       closeVipModal();
       hideExitDialog();
+
+      // VIP geçici pas süresi bitmişse tüm VIP kartları kesinlikle kilitli olarak çizdir
+      temporaryAdVipCategory = null;
+      allCategories.forEach(c => {
+        if (c.isVip) c.isUnlocked = false;
+      });
+      renderCategoryCards(allCategories);
+
       renderState({
         status: 'CATEGORY_SELECT',
         categories: allCategories,
