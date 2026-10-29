@@ -945,6 +945,38 @@
       z-index: 10;
     }
 
+    .blank-highlight {
+      display: inline-block;
+      padding: 2px 14px;
+      margin: 0 4px;
+      background: rgba(234, 179, 8, 0.22);
+      border-bottom: 3.5px solid #facc15;
+      border-radius: 6px;
+      color: #fde047;
+      font-weight: 900;
+      text-shadow: 0 0 12px rgba(250, 204, 21, 0.8);
+      animation: glowPulse 2s infinite ease-in-out;
+    }
+    @keyframes glowPulse {
+      0%, 100% { border-color: #facc15; text-shadow: 0 0 10px rgba(250,204,21,0.8); }
+      50% { border-color: #38bdf8; text-shadow: 0 0 16px rgba(56,189,248,0.9); color: #7dd3fc; }
+    }
+
+    .option-card.opt-true {
+      background: linear-gradient(135deg, rgba(16, 185, 129, 0.35), rgba(5, 150, 105, 0.45));
+      border-color: #10b981;
+    }
+    .option-card.opt-true .opt-icon {
+      background: linear-gradient(135deg, #10b981, #059669);
+    }
+    .option-card.opt-false {
+      background: linear-gradient(135deg, rgba(239, 68, 68, 0.35), rgba(185, 28, 28, 0.45));
+      border-color: #ef4444;
+    }
+    .option-card.opt-false .opt-icon {
+      background: linear-gradient(135deg, #ef4444, #dc2626);
+    }
+
     .opt-left {
       display: flex;
       align-items: center;
@@ -1671,16 +1703,21 @@
       </div>
 
       <div class="q-top-bar">
-        <div style="display:flex; align-items:center; gap:14px;">
+        <div style="display:flex; align-items:center; gap:10px;">
           <div class="category-tag" id="q-category">TARİH</div>
-          <div class="kids-badge" id="q-kids-badge" style="display:none; font-size:18px;">🧒 Çocuk Sorusu!</div>
+          <div id="q-diff-badge" style="display:none; font-size:12.5px; font-weight:900; padding:3px 8px; border-radius:8px; border:1px solid rgba(255,255,255,0.2);">🟢 KOLAY</div>
+          <div id="q-type-badge" style="display:none; font-size:12.5px; font-weight:900; padding:3px 8px; border-radius:8px; background:linear-gradient(135deg, #8b5cf6, #ec4899); color:#fff;">✍️ BOŞLUK DOLDURMA</div>
+          <div class="kids-badge" id="q-kids-badge" style="display:none; font-size:16px;">🧒 Çocuk Sorusu!</div>
           <div class="double-points-badge" id="double-points-banner">🔥 2X ÇİFT PUAN TURU!</div>
         </div>
-        <div style="font-size: 28px; font-weight: 900; color: #facc15; text-shadow:0 2px 10px rgba(0,0,0,0.6);">
+        <div style="font-size: 26px; font-weight: 900; color: #facc15; text-shadow:0 2px 10px rgba(0,0,0,0.6);">
           Soru <span id="q-current">1</span> / <span id="q-total">10</span>
         </div>
         <div class="timer-circle" id="timer-box">20 sn</div>
       </div>
+
+      <!-- TAKIM ÇOĞUNLUK OYLAMASI ŞERİDİ -->
+      <div id="team-majority-banner" style="display:none; margin: 0 auto 6px auto; padding:5px 16px; border-radius:12px; font-weight:800; font-size:14.5px; text-align:center; background:rgba(15,23,42,0.92); border:1.5px solid rgba(250,204,21,0.5); box-shadow:0 6px 20px rgba(0,0,0,0.6); animation:popIn 0.3s ease;"></div>
 
       <!-- RESİMLİ / GÖRSEL SORU ALANI -->
       <div id="q-image-box" style="display:none; text-align:center; margin: 0 auto 10px auto; max-height:160px; overflow:hidden; border-radius:16px; border:2px solid rgba(255,255,255,0.2); background:rgba(0,0,0,0.4); box-shadow:0 8px 24px rgba(0,0,0,0.5);">
@@ -3328,7 +3365,53 @@
           qCategory.textContent = state.question.category;
           qCurrent.textContent = state.questionIndex + 1;
           qTotal.textContent = state.totalQuestions;
-          qText.textContent = state.question.question;
+
+          // 1. ZORLUK ROZETİ (Difficulty Badge)
+          const diffEl = document.getElementById('q-diff-badge');
+          if (diffEl) {
+            const diff = state.question.difficulty || (state.questionIndex < 3 ? 'KOLAY' : (state.questionIndex < 7 ? 'ORTA' : 'ZOR'));
+            const pts = state.question.points || (diff === 'KOLAY' ? 500 : (diff === 'ORTA' ? 750 : 1000));
+            diffEl.style.display = 'inline-flex';
+            if (diff === 'KOLAY') {
+              diffEl.innerHTML = `🟢 KOLAY (+${pts} P)`;
+              diffEl.style.background = 'linear-gradient(135deg, #059669, #10b981)';
+              diffEl.style.color = '#fff';
+            } else if (diff === 'ORTA') {
+              diffEl.innerHTML = `🟡 ORTA (+${pts} P)`;
+              diffEl.style.background = 'linear-gradient(135deg, #d97706, #f59e0b)';
+              diffEl.style.color = '#fff';
+            } else {
+              diffEl.innerHTML = `🔥 ZOR (+${pts} P)`;
+              diffEl.style.background = 'linear-gradient(135deg, #dc2626, #ef4444)';
+              diffEl.style.color = '#fff';
+            }
+          }
+
+          // 2. SORU TİPİ ROZETİ (Doğru/Yanlış & Boşluk Doldurma)
+          const typeEl = document.getElementById('q-type-badge');
+          const isTrueFalse = state.question.type === 'TRUE_FALSE' || (state.question.options && state.question.options.length === 2);
+          const isFillBlank = state.question.type === 'FILL_BLANK' || (state.question.question && state.question.question.includes('_______'));
+
+          if (typeEl) {
+            if (isTrueFalse) {
+              typeEl.style.display = 'inline-flex';
+              typeEl.innerHTML = '⚖️ DOĞRU MU? YANLIŞ MI?';
+              typeEl.style.background = 'linear-gradient(135deg, #0284c7, #6366f1)';
+            } else if (isFillBlank) {
+              typeEl.style.display = 'inline-flex';
+              typeEl.innerHTML = '✍️ BOŞLUK DOLDURMA';
+              typeEl.style.background = 'linear-gradient(135deg, #8b5cf6, #ec4899)';
+            } else {
+              typeEl.style.display = 'none';
+            }
+          }
+
+          // 3. Soru Metni Formatlama (Boşluk Doldurmada Alt Çizgiyi Parlat)
+          if (isFillBlank) {
+            qText.innerHTML = state.question.question.replace(/_______/g, '<span class="blank-highlight">_______</span>');
+          } else {
+            qText.textContent = state.question.question;
+          }
 
           // 🖼️ GÖRSEL / RESİMLİ SORU KONTROLÜ
           const imgBox = document.getElementById('q-image-box');
@@ -3342,14 +3425,52 @@
             }
           }
 
+          // 4. ŞIKLARIN DÜZENİ (2 Şıklı vs 4 Şıklı)
+          const optContainer = document.getElementById('options-container');
+          if (isTrueFalse) {
+            if (optContainer) {
+              optContainer.style.gridTemplateColumns = '1fr 1fr';
+              optContainer.style.gridTemplateRows = '1fr';
+            }
+            const card2 = document.getElementById('opt-card-2');
+            const card3 = document.getElementById('opt-card-3');
+            if (card2) card2.style.display = 'none';
+            if (card3) card3.style.display = 'none';
+          } else {
+            if (optContainer) {
+              optContainer.style.gridTemplateColumns = '1fr 1fr';
+              optContainer.style.gridTemplateRows = '1fr 1fr';
+            }
+            const card2 = document.getElementById('opt-card-2');
+            const card3 = document.getElementById('opt-card-3');
+            if (card2) card2.style.display = 'flex';
+            if (card3) card3.style.display = 'flex';
+          }
+
           state.question.options.forEach((opt, idx) => {
             const card = document.getElementById(`opt-card-${idx}`);
+            if (!card) return;
             const text = document.getElementById(`opt-text-${idx}`);
             const votersEl = document.getElementById(`opt-voters-${idx}`);
-            text.textContent = opt;
+            const optIcon = card.querySelector('.opt-icon');
 
-            card.classList.remove('option-correct', 'option-wrong', 'option-dimmed');
-            votersEl.innerHTML = '';
+            if (text) text.textContent = opt;
+
+            card.classList.remove('option-correct', 'option-wrong', 'option-dimmed', 'opt-true', 'opt-false');
+            if (isTrueFalse) {
+              if (idx === 0) {
+                card.classList.add('opt-true');
+                if (optIcon) optIcon.textContent = '✓';
+              } else if (idx === 1) {
+                card.classList.add('opt-false');
+                if (optIcon) optIcon.textContent = '✗';
+              }
+            } else {
+              const defaultIcons = ['A', 'B', 'C', 'D'];
+              if (optIcon) optIcon.textContent = defaultIcons[idx] || '';
+            }
+
+            if (votersEl) votersEl.innerHTML = '';
 
             if (state.status === 'ANSWER_REVEAL') {
               const choosers = (state.players || []).filter(p => p.lastAnswer === idx);
@@ -3364,9 +3485,33 @@
                 card.classList.add('option-dimmed');
               }
 
-              votersEl.innerHTML = choosers.map(p => `<span title="${p.name}">${p.avatar}</span>`).join('');
+              if (votersEl) votersEl.innerHTML = choosers.map(p => `<span title="${p.name}">${p.avatar}</span>`).join('');
             }
           });
+
+          // 5. TAKIM ÇOĞUNLUK OYLAMASI ŞERİDİ
+          const majBanner = document.getElementById('team-majority-banner');
+          if (majBanner) {
+            if (state.status === 'ANSWER_REVEAL' && state.gameMode === 'TEAM' && state.teamMajority) {
+              const tm = state.teamMajority;
+              let html = '';
+              if (tm.red && tm.red.winningOption !== null) {
+                const optText = state.question.options[tm.red.winningOption] || '';
+                const icon = tm.red.isCorrect ? '✅ DOĞRU (+200 P)' : '❌ YANLIŞ';
+                html += `<span style="color:#f87171; font-weight:900;">🔴 Kırmızı Takım (%${tm.red.percent} "${optText}"): ${icon}</span>`;
+              }
+              if (tm.blue && tm.blue.winningOption !== null) {
+                const optText = state.question.options[tm.blue.winningOption] || '';
+                const icon = tm.blue.isCorrect ? '✅ DOĞRU (+200 P)' : '❌ YANLIŞ';
+                if (html) html += ' &nbsp;&nbsp;|&nbsp;&nbsp; ';
+                html += `<span style="color:#60a5fa; font-weight:900;">🔵 Mavi Takım (%${tm.blue.percent} "${optText}"): ${icon}</span>`;
+              }
+              majBanner.innerHTML = html;
+              majBanner.style.display = html ? 'block' : 'none';
+            } else {
+              majBanner.style.display = 'none';
+            }
+          }
         }
 
         if (state.status === 'QUESTION') {

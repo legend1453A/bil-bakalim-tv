@@ -960,7 +960,7 @@
         if (me && me.answered) {
           showWaiting('Cevabın İletildi! ⚡', 'Diğer oyuncuların seçim yapması bekleniyor...', '🔒');
         } else {
-          showAnswerPad();
+          showAnswerPad(state.question);
         }
       } 
       else if (state.status === 'ANSWER_REVEAL') {
@@ -1051,7 +1051,7 @@
       }
     }
 
-    function showAnswerPad() {
+    function showAnswerPad(question) {
       if (viewGameOverViral) viewGameOverViral.style.display = 'none';
       viewGame.style.display = 'flex';
       answerButtons.style.display = 'grid';
@@ -1060,6 +1060,52 @@
       waitMessage.classList.remove('state-correct', 'state-wrong');
       hasAnsweredCurrentQuestion = false;
       setButtonsDisabled(false);
+
+      const isTrueFalse = question && (question.type === 'TRUE_FALSE' || (question.options && question.options.length === 2));
+      const btn0 = document.getElementById('btn-opt-0');
+      const btn1 = document.getElementById('btn-opt-1');
+      const btn2 = document.getElementById('btn-opt-2');
+      const btn3 = document.getElementById('btn-opt-3');
+
+      if (isTrueFalse) {
+        answerButtons.style.gridTemplateColumns = '1fr 1fr';
+        answerButtons.style.height = '160px';
+        if (btn0) {
+          btn0.innerHTML = '<span class="btn-label" style="font-size:22px; font-weight:900;">✓ DOĞRU</span>';
+          btn0.style.background = 'linear-gradient(135deg, #059669, #10b981)';
+          btn0.style.display = 'flex';
+        }
+        if (btn1) {
+          btn1.innerHTML = '<span class="btn-label" style="font-size:22px; font-weight:900;">✗ YANLIŞ</span>';
+          btn1.style.background = 'linear-gradient(135deg, #dc2626, #ef4444)';
+          btn1.style.display = 'flex';
+        }
+        if (btn2) btn2.style.display = 'none';
+        if (btn3) btn3.style.display = 'none';
+      } else {
+        answerButtons.style.gridTemplateColumns = '1fr 1fr';
+        answerButtons.style.height = '';
+        if (btn0) {
+          btn0.innerHTML = '<span class="btn-label">A</span>';
+          btn0.style.background = '';
+          btn0.style.display = 'flex';
+        }
+        if (btn1) {
+          btn1.innerHTML = '▲ <span class="btn-label">B</span>';
+          btn1.style.background = '';
+          btn1.style.display = 'flex';
+        }
+        if (btn2) {
+          btn2.innerHTML = '● <span class="btn-label">C</span>';
+          btn2.style.background = '';
+          btn2.style.display = 'flex';
+        }
+        if (btn3) {
+          btn3.innerHTML = '■ <span class="btn-label">D</span>';
+          btn3.style.background = '';
+          btn3.style.display = 'flex';
+        }
+      }
 
       for (let i = 0; i < 4; i++) {
         const btn = document.getElementById(`btn-opt-${i}`);

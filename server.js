@@ -369,6 +369,12 @@ function pickUniqueDiverseQuestions(pool, count, askedSet, categoryKey) {
 
 // Şıkları ve doğru cevabı rastgele karıştır (shuffle options)
 function shuffleQuestionOptions(q) {
+  if (q.type === 'TRUE_FALSE' || (q.options && q.options.length === 2)) {
+    return {
+      ...q,
+      isKids: !!q.isKids
+    };
+  }
   const optionsWithIndices = q.options.map((opt, idx) => ({
     text: opt,
     isCorrect: idx === q.answer
@@ -1338,13 +1344,17 @@ function getPublicGameState(room) {
     proTiers: PRO_TIERS,
     adTimeLeft: room.adTimeLeft,
     persistentLeaderboard: persistentLeaderboard,
+    teamMajority: (room.gameMode === 'TEAM' && isRevealed) ? (room.lastTeamMajority || null) : null,
     question: currentQ ? {
       category: currentQ.category,
       question: currentQ.question,
       options: currentQ.options,
       time: currentQ.time,
       image: currentQ.image || null,
-      isKids: !!currentQ.isKids
+      isKids: !!currentQ.isKids,
+      type: currentQ.type || (currentQ.options && currentQ.options.length === 2 ? 'TRUE_FALSE' : (currentQ.question.includes('_______') ? 'FILL_BLANK' : 'MULTIPLE_CHOICE')),
+      difficulty: currentQ.difficulty || (room.currentQuestionIndex < 3 ? 'KOLAY' : (room.currentQuestionIndex < 7 ? 'ORTA' : 'ZOR')),
+      points: currentQ.points || (room.currentQuestionIndex < 3 ? 500 : (room.currentQuestionIndex < 7 ? 750 : 1000))
     } : null,
     correctAnswer: isRevealed && currentQ ? currentQ.answer : null,
     timeLeft: room.questionTimeLeft,
@@ -1577,6 +1587,7 @@ function revealAnswers(room) {
   const q = room.currentRoundQuestions[room.currentQuestionIndex];
   const isDouble = isDoublePointsQuestion(room.currentQuestionIndex);
   const multiplier = isDouble ? 2 : 1;
+  const basePoints = (room.currentQuestionIndex < 3) ? 500 : ((room.currentQuestionIndex < 7) ? 750 : 1000);
 
   // En hızlı doğru cevap veren oyuncuyu bul
   const correctPlayers = Object.values(room.players).filter(p => p.currentAnswer === q.answer && p.answeredAt !== null);
@@ -1594,7 +1605,7 @@ function revealAnswers(room) {
       const fastestBonus = p.isFastest ? 150 : 0;
       const wagerBonus = p.wagerActive ? 500 : 0; // 🔥 Risk Al (+500 Puan)
 
-      const totalEarned = (500 + speedBonus + streakBonus + fastestBonus + wagerBonus) * multiplier;
+      const totalEarned = (basePoints + speedBonus + streakBonus + fastestBonus + wagerBonus) * multiplier;
       p.lastPointsEarned = totalEarned;
       p.score += totalEarned;
     } else {
@@ -1611,10 +1622,11 @@ function revealAnswers(room) {
     }
   });
 
-  // 2. TAKIM COMBO (SERİ) ÇARPANI:
-  // Bir takımdaki tüm oyuncular aynı soruya doğru cevap verirse o soru için takıma "TAKIM COMBOSU (1.5x Puan)" verilsin
+  // 2. TAKIM COMBO & ÇOĞUNLUK OYLAMASI:
   let redCombo = false;
   let blueCombo = false;
+  let redMajority = null;
+  let blueMajority = null;
 
   if (room.gameMode === 'TEAM') {
     const redPlayers = Object.values(room.players).filter(p => p.team === 'RED' && !p.isDisconnected);
@@ -1640,12 +1652,70 @@ function revealAnswers(room) {
         p.hadTeamCombo = true;
       });
     }
+
+    // 3. TAKIM ÇOĞUNLUK OYLAMASI HESAPLAMA (MAJORITY VOTE)
+    const calcMajority = (players) => {
+      if (players.length === 0) return null;
+      const counts = {};
+      players.forEach(p => {
+        if (p.currentAnswer !== null && p.currentAnswer !== undefined) {
+          counts[p.currentAnswer] = (counts[p.currentAnswer] || 0) + 1;
+        }
+      });
+      let maxCount = 0;
+      let winningOpt = null;
+      Object.keys(counts).forEach(opt => {
+        const c = counts[opt];
+        if (c > maxCount) {
+          maxCount = c;
+          winningOpt = parseInt(opt);
+        } else if (c === maxCount && maxCount > 0) {
+          const pCurrent = players.find(p => p.currentAnswer === winningOpt);
+          const pNew = players.find(p => p.currentAnswer === parseInt(opt));
+          if (pNew && pCurrent && pNew.answeredAt < pCurrent.answeredAt) {
+            winningOpt = parseInt(opt);
+          }
+        }
+      });
+      const isCorrect = (winningOpt === q.answer);
+      const totalVoted = Object.values(counts).reduce((a,b)=>a+b, 0);
+      const percent = totalVoted > 0 ? Math.round((maxCount / totalVoted) * 100) : 0;
+      return {
+        winningOption: winningOpt,
+        isCorrect: isCorrect,
+        votes: counts,
+        totalVoted: totalVoted,
+        percent: percent
+      };
+    };
+
+    redMajority = calcMajority(redPlayers);
+    blueMajority = calcMajority(bluePlayers);
+
+    // Çoğunluk oyu doğruysa tüm takıma ekstra 200 takım puanı
+    if (redMajority && redMajority.isCorrect) {
+      redPlayers.forEach(p => {
+        p.score += 200;
+        p.lastPointsEarned += 200;
+      });
+    }
+    if (blueMajority && blueMajority.isCorrect) {
+      bluePlayers.forEach(p => {
+        p.score += 200;
+        p.lastPointsEarned += 200;
+      });
+    }
   }
 
   room.lastTeamCombo = {
     red: redCombo,
     blue: blueCombo,
     active: redCombo || blueCombo
+  };
+
+  room.lastTeamMajority = {
+    red: redMajority,
+    blue: blueMajority
   };
 
   io.to(`room_${room.roomCode}`).emit('state_update', getPublicGameState(room));
