@@ -523,6 +523,40 @@ function savePromoCodes(data) {
 
 let activePromoCodes = loadPromoCodes();
 
+// --- ADMIN: KUPON KODU YÖNETİM ENDPOINTLERİ ---
+app.get('/api/admin/promos', (req, res) => {
+  activePromoCodes = loadPromoCodes();
+  res.json({ success: true, promos: activePromoCodes });
+});
+
+app.post('/api/admin/promos', (req, res) => {
+  const { code, maxUsage, type, expiresAt } = req.body;
+  if (!code || !code.trim()) {
+    return res.status(400).json({ success: false, message: 'Kupon kodu boş olamaz!' });
+  }
+  const cleanCode = code.trim().toUpperCase();
+  activePromoCodes = loadPromoCodes();
+  activePromoCodes[cleanCode] = {
+    maxUsage: parseInt(maxUsage) || 100,
+    usedCount: (activePromoCodes[cleanCode] ? activePromoCodes[cleanCode].usedCount : 0),
+    expiresAt: expiresAt || '2026-12-31T23:59:59Z',
+    type: type || 'PRO'
+  };
+  savePromoCodes(activePromoCodes);
+  res.json({ success: true, message: `"${cleanCode}" kuponu başarıyla kaydedildi!`, promos: activePromoCodes });
+});
+
+app.delete('/api/admin/promos/:code', (req, res) => {
+  const code = (req.params.code || '').trim().toUpperCase();
+  activePromoCodes = loadPromoCodes();
+  if (activePromoCodes[code]) {
+    delete activePromoCodes[code];
+    savePromoCodes(activePromoCodes);
+    return res.json({ success: true, message: `"${code}" kuponu silindi!`, promos: activePromoCodes });
+  }
+  res.status(404).json({ success: false, message: 'Kupon bulunamadı!' });
+});
+
 // ÖDEME SAĞLAYICISI BİLGİSİ
 app.get('/api/payment/config', (req, res) => {
   const cfg = paymentModule.loadConfig();
