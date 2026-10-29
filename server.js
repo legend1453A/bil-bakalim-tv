@@ -523,13 +523,31 @@ function savePromoCodes(data) {
 
 let activePromoCodes = loadPromoCodes();
 
-// --- ADMIN: KUPON KODU YÖNETİM ENDPOINTLERİ ---
-app.get('/api/admin/promos', (req, res) => {
+// --- ADMIN: KUPON KODU YÖNETİM ENDPOINTLERİ (ŞİFRE KORUMALI) ---
+const ADMIN_PASSWORD = process.env.ADMIN_PASSWORD || '1453';
+
+function checkAdminAuth(req, res, next) {
+  const provided = req.headers['x-admin-key'] || req.query.key;
+  if (provided === ADMIN_PASSWORD) {
+    return next();
+  }
+  return res.status(401).json({ success: false, message: 'Yetkisiz erişim! Yönetici şifresi yanlış.' });
+}
+
+app.post('/api/admin/verify', (req, res) => {
+  const { password } = req.body || {};
+  if (password === ADMIN_PASSWORD) {
+    return res.json({ success: true, message: 'Giriş başarılı.' });
+  }
+  return res.status(401).json({ success: false, message: 'Yönetici şifresi hatalı!' });
+});
+
+app.get('/api/admin/promos', checkAdminAuth, (req, res) => {
   activePromoCodes = loadPromoCodes();
   res.json({ success: true, promos: activePromoCodes });
 });
 
-app.post('/api/admin/promos', (req, res) => {
+app.post('/api/admin/promos', checkAdminAuth, (req, res) => {
   const { code, maxUsage, type, expiresAt } = req.body;
   if (!code || !code.trim()) {
     return res.status(400).json({ success: false, message: 'Kupon kodu boş olamaz!' });
@@ -546,7 +564,7 @@ app.post('/api/admin/promos', (req, res) => {
   res.json({ success: true, message: `"${cleanCode}" kuponu başarıyla kaydedildi!`, promos: activePromoCodes });
 });
 
-app.delete('/api/admin/promos/:code', (req, res) => {
+app.delete('/api/admin/promos/:code', checkAdminAuth, (req, res) => {
   const code = (req.params.code || '').trim().toUpperCase();
   activePromoCodes = loadPromoCodes();
   if (activePromoCodes[code]) {

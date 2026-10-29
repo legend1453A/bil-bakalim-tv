@@ -49,6 +49,11 @@
       color: #94a3b8;
       margin-top: 4px;
     }
+    .header-actions {
+      display: flex;
+      gap: 10px;
+      align-items: center;
+    }
     .btn-tv-link {
       background: rgba(255, 255, 255, 0.08);
       border: 1px solid rgba(255, 255, 255, 0.2);
@@ -64,9 +69,19 @@
       background: #4f46e5;
       color: #fff;
     }
+    .btn-logout {
+      background: rgba(239, 68, 68, 0.2);
+      border: 1px solid #ef4444;
+      color: #fca5a5;
+      padding: 8px 14px;
+      border-radius: 12px;
+      font-weight: 800;
+      font-size: 13px;
+      cursor: pointer;
+    }
 
     .card {
-      background: rgba(15, 23, 42, 0.8);
+      background: rgba(15, 23, 42, 0.85);
       border: 1px solid rgba(255, 255, 255, 0.12);
       border-radius: 20px;
       padding: 24px;
@@ -208,20 +223,69 @@
       display: none;
       z-index: 9999;
     }
+
+    /* GÜVENLİK GİRİŞ MODALI */
+    #auth-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      background: rgba(2, 6, 23, 0.96);
+      backdrop-filter: blur(16px);
+      z-index: 99999;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+    }
+    .login-box {
+      background: #0f172a;
+      border: 2px solid rgba(250, 204, 21, 0.4);
+      border-radius: 24px;
+      padding: 32px 28px;
+      max-width: 420px;
+      width: 100%;
+      text-align: center;
+      box-shadow: 0 25px 60px rgba(0,0,0,0.8);
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
   </style>
 </head>
 <body>
 
   <div id="toast" class="toast-box">İşlem Başarılı!</div>
 
-  <div class="admin-container">
+  <!-- 🔒 ŞİFRE GİRİŞ EKRANI (YETKİSİZ ERİŞİM ENGELİ) -->
+  <div id="auth-overlay">
+    <div class="login-box">
+      <div style="font-size: 48px;">🔒</div>
+      <h2 style="font-size: 22px; font-weight: 900; color: #facc15;">Yönetici Girişi</h2>
+      <p style="font-size: 13.5px; color: #94a3b8; line-height: 1.4;">
+        Bu panel yalnızca uygulama sahibine aittir. Kupon oluşturmak için yönetici şifrenizi girin.
+      </p>
+      <form onsubmit="handleLogin(event)" style="display:flex; flex-direction:column; gap:12px;">
+        <input type="password" id="admin-pass-input" class="form-input" placeholder="Yönetici Şifreniz" required autofocus style="text-align:center; font-size:18px; letter-spacing:2px;">
+        <button type="submit" class="btn-create" style="width:100%; height:46px;">Giriş Yap ➔</button>
+      </form>
+      <div id="login-err" style="color:#ef4444; font-size:13px; font-weight:700; display:none;">Şifre hatalı! Lütfen tekrar deneyin.</div>
+    </div>
+  </div>
+
+  <!-- ANA YÖNETİM PANELİ -->
+  <div class="admin-container" id="admin-content" style="display:none;">
     <!-- ÜST BİLGİ KARTI -->
     <div class="header-card">
       <div class="title-box">
         <h1>🎟️ Kupon & Promosyon Yönetimi</h1>
         <p>Google Play test kullanıcılarına, ailenize ve kampanya takipçilerinize özel kod üretin.</p>
       </div>
-      <a href="/" class="btn-tv-link">📺 TV Ekranına Git ➔</a>
+      <div class="header-actions">
+        <a href="/" class="btn-tv-link">📺 TV Ekranı</a>
+        <button class="btn-logout" onclick="logoutAdmin()">🔒 Çıkış</button>
+      </div>
     </div>
 
     <!-- YENİ KUPON EKLEME FORMU -->
@@ -271,6 +335,8 @@
   </div>
 
   <script>
+    let currentAdminKey = sessionStorage.getItem('bil_admin_key') || '';
+
     function showToast(msg) {
       const t = document.getElementById('toast');
       t.textContent = msg;
@@ -278,9 +344,50 @@
       setTimeout(() => { t.style.display = 'none'; }, 3000);
     }
 
-    async function loadPromos() {
+    async function handleLogin(e) {
+      e.preventDefault();
+      const pass = document.getElementById('admin-pass-input').value.trim();
+      const errBox = document.getElementById('login-err');
+      errBox.style.display = 'none';
+
       try {
-        const res = await fetch('/api/admin/promos');
+        const res = await fetch('/api/admin/verify', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ password: pass })
+        });
+        const d = await res.json();
+        if (d.success) {
+          currentAdminKey = pass;
+          sessionStorage.setItem('bil_admin_key', pass);
+          document.getElementById('auth-overlay').style.display = 'none';
+          document.getElementById('admin-content').style.display = 'flex';
+          loadPromos();
+        } else {
+          errBox.style.display = 'block';
+        }
+      } catch (err) {
+        errBox.textContent = 'Bağlantı hatası!';
+        errBox.style.display = 'block';
+      }
+    }
+
+    function logoutAdmin() {
+      sessionStorage.removeItem('bil_admin_key');
+      currentAdminKey = '';
+      window.location.reload();
+    }
+
+    async function loadPromos() {
+      if (!currentAdminKey) return;
+      try {
+        const res = await fetch('/api/admin/promos', {
+          headers: { 'x-admin-key': currentAdminKey }
+        });
+        if (res.status === 401) {
+          logoutAdmin();
+          return;
+        }
         const data = await res.json();
         const tbody = document.getElementById('promo-table-body');
         if (!data.success || !data.promos) {
@@ -328,7 +435,10 @@
       try {
         const res = await fetch('/api/admin/promos', {
           method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
+          headers: { 
+            'Content-Type': 'application/json',
+            'x-admin-key': currentAdminKey 
+          },
           body: JSON.stringify({ code, maxUsage, type })
         });
         const d = await res.json();
@@ -348,7 +458,8 @@
       if (!confirm(`"${code}" kupon kodunu silmek istediğinize emin misiniz?`)) return;
       try {
         const res = await fetch(`/api/admin/promos/${encodeURIComponent(code)}`, {
-          method: 'DELETE'
+          method: 'DELETE',
+          headers: { 'x-admin-key': currentAdminKey }
         });
         const d = await res.json();
         if (d.success) {
@@ -360,7 +471,22 @@
       }
     }
 
-    loadPromos();
+    // Başlangıç kontrolü: daha önce şifre girilmişse direkt aç
+    if (currentAdminKey) {
+      fetch('/api/admin/verify', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ password: currentAdminKey })
+      }).then(r => r.json()).then(d => {
+        if (d.success) {
+          document.getElementById('auth-overlay').style.display = 'none';
+          document.getElementById('admin-content').style.display = 'flex';
+          loadPromos();
+        } else {
+          sessionStorage.removeItem('bil_admin_key');
+        }
+      }).catch(()=>{});
+    }
   </script>
 </body>
 </html>
