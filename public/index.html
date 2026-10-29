@@ -45,7 +45,7 @@
       display: flex;
       flex-direction: column;
       justify-content: flex-start;
-      padding: 10px 24px;
+      padding: 16px 24px 8px 24px;
       box-sizing: border-box;
       overflow: hidden !important;
     }
@@ -54,44 +54,48 @@
       display: flex;
       justify-content: space-between;
       align-items: center;
+      padding-top: 2px;
       padding-bottom: 8px;
       border-bottom: 1px solid rgba(255, 255, 255, 0.1);
       flex-shrink: 0;
       gap: 10px;
-      margin-bottom: 8px;
-      height: 46px;
+      margin-bottom: 6px;
+      height: 48px;
       box-sizing: border-box;
     }
 
     .brand {
       display: flex;
       align-items: center;
-      gap: 10px;
+      gap: 12px;
+      padding-top: 2px;
     }
 
     .brand-logo-img {
-      width: 42px;
-      height: 42px;
-      border-radius: 12px;
+      width: 40px;
+      height: 40px;
+      border-radius: 10px;
       object-fit: cover;
-      box-shadow: 0 6px 18px rgba(99, 102, 241, 0.5), 0 0 12px rgba(250, 204, 21, 0.4);
+      box-shadow: 0 4px 14px rgba(99, 102, 241, 0.4);
       border: 1.5px solid rgba(255, 255, 255, 0.25);
     }
 
     .brand h1 {
-      font-size: 20px;
+      font-size: 19px;
       font-weight: 900;
-      letter-spacing: -0.5px;
+      letter-spacing: -0.3px;
       background: linear-gradient(to right, #fde047, #ffffff, #6ee7b7);
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
-      line-height: 1;
+      line-height: 1.15;
+      margin-bottom: 2px;
     }
 
     .brand-sub {
-      font-size: 11px;
+      font-size: 10.5px;
       color: var(--text-muted);
       font-weight: 600;
+      line-height: 1;
     }
 
     .header-actions {
@@ -1428,8 +1432,8 @@
 
     /* ANDROID TV DİKEY TAŞMAYI ENGELLEYEN VE HER EKRANA SIĞAN KORUMA */
     @media (max-height: 720px) {
-      body { padding: 10px 24px; }
-      header { padding-bottom: 6px; margin-bottom: 8px; }
+      body { padding: 14px 22px 6px 22px; }
+      header { padding-top: 2px; padding-bottom: 6px; margin-bottom: 6px; height: 46px; }
       .qr-card { width: 260px; padding: 14px; }
       .qr-card img { width: 140px; height: 140px; }
       .category-card { padding: 10px 12px; min-height: 140px; }
@@ -1553,7 +1557,7 @@
             </div>
           </div>
 
-          <div style="background:rgba(255,255,255,0.08); border:1px solid rgba(255,255,255,0.2); padding:4px 8px; border-radius:10px; font-weight:900; font-size:11.5px; white-space:nowrap; color:#34d399; flex-shrink:0;">
+          <div style="background:rgba(255,255,255,0.08); border:1px solid rgba(255,255,255,0.2); padding:3px 7px; border-radius:10px; font-weight:900; font-size:11px; white-space:nowrap; color:#34d399; flex-shrink:0; margin-right:4px;">
             ✓ 0 Tekrar
           </div>
         </div>
@@ -1853,7 +1857,7 @@
             </div>
             <div style="display:flex; align-items:center; justify-content:center; gap:10px;">
               <div id="pro-qr-container" style="position:relative; background:#fff; padding:4px; border-radius:10px; box-shadow:0 4px 14px rgba(0,0,0,0.5); width:90px; height:90px; display:flex; align-items:center; justify-content:center; box-sizing:border-box;">
-                <img id="pro-qr-img" src="" alt="PRO QR" style="width:82px; height:82px; display:block;">
+                <img id="pro-qr-img" src="" alt="PRO QR" style="width:82px; height:82px; display:block;" onerror="handleProQrError()">
                 <div id="pro-qr-error-box" style="display:none; color:#b91c1c; font-size:11px; font-weight:800; width:82px; text-align:center;">
                   QR Hatası<br>
                   <button type="button" class="top-btn" onclick="refreshProQr()" style="font-size:10px; padding:2px 4px; margin-top:2px;">🔄 Yenile</button>
@@ -1911,7 +1915,7 @@
             </div>
             <div style="display:flex; align-items:center; justify-content:center; gap:12px;">
               <div id="vip-qr-container" style="background:#fff; padding:5px; border-radius:12px; box-shadow:0 4px 14px rgba(0,0,0,0.5); min-width:100px; min-height:100px; display:flex; align-items:center; justify-content:center;">
-                <img id="vip-qr-img" src="" alt="VIP QR" style="width:100px; height:100px; display:block;">
+                <img id="vip-qr-img" src="" alt="VIP QR" style="width:100px; height:100px; display:block;" onerror="handleVipQrError()">
                 <div id="vip-qr-error-box" style="display:none; color:#b91c1c; font-size:11px; font-weight:800; width:100px; text-align:center;">
                   QR Hatası<br>
                   <button type="button" class="top-btn" onclick="refreshVipQr()" style="font-size:10px; padding:3px 5px; margin-top:3px;">🔄 Yenile</button>
@@ -2802,6 +2806,7 @@
       const qrImg = document.getElementById('pro-qr-img');
       const errBox = document.getElementById('pro-qr-error-box');
       if (errBox) errBox.style.display = 'none';
+      if (qrImg) qrImg.dataset.triedFallback = '';
 
       const payUrl = `https://bil-bakalim-tv.onrender.com/pay.html?room=${encodeURIComponent(myRoomCode)}&type=PRO&name=${encodeURIComponent('BIL BAKALIM PRO')}&price=${encodeURIComponent(selectedProPrice)}`;
       if (qrImg) {
@@ -2824,13 +2829,21 @@
     window.handleProQrError = function() {
       const qrImg = document.getElementById('pro-qr-img');
       const errBox = document.getElementById('pro-qr-error-box');
-      if (errBox) errBox.style.display = 'none';
+      if (qrImg && !qrImg.dataset.triedFallback) {
+        qrImg.dataset.triedFallback = 'true';
+        const payUrl = `https://bil-bakalim-tv.onrender.com/pay.html?room=${encodeURIComponent(myRoomCode)}&type=PRO&name=${encodeURIComponent('BIL BAKALIM PRO')}&price=${encodeURIComponent(selectedProPrice)}`;
+        qrImg.src = `https://chart.googleapis.com/chart?chs=250x250&cht=qr&chl=${encodeURIComponent(payUrl)}`;
+        return;
+      }
+      if (qrImg) qrImg.style.display = 'none';
+      if (errBox) errBox.style.display = 'block';
     };
 
     window.refreshVipQr = function() {
       const qrImg = document.getElementById('vip-qr-img');
       const errBox = document.getElementById('vip-qr-error-box');
       if (errBox) errBox.style.display = 'none';
+      if (qrImg) qrImg.dataset.triedFallback = '';
 
       const targetPrice = (pendingVipCategory && allCategories.find(c => c.name === pendingVipCategory)?.price) || '49,99 TL';
       const payUrl = `https://bil-bakalim-tv.onrender.com/pay.html?room=${encodeURIComponent(myRoomCode)}&type=VIP_PACK&name=${encodeURIComponent(pendingVipCategory || 'VIP Paket')}&price=${encodeURIComponent(targetPrice)}`;
@@ -2854,6 +2867,13 @@
     window.handleVipQrError = function() {
       const qrImg = document.getElementById('vip-qr-img');
       const errBox = document.getElementById('vip-qr-error-box');
+      if (qrImg && !qrImg.dataset.triedFallback) {
+        qrImg.dataset.triedFallback = 'true';
+        const targetPrice = (pendingVipCategory && allCategories.find(c => c.name === pendingVipCategory)?.price) || '49,99 TL';
+        const payUrl = `https://bil-bakalim-tv.onrender.com/pay.html?room=${encodeURIComponent(myRoomCode)}&type=VIP_PACK&name=${encodeURIComponent(pendingVipCategory || 'VIP Paket')}&price=${encodeURIComponent(targetPrice)}`;
+        qrImg.src = `https://chart.googleapis.com/chart?chs=250x250&cht=qr&chl=${encodeURIComponent(payUrl)}`;
+        return;
+      }
       if (qrImg) qrImg.style.display = 'none';
       if (errBox) errBox.style.display = 'block';
     };
