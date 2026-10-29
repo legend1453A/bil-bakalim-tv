@@ -99,7 +99,7 @@
 
     .form-grid {
       display: grid;
-      grid-template-columns: 2fr 1fr 1fr auto;
+      grid-template-columns: 2fr 1.4fr 1fr 1.2fr auto;
       gap: 12px;
       align-items: end;
     }
@@ -295,7 +295,17 @@
         <div class="form-grid">
           <div class="form-group">
             <label>Kupon Kodu (Harf/Rakam):</label>
-            <input type="text" id="input-code" class="form-input" placeholder="Örn: TESTER20, AILE50" required style="text-transform:uppercase;">
+            <input type="text" id="input-code" class="form-input" placeholder="Örn: TESTER3GUN, VIPAYLIK" required style="text-transform:uppercase;">
+          </div>
+          <div class="form-group">
+            <label>Yetki / Geçerlilik Süresi:</label>
+            <select id="input-duration" class="form-input" style="background:#0f172a; color:#facc15;">
+              <option value="3_DAYS">⏱️ 3 Günlük</option>
+              <option value="1_WEEK">⏱️ 1 Haftalık (7 Gün)</option>
+              <option value="1_MONTH" selected>⏱️ 1 Aylık (30 Gün)</option>
+              <option value="6_MONTHS">⏱️ 6 Aylık (180 Gün)</option>
+              <option value="LIFETIME">👑 Ömürlük (Sınırsız)</option>
+            </select>
           </div>
           <div class="form-group">
             <label>Kullanım Sınırı:</label>
@@ -304,7 +314,8 @@
           <div class="form-group">
             <label>Yetki / Tür:</label>
             <select id="input-type" class="form-input" style="background:#0f172a;">
-              <option value="PRO">👑 PRO (Tüm VIP Açık)</option>
+              <option value="PRO">👑 PRO (Tüm Paketler + Reklamsız)</option>
+              <option value="VIP_ALL">⭐ Tüm VIP Paketleri Aç</option>
             </select>
           </div>
           <button type="submit" class="btn-create">Oluştur ➔</button>
@@ -320,9 +331,9 @@
           <thead>
             <tr>
               <th>Kupon Kodu</th>
-              <th>Kullanım Durumu</th>
+              <th>Yetki Süresi</th>
               <th>Paket Türü</th>
-              <th>Son Kullanma</th>
+              <th>Kullanım Durumu</th>
               <th>İşlem</th>
             </tr>
           </thead>
@@ -403,12 +414,15 @@
 
         tbody.innerHTML = codes.map(code => {
           const item = data.promos[code];
+          const durBadge = item.duration === 'LIFETIME'
+            ? '<span style="font-weight:800; color:#facc15;">👑 Ömürlük</span>'
+            : `<span style="font-weight:700; color:#38bdf8;">⏱️ ${item.durationLabel || item.duration || '1 Aylık'}</span>`;
           return `
             <tr>
               <td><span class="code-badge">${code}</span></td>
+              <td>${durBadge}</td>
+              <td><span style="font-weight:800; color:#34d399;">${item.type === 'VIP_ALL' ? '⭐ Tüm VIP' : '👑 PRO'}</span></td>
               <td><span class="usage-pill">${item.usedCount || 0} / ${item.maxUsage} Kullanıldı</span></td>
-              <td><span style="font-weight:800; color:#34d399;">👑 ${item.type || 'PRO'}</span></td>
-              <td style="color:#94a3b8; font-size:12px;">${item.expiresAt ? item.expiresAt.slice(0, 10) : '2026-12-31'}</td>
               <td>
                 <button class="btn-del" onclick="deletePromo('${code}')">Sil ✕</button>
               </td>
@@ -423,10 +437,12 @@
     async function handleCreatePromo(e) {
       e.preventDefault();
       const codeInput = document.getElementById('input-code');
+      const durationInput = document.getElementById('input-duration');
       const usageInput = document.getElementById('input-usage');
       const typeInput = document.getElementById('input-type');
 
       const code = codeInput.value.trim().toUpperCase();
+      const duration = durationInput.value || '1_MONTH';
       const maxUsage = parseInt(usageInput.value) || 25;
       const type = typeInput.value || 'PRO';
 
@@ -439,11 +455,11 @@
             'Content-Type': 'application/json',
             'x-admin-key': currentAdminKey 
           },
-          body: JSON.stringify({ code, maxUsage, type })
+          body: JSON.stringify({ code, duration, maxUsage, type })
         });
         const d = await res.json();
         if (d.success) {
-          showToast(`"${code}" kuponu başarıyla oluşturuldu! 🎉`);
+          showToast(`"${code}" kuponu oluşturuldu! 🎉`);
           codeInput.value = '';
           loadPromos();
         } else {

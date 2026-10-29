@@ -471,8 +471,21 @@ function saveProSubscriber(roomCode, details = {}) {
 
 function isRoomOrDevicePro(roomCode, deviceId) {
   const data = loadProSubscribers();
-  if (roomCode && data.rooms && data.rooms[roomCode] && data.rooms[roomCode].isPro) return true;
-  if (deviceId && data.devices && data.devices[deviceId] && data.devices[deviceId].isPro) return true;
+  const now = Date.now();
+  if (roomCode && data.rooms && data.rooms[roomCode] && data.rooms[roomCode].isPro) {
+    const sub = data.rooms[roomCode];
+    if (sub.expiresAt && new Date(sub.expiresAt).getTime() < now) {
+      return false; // Yetki süresi dolmuş
+    }
+    return true;
+  }
+  if (deviceId && data.devices && data.devices[deviceId] && data.devices[deviceId].isPro) {
+    const sub = data.devices[deviceId];
+    if (sub.expiresAt && new Date(sub.expiresAt).getTime() < now) {
+      return false; // Yetki süresi dolmuş
+    }
+    return true;
+  }
   return false;
 }
 
@@ -495,12 +508,20 @@ function isCategoryLockedForRoom(room, categoryName) {
   return true;
 }
 
-// PROMOSYON KODLARI YAPILANDIRMASI (Kullanım Limiti ve Son Kullanma Tarihli)
+// PROMOSYON KODLARI YAPILANDIRMASI (Kullanım Limiti, Yetki Süresi ve Son Kullanma)
 const PROMO_CODES_FILE = path.join(__dirname, 'promo_codes.json');
+const DURATION_NAMES = {
+  '3_DAYS': '3 Günlük',
+  '1_WEEK': '1 Haftalık (7 Gün)',
+  '1_MONTH': '1 Aylık (30 Gün)',
+  '6_MONTHS': '6 Aylık (180 Gün)',
+  'LIFETIME': 'Ömürlük (Sınırsız)'
+};
+
 const DEFAULT_PROMO_CONFIG = {
-  'BIL2026': { maxUsage: 100, usedCount: 0, expiresAt: '2026-12-31T23:59:59Z', type: 'PRO' },
-  'VIP2026': { maxUsage: 50, usedCount: 0, expiresAt: '2026-12-31T23:59:59Z', type: 'PRO' },
-  'PATRON': { maxUsage: 10, usedCount: 0, expiresAt: '2026-12-31T23:59:59Z', type: 'PRO' }
+  'BIL2026': { maxUsage: 100, usedCount: 0, duration: '1_MONTH', durationLabel: '1 Aylık (30 Gün)', type: 'PRO' },
+  'VIP2026': { maxUsage: 50, usedCount: 0, duration: '6_MONTHS', durationLabel: '6 Aylık (180 Gün)', type: 'PRO' },
+  'PATRON': { maxUsage: 10, usedCount: 0, duration: 'LIFETIME', durationLabel: 'Ömürlük (Sınırsız)', type: 'PRO' }
 };
 
 function loadPromoCodes() {
@@ -548,17 +569,20 @@ app.get('/api/admin/promos', checkAdminAuth, (req, res) => {
 });
 
 app.post('/api/admin/promos', checkAdminAuth, (req, res) => {
-  const { code, maxUsage, type, expiresAt } = req.body;
+  const { code, maxUsage, type, duration } = req.body;
   if (!code || !code.trim()) {
     return res.status(400).json({ success: false, message: 'Kupon kodu boş olamaz!' });
   }
   const cleanCode = code.trim().toUpperCase();
+  const dur = duration || '1_MONTH';
   activePromoCodes = loadPromoCodes();
   activePromoCodes[cleanCode] = {
-    maxUsage: parseInt(maxUsage) || 100,
+    maxUsage: parseInt(maxUsage) || 25,
     usedCount: (activePromoCodes[cleanCode] ? activePromoCodes[cleanCode].usedCount : 0),
-    expiresAt: expiresAt || '2026-12-31T23:59:59Z',
-    type: type || 'PRO'
+    type: type || 'PRO',
+    duration: dur,
+    durationLabel: DURATION_NAMES[dur] || '1 Aylık (30 Gün)',
+    createdAt: new Date().toISOString()
   };
   savePromoCodes(activePromoCodes);
   res.json({ success: true, message: `"${cleanCode}" kuponu başarıyla kaydedildi!`, promos: activePromoCodes });
@@ -711,7 +735,7 @@ app.post('/api/unlock', (req, res) => {
       });
     }
 
-    if (new Date(promoEntry.expiresAt).getTime() < Date.now()) {
+    if (promoEntry.expiresAt && new Date(promoEntry.expiresAt).getTime() < Date.now()) {
       return res.status(400).json({
         success: false,
         message: 'Bu kupon kodunun kullanım süresi dolmuştur!'
@@ -723,6 +747,28 @@ app.post('/api/unlock', (req, res) => {
         success: false,
         message: 'Bu kupon kodunun kullanım limiti dolmuştur!'
       });
+    }
+
+    // Yetki süresini hesapla (3 gün, 1 hafta, 1 ay, 6 ay, ömürlük)
+    const dur = promoEntry.duration || '1_MONTH';
+    let expiresAt = null;
+    let durationLabel = promoEntry.durationLabel || '1 Aylık PRO';
+
+    if (dur === '3_DAYS') {
+      expiresAt = new Date(Date.now() + 3 * 24 * 60 * 60 * 1000).toISOString();
+      durationLabel = '3 Günlük PRO';
+    } else if (dur === '1_WEEK') {
+      expiresAt = new Date(Date.now() + 7 * 24 * 60 * 60 * 1000).toISOString();
+      durationLabel = '1 Haftalık PRO';
+    } else if (dur === '1_MONTH') {
+      expiresAt = new Date(Date.now() + 30 * 24 * 60 * 60 * 1000).toISOString();
+      durationLabel = '1 Aylık PRO';
+    } else if (dur === '6_MONTHS') {
+      expiresAt = new Date(Date.now() + 180 * 24 * 60 * 60 * 1000).toISOString();
+      durationLabel = '6 Aylık PRO';
+    } else if (dur === 'LIFETIME') {
+      expiresAt = null;
+      durationLabel = 'Ömürlük (Sınırsız) PRO';
     }
 
     // Limit ve kullanım sayısını güncelle
@@ -741,13 +787,23 @@ app.post('/api/unlock', (req, res) => {
 
     targetRooms.forEach(room => {
       room.isPro = true;
+      room.proExpiresAt = expiresAt;
+      room.proDurationLabel = durationLabel;
       room.unlockedCategories = CATEGORY_CONFIG.map(c => c.name);
-      saveProSubscriber(room.roomCode, { promoCode: cleanPromo, date: new Date().toISOString() });
+      saveProSubscriber(room.roomCode, { 
+        promoCode: cleanPromo, 
+        duration: dur, 
+        durationLabel: durationLabel, 
+        expiresAt: expiresAt, 
+        activatedAt: new Date().toISOString() 
+      });
 
       const payload = {
         isPro: true,
         unlockedCategories: room.unlockedCategories,
-        pkgName: 'BİL BAKALIM PRO (Tüm Paketler)',
+        pkgName: `BİL BAKALIM PRO (${durationLabel})`,
+        durationLabel: durationLabel,
+        expiresAt: expiresAt,
         method: 'PROMO_CODE'
       };
       io.to(`room_${room.roomCode}`).emit('payment_unlocked', payload);
@@ -759,7 +815,9 @@ app.post('/api/unlock', (req, res) => {
     return res.json({
       success: true,
       isPro: true,
-      pkgName: 'BİL BAKALIM PRO'
+      durationLabel: durationLabel,
+      expiresAt: expiresAt,
+      pkgName: `BİL BAKALIM PRO (${durationLabel})`
     });
   }
 
@@ -1382,6 +1440,11 @@ io.on('connection', (socket) => {
 });
 
 function getPublicGameState(room) {
+  if (room.isPro && room.proExpiresAt && new Date(room.proExpiresAt).getTime() < Date.now()) {
+    room.isPro = false;
+    room.proExpiresAt = null;
+    room.proDurationLabel = null;
+  }
   const currentQ = room.currentRoundQuestions[room.currentQuestionIndex];
   const isRevealed = room.status === 'ANSWER_REVEAL' || room.status === 'GAME_OVER';
   const isDouble = isDoublePointsQuestion(room.currentQuestionIndex);
@@ -1398,6 +1461,8 @@ function getPublicGameState(room) {
     gameMode: room.gameMode || 'SOLO',
     ageMode: room.ageMode || 'CLASSIC',
     isPro: !!room.isPro,
+    proExpiresAt: room.proExpiresAt || null,
+    proDurationLabel: room.proDurationLabel || null,
     unlockedCategories: room.unlockedCategories || [],
     teamScores: { RED: redScore, BLUE: blueScore },
     teamCombo: room.lastTeamCombo || { red: false, blue: false, active: false },

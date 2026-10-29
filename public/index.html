@@ -1543,8 +1543,6 @@
       </div>
       <button class="top-btn" id="btn-tts-toggle" onclick="toggleTts()" title="Soruları sesli okuyan Türkçe spiker">🎙️ Spiker: Açık</button>
       <button class="top-btn" id="btn-header-pro" onclick="openProModal()" style="background:linear-gradient(135deg, #f59e0b, #d97706); color:#000; font-weight:900; border:none; box-shadow:0 0 14px rgba(245,158,11,0.5);">👑 PRO Al</button>
-      <button class="top-btn" onclick="openAdMobTestModal()" style="background:rgba(16,185,129,0.22); border-color:#10b981; color:#34d399; font-weight:900;" title="VIP Paket Açma Reklamı (Rewarded Video)">🎬 Paket Açma Reklamı</button>
-      <button class="top-btn" onclick="openInterstitialTestAd()" style="background:rgba(99,102,241,0.22); border-color:#818cf8; color:#a5b4fc; font-weight:900;" title="Tam Ekran Geçiş Reklamı (Interstitial)">📺 Geçiş Reklamı</button>
       <button class="top-btn" onclick="goHomeLobby()">🏠 Ana Sayfa</button>
       <button class="top-btn" onclick="goCategories()">🗂️ Kategoriler</button>
       <button class="top-btn" id="btn-open-hof">🏆 Liderlik Tablosu</button>
@@ -1635,7 +1633,6 @@
         </div>
 
         <div style="display:flex; gap:8px;">
-          <button class="top-btn" onclick="testAdMobRewardedDirect()" style="padding:3px 10px; font-size:11.5px; border-color:#10b981; color:#34d399; background:rgba(16,185,129,0.15);" title="Google AdMob Ödüllü Test Reklamını Başlat">📺 Test Reklamı İzle</button>
           <button class="top-btn" id="btn-back-lobby" onclick="goHomeLobby()" style="padding:3px 10px; font-size:12px;">◀ Lobiye Dön</button>
         </div>
       </div>
@@ -2398,8 +2395,27 @@
       screenGameOver.style.display = 'none';
     }
 
+    function checkProExpiry() {
+      if (!isProActive) return false;
+      const exp = localStorage.getItem('bil_pro_expires_at');
+      if (exp && new Date(exp).getTime() < Date.now()) {
+        isProActive = false;
+        try {
+          localStorage.removeItem('bil_bakalim_is_pro');
+          localStorage.removeItem('bil_pro_expires_at');
+        } catch(e) {}
+        const proTitle = document.getElementById('lbl-pro-banner-title');
+        const proPrice = document.getElementById('lbl-pro-price-tag');
+        if (proTitle) proTitle.textContent = 'BİL BAKALIM PRO AVANTAJLARI: Tüm VIP paketler açık • Sıfır reklam • Sınırsız oyuncu';
+        if (proPrice) proPrice.textContent = 'PRO\'ya Geç ➔';
+        return false;
+      }
+      return true;
+    }
+
     function isCategoryUnlocked(cat) {
       if (!cat.isVip) return true;
+      checkProExpiry();
       if (isProActive) return true;
       // Kalıcı satın alma veya kupon kodu
       if (unlockedCategoriesList.includes(cat.name) || unlockedCategoriesList.includes(cat.id)) return true;
@@ -3287,13 +3303,21 @@
       }, 1000);
     };
 
-    socket.on('payment_unlocked', ({ isPro, unlockedCategories, pkgName, method }) => {
+    socket.on('payment_unlocked', ({ isPro, unlockedCategories, pkgName, method, expiresAt, durationLabel }) => {
       if (isPro) {
         isProActive = true;
-        try { localStorage.setItem('bil_bakalim_is_pro', 'true'); } catch(e) {}
+        try { 
+          localStorage.setItem('bil_bakalim_is_pro', 'true');
+          if (expiresAt) {
+            localStorage.setItem('bil_pro_expires_at', expiresAt);
+          } else {
+            localStorage.removeItem('bil_pro_expires_at');
+          }
+        } catch(e) {}
         const proTitle = document.getElementById('lbl-pro-banner-title');
         const proPrice = document.getElementById('lbl-pro-price-tag');
-        if (proTitle) proTitle.textContent = '👑 BİL BAKALIM PRO AKTİF! (TÜM PAKETLER AÇIK)';
+        const labelText = durationLabel ? ` (${durationLabel})` : '';
+        if (proTitle) proTitle.textContent = `👑 BİL BAKALIM PRO AKTİF!${labelText}`;
         if (proPrice) proPrice.textContent = '✓ AKTİF';
       }
       if (Array.isArray(unlockedCategories)) {
