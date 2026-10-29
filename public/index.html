@@ -558,8 +558,8 @@
 
     .category-card {
       border: 2px solid rgba(255, 255, 255, 0.16);
-      border-radius: 20px;
-      padding: 12px 14px;
+      border-radius: 14px;
+      padding: 6px 10px;
       cursor: pointer;
       display: flex;
       flex-direction: column;
@@ -627,15 +627,15 @@
     }
 
     .cat-icon-pod {
-      width: 48px;
-      height: 48px;
-      border-radius: 14px;
+      width: 32px;
+      height: 32px;
+      border-radius: 9px;
       background: rgba(255, 255, 255, 0.12);
       border: 1px solid rgba(255, 255, 255, 0.25);
       display: flex;
       align-items: center;
       justify-content: center;
-      font-size: 26px;
+      font-size: 18px;
       position: relative;
       z-index: 1;
       backdrop-filter: blur(8px);
@@ -645,27 +645,27 @@
     .cat-content-middle {
       display: flex;
       flex-direction: column;
-      gap: 6px;
+      gap: 2px;
       position: relative;
       z-index: 1;
-      margin: auto 0;
+      margin: 2px 0;
     }
 
     .cat-title {
-      font-size: 15.5px;
+      font-size: 13.5px;
       font-weight: 900;
       color: #ffffff;
-      line-height: 1.25;
+      line-height: 1.2;
       letter-spacing: -0.3px;
     }
 
     .cat-desc {
-      font-size: 11.5px;
+      font-size: 10px;
       color: #cbd5e1;
       font-weight: 500;
-      line-height: 1.35;
+      line-height: 1.25;
       display: -webkit-box;
-      -webkit-line-clamp: 2;
+      -webkit-line-clamp: 1;
       -webkit-box-orient: vertical;
       overflow: hidden;
     }
@@ -673,27 +673,27 @@
     .cat-stats-row {
       display: flex;
       align-items: center;
-      gap: 6px;
+      gap: 4px;
       flex-wrap: wrap;
-      margin-top: 2px;
+      margin-top: 1px;
     }
 
     .cat-stat-badge {
-      font-size: 10.5px;
+      font-size: 9.5px;
       font-weight: 800;
       background: rgba(255, 255, 255, 0.08);
       border: 1px solid rgba(255, 255, 255, 0.16);
-      border-radius: 6px;
-      padding: 2px 7px;
+      border-radius: 5px;
+      padding: 1.5px 5px;
       color: #e2e8f0;
       display: inline-flex;
       align-items: center;
-      gap: 4px;
+      gap: 3px;
     }
 
     .cat-footer {
       margin-top: auto;
-      padding-top: 6px;
+      padding-top: 2px;
       display: flex;
       justify-content: space-between;
       align-items: center;
@@ -1518,45 +1518,42 @@
     <!-- 1. LOBİ (QR KOD OKUTUP İSİM GİRME) -->
     <div id="screen-lobby">
       <div class="qr-card">
-        <div class="qr-room-badge">
-          <span>🔑 ODA:</span> <span id="lobby-room-code-top">----</span>
-        </div>
-        <p>Kameranı aç ve hemen odaya katıl:</p>
+        <p style="font-size:13px; margin:0 0 4px 0; font-weight:700; color:#cbd5e1;">Kameranı aç ve hemen odaya katıl:</p>
         <img id="qr-image" src="" alt="QR Kod">
         <div class="lobby-room-box">
           <span>GİRİŞ KODU:</span> <span id="lobby-room-code" style="font-size:22px; color:#fff; letter-spacing:2px; font-family:'Space Grotesk',sans-serif;">----</span>
         </div>
-        <div class="join-url" id="join-url-text">📱 Yükleniyor...</div>
+        <div class="join-url" id="join-url-text" style="font-size:11px; padding:4px 8px; font-weight:700;">📱 Yükleniyor...</div>
       </div>
 
       <div class="lobby-players-box">
         <!-- OYUN MODU SEÇİCİ & DEV HAVUZ BİLGİLENDİRME ROZETİ -->
-        <div class="lobby-info-banner">
-          <div style="display:flex; align-items:center; gap:10px;">
-            <span style="font-size:26px;">🎮</span>
+        <div class="lobby-info-banner" style="padding:6px 10px; gap:8px;">
+          <div style="display:flex; align-items:center; gap:6px;">
+            <span style="font-size:22px;">🎮</span>
             <div>
-              <div style="font-size:13px; font-weight:900; color:#facc15;">YARIŞMA MODU:</div>
-              <div style="display:flex; gap:6px; margin-top:2px;">
-                <button type="button" id="btn-mode-solo" class="top-btn active-mode" onclick="setTvGameMode('SOLO')" style="padding:6px 14px; font-size:13px; font-weight:900; background:linear-gradient(135deg, #4f46e5, #6366f1); border-color:#facc15; color:#fff;">👤 Bireysel</button>
-                <button type="button" id="btn-mode-team" class="top-btn" onclick="setTvGameMode('TEAM')" style="padding:6px 14px; font-size:13px; font-weight:900; background:rgba(255,255,255,0.06); border-color:rgba(255,255,255,0.2); color:#94a3b8;">⚔️ Takım</button>
+              <div style="font-size:11.5px; font-weight:900; color:#facc15;">YARIŞMA MODU:</div>
+              <div style="display:flex; gap:4px; margin-top:2px;">
+                <button type="button" id="btn-mode-solo" class="top-btn active-mode" onclick="setTvGameMode('SOLO')" style="padding:4px 10px; font-size:12px; font-weight:900; background:linear-gradient(135deg, #4f46e5, #6366f1); border-color:#facc15; color:#fff;">👤 Bireysel</button>
+                <button type="button" id="btn-mode-team" class="top-btn" onclick="setTvGameMode('TEAM')" style="padding:4px 10px; font-size:12px; font-weight:900; background:rgba(255,255,255,0.06); border-color:rgba(255,255,255,0.2); color:#94a3b8;">⚔️ Takım</button>
               </div>
             </div>
           </div>
 
           <!-- YENİ: YAŞ / OYUN MODU (KLASİK, ÇOCUK, AİLE KARMASI) -->
-          <div style="display:flex; align-items:center; gap:10px; border-left: 2px solid rgba(255,255,255,0.18); padding-left: 12px;">
-            <span style="font-size:26px;">🎯</span>
+          <div style="display:flex; align-items:center; gap:6px; border-left: 1px solid rgba(255,255,255,0.18); padding-left: 8px;">
+            <span style="font-size:22px;">🎯</span>
             <div>
-              <div style="font-size:13px; font-weight:900; color:#38bdf8;">YAŞ & OYUN DÜZEYİ:</div>
-              <div style="display:flex; gap:6px; margin-top:2px;">
-                <button type="button" id="btn-age-classic" class="top-btn active-mode" onclick="setTvAgeMode('CLASSIC')" style="padding:6px 12px; font-size:13px; font-weight:900; background:linear-gradient(135deg, #4f46e5, #6366f1); border-color:#facc15; color:#fff;">👔 Klasik</button>
-                <button type="button" id="btn-age-kids" class="top-btn" onclick="setTvAgeMode('KIDS')" style="padding:6px 12px; font-size:13px; font-weight:900; background:rgba(255,255,255,0.06); border-color:rgba(255,255,255,0.2); color:#94a3b8;">🧒 Çocuk</button>
-                <button type="button" id="btn-age-family" class="top-btn" onclick="setTvAgeMode('FAMILY')" style="padding:6px 12px; font-size:13px; font-weight:900; background:rgba(255,255,255,0.06); border-color:rgba(255,255,255,0.2); color:#94a3b8;">👨‍👩‍👧‍👦 Aile</button>
+              <div style="font-size:11.5px; font-weight:900; color:#38bdf8;">YAŞ & OYUN DÜZEYİ:</div>
+              <div style="display:flex; gap:4px; margin-top:2px;">
+                <button type="button" id="btn-age-classic" class="top-btn active-mode" onclick="setTvAgeMode('CLASSIC')" style="padding:4px 8px; font-size:11.5px; font-weight:900; background:linear-gradient(135deg, #4f46e5, #6366f1); border-color:#facc15; color:#fff;">👔 Klasik</button>
+                <button type="button" id="btn-age-kids" class="top-btn" onclick="setTvAgeMode('KIDS')" style="padding:4px 8px; font-size:11.5px; font-weight:900; background:rgba(255,255,255,0.06); border-color:rgba(255,255,255,0.2); color:#94a3b8;">🧒 Çocuk</button>
+                <button type="button" id="btn-age-family" class="top-btn" onclick="setTvAgeMode('FAMILY')" style="padding:4px 8px; font-size:11.5px; font-weight:900; background:rgba(255,255,255,0.06); border-color:rgba(255,255,255,0.2); color:#94a3b8;">👨‍👩‍👧‍👦 Aile</button>
               </div>
             </div>
           </div>
 
-          <div style="background:rgba(255,255,255,0.08); border:1px solid rgba(255,255,255,0.2); padding:6px 12px; border-radius:12px; font-weight:900; font-size:13px; white-space:nowrap; color:#34d399;">
+          <div style="background:rgba(255,255,255,0.08); border:1px solid rgba(255,255,255,0.2); padding:4px 8px; border-radius:10px; font-weight:900; font-size:11.5px; white-space:nowrap; color:#34d399; flex-shrink:0;">
             ✓ 0 Tekrar
           </div>
         </div>
@@ -1801,78 +1798,74 @@
 
     <!-- 7. ÖZEL TV PRO MODAL (POPUP) -->
     <div id="tv-pro-modal" class="tv-modal-backdrop">
-      <div class="tv-modal-box">
+      <div class="tv-modal-box" style="padding:10px 18px; gap:8px; max-height:92vh;">
         <div style="display:flex; justify-content:space-between; align-items:center;">
-          <div style="display:flex; align-items:center; gap:14px;">
-            <span style="font-size:36px;">👑</span>
-            <h2 style="font-size:26px; font-weight:900; color:#facc15;">BİL BAKALIM PRO ÜYELİK</h2>
+          <div style="display:flex; align-items:center; gap:10px;">
+            <span style="font-size:28px;">👑</span>
+            <h2 style="font-size:22px; font-weight:900; color:#facc15; margin:0;">BİL BAKALIM PRO ÜYELİK</h2>
           </div>
-          <button class="top-btn" onclick="closeProModal()" style="font-size:18px;">✕ Kapat</button>
+          <button class="top-btn" onclick="closeProModal()" style="font-size:15px; padding:4px 12px;">✕ Kapat</button>
         </div>
 
         <!-- 2 SEÇENEKLİ PLAN SEÇİM KARTLARI -->
-        <div style="display:grid; grid-template-columns:1fr 1fr; gap:16px;">
-          <div id="pro-opt-monthly" onclick="selectProOption('MONTHLY', '59,99 TL')" style="background:rgba(79,70,229,0.3); border:3px solid #facc15; border-radius:18px; padding:18px; display:flex; flex-direction:column; gap:8px; cursor:pointer; transition:all 0.2s; box-shadow:0 0 24px rgba(250,204,21,0.4); opacity:1;">
+        <div style="display:grid; grid-template-columns:1fr 1fr; gap:12px;">
+          <div id="pro-opt-monthly" onclick="selectProOption('MONTHLY', '59,99 TL')" style="background:rgba(79,70,229,0.3); border:2.5px solid #facc15; border-radius:14px; padding:10px 14px; display:flex; flex-direction:column; gap:4px; cursor:pointer; transition:all 0.2s; box-shadow:0 0 20px rgba(250,204,21,0.35); opacity:1;">
             <div style="display:flex; justify-content:space-between; align-items:center;">
-              <span style="background:#4f46e5; color:#fff; font-size:13px; font-weight:900; padding:4px 10px; border-radius:8px;">1. SEÇENEK</span>
-              <span id="pro-badge-monthly" style="color:#34d399; font-size:20px; font-weight:900;">✓</span>
+              <span style="background:#4f46e5; color:#fff; font-size:11px; font-weight:900; padding:2px 8px; border-radius:6px;">1. SEÇENEK</span>
+              <span id="pro-badge-monthly" style="color:#34d399; font-size:18px; font-weight:900;">✓</span>
             </div>
-            <div style="font-size:22px; font-weight:900; color:#fff;">Aylık Abonelik</div>
-            <div style="font-size:28px; font-weight:900; color:#facc15;">59,99 TL <span style="font-size:16px; color:#cbd5e1; font-weight:600;">/ay</span></div>
-            <div style="font-size:14px; color:#cbd5e1; line-height:1.4;">✓ Tüm 12 VIP Kategori Açık<br>✓ Reklamsız Sınırsız Oyun</div>
+            <div style="font-size:18px; font-weight:900; color:#fff;">Aylık Abonelik</div>
+            <div style="font-size:22px; font-weight:900; color:#facc15;">59,99 TL <span style="font-size:13px; color:#cbd5e1; font-weight:600;">/ay</span></div>
+            <div style="font-size:12px; color:#cbd5e1; line-height:1.3;">✓ Tüm 12 VIP Kategori Açık • Reklamsız</div>
           </div>
 
-          <div id="pro-opt-lifetime" onclick="selectProOption('LIFETIME', '149,99 TL')" style="background:rgba(255,255,255,0.06); border:1px solid rgba(255,255,255,0.18); border-radius:18px; padding:18px; display:flex; flex-direction:column; gap:8px; cursor:pointer; transition:all 0.2s; opacity:0.55;">
+          <div id="pro-opt-lifetime" onclick="selectProOption('LIFETIME', '149,99 TL')" style="background:rgba(255,255,255,0.06); border:1px solid rgba(255,255,255,0.18); border-radius:14px; padding:10px 14px; display:flex; flex-direction:column; gap:4px; cursor:pointer; transition:all 0.2s; opacity:0.65;">
             <div style="display:flex; justify-content:space-between; align-items:center;">
-              <span style="background:#eab308; color:#000; font-size:13px; font-weight:900; padding:4px 10px; border-radius:8px;">2. SEÇENEK (ÖMÜR BOYU)</span>
-              <span id="pro-badge-lifetime" style="display:none; color:#34d399; font-size:20px; font-weight:900;">✓</span>
+              <span style="background:#eab308; color:#000; font-size:11px; font-weight:900; padding:2px 8px; border-radius:6px;">2. SEÇENEK (ÖMÜR BOYU)</span>
+              <span id="pro-badge-lifetime" style="display:none; color:#34d399; font-size:18px; font-weight:900;">✓</span>
             </div>
-            <div style="font-size:22px; font-weight:900; color:#fff;">Ömür Boyu Sınırsız</div>
-            <div style="font-size:28px; font-weight:900; color:#facc15;">149,99 TL <span style="font-size:16px; color:#cbd5e1; font-weight:600;">(Tek Sefer)</span></div>
-            <div style="font-size:14px; color:#cbd5e1; line-height:1.4;">✓ Ömür Boyu Reklamsız<br>✓ Gelecek Tüm VIP Paketler Bedava</div>
+            <div style="font-size:18px; font-weight:900; color:#fff;">Ömür Boyu Sınırsız</div>
+            <div style="font-size:22px; font-weight:900; color:#facc15;">149,99 TL <span style="font-size:13px; color:#cbd5e1; font-weight:600;">(Tek Sefer)</span></div>
+            <div style="font-size:12px; color:#cbd5e1; line-height:1.3;">✓ Ömür Boyu Reklamsız • Gelecek Paketler Bedava</div>
           </div>
         </div>
 
-        <!-- DOĞRUDAN PRO SATIN AL BUTONU (KOYU LACİVERT YAZI İLE YÜKSEK KONTRAST) -->
-        <button id="btn-pro-direct-buy" class="tv-btn" onclick="directBuyPro()" style="background:linear-gradient(135deg, #10b981, #059669); color:#0f172a; border-color:#34d399; font-size:22px; font-weight:900; padding:16px 24px; width:100%; border-radius:16px; justify-content:center; box-shadow:0 6px 24px rgba(16, 185, 129, 0.45); cursor:pointer;">
+        <!-- DOĞRUDAN PRO SATIN AL BUTONU -->
+        <button id="btn-pro-direct-buy" class="tv-btn" onclick="directBuyPro()" style="background:linear-gradient(135deg, #10b981, #059669); color:#0f172a; border-color:#34d399; font-size:18px; font-weight:900; padding:10px 18px; width:100%; border-radius:12px; justify-content:center; box-shadow:0 4px 18px rgba(16, 185, 129, 0.4); cursor:pointer;">
           💳 Hemen Satın Al & Tümünü Aç (<span id="pro-buy-btn-price">59,99 TL</span>) ➔
         </button>
 
-        <!-- KUPON ALANI VE TELEFONLA QR ÖDEME - YAN YANA 2 SÜTUNLU YERLEŞİM (DİKEY TAŞMAYI ÖNLER) -->
-        <div style="display:grid; grid-template-columns:1fr 1fr; gap:16px; align-items:stretch;">
+        <!-- KUPON ALANI VE TELEFONLA QR ÖDEME -->
+        <div style="display:grid; grid-template-columns:1fr 1fr; gap:12px; align-items:stretch;">
           <!-- SOL SÜTUN: VIP KUPON DOĞRULAMA -->
-          <div style="display:flex; flex-direction:column; justify-content:space-between; gap:10px; background:rgba(255,255,255,0.04); border:1px solid rgba(255,255,255,0.12); border-radius:16px; padding:14px 18px;">
+          <div style="display:flex; flex-direction:column; justify-content:space-between; gap:6px; background:rgba(255,255,255,0.04); border:1px solid rgba(255,255,255,0.12); border-radius:12px; padding:10px 14px;">
             <div>
-              <div style="font-size:18px; color:#cbd5e1; font-weight:800; margin-bottom:8px;">🎁 Kupon / Promosyon Kodu:</div>
-              <input type="text" id="pro-promo-input" placeholder="KUPON KODU GİRİN" class="top-btn" style="width:100%; text-align:center; background:rgba(0,0,0,0.6); text-transform:uppercase; font-size:22px; font-weight:800; padding:12px 14px; box-sizing:border-box; border:2px solid rgba(255,255,255,0.2);">
+              <div style="font-size:14px; color:#cbd5e1; font-weight:800; margin-bottom:4px;">🎁 Kupon / Promosyon Kodu:</div>
+              <input type="text" id="pro-promo-input" placeholder="KUPON KODU GİRİN" class="top-btn" style="width:100%; text-align:center; background:rgba(0,0,0,0.6); text-transform:uppercase; font-size:18px; font-weight:800; padding:8px 10px; box-sizing:border-box; border:2px solid rgba(255,255,255,0.2);">
             </div>
-            <button class="top-btn" onclick="applyTvPromo('pro-promo-input')" style="background:#4f46e5; border-color:#facc15; font-size:20px; font-weight:900; justify-content:center; padding:12px 16px;">Aktif Et</button>
+            <button class="top-btn" onclick="applyTvPromo('pro-promo-input')" style="background:#4f46e5; border-color:#facc15; font-size:16px; font-weight:900; justify-content:center; padding:8px 14px; width:100%;">Aktif Et</button>
           </div>
 
           <!-- SAĞ SÜTUN: TELEFONLA QR KOD İLE ÖDEME -->
-          <div style="display:flex; flex-direction:column; align-items:center; justify-content:space-between; background:rgba(255,255,255,0.04); border:1px solid rgba(250,204,21,0.3); border-radius:16px; padding:14px 18px; text-align:center; gap:8px;">
-            <div style="font-size:16px; font-weight:800; color:#facc15;">
+          <div style="display:flex; flex-direction:column; align-items:center; justify-content:space-between; background:rgba(255,255,255,0.04); border:1px solid rgba(250,204,21,0.3); border-radius:12px; padding:10px 14px; text-align:center; gap:6px;">
+            <div style="font-size:13.5px; font-weight:800; color:#facc15;">
               📱 Telefonunla Tara & Kartla Öde:
             </div>
-            <div style="display:flex; align-items:center; justify-content:center; gap:14px;">
-              <div id="pro-qr-container" style="position:relative; background:#fff; padding:6px; border-radius:12px; box-shadow:0 6px 18px rgba(0,0,0,0.5); min-width:110px; min-height:110px; display:flex; align-items:center; justify-content:center;">
-                <img id="pro-qr-img" src="" alt="PRO QR" style="width:110px; height:110px; display:block;">
-                <div id="pro-qr-error-box" style="display:none; color:#b91c1c; font-size:12px; font-weight:800; width:110px; text-align:center;">
+            <div style="display:flex; align-items:center; justify-content:center; gap:10px;">
+              <div id="pro-qr-container" style="position:relative; background:#fff; padding:4px; border-radius:10px; box-shadow:0 4px 14px rgba(0,0,0,0.5); width:90px; height:90px; display:flex; align-items:center; justify-content:center; box-sizing:border-box;">
+                <img id="pro-qr-img" src="" alt="PRO QR" style="width:82px; height:82px; display:block;">
+                <div id="pro-qr-error-box" style="display:none; color:#b91c1c; font-size:11px; font-weight:800; width:82px; text-align:center;">
                   QR Hatası<br>
-                  <button type="button" class="top-btn" onclick="refreshProQr()" style="font-size:11px; padding:3px 6px; margin-top:4px;">🔄 Yenile</button>
+                  <button type="button" class="top-btn" onclick="refreshProQr()" style="font-size:10px; padding:2px 4px; margin-top:2px;">🔄 Yenile</button>
                 </div>
               </div>
-              <div style="text-align:left; display:flex; flex-direction:column; gap:4px;">
-                <div style="font-size:14px; color:#cbd5e1;">QR Süresi: <span id="pro-qr-countdown" style="font-weight:900; color:#34d399;">04:59</span></div>
-                <div style="font-size:12px; color:#94a3b8;">İyzico • PayTR Güvenli Ödeme</div>
-                <button class="top-btn" onclick="openProOnPc()" style="font-size:14px; padding:6px 12px; margin-top:4px;">🌐 Tarayıcıda Aç ➔</button>
+              <div style="text-align:left; display:flex; flex-direction:column; gap:3px;">
+                <div style="font-size:12.5px; color:#cbd5e1;">QR Süresi: <span id="pro-qr-countdown" style="font-weight:900; color:#34d399;">04:59</span></div>
+                <div style="font-size:11px; color:#94a3b8;">İyzico • PayTR Güvenli</div>
+                <button class="top-btn" onclick="openProOnPc()" style="font-size:12px; padding:4px 8px; margin-top:2px;">🌐 Tarayıcıda Aç ➔</button>
               </div>
             </div>
           </div>
-        </div>
-
-        <div style="text-align:right;">
-          <button class="top-btn" onclick="closeProModal()" style="font-size:18px;">Kapat</button>
         </div>
       </div>
     </div>
@@ -2093,13 +2086,18 @@
       localStorage.setItem('salon_trivia_room_code', myRoomCode);
     }
 
-    // 1. İLK MİLİSANİYEDE ODA KODUNU, QR KODU VE KATEGORİLERİ ANINDA GÖSTER (Asla boş kalmaz!)
+    // 1. İLK MİLİSANİYEDE ODA KODUNU, ANINDA ÇALIŞAN CANLI QR KODU GÖSTER
+    const CLOUD_URL = 'https://bil-bakalim-tv.onrender.com';
+    const publicJoinUrl = `${CLOUD_URL}/play.html?room=${myRoomCode}`;
+
     headerRoomCode.textContent = myRoomCode;
     lobbyRoomCode.textContent = myRoomCode;
     const lobbyRoomCodeTopEl = document.getElementById('lobby-room-code-top');
     if (lobbyRoomCodeTopEl) lobbyRoomCodeTopEl.textContent = myRoomCode;
-    qrImage.src = FALLBACK_QR_DATA_URL;
-    joinUrlText.textContent = `${window.location.origin}/play.html?room=${myRoomCode}`;
+
+    // Anında çalışan yüksek çözünürlüklü QR kod (asla boş veya bozuk kalmaz)
+    qrImage.src = `https://api.qrserver.com/v1/create-qr-code/?size=300x300&margin=3&data=${encodeURIComponent(publicJoinUrl)}`;
+    joinUrlText.innerHTML = `🌐 <strong>bil-bakalim-tv.onrender.com</strong>/play.html?room=${myRoomCode}`;
     setTimeout(() => renderCategoryCards(allCategories), 0);
 
     // Yerel (Offline/Kumanda) Yedek Oyun Motoru Verileri
@@ -2425,8 +2423,8 @@
           </div>
           <div class="cat-footer" style="color:${unlocked ? '#34d399' : '#facc15'};">
             ${!unlocked 
-              ? `<span style="font-size:12px; font-weight:800; display:flex; align-items:center; gap:4px;">🔒 KİLİTLİ</span><span style="font-size:12.5px; font-weight:900; background:rgba(0,0,0,0.6); padding:4px 10px; border-radius:8px; color:#facc15; border:1px solid rgba(250,204,21,0.4);">${cat.price}</span>` 
-              : `<span style="font-size:12.5px; font-weight:900; background:rgba(16,185,129,0.25); border:1px solid rgba(16,185,129,0.5); padding:5px 12px; border-radius:8px; width:100%; text-align:center; color:#34d399;">✓ PAKET AÇIK • OYNA ➔</span>`
+              ? `<span style="font-size:11px; font-weight:800; display:flex; align-items:center; gap:3px;">🔒 KİLİTLİ</span><span style="font-size:11.5px; font-weight:900; background:rgba(0,0,0,0.6); padding:2px 8px; border-radius:6px; color:#facc15; border:1px solid rgba(250,204,21,0.4);">${cat.price}</span>` 
+              : `<span style="font-size:11.5px; font-weight:900; background:rgba(16,185,129,0.25); border:1px solid rgba(16,185,129,0.5); padding:3px 8px; border-radius:6px; width:100%; text-align:center; color:#34d399;">✓ PAKET AÇIK • OYNA ➔</span>`
             }
           </div>
         </button>
@@ -2805,27 +2803,28 @@
       const errBox = document.getElementById('pro-qr-error-box');
       if (errBox) errBox.style.display = 'none';
 
-      fetch(`${BACKEND_URL}/api/pay-qr?room=${encodeURIComponent(myRoomCode)}&type=PRO&name=${encodeURIComponent('BİL BAKALIM PRO')}&price=${encodeURIComponent(selectedProPrice)}`)
+      const payUrl = `https://bil-bakalim-tv.onrender.com/pay.html?room=${encodeURIComponent(myRoomCode)}&type=PRO&name=${encodeURIComponent('BIL BAKALIM PRO')}&price=${encodeURIComponent(selectedProPrice)}`;
+      if (qrImg) {
+        qrImg.src = `https://api.qrserver.com/v1/create-qr-code/?size=250x250&margin=2&data=${encodeURIComponent(payUrl)}`;
+        qrImg.style.display = 'block';
+      }
+
+      fetch(`${BACKEND_URL}/api/pay-qr?room=${encodeURIComponent(myRoomCode)}&type=PRO&name=${encodeURIComponent('BIL BAKALIM PRO')}&price=${encodeURIComponent(selectedProPrice)}`)
         .then(r => r.json())
         .then(d => {
           if (d && d.qrDataUrl && qrImg) {
             qrImg.src = d.qrDataUrl;
             qrImg.style.display = 'block';
             if (errBox) errBox.style.display = 'none';
-          } else {
-            handleProQrError();
           }
         })
-        .catch(() => {
-          handleProQrError();
-        });
+        .catch(() => {});
     };
 
     window.handleProQrError = function() {
       const qrImg = document.getElementById('pro-qr-img');
       const errBox = document.getElementById('pro-qr-error-box');
-      if (qrImg) qrImg.style.display = 'none';
-      if (errBox) errBox.style.display = 'block';
+      if (errBox) errBox.style.display = 'none';
     };
 
     window.refreshVipQr = function() {
@@ -2834,6 +2833,12 @@
       if (errBox) errBox.style.display = 'none';
 
       const targetPrice = (pendingVipCategory && allCategories.find(c => c.name === pendingVipCategory)?.price) || '49,99 TL';
+      const payUrl = `https://bil-bakalim-tv.onrender.com/pay.html?room=${encodeURIComponent(myRoomCode)}&type=VIP_PACK&name=${encodeURIComponent(pendingVipCategory || 'VIP Paket')}&price=${encodeURIComponent(targetPrice)}`;
+      if (qrImg) {
+        qrImg.src = `https://api.qrserver.com/v1/create-qr-code/?size=250x250&margin=2&data=${encodeURIComponent(payUrl)}`;
+        qrImg.style.display = 'block';
+      }
+
       fetch(`${BACKEND_URL}/api/pay-qr?room=${encodeURIComponent(myRoomCode)}&type=VIP_PACK&name=${encodeURIComponent(pendingVipCategory || 'VIP Paket')}&price=${encodeURIComponent(targetPrice)}`)
         .then(r => r.json())
         .then(d => {
@@ -2841,10 +2846,10 @@
             qrImg.src = d.qrDataUrl;
             qrImg.style.display = 'block';
             if (errBox) errBox.style.display = 'none';
-          } else {
-            handleVipQrError();
           }
         })
+        .catch(() => {});
+    };
         .catch(() => {
           handleVipQrError();
         });

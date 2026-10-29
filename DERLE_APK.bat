@@ -26,6 +26,9 @@ if exist "app\build\outputs\apk\debug\app-debug.apk" (
     copy /y "app\build\outputs\apk\debug\app-debug.apk" "..\public\Bil_Bakalim_TV.apk"
     copy /y "app\build\outputs\apk\debug\app-debug.apk" "..\public\tv.apk"
     copy /y "app\build\outputs\apk\debug\app-debug.apk" "C:\Users\legen\OneDrive\Desktop\Bil_Bakalim_TV.apk"
+    if not exist "C:\Users\legen\OneDrive\Desktop\tv box" mkdir "C:\Users\legen\OneDrive\Desktop\tv box"
+    copy /y "app\build\outputs\apk\debug\app-debug.apk" "C:\Users\legen\OneDrive\Desktop\tv box\Bil_Bakalim_TV.apk"
+    copy /y "app\build\outputs\apk\debug\app-debug.apk" "C:\Users\legen\OneDrive\Desktop\tv box\BIL_BAKALIM_v2.5.apk"
     echo.
     echo ========================================================
     echo   TEBRIKLER! APK BASARIYLA DERLENDI!

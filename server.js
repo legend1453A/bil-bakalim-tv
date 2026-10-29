@@ -839,17 +839,18 @@ io.on('connection', (socket) => {
 
   socket.on('join_game', ({ name, roomCode, team, sessionToken }) => {
     let targetCode = (roomCode || '').toString().trim();
-    if (!targetCode || !rooms[targetCode]) {
+    if (!targetCode) {
       const activeRoomCodes = Object.keys(rooms);
-      if (!targetCode && activeRoomCodes.length === 1) {
+      if (activeRoomCodes.length === 1) {
         targetCode = activeRoomCodes[0];
-      } else if (!rooms[targetCode]) {
-        socket.emit('join_error', { message: `Oda bulunamadı (${targetCode || 'Kod Yok'}). Lütfen TV ekranındaki 4 haneli Oda Kodunu kontrol edin!` });
+      } else {
+        socket.emit('join_error', { message: 'Lütfen TV ekranındaki 4 haneli Oda Kodunu girin!' });
         return;
       }
     }
 
-    const room = rooms[targetCode];
+    // Odayı getir veya hazır et (TV ile yarışmacı arasında bağlantı asla kopmaz)
+    const room = createOrGetRoom(targetCode);
     currentRoomCode = room.roomCode;
     socket.join(`room_${currentRoomCode}`);
 

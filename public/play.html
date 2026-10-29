@@ -614,6 +614,25 @@
       nameInput.value = savedName;
     }
 
+    // QR ile gelindiğinde ve kayıtlı isim varsa otomatik katıl, yoksa inputa odaklan
+    if (roomFromUrl) {
+      if (savedName) {
+        setTimeout(() => {
+          if (!myPlayerId) {
+            btnJoin.click();
+          }
+        }, 400);
+      } else {
+        setTimeout(() => nameInput.focus(), 400);
+      }
+    }
+
+    nameInput.addEventListener('keydown', (e) => {
+      if (e.key === 'Enter') {
+        btnJoin.click();
+      }
+    });
+
     // Haptic Titreşim Yardımcı Fonksiyonu
     function triggerHaptic(pattern) {
       try {
