@@ -472,7 +472,7 @@
     "question": "Sayı dizisinde sıradaki sayı kaçtır? 1, 4, 9, 16, 25, 36, ?",
     "options": [
       "64",
-      "49 (Tam kare sayılar: 7²)",
+      "49",
       "48",
       "42"
     ],
@@ -513,7 +513,7 @@
       "Öklid",
       "Thales",
       "Pisagor",
-      "Arşimet (Archimedes)"
+      "Arşimet"
     ],
     "answer": 3,
     "time": 20,
@@ -617,7 +617,7 @@
       "3",
       "6",
       "5",
-      "4 (Yüzü, kolları, ayakları yıkamak ve başı mesh etmek)"
+      "4"
     ],
     "answer": 3,
     "time": 20,
@@ -731,7 +731,7 @@
     "category": "Spor",
     "question": "Süper Lig tarihinde bir sezonu hiç yenilgi almadan 'Namağlup Şampiyon' tamamlayan tek takımımız hangisidir?",
     "options": [
-      "Beşiktaş (1991-1992 sezonu)",
+      "Beşiktaş",
       "Fenerbahçe",
       "Galatasaray",
       "Trabzonspor"
@@ -900,9 +900,9 @@
     "category": "Genel Kültür",
     "question": "Kutup ayıları doğal ortamlarında dünyanın hangi kutbunda yaşarlar?",
     "options": [
-      "Güney Kutbu (Antarktika)",
+      "Güney Kutbu",
       "Grönland ve Yeni Zelanda",
-      "Kuzey Kutbu (Arktik)",
+      "Kuzey Kutbu",
       "Her iki kutupta"
     ],
     "answer": 2,
@@ -927,7 +927,7 @@
     "question": "Bir sepette 5 elma var. Sepetten 3 elma alırsanız sizin kaç elmanız olur?",
     "options": [
       "2 elma",
-      "3 elmanız olur (Aldığınız elmalar sizdedir)",
+      "3 elmanız olur",
       "5 elma",
       "8 elma"
     ],
@@ -942,7 +942,7 @@
       "2008",
       "1954",
       "1996",
-      "2002 (Güney Kore - Japonya)"
+      "2002"
     ],
     "answer": 3,
     "time": 20,
@@ -976,7 +976,7 @@
   },
   {
     "category": "Bilim & Teknoloji",
-    "question": "X-ışınlarını (Röntgen ışınlarını) keşfederek 1901'de ilk Nobel Fizik Ödülü'nü alan bilim insanı kimdir?",
+    "question": "X-ışınlarını keşfederek 1901'de ilk Nobel Fizik Ödülü'nü alan bilim insanı kimdir?",
     "options": [
       "Pierre Curie",
       "Wilhelm Conrad Röntgen",
@@ -1031,7 +1031,7 @@
     "question": "2023 yılında FIVB Milletler Ligi ve Avrupa Şampiyonası'nda altın madalya kazanarak dünya 1 numarasına yükselen kadın milli takımımızın unvanı nedir?",
     "options": [
       "Potanın Perileri",
-      "Filenin Sultanları (A Milli Kadın Voleybol Takımı)",
+      "Filenin Sultanları",
       "Ay-Yıldızlı Melekler",
       "Altın Kızlar"
     ],
@@ -1056,7 +1056,7 @@
     "category": "Bilim & Teknoloji",
     "question": "Gece ve gündüz sürelerinin tüm dünyada eşitlendiği (21 Mart ve 23 Eylül) tarihlere ne ad verilir?",
     "options": [
-      "Solstis (Gündönümü)",
+      "Solstis",
       "Aphel",
       "Perihel",
       "Ekinoks"
@@ -1187,7 +1187,7 @@
     "question": "Medine'ye hicret eden Mekkelilere evlerini ve gönüllerini açan Medineli Müslümanlara ne ad verilir?",
     "options": [
       "Ashab-ı Suffe",
-      "Ensar (Yardımcılar)",
+      "Ensar",
       "Muhacir",
       "Tabiin"
     ],
@@ -1202,7 +1202,7 @@
       "Razi",
       "Farabi",
       "İbn-i Rüşd",
-      "İbn-i Sina (Avicenna)"
+      "İbn-i Sina"
     ],
     "answer": 3,
     "time": 20,
@@ -1267,7 +1267,7 @@
       "Marmara",
       "Ege",
       "Karadeniz",
-      "Güneydoğu Anadolu (Diyarbakır-Batman)"
+      "Güneydoğu Anadolu"
     ],
     "answer": 3,
     "time": 20,
@@ -1303,7 +1303,7 @@
     "category": "Genel Kültür",
     "question": "Kahvenin ana vatanı olarak kabul edilen ve 'Kaffa' bölgesinden adını alan Afrika ülkesi hangisidir?",
     "options": [
-      "Etiyopya (Habeşistan)",
+      "Etiyopya",
       "Yemen",
       "Kolombiya",
       "Brezilya"
@@ -1578,7 +1578,7 @@
     "options": [
       "Afrika",
       "Güney Amerika",
-      "Asya (Moğolistan - Çin)",
+      "Asya",
       "Avustralya"
     ],
     "answer": 2,
@@ -1875,7 +1875,7 @@
     "category": "Genel Kültür",
     "question": "Avrupa Birliği'nin (AB) fiili başkenti sayılan ve NATO karargahına da ev sahipliği yapan şehir neresidir?",
     "options": [
-      "Brüksel (Belçika)",
+      "Brüksel",
       "Lüksemburg",
       "Frankfurt",
       "Strazburg"
@@ -1891,7 +1891,7 @@
       "Crouching Tiger, Hidden Dragon",
       "Hayat Güzeldir",
       "Roma",
-      "Parazit (Parasite)"
+      "Parazit"
     ],
     "answer": 3,
     "time": 20,
@@ -2124,7 +2124,7 @@
     "options": [
       "SSD",
       "HDD",
-      "CPU (İşlemci)",
+      "CPU",
       "RAM"
     ],
     "answer": 2,
@@ -2161,7 +2161,7 @@
     "category": "İslam & Dini Bilgiler",
     "question": "Peygamber Efendimiz'e gençliğinde dürüstlüğü ve güvenilirliği sebebiyle Mekkelilerin verdiği unvan nedir?",
     "options": [
-      "Muhammedü'l-Emin (Güvenilir Muhammed)",
+      "Muhammedü'l-Emin",
       "Es-Sıddık",
       "Zinnureyn",
       "El-Faruk"
@@ -2228,7 +2228,7 @@
     "options": [
       "108",
       "154",
-      "162 (Her adımda 3 ile çarpılıyor)",
+      "162",
       "216"
     ],
     "answer": 2,
@@ -2306,7 +2306,7 @@
     "options": [
       "Samuel L. Jackson",
       "Morgan Freeman",
-      " Forest Whitaker",
+      "Forest Whitaker",
       "Denzel Washington"
     ],
     "answer": 1,
@@ -2460,7 +2460,7 @@
     "category": "Matematik & Mantık",
     "question": "Hilesiz bir zar havaya atıldığında üst yüze 4'ten büyük bir sayı (5 veya 6) gelme olasılığı nedir?",
     "options": [
-      "1/3 (2/6)",
+      "1/3",
       "1/2",
       "2/3",
       "1/6"
@@ -2631,7 +2631,7 @@
     "options": [
       "Metin Erksan",
       "Atıf Yılmaz",
-      "Yılmaz Güney (ve Şerif Gönen)",
+      "Yılmaz Güney",
       "Ömer Lütfi Akad"
     ],
     "answer": 2,
@@ -2682,7 +2682,7 @@
     "question": "Bir terzi 12 metrelik bir kumaşı her seferinde 2 metre keserek parçalara ayıracaktır. Her kesim 1 dakika sürerse iş kaç dakikada biter?",
     "options": [
       "6 dakikada",
-      "5 dakikada (Son parça 5. kesimde kendiliğinden ayrılır)",
+      "5 dakikada",
       "12 dakikada",
       "4 dakikada"
     ],
@@ -2694,7 +2694,7 @@
     "category": "Bilim & Teknoloji",
     "question": "Ses dalgaları aşağıdaki ortamların hangisinde YAYILMAZ?",
     "options": [
-      "Boşlukta (Uzayda)",
+      "Boşlukta",
       "Suda",
       "Havada",
       "Demirde"
@@ -2785,7 +2785,7 @@
     "category": "Matematik & Mantık",
     "question": "Sayı dizisinde sıradaki sayı kaçtır? 100, 95, 85, 70, 50, ?",
     "options": [
-      "25 (-5, -10, -15, -20, -25 azalıyor)",
+      "25",
       "20",
       "30",
       "35"
@@ -3045,9 +3045,9 @@
     "category": "Matematik & Mantık",
     "question": "Bazı aylar 30, bazı aylar 31 gündür. Peki bir yılda kaç ayda 28 gün vardır?",
     "options": [
-      "Sadece 1 ayda (Şubat)",
+      "Sadece 1 ayda",
       "4 yılda bir 1 ayda",
-      "12 ayın hepsinde (Her ayda 28. gün vardır)",
+      "12 ayın hepsinde",
       "6 ayda"
     ],
     "answer": 2,
@@ -3294,7 +3294,7 @@
     "options": [
       "10 kişi",
       "9 kişi",
-      "11 kişi (10 yolcu + 1 şoför)",
+      "11 kişi",
       "12 kişi"
     ],
     "answer": 2,
@@ -3409,7 +3409,7 @@
     "category": "Tarih",
     "question": "İzmir'in işgalinde düşmana ilk kurşunu sıkarak milli direnişi başlatan gazeteci kimdir?",
     "options": [
-      "Hasan Tahsin (Osman Nevres)",
+      "Hasan Tahsin",
       "Yörük Ali Efe",
       "Şahin Bey",
       "Sütçü İmam"
@@ -3437,7 +3437,7 @@
     "options": [
       "10",
       "11",
-      "1 (100 - 99)",
+      "1",
       "9"
     ],
     "answer": 2,
@@ -3461,7 +3461,7 @@
     "category": "Bilim & Teknoloji",
     "question": "DNA'nın çift sarmal yapısını 1953 yılında keşfeden bilim insanları kimlerdir?",
     "options": [
-      "Watson ve Crick (Rosalind Franklin'in katkısıyla)",
+      "Watson ve Crick",
       "Mendel ve Darwin",
       "Pasteur ve Fleming",
       "Newton ve Hooke"
@@ -3477,7 +3477,7 @@
       "Dolar",
       "Frank",
       "Euro",
-      "Sterlin (Pound)"
+      "Sterlin"
     ],
     "answer": 3,
     "time": 20,
@@ -3539,7 +3539,7 @@
     "category": "Sanat & Sinema",
     "question": "Sinema dünyasının en prestijli ödülü olan Akademi Ödülleri'nin (Oscar) heykelciği hangi şehirde düzenlenen törenle verilir?",
     "options": [
-      "Los Angeles (Hollywood)",
+      "Los Angeles",
       "Cannes",
       "New York",
       "Londra"
@@ -3592,7 +3592,7 @@
     "question": "Cebir biliminin kurucusu sayılan ve '0' (sıfır) rakamıyla algoritmayı tanıtan büyük bilgin kimdir?",
     "options": [
       "Biruni",
-      "Harezmi (El-Harezmi)",
+      "Harezmi",
       "Uluğ Bey",
       "Ömer Hayyam"
     ],
@@ -3711,7 +3711,7 @@
       "22 kalem",
       "24 kalem",
       "34 kalem",
-      "32 kalem (12 + 20)"
+      "32 kalem"
     ],
     "answer": 3,
     "time": 20,
@@ -3762,7 +3762,7 @@
     "options": [
       "Tefsir",
       "Kelam",
-      "Hadis (ve Sünnet)",
+      "Hadis",
       "Fıkıh"
     ],
     "answer": 2,
@@ -3812,7 +3812,7 @@
     "category": "Bilim & Teknoloji",
     "question": "İnsan kalbi kaç odacıktan oluşur?",
     "options": [
-      "4 odacık (2 kulakçık, 2 karıncık)",
+      "4 odacık",
       "5 odacık",
       "3 odacık",
       "2 odacık"
@@ -3851,7 +3851,7 @@
     "category": "İslam & Dini Bilgiler",
     "question": "Hac ibadetinin en önemli iki farzından biri olan ve Kurban Bayramı arifesinde yapılan bekleyiş nerede gerçekleşir?",
     "options": [
-      "Arafat Dağı'nda (Arafat Vakfesi)",
+      "Arafat Dağı'nda",
       "Mina'da",
       "Müzdelife'de",
       "Uhud Dağı'nda"
@@ -3903,7 +3903,7 @@
     "category": "İslam & Dini Bilgiler",
     "question": "Müslümanların kıblesi 624 yılında Mescid-i Aksa'dan nereye çevrilmiştir?",
     "options": [
-      "Kabe'ye (Mescid-i Haram)",
+      "Kabe'ye",
       "Mescid-i Nebevi'ye",
       "Arafat'a",
       "Mescid-i Kuba'ya"
@@ -3969,7 +3969,7 @@
     "question": "Mors alfabesinde uluslararası imdat çağrısı olan 'SOS' hangi harf dizisiyle gönderilir?",
     "options": [
       "Üç uzun, üç kısa",
-      "Üç kısa, üç uzun, üç kısa (... --- ...)",
+      "Üç kısa, üç uzun, üç kısa",
       "İki uzun, iki kısa",
       "Sürekli kısa sinyaller"
     ],
@@ -4059,8 +4059,8 @@
     "category": "Bilim & Teknoloji",
     "question": "İnternet sitelerinin adreslerinde yer alan 'HTTP' kısaltmasındaki 'P' harfi neyi ifade eder?",
     "options": [
-      "Page (Sayfa)",
-      "Protocol (Protokol)",
+      "Page",
+      "Protocol",
       "Program",
       "Port"
     ],
@@ -4202,7 +4202,7 @@
     "category": "Bilim & Teknoloji",
     "question": "Dünya atmosferinde yaklaşık %78 oranla en fazla bulunan gaz hangisidir?",
     "options": [
-      "Azot (Nitrojen)",
+      "Azot",
       "Karbondioksit",
       "Oksijen",
       "Hidrojen"
@@ -4516,7 +4516,7 @@
     "options": [
       "Amr bin As",
       "Ebu Derda",
-      "Ebu Eyyub el-Ensari (Eyüp Sultan)",
+      "Ebu Eyyub el-Ensari",
       "Sa'd bin Ebi Vakkas"
     ],
     "answer": 2,
@@ -4670,7 +4670,7 @@
     "category": "Sanat & Sinema",
     "question": "Westeros kıtasındaki Demir Taht mücadelesini ve 'Winter is Coming' (Kış Geliyor) sloganını konu alan fantastik dizi hangisidir?",
     "options": [
-      "Game of Thrones (Taht Oyunları)",
+      "Game of Thrones",
       "House of the Dragon",
       "Vikings",
       "The Witcher"
@@ -4827,7 +4827,7 @@
     "question": "Evrensel verici olarak bilinen ve acil durumlarda diğer gruplara kan verebilen kan grubu hangisidir?",
     "options": [
       "A Rh Pozitif",
-      "0 Rh Negatif (0 Rh-)",
+      "0 Rh Negatif",
       "AB Rh Pozitif",
       "B Rh Negatif"
     ],
@@ -4996,7 +4996,7 @@
     "question": "Oda sıcaklığında sıvı halde bulunan tek metal element hangisidir?",
     "options": [
       "Gümüş",
-      "Cıva (Hg)",
+      "Cıva",
       "Kurşun",
       "Alüminyum"
     ],
@@ -5076,7 +5076,7 @@
       "45 dakika",
       "2 saat",
       "1,5 saat",
-      "1 saat (İlkini hemen, ikincisini 30. dk, üçüncüsünü 60. dk)"
+      "1 saat"
     ],
     "answer": 3,
     "time": 20,
@@ -5179,7 +5179,7 @@
     "options": [
       "Sibirya",
       "Kuzey Kutbu",
-      "Güney Yarımküre (Antarktika çevresi)",
+      "Güney Yarımküre",
       "İskandinavya"
     ],
     "answer": 2,
@@ -5191,8 +5191,8 @@
     "question": "Teniste sezonun en büyük 4 turnuvası olan 'Grand Slam' turnuvalarından hangisi çim kortta oynanır?",
     "options": [
       "ABD Açık",
-      "Roland Garros (Fransa)",
-      "Wimbledon (İngiltere)",
+      "Roland Garros",
+      "Wimbledon",
       "Avustralya Açık"
     ],
     "answer": 2,
@@ -5255,7 +5255,7 @@
     "category": "İslam & Dini Bilgiler",
     "question": "Medine'de Mescid-i Nebevi'nin bitişiğinde ilim öğrenen sahabelerin kaldığı eğitim mekanına ne ad verilirdi?",
     "options": [
-      "Suffe (Ashab-ı Suffe)",
+      "Suffe",
       "Darü'n-Nedve",
       "Beytü'l-Hikme",
       "Darü'l-Erkam"
@@ -5321,7 +5321,7 @@
     "question": "Edvard Munch tarafından resmedilen, köprü üzerinde ellerini yüzüne götürmüş figürle endişeyi simgeleyen ünlü tablo hangisidir?",
     "options": [
       "İnci Küpeli Kız",
-      "Çığlık (The Scream)",
+      "Çığlık",
       "Guernica",
       "Gece Devriyesi"
     ],
@@ -5476,7 +5476,7 @@
     "category": "Matematik & Mantık",
     "question": "Bir baba 36, oğlu 12 yaşındadır. Kaç yıl sonra babanın yaşı oğlunun yaşının tam 2 katı olur?",
     "options": [
-      "12 yıl sonra (Baba 48, oğul 24 olur)",
+      "12 yıl sonra",
       "6 yıl sonra",
       "10 yıl sonra",
       "8 yıl sonra"
@@ -5491,7 +5491,7 @@
     "options": [
       "Hidrojen Peroksit",
       "Potasyum Nitrat",
-      "Sodyum Klorür (NaCl)",
+      "Sodyum Klorür",
       "Kalsiyum Karbonat"
     ],
     "answer": 2,
@@ -5531,7 +5531,7 @@
       "Ganymede",
       "Titan",
       "Io",
-      " Ay"
+      "Ay"
     ],
     "answer": 1,
     "time": 20,
@@ -5556,7 +5556,7 @@
     "question": "Gökdelenden gökdelene ağ atarak suçluları yakalayan süper kahraman kimdir?",
     "options": [
       "Batman",
-      "Örümcek Adam (Spider-Man)",
+      "Örümcek Adam",
       "Demir Adam",
       "Hulk"
     ],
@@ -5655,7 +5655,7 @@
     "options": [
       "1 Hafta",
       "1 Ay",
-      "1 Yıl (365 Gün)",
+      "1 Yıl",
       "1 Gün"
     ],
     "answer": 2,
@@ -5989,7 +5989,7 @@
     "category": "Çocuk Dünyası & Çizgi Film",
     "question": "Kung Fu Panda filmindeki panda Po'nun en sevdiği yiyecek nedir?",
     "options": [
-      "Mantı (Bao / Noodle)",
+      "Mantı",
       "Pizza",
       "Havuç",
       "Çikolata"
@@ -6171,7 +6171,7 @@
     "category": "Çocuk Dünyası & Çizgi Film",
     "question": "Saat gece 12'yi vurunca bal kabağı arabası kaybolan ve camdan ayakkabısını düşüren prenses kimdir?",
     "options": [
-      "Külkedisi (Cinderella)",
+      "Külkedisi",
       "Pamuk Prenses",
       "Rapunzel",
       "Ariel"
@@ -6479,7 +6479,7 @@
     "category": "VIP: Çocuk Bilim & Zeka",
     "question": "Dinozorlar kralı olarak bilinen, devasa çenesi ve minik kollarıyla ünlü etobur dinozor hangisidir?",
     "options": [
-      "Tyrannosaurus Rex (T-Rex)",
+      "Tyrannosaurus Rex",
       "Triceratops",
       "Brachiosaurus",
       "Stegosaurus"
@@ -6521,7 +6521,7 @@
     "category": "VIP: Çocuk Bilim & Zeka",
     "question": "Dinozorlar çağında gökyüzünde kanat çırparak uçan dev sürüngenin adı nedir?",
     "options": [
-      "Pterodaktil (Pterozor)",
+      "Pterodaktil",
       "Megalodon",
       "Mamut",
       "Kılıç Dişli Kaplan"
@@ -6661,7 +6661,7 @@
     "category": "VIP: Çocuk Bilim & Zeka",
     "question": "BİLMECE: 'Kanadı var kuş değil, burnu var fil değil, havada uçar uçak değil.' Bu nedir?",
     "options": [
-      "Kelebek (veya Yarasa)",
+      "Kelebek",
       "Helikopter",
       "Balon",
       "Uçurtma"
@@ -6899,7 +6899,7 @@
     "category": "Çocuk Dünyası & Çizgi Film",
     "question": "Niloya çizgi dizisinde kahramanın sevimli dostu/yoldaşı kimdir?",
     "options": [
-      "Tospik (kaplumbağa)",
+      "Tospik",
       "Gargamel",
       "Daffy Duck",
       "Şirin Baba"
@@ -7177,7 +7177,7 @@
   },
   {
     "category": "VIP: Çocuk Bilim & Zeka",
-    "question": "EĞLENCELİ MATEMATİK: Bir sepette 2 kutu ve her kutunun içinde 2 elma (2 x 2) varsa toplam kaç elma vardır?",
+    "question": "EĞLENCELİ MATEMATİK: Bir sepette 2 kutu ve her kutunun içinde 2 elma varsa toplam kaç elma vardır?",
     "options": [
       "4",
       "6",
@@ -7191,7 +7191,7 @@
   },
   {
     "category": "VIP: Çocuk Bilim & Zeka",
-    "question": "EĞLENCELİ MATEMATİK: Bir sepette 3 kutu ve her kutunun içinde 3 elma (3 x 3) varsa toplam kaç elma vardır?",
+    "question": "EĞLENCELİ MATEMATİK: Bir sepette 3 kutu ve her kutunun içinde 3 elma varsa toplam kaç elma vardır?",
     "options": [
       "9",
       "12",
@@ -7205,7 +7205,7 @@
   },
   {
     "category": "VIP: Çocuk Bilim & Zeka",
-    "question": "EĞLENCELİ MATEMATİK: Bir sepette 4 kutu ve her kutunun içinde 4 elma (4 x 4) varsa toplam kaç elma vardır?",
+    "question": "EĞLENCELİ MATEMATİK: Bir sepette 4 kutu ve her kutunun içinde 4 elma varsa toplam kaç elma vardır?",
     "options": [
       "16",
       "20",
@@ -7219,7 +7219,7 @@
   },
   {
     "category": "VIP: Çocuk Bilim & Zeka",
-    "question": "EĞLENCELİ MATEMATİK: Bir sepette 5 kutu ve her kutunun içinde 5 elma (5 x 5) varsa toplam kaç elma vardır?",
+    "question": "EĞLENCELİ MATEMATİK: Bir sepette 5 kutu ve her kutunun içinde 5 elma varsa toplam kaç elma vardır?",
     "options": [
       "25",
       "30",
@@ -7233,7 +7233,7 @@
   },
   {
     "category": "VIP: Çocuk Bilim & Zeka",
-    "question": "EĞLENCELİ MATEMATİK: Bir sepette 6 kutu ve her kutunun içinde 6 elma (6 x 6) varsa toplam kaç elma vardır?",
+    "question": "EĞLENCELİ MATEMATİK: Bir sepette 6 kutu ve her kutunun içinde 6 elma varsa toplam kaç elma vardır?",
     "options": [
       "36",
       "42",
@@ -7247,7 +7247,7 @@
   },
   {
     "category": "VIP: Çocuk Bilim & Zeka",
-    "question": "EĞLENCELİ MATEMATİK: Bir sepette 7 kutu ve her kutunun içinde 7 elma (7 x 7) varsa toplam kaç elma vardır?",
+    "question": "EĞLENCELİ MATEMATİK: Bir sepette 7 kutu ve her kutunun içinde 7 elma varsa toplam kaç elma vardır?",
     "options": [
       "49",
       "56",
@@ -7261,7 +7261,7 @@
   },
   {
     "category": "VIP: Çocuk Bilim & Zeka",
-    "question": "EĞLENCELİ MATEMATİK: Bir sepette 8 kutu ve her kutunun içinde 8 elma (8 x 8) varsa toplam kaç elma vardır?",
+    "question": "EĞLENCELİ MATEMATİK: Bir sepette 8 kutu ve her kutunun içinde 8 elma varsa toplam kaç elma vardır?",
     "options": [
       "64",
       "72",
@@ -7275,7 +7275,7 @@
   },
   {
     "category": "VIP: Çocuk Bilim & Zeka",
-    "question": "EĞLENCELİ MATEMATİK: Bir sepette 9 kutu ve her kutunun içinde 9 elma (9 x 9) varsa toplam kaç elma vardır?",
+    "question": "EĞLENCELİ MATEMATİK: Bir sepette 9 kutu ve her kutunun içinde 9 elma varsa toplam kaç elma vardır?",
     "options": [
       "81",
       "90",
@@ -7666,19 +7666,6 @@
   },
   {
     "category": "Tarih",
-    "question": "Tarihte yazıyı ilk kullanan uygarlık hangisidir?",
-    "options": [
-      "Mısırlılar",
-      "Sümerler",
-      "Hititler",
-      "Yunanlar"
-    ],
-    "answer": 1,
-    "time": 20,
-    "style": "dunya_tarihi"
-  },
-  {
-    "category": "Tarih",
     "question": "Çanakkale Kara Savaşları'nda Mustafa Kemal hangi tepedeki başarısıyla 'Anafartalar Kahramanı' olmuştur?",
     "options": [
       "Conkbayırı",
@@ -7689,19 +7676,6 @@
     "answer": 0,
     "time": 20,
     "style": "canakkale"
-  },
-  {
-    "category": "Tarih",
-    "question": "Osmanlı Devleti'nde en uzun süre tahtta kalan padişah kimdir?",
-    "options": [
-      "Fatih Sultan Mehmed",
-      "Yavuz Sultan Selim",
-      "Kanuni Sultan Süleyman",
-      "II. Abdülhamid"
-    ],
-    "answer": 2,
-    "time": 20,
-    "style": "osmanli"
   },
   {
     "category": "Tarih",
@@ -7721,7 +7695,7 @@
     "question": "Orhun Abideleri hangi Türk devletine aittir?",
     "options": [
       "Hunlar",
-      "Göktürkler (Kutluk Devleti)",
+      "Göktürkler",
       "Uygurlar",
       "Karahanlılar"
     ],
@@ -7744,71 +7718,6 @@
   },
   {
     "category": "Spor",
-    "question": "2000 yılında UEFA Kupası'nı namağlup kazanan ilk ve tek Türk futbol takımı hangisidir?",
-    "options": [
-      "Fenerbahçe",
-      "Beşiktaş",
-      "Galatasaray",
-      "Trabzonspor"
-    ],
-    "answer": 2,
-    "time": 20,
-    "style": "futbol_tarihi"
-  },
-  {
-    "category": "Spor",
-    "question": "A Milli Futbol Takımımız Dünya Kupası'nda en büyük başarısı olan üçüncülüğü hangi yıl elde etmiştir?",
-    "options": [
-      "1998",
-      "2002",
-      "2006",
-      "2008"
-    ],
-    "answer": 1,
-    "time": 20,
-    "style": "milli_takim"
-  },
-  {
-    "category": "Spor",
-    "question": "'Cep Herkülü' lakaplı 3 kez Olimpiyat Şampiyonu olan efsanevi Türk halterci kimdir?",
-    "options": [
-      "Halil Mutlu",
-      "Naim Süleymanoğlu",
-      "Taner Sağır",
-      "Sedat Artuç"
-    ],
-    "answer": 1,
-    "time": 20,
-    "style": "olimpiyat"
-  },
-  {
-    "category": "Spor",
-    "question": "Tokyo 2020 Olimpiyatları'nda okçulukta Türkiye'ye ilk altın madalyayı kazandıran sporcumuz kimdir?",
-    "options": [
-      "Mete Gazoz",
-      "Rıza Kayaalp",
-      "Taha Akgül",
-      "Ferhat Arıcan"
-    ],
-    "answer": 0,
-    "time": 20,
-    "style": "olimpiyat"
-  },
-  {
-    "category": "Spor",
-    "question": "2023 yılında hem Milletler Ligi hem de Avrupa Şampiyonu olan kadın voleybol milli takımımızın lakabı nedir?",
-    "options": [
-      "Potanın Perileri",
-      "Filenin Sultanları",
-      "Altın Kızlar",
-      "Rüzgarın Kızları"
-    ],
-    "answer": 1,
-    "time": 20,
-    "style": "voleybol"
-  },
-  {
-    "category": "Spor",
     "question": "Futbolda bir maç kaçar dakikalık 2 devreden oluşur?",
     "options": [
       "40",
@@ -7819,19 +7728,6 @@
     "answer": 1,
     "time": 20,
     "style": "kurallar"
-  },
-  {
-    "category": "Spor",
-    "question": "Dünya Kupası'nı 5 kez ile en çok kazanan ülke hangisidir?",
-    "options": [
-      "Almanya",
-      "İtalya",
-      "Brezilya",
-      "Arjantin"
-    ],
-    "answer": 2,
-    "time": 20,
-    "style": "dunya_futbolu"
   },
   {
     "category": "Spor",
@@ -7861,19 +7757,6 @@
   },
   {
     "category": "Spor",
-    "question": "Kariyerinde 8 Ballon d'Or (Altın Top) ödülü kazanan Arjantinli efsane futbolcu kimdir?",
-    "options": [
-      "Diego Maradona",
-      "Lionel Messi",
-      "Cristiano Ronaldo",
-      "Pele"
-    ],
-    "answer": 1,
-    "time": 20,
-    "style": "yildizlar"
-  },
-  {
-    "category": "Spor",
     "question": "Futbolda ceza sahası içindeki faule verilen doğrudan kaleciyle karşı karşıya vuruş nedir?",
     "options": [
       "Korner",
@@ -7884,19 +7767,6 @@
     "answer": 2,
     "time": 20,
     "style": "kurallar"
-  },
-  {
-    "category": "Spor",
-    "question": "Teniste 4 büyük turnuvaya verilen genel isim nedir?",
-    "options": [
-      "Grand Slam",
-      "Masters",
-      "Super Bowl",
-      "Champions"
-    ],
-    "answer": 0,
-    "time": 20,
-    "style": "tenis"
   },
   {
     "category": "Bilim & Teknoloji",
@@ -7936,19 +7806,6 @@
     "answer": 1,
     "time": 20,
     "style": "kimya"
-  },
-  {
-    "category": "Bilim & Teknoloji",
-    "question": "Işığın boşluktaki saniyedeki yaklaşık hızı ne kadardır?",
-    "options": [
-      "30.000 km/s",
-      "300.000 km/s",
-      "3.000.000 km/s",
-      "150.000 km/s"
-    ],
-    "answer": 1,
-    "time": 20,
-    "style": "fizik"
   },
   {
     "category": "Bilim & Teknoloji",
@@ -8014,58 +7871,6 @@
     "answer": 1,
     "time": 20,
     "style": "astronomi"
-  },
-  {
-    "category": "Bilim & Teknoloji",
-    "question": "Kutup Yıldızı gökyüzünde daima hangi yönü gösterir?",
-    "options": [
-      "Güney",
-      "Kuzey",
-      "Doğu",
-      "Batı"
-    ],
-    "answer": 1,
-    "time": 20,
-    "style": "cografya_astronomi"
-  },
-  {
-    "category": "Sanat & Sinema",
-    "question": "Hababam Sınıfı filmlerinde 'İnek Şaban' karakterini canlandıran efsane komedyen kimdir?",
-    "options": [
-      "Kemal Sunal",
-      "Şener Şen",
-      "İlyas Salman",
-      "Halit Akçatepe"
-    ],
-    "answer": 0,
-    "time": 20,
-    "style": "yesilcam"
-  },
-  {
-    "category": "Sanat & Sinema",
-    "question": "Hababam Sınıfı'nın otoriter ama sevecen müdür muavini 'Kel Mahmut'u kim canlandırmıştır?",
-    "options": [
-      "Münir Özkul",
-      "Hulusi Kentmen",
-      "Adile Naşit",
-      "Erol Taş"
-    ],
-    "answer": 0,
-    "time": 20,
-    "style": "yesilcam"
-  },
-  {
-    "category": "Sanat & Sinema",
-    "question": "Türk sinemasının 'Sultan' lakaplı efsane kadın oyuncusu kimdir?",
-    "options": [
-      "Fatma Girik",
-      "Hülya Koçyiğit",
-      "Filiz Akın",
-      "Türkan Şoray"
-    ],
-    "answer": 3,
-    "time": 20,
-    "style": "yesilcam"
   },
   {
     "category": "Sanat & Sinema",
@@ -8196,32 +8001,6 @@
     "answer": 0,
     "time": 20,
     "style": "dunya_edebiyati"
-  },
-  {
-    "category": "Sanat & Edebiyat",
-    "question": "2006 yılında Nobel Edebiyat Ödülü'nü kazanan ilk Türk yazar kimdir?",
-    "options": [
-      "Orhan Pamuk",
-      "Yaşar Kemal",
-      "Nazım Hikmet",
-      "Ahmet Hamdi Tanpınar"
-    ],
-    "answer": 0,
-    "time": 20,
-    "style": "nobel"
-  },
-  {
-    "category": "Matematik & Mantık",
-    "question": "En küçük asal sayı kaçtır?",
-    "options": [
-      "1",
-      "2",
-      "3",
-      "0"
-    ],
-    "answer": 1,
-    "time": 20,
-    "style": "sayilar"
   },
   {
     "category": "Matematik & Mantık",
@@ -8359,8 +8138,8 @@
     "options": [
       "Kuzey",
       "Güney",
-      "Doğu (East)",
-      "Batı (West)"
+      "Doğu",
+      "Batı"
     ],
     "answer": 2,
     "time": 20,
@@ -8395,34 +8174,6 @@
   },
   {
     "category": "Çocuk Dünyası & Çizgi Film",
-    "question": "Rafadan Tayfa'da sürekli baklava ve köfte düşünen obur karakter kimdir?",
-    "options": [
-      "Hayri",
-      "Kamil",
-      "Mert",
-      "Basri Amca"
-    ],
-    "answer": 0,
-    "time": 20,
-    "style": "cizgi_film",
-    "isKids": true
-  },
-  {
-    "category": "Çocuk Dünyası & Çizgi Film",
-    "question": "Kral Şakir'in en yakın arkadaşı olan mor renkli sevimli filin adı nedir?",
-    "options": [
-      "Necati",
-      "Remzi",
-      "Canan",
-      "Kadriye"
-    ],
-    "answer": 0,
-    "time": 20,
-    "style": "cizgi_film",
-    "isKids": true
-  },
-  {
-    "category": "Çocuk Dünyası & Çizgi Film",
     "question": "Kral Şakir çizgi filminde Şakir ve babası Remzi hangi hayvandır?",
     "options": [
       "Aslan",
@@ -8433,20 +8184,6 @@
     "answer": 0,
     "time": 20,
     "style": "cizgi_film",
-    "isKids": true
-  },
-  {
-    "category": "Çocuk Dünyası & Çizgi Film",
-    "question": "Bal kaymak yemeyi çok seven, kel kafasıyla meşhur geleneksel Türk masal kahramanı kimdir?",
-    "options": [
-      "Nasreddin Hoca",
-      "Keloğlan",
-      "Karagöz",
-      "Hacivat"
-    ],
-    "answer": 1,
-    "time": 20,
-    "style": "masal",
     "isKids": true
   },
   {
@@ -8493,20 +8230,6 @@
   },
   {
     "category": "VIP: Çocuk Bilim & Zeka",
-    "question": "Kocaman dişleriyle ünlü, 'Kertenkele Kralı' anlamına gelen en ünlü etobur dinozor hangisidir?",
-    "options": [
-      "Tyrannosaurus Rex (T-Rex)",
-      "Triceratops",
-      "Brachiosaurus",
-      "Stegosaurus"
-    ],
-    "answer": 0,
-    "time": 20,
-    "style": "dinozorlar",
-    "isKids": true
-  },
-  {
-    "category": "VIP: Çocuk Bilim & Zeka",
     "question": "Geceleri gökyüzünde Dünya'mızın etrafında dönen tek doğal uydumuz nedir?",
     "options": [
       "Güneş",
@@ -8548,20 +8271,6 @@
     "isKids": true
   },
   {
-    "category": "VIP: Çocuk Bilim & Zeka",
-    "question": "Bilmecemiz: Uzaktan baktım bir taş, yanına vardım dört ayak bir baş. Bu nedir?",
-    "options": [
-      "Kaplumbağa",
-      "Kirpi",
-      "Kedi",
-      "Tavşan"
-    ],
-    "answer": 0,
-    "time": 20,
-    "style": "bilmece",
-    "isKids": true
-  },
-  {
     "category": "Tarih",
     "question": "Görselde yer alan, İstanbul Boğazı ve Haliç manzarasına hakim tarihi kule hangisidir?",
     "options": [
@@ -8591,21 +8300,7 @@
   },
   {
     "category": "Genel Kültür",
-    "question": "Görseldeki, Dünyanın 7 Harikası arasında yer alan beyaz mermer şaheseri Tac Mahal hangi ülkededir?",
-    "options": [
-      "Pakistan",
-      "Hindistan",
-      "İran",
-      "Mısır"
-    ],
-    "answer": 1,
-    "time": 20,
-    "style": "gorsel_cografya",
-    "image": "/img/tacmahal.svg"
-  },
-  {
-    "category": "Genel Kültür",
-    "question": "Görseldeki beyaz zemin üzerinde kırmızı daire (doğan güneş) bulunan bayrak hangi Asya ülkesine aittir?",
+    "question": "Görseldeki beyaz zemin üzerinde kırmızı daire bulunan bayrak hangi Asya ülkesine aittir?",
     "options": [
       "Güney Kore",
       "Çin",
@@ -8630,5 +8325,6065 @@
     "time": 20,
     "style": "gorsel_astronomi",
     "image": "/img/saturn.svg"
+  },
+  {
+    "category": "Tarih",
+    "question": "1396 yılında Haçlı ordusuna karşı büyük zafer kazanarak Sultan-ı İklim-i Rum unvanını alan Osmanlı padişahı kimdir?",
+    "options": [
+      "Yıldırım Bayezid",
+      "I. Murad",
+      "Çelebi Mehmed",
+      "Orhan Gazi"
+    ],
+    "answer": 0,
+    "style": "classic"
+  },
+  {
+    "category": "Tarih",
+    "question": "Fetret Devri sonrasında Osmanlı Devleti'ni yeniden toparlayarak devletin ikinci kurucusu sayılan padişah kimdir?",
+    "options": [
+      "II. Murad",
+      "I. Mehmed",
+      "Yıldırım Bayezid",
+      "Fatih Sultan Mehmet"
+    ],
+    "answer": 1,
+    "style": "classic"
+  },
+  {
+    "category": "Tarih",
+    "question": "1514 yılında Safevi Devleti'ne karşı kazanılan ve Doğu Anadolu'nun güvenliğini sağlayan zafer hangisidir?",
+    "options": [
+      "Çaldıran Zaferi",
+      "Mercidabık Zaferi",
+      "Ridaniye Zaferi",
+      "Otlukbeli Zaferi"
+    ],
+    "answer": 0,
+    "style": "classic"
+  },
+  {
+    "category": "Tarih",
+    "question": "1526 yılında Macar ordusunu sadece iki saatte yenilgiye uğratan tarihin en kısa meydan savaşı hangisidir?",
+    "options": [
+      "Varna Savaşı",
+      "Mohaç Meydan Muharebesi",
+      "Kosova Savaşı",
+      "Preveze Savaşı"
+    ],
+    "answer": 1,
+    "style": "classic"
+  },
+  {
+    "category": "Tarih",
+    "question": "Don ve Volga nehirlerini birleştirerek Karadeniz ile Hazar Denizi'ni birbirine bağlama projesini hazırlayan Osmanlı sadrazamı kimdir?",
+    "options": [
+      "Köprülü Mehmed Paşa",
+      "Nevşehirli Damat İbrahim Paşa",
+      "Sokullu Mehmed Paşa",
+      "Pargalı İbrahim Paşa"
+    ],
+    "answer": 2,
+    "style": "classic"
+  },
+  {
+    "category": "Tarih",
+    "question": "Osmanlı tarihinde Bağdat'ı Safevilerden geri alarak Bağdat Fatihi olarak anılan padişah kimdir?",
+    "options": [
+      "IV. Murad",
+      "I. Ahmed",
+      "Genç Osman",
+      "IV. Mehmed"
+    ],
+    "answer": 0,
+    "style": "classic"
+  },
+  {
+    "category": "Tarih",
+    "question": "Yeniçeri Ocağı'nı kaldırmayı düşündüğü için yeniçeriler tarafından tahttan indirilip şehit edilen padişah kimdir?",
+    "options": [
+      "II. Osman",
+      "III. Selim",
+      "IV. Mustafa",
+      "I. İbrahim"
+    ],
+    "answer": 0,
+    "style": "classic"
+  },
+  {
+    "category": "Tarih",
+    "question": "Osmanlı taht verasetinde en yaşlı ve en olgun şehzadenin tahta geçmesini öngören Ekber ve Erşed sistemini getiren padişah kimdir?",
+    "options": [
+      "I. Süleyman",
+      "I. Ahmed",
+      "III. Mehmed",
+      "II. Selim"
+    ],
+    "answer": 1,
+    "style": "classic"
+  },
+  {
+    "category": "Tarih",
+    "question": "1826 yılında Yeniçeri Ocağı'nı kaldırarak Vaka-i Hayriye (Hayırlı Olay) olayını gerçekleştiren padişah kimdir?",
+    "options": [
+      "III. Selim",
+      "II. Mahmud",
+      "Abdülmecid",
+      "Abdülaziz"
+    ],
+    "answer": 1,
+    "style": "classic"
+  },
+  {
+    "category": "Tarih",
+    "question": "Osmanlı Devleti'nin ilk resmi gazetesi olan Takvim-i Vekayi hangi padişah döneminde yayımlanmaya başlamıştır?",
+    "options": [
+      "II. Mahmud",
+      "Abdülhamid",
+      "Abdülmecid",
+      "V. Murad"
+    ],
+    "answer": 0,
+    "style": "classic"
+  },
+  {
+    "category": "Tarih",
+    "question": "1839 yılında Gülhane Parkı'nda Tanzimat Fermanı'nı okuyarak ilan eden Osmanlı hariciye nazırı kimdir?",
+    "options": [
+      "Mustafa Reşid Paşa",
+      "Mithat Paşa",
+      "Ali Paşa",
+      "Fuat Paşa"
+    ],
+    "answer": 0,
+    "style": "classic"
+  },
+  {
+    "category": "Tarih",
+    "question": "Avrupa başkentlerine (Paris, Londra, Viyana) resmi ziyarette bulunan ilk ve tek Osmanlı padişahı kimdir?",
+    "options": [
+      "Sultan Abdülaziz",
+      "Sultan Abdülmecid",
+      "II. Abdülhamid",
+      "V. Mehmed Reşad"
+    ],
+    "answer": 0,
+    "style": "classic"
+  },
+  {
+    "category": "Tarih",
+    "question": "Şam ile Medine arasında inşa ettirdiği Hicaz Demiryolu ile bilinen Osmanlı padişahı kimdir?",
+    "options": [
+      "II. Abdülhamid",
+      "Abdülaziz",
+      "Vahdettin",
+      "Sultan Reşad"
+    ],
+    "answer": 0,
+    "style": "classic"
+  },
+  {
+    "category": "Tarih",
+    "question": "Osmanlı Devleti'nde I. Meşrutiyet'in ilan edilmesinde başrol oynayan ve Kanun-i Esasi'yi hazırlayan komisyonun başkanı olan devlet adamı kimdir?",
+    "options": [
+      "Mithat Paşa",
+      "Namık Kemal",
+      "Ziya Paşa",
+      "Ahmet Cevdet Paşa"
+    ],
+    "answer": 0,
+    "style": "classic"
+  },
+  {
+    "category": "Tarih",
+    "question": "Osmanlı Devleti'nde medeni hukukun temelini oluşturan Mecelle adlı eseri hazırlayan büyük hukukçu ve tarihçi kimdir?",
+    "options": [
+      "Ahmet Cevdet Paşa",
+      "Ebussuud Efendi",
+      "Katip Çelebi",
+      "Koçi Bey"
+    ],
+    "answer": 0,
+    "style": "classic"
+  },
+  {
+    "category": "Tarih",
+    "question": "İstanbul Boğazı'nda inşa edilen Dolmabahçe Sarayı hangi Osmanlı padişahı döneminde yaptırılmıştır?",
+    "options": [
+      "Sultan Abdülmecid",
+      "Sultan Abdülaziz",
+      "II. Mahmud",
+      "II. Abdülhamid"
+    ],
+    "answer": 0,
+    "style": "classic"
+  },
+  {
+    "category": "Tarih",
+    "question": "Osmanlı Devleti'nin son padişahı kimdir?",
+    "options": [
+      "Sultan Vahdettin",
+      "Sultan Reşad",
+      "II. Abdülhamid",
+      "Abdülmecid Efendi"
+    ],
+    "answer": 0,
+    "style": "classic"
+  },
+  {
+    "category": "Tarih",
+    "question": "1683 yılındaki II. Viyana Kuşatması'nda Osmanlı ordusuna komuta eden sadrazam kimdir?",
+    "options": [
+      "Merzifonlu Kara Mustafa Paşa",
+      "Köprülü Fazıl Ahmed Paşa",
+      "Lala Mustafa Paşa",
+      "Kuyucu Murad Paşa"
+    ],
+    "answer": 0,
+    "style": "classic"
+  },
+  {
+    "category": "Tarih",
+    "question": "1699 yılında imzalanan ve Osmanlı Devleti'nin Batı'da ilk kez büyük çapta toprak kaybettiği antlaşma hangisidir?",
+    "options": [
+      "Karlofça Antlaşması",
+      "Pasarofça Antlaşması",
+      "Zitvatorok Antlaşması",
+      "Kasr-ı Şirin Antlaşması"
+    ],
+    "answer": 0,
+    "style": "classic"
+  },
+  {
+    "category": "Tarih",
+    "question": "1639 yılında imzalanarak bugünkü Türkiye - İran sınırını büyük ölçüde belirleyen tarihi antlaşma hangisidir?",
+    "options": [
+      "Kasr-ı Şirin Antlaşması",
+      "Amasya Antlaşması",
+      "Ferhat Paşa Antlaşması",
+      "Nasuh Paşa Antlaşması"
+    ],
+    "answer": 0,
+    "style": "classic"
+  },
+  {
+    "category": "Tarih",
+    "question": "Osmanlı'da Lale Devri'ni sona erdiren ve III. Ahmed'in tahttan indirilmesine yol açan ayaklanma hangisidir?",
+    "options": [
+      "Patrona Halil İsyanı",
+      "Kabakçı Mustafa İsyanı",
+      "Bab-ı Ali Baskını",
+      "Celali İsyanları"
+    ],
+    "answer": 0,
+    "style": "classic"
+  },
+  {
+    "category": "Tarih",
+    "question": "Osmanlı donanmasının Akdeniz'deki üstünlüğünü dünyaya duyuran 1538 Preveze Deniz Zaferi hangi komutanın önderliğinde kazanılmıştır?",
+    "options": [
+      "Barbaros Hayreddin Paşa",
+      "Turgut Reis",
+      "Piri Reis",
+      "Kılıç Ali Paşa"
+    ],
+    "answer": 0,
+    "style": "classic"
+  },
+  {
+    "category": "Tarih",
+    "question": "Osmanlı Devleti'nde Kırım'ın kaybedildiği ve Rusya'ya ilk kez savaş tazminatı ödenen 1774 tarihli antlaşma hangisidir?",
+    "options": [
+      "Küçük Kaynarca Antlaşması",
+      "Yaş Antlaşması",
+      "Bükreş Antlaşması",
+      "Edirne Antlaşması"
+    ],
+    "answer": 0,
+    "style": "classic"
+  },
+  {
+    "category": "Tarih",
+    "question": "Osmanlı Devleti'ne katılan ilk Türk beyliği hangisidir?",
+    "options": [
+      "Karesioğulları",
+      "Germiyanoğulları",
+      "Candaroğulları",
+      "Aydınoğulları"
+    ],
+    "answer": 0,
+    "style": "classic"
+  },
+  {
+    "category": "Tarih",
+    "question": "Osmanlı Devleti'ne son katılan ve böylece Anadolu Türk siyasi birliğinin kesin olarak sağlandığı beylik hangisidir?",
+    "options": [
+      "Dulkadiroğulları",
+      "Ramazanoğulları",
+      "Karamanoğulları",
+      "Hamitoğulları"
+    ],
+    "answer": 0,
+    "style": "classic"
+  },
+  {
+    "category": "Tarih",
+    "question": "Milletin bağımsızlığını yine milletin azim ve kararı kurtaracaktır ilkesi ilk kez nerede ilan edilmiştir?",
+    "options": [
+      "Amasya Genelgesi",
+      "Erzurum Kongresi",
+      "Sivas Kongresi",
+      "Havza Genelgesi"
+    ],
+    "answer": 0,
+    "style": "classic"
+  },
+  {
+    "category": "Tarih",
+    "question": "Manda ve himaye fikrinin kesin ve son kez reddedildiği ulusal kongre hangisidir?",
+    "options": [
+      "Sivas Kongresi",
+      "Erzurum Kongresi",
+      "Alaşehir Kongresi",
+      "Balıkesir Kongresi"
+    ],
+    "answer": 0,
+    "style": "classic"
+  },
+  {
+    "category": "Tarih",
+    "question": "Milli Mücadele'nin haklı davasını dünyaya duyurmak amacıyla Mustafa Kemal Paşa ve Halide Edib Adıvar öncülüğünde 1920'de kurulan ajans hangisidir?",
+    "options": [
+      "Anadolu Ajansı",
+      "Türk Haberler Ajansı",
+      "Milli Ajans",
+      "İrade Ajansı"
+    ],
+    "answer": 0,
+    "style": "classic"
+  },
+  {
+    "category": "Tarih",
+    "question": "Son Osmanlı Mebusan Meclisi'nde kabul edilen ve Türk milletinin vatan sınırlarını çizen tarihi belge hangisidir?",
+    "options": [
+      "Misak-ı Milli",
+      "Tekalif-i Milliye",
+      "Teşkilat-ı Esasiye",
+      "Kuvay-ı Milliye"
+    ],
+    "answer": 0,
+    "style": "classic"
+  },
+  {
+    "category": "Tarih",
+    "question": "TBMM Hükümeti'ni tanıyan ve Misak-ı Milli'yi kabul eden ilk yabancı Müslüman devlet hangisidir?",
+    "options": [
+      "Afganistan",
+      "İran",
+      "Mısır",
+      "Pakistan"
+    ],
+    "answer": 0,
+    "style": "classic"
+  },
+  {
+    "category": "Tarih",
+    "question": "TBMM ile Sovyet Rusya arasında 1921 yılında imzalanan dostluk antlaşması hangisidir?",
+    "options": [
+      "Moskova Antlaşması",
+      "Kars Antlaşması",
+      "Brest-Litovsk Antlaşması",
+      "Gümrü Antlaşması"
+    ],
+    "answer": 0,
+    "style": "classic"
+  },
+  {
+    "category": "Tarih",
+    "question": "Sakarya Meydan Muharebesi öncesinde ordunun ihtiyaçlarını halktan karşılamak için çıkarılan emirler hangisidir?",
+    "options": [
+      "Tekalif-i Milliye Emirleri",
+      "Hıyanet-i Vataniye Kanunu",
+      "Teşkilat-ı Esasiye",
+      "Firariler Kanunu"
+    ],
+    "answer": 0,
+    "style": "classic"
+  },
+  {
+    "category": "Tarih",
+    "question": "Sakarya Meydan Muharebesi sonrasında Fransa ile TBMM arasında imzalanan ve Güney Cephesi'ni kapatan antlaşma hangisidir?",
+    "options": [
+      "Ankara Antlaşması",
+      "Mudanya Antlaşması",
+      "Gümrü Antlaşması",
+      "Kars Antlaşması"
+    ],
+    "answer": 0,
+    "style": "classic"
+  },
+  {
+    "category": "Tarih",
+    "question": "Büyük Taarruz sırasında Mustafa Kemal Atatürk'ün ordulara verdiği tarihi emir hangisidir?",
+    "options": [
+      "Ordular ilk hedefiniz Akdeniz'dir, ileri!",
+      "Hattı müdafaa yoktur sathı müdafaa vardır",
+      "Geldikleri gibi giderler",
+      "Ya istiklal ya ölüm!"
+    ],
+    "answer": 0,
+    "style": "classic"
+  },
+  {
+    "category": "Tarih",
+    "question": "Kurtuluş Savaşı'nın askeri safhasını sona erdiren ve Doğu Trakya'nın savaşsız kurtarılmasını sağlayan ateşkes hangisidir?",
+    "options": [
+      "Mudanya Ateşkes Antlaşması",
+      "Mondros Ateşkes Antlaşması",
+      "Gümrü Ateşkesi",
+      "Brest-Litovsk"
+    ],
+    "answer": 0,
+    "style": "classic"
+  },
+  {
+    "category": "Tarih",
+    "question": "Lozan Barış Konferansı'nda Türk delegasyonuna başkanlık eden devlet adamımız kimdir?",
+    "options": [
+      "İsmet İnönü",
+      "Rauf Orbay",
+      "Fevzi Çakmak",
+      "Kazım Karabekir"
+    ],
+    "answer": 0,
+    "style": "classic"
+  },
+  {
+    "category": "Tarih",
+    "question": "Türkiye Cumhuriyeti Devleti'nin ilk Genelkurmay Başkanı olan mareşalimiz kimdir?",
+    "options": [
+      "Fevzi Çakmak",
+      "İsmet İnönü",
+      "Kazım Karabekir",
+      "Ali Fuat Cebesoy"
+    ],
+    "answer": 0,
+    "style": "classic"
+  },
+  {
+    "category": "Tarih",
+    "question": "Eğitim ve öğretimde birliği sağlamak amacıyla 3 Mart 1924 tarihinde çıkarılan tarihi kanun hangisidir?",
+    "options": [
+      "Tevhid-i Tedrisat Kanunu",
+      "Medreseler Kanunu",
+      "Köy Enstitüleri Kanunu",
+      "Maarif Kanunu"
+    ],
+    "answer": 0,
+    "style": "classic"
+  },
+  {
+    "category": "Tarih",
+    "question": "Cumhuriyet döneminde deniz ticaretinde ve karasularında Türk denizcilerine bağımsızlık kazandıran 1926 tarihli kanun hangisidir?",
+    "options": [
+      "Kabotaj Kanunu",
+      "Gümrük Kanunu",
+      "Denizcilik Kanunu",
+      "Limanlar Kanunu"
+    ],
+    "answer": 0,
+    "style": "classic"
+  },
+  {
+    "category": "Tarih",
+    "question": "İstanbul Boğazı ve Çanakkale Boğazı üzerindeki Türk hakimiyetini tam olarak tescilleyen 1936 tarihli sözleşme hangisidir?",
+    "options": [
+      "Montrö Boğazlar Sözleşmesi",
+      "Lozan Sözleşmesi",
+      "Mudanya Sözleşmesi",
+      "Londra Sözleşmesi"
+    ],
+    "answer": 0,
+    "style": "classic"
+  },
+  {
+    "category": "Tarih",
+    "question": "Türkiye'nin Milletler Cemiyeti'ne (Cemiyet-i Akvam) üye olduğu yıl hangisidir?",
+    "options": [
+      "1932",
+      "1928",
+      "1935",
+      "1939"
+    ],
+    "answer": 0,
+    "style": "classic"
+  },
+  {
+    "category": "Tarih",
+    "question": "1934 yılında kabul edilen Soyadı Kanunu ile Mustafa Kemal Paşa'ya 'Atatürk' soyadını veren kurum hangisidir?",
+    "options": [
+      "Türkiye Büyük Millet Meclisi",
+      "Bakanlar Kurulu",
+      "Danıştay",
+      "Türk Dil Kurumu"
+    ],
+    "answer": 0,
+    "style": "classic"
+  },
+  {
+    "category": "Tarih",
+    "question": "1040 yılında Gazneliler ile yapılan ve Büyük Selçuklu Devleti'nin resmen kurulmasını sağlayan savaş hangisidir?",
+    "options": [
+      "Dandanakan Savaşı",
+      "Pasinler Savaşı",
+      "Katvan Savaşı",
+      "Malazgirt Savaşı"
+    ],
+    "answer": 0,
+    "style": "classic"
+  },
+  {
+    "category": "Tarih",
+    "question": "Selçuklular ile Bizans İmparatorluğu arasında yapılan tarihteki ilk büyük meydan savaşı hangisidir?",
+    "options": [
+      "1048 Pasinler Savaşı",
+      "1071 Malazgirt Savaşı",
+      "1176 Miryokefalon Savaşı",
+      "1040 Dandanakan Savaşı"
+    ],
+    "answer": 0,
+    "style": "classic"
+  },
+  {
+    "category": "Tarih",
+    "question": "1176 yılında Bizans ordusunu yenilgiye uğratarak Anadolu'nun kesin olarak Türk yurdu olduğunu kanıtlayan zafer hangisidir?",
+    "options": [
+      "Miryokefalon Zaferi",
+      "Malazgirt Zaferi",
+      "Yassıçemen Zaferi",
+      "Kösedağ Zaferi"
+    ],
+    "answer": 0,
+    "style": "classic"
+  },
+  {
+    "category": "Tarih",
+    "question": "Bugün divanda, dergahta, bargahta, mecliste ve meydanda Türkçeden başka dil kullanılmaya fermanını yayımlayan beylik hükümdarı kimdir?",
+    "options": [
+      "Karamanoğlu Mehmet Bey",
+      "Osman Bey",
+      "Karesi Bey",
+      "Aydınoğlu Umur Bey"
+    ],
+    "answer": 0,
+    "style": "classic"
+  },
+  {
+    "category": "Tarih",
+    "question": "Selçuklu ve Osmanlı döneminde esnaf ve sanatkarları ahlak ve usta-çırak disipliniyle bir araya getiren teşkilat hangisidir?",
+    "options": [
+      "Ahilik Teşkilatı",
+      "İlmiye Sınıfı",
+      "Tımar Teşkilatı",
+      "Menzil Teşkilatı"
+    ],
+    "answer": 0,
+    "style": "classic"
+  },
+  {
+    "category": "Tarih",
+    "question": "Erzurum'da Çifte Minareli Medrese ve Sivas'ta Gök Medrese gibi muazzam eserler hangi döneme aittir?",
+    "options": [
+      "Anadolu Selçuklu Devleti",
+      "Memlükler",
+      "Eyyubiler",
+      "Timur İmparatorluğu"
+    ],
+    "answer": 0,
+    "style": "classic"
+  },
+  {
+    "category": "Tarih",
+    "question": "Tarihte orduda onlu teşkilatlanma sistemini ilk kez kuran ve Türk Kara Kuvvetleri'nin kuruluş yılı (M.Ö. 209) sayılan hükümdar kimdir?",
+    "options": [
+      "Mete Han",
+      "Teoman",
+      "Bumin Kağan",
+      "Atilla"
+    ],
+    "answer": 0,
+    "style": "classic"
+  },
+  {
+    "category": "Tarih",
+    "question": "Türk adını ilk kez resmi devlet adı olarak kullanan tarihi Türk devleti hangisidir?",
+    "options": [
+      "Göktürk Devleti",
+      "Asya Hun Devleti",
+      "Uygur Devleti",
+      "Avar Devleti"
+    ],
+    "answer": 0,
+    "style": "classic"
+  },
+  {
+    "category": "Tarih",
+    "question": "Yerleşik hayata geçerek kalıcı tapınaklar, evler inşa eden ve matbaayı ilk kullanan Türk devleti hangisidir?",
+    "options": [
+      "Uygurlar",
+      "Göktürkler",
+      "Hunlar",
+      "Karluklar"
+    ],
+    "answer": 0,
+    "style": "classic"
+  },
+  {
+    "category": "Tarih",
+    "question": "Tarihte Doğu Avrupa'da Musevilik (Yahudilik) dinini benimseyen tek Türk devleti hangisidir?",
+    "options": [
+      "Hazar Kağanlığı",
+      "Avarlar",
+      "Peçenekler",
+      "Kumanlar"
+    ],
+    "answer": 0,
+    "style": "classic"
+  },
+  {
+    "category": "Tarih",
+    "question": "İstanbul'u tarihte ilk kez kuşatan Türk devleti hangisidir?",
+    "options": [
+      "Avarlar",
+      "Hunlar",
+      "Bulgarlar",
+      "Göktürkler"
+    ],
+    "answer": 0,
+    "style": "classic"
+  },
+  {
+    "category": "Tarih",
+    "question": "751 yılında Müslüman Araplar ile Çinliler arasında yapılan ve Türklerin İslamiyet'e girişinde dönüm noktası olan savaş hangisidir?",
+    "options": [
+      "Talas Savaşı",
+      "Katvan Savaşı",
+      "Nihavend Savaşı",
+      "Kadisiyye Savaşı"
+    ],
+    "answer": 0,
+    "style": "classic"
+  },
+  {
+    "category": "Tarih",
+    "question": "Türk-İslam edebiyatının ilk siyasetnamesi kabul edilen Kutadgu Bilig adlı eserin yazarı kimdir?",
+    "options": [
+      "Yusuf Has Hacib",
+      "Kaşgarlı Mahmud",
+      "Edip Ahmet Yükneki",
+      "Hoca Ahmed Yesevi"
+    ],
+    "answer": 0,
+    "style": "classic"
+  },
+  {
+    "category": "Tarih",
+    "question": "Araplara Türkçeyi öğretmek ve Türkçenin zenginliğini göstermek amacıyla yazılan ilk Türkçe sözlük Divanü Lugati't-Türk'ün yazarı kimdir?",
+    "options": [
+      "Kaşgarlı Mahmud",
+      "Ali Şir Nevai",
+      "Yusuf Has Hacib",
+      "Evliya Çelebi"
+    ],
+    "answer": 0,
+    "style": "classic"
+  },
+  {
+    "category": "Tarih",
+    "question": "Kazakistan'da yaşayan ve Divan-ı Hikmet eseriyle Anadolu'nun Türkleşip İslamlaşmasında manevi öncü olan mutasavvıf kimdir?",
+    "options": [
+      "Hoca Ahmed Yesevi",
+      "Yunus Emre",
+      "Hacı Bektaş-ı Veli",
+      "Mevlana Celaleddin-i Rumi"
+    ],
+    "answer": 0,
+    "style": "classic"
+  },
+  {
+    "category": "Tarih",
+    "question": "Tarihte bilinen ilk yazılı barış antlaşması olan Kadeş Antlaşması (M.Ö. 1280 civarı) hangi iki büyük uygarlık arasında imzalanmıştır?",
+    "options": [
+      "Hititler ve Mısırlılar",
+      "Sümerler ve Babilliler",
+      "Yunanlılar ve Persler",
+      "Romalılar ve Kartacalılar"
+    ],
+    "answer": 0,
+    "style": "classic"
+  },
+  {
+    "category": "Tarih",
+    "question": "Gözetleme kulesi, sfenksler ve Keops, Kefren, Mikerinos gibi piramitleriyle ünlü Antik uygarlık hangisidir?",
+    "options": [
+      "Antik Mısır",
+      "Mezopotamya",
+      "Antik Yunan",
+      "İnka Medeniyeti"
+    ],
+    "answer": 0,
+    "style": "classic"
+  },
+  {
+    "category": "Tarih",
+    "question": "Anadolu'da ilk madeni parayı basarak ticarette değiş-tokuş dönemini sona erdiren ilk çağ uygarlığı hangisidir?",
+    "options": [
+      "Lidyalılar",
+      "Urartular",
+      "Frigler",
+      "Hititler"
+    ],
+    "answer": 0,
+    "style": "classic"
+  },
+  {
+    "category": "Tarih",
+    "question": "Başkenti Gordion olan, kralları Midas ve Kibele heykelleriyle ünlü Anadolu ilk çağ uygarlığı hangisidir?",
+    "options": [
+      "Frigler",
+      "Lidyalılar",
+      "İyonyalılar",
+      "Hititler"
+    ],
+    "answer": 0,
+    "style": "classic"
+  },
+  {
+    "category": "Tarih",
+    "question": "Dünyanın Yedi Harikası'ndan biri olan Kral Mausolos'un Anıt Mezarı (Mozole) günümüzde Türkiye'nin hangi tatil beldesindedir?",
+    "options": [
+      "Bodrum",
+      "Efes",
+      "Marmaris",
+      "Fethiye"
+    ],
+    "answer": 0,
+    "style": "classic"
+  },
+  {
+    "category": "Tarih",
+    "question": "Milattan önce 44 yılında Roma Senatosu'nda suikasta uğrarken Sen de mi Brütüs? sözüyle tarihe geçen Roma imparatoru kimdir?",
+    "options": [
+      "Jül Sezar",
+      "Neron",
+      "Augustus",
+      "Caligula"
+    ],
+    "answer": 0,
+    "style": "classic"
+  },
+  {
+    "category": "Tarih",
+    "question": "1492 yılında İspanya krallığının desteğiyle Atlantik Okyanusu'nu aşarak Amerika kıtasına ulaşan Cenevizli kaşif kimdir?",
+    "options": [
+      "Kristof Kolomb",
+      "Amerigo Vespucci",
+      "Vasco da Gama",
+      "Ferdinand Macellan"
+    ],
+    "answer": 0,
+    "style": "classic"
+  },
+  {
+    "category": "Tarih",
+    "question": "1789 yılında Bastille Hapishanesi'nin basılmasıyla başlayarak krallığı deviren ve milliyetçilik akımını yayan tarihi devrim hangisidir?",
+    "options": [
+      "Fransız İhtilali",
+      "Bolşevik İhtilali",
+      "Sanayi Devrimi",
+      "Amerikan Bağımsızlık Savaşı"
+    ],
+    "answer": 0,
+    "style": "classic"
+  },
+  {
+    "category": "Tarih",
+    "question": "18. yüzyılda İngiltere'de buhar makinesinin sanayide kullanılmasıyla başlayan büyük ekonomik ve teknolojik dönüşüme ne ad verilir?",
+    "options": [
+      "Sanayi Devrimi",
+      "Rönesans",
+      "Aydınlanma Çağı",
+      "Coğrafi Keşifler"
+    ],
+    "answer": 0,
+    "style": "classic"
+  },
+  {
+    "category": "Tarih",
+    "question": "1914 yılında I. Dünya Savaşı'nın başlamasına kıvılcım olan Avusturya-Macaristan veliahdı Franz Ferdinand suikastı hangi şehirde gerçekleşmiştir?",
+    "options": [
+      "Saraybosna",
+      "Viyana",
+      "Belgrad",
+      "Budapeşte"
+    ],
+    "answer": 0,
+    "style": "classic"
+  },
+  {
+    "category": "Tarih",
+    "question": "I. Dünya Savaşı sırasında 1916 yılında İngiliz ordusunun Osmanlı ordusuna teslim olduğu Irak cephesindeki büyük zaferimiz hangisidir?",
+    "options": [
+      "Kut'ül Amare Zaferi",
+      "Kanal Zaferi",
+      "Gazze Zaferi",
+      "Medine Müdafaası"
+    ],
+    "answer": 0,
+    "style": "classic"
+  },
+  {
+    "category": "Tarih",
+    "question": "Medine'yi I. Dünya Savaşı'nda açlık ve zorluklara rağmen çekirge yiyerek savunan ve Çöl Kaplanı lakabıyla bilinen Osmanlı komutanı kimdir?",
+    "options": [
+      "Fahreddin Paşa",
+      "Enver Paşa",
+      "Cemal Paşa",
+      "Halil Paşa"
+    ],
+    "answer": 0,
+    "style": "classic"
+  },
+  {
+    "category": "Tarih",
+    "question": "6 Haziran 1944 tarihinde Müttefik ordularının Nazi işgali altındaki Fransa kıyılarına yaptığı tarihin en büyük amfibi çıkarması hangisidir?",
+    "options": [
+      "Normandiya Çıkarması",
+      "Dunkirk Tahliyesi",
+      "Sicilya Çıkarması",
+      "Midway Muharebesi"
+    ],
+    "answer": 0,
+    "style": "classic"
+  },
+  {
+    "category": "Tarih",
+    "question": "1961 yılında Vostok 1 uzay aracıyla Dünya yörüngesine çıkarak uzaya giden ilk insan olan Sovyet kozmonot kimdir?",
+    "options": [
+      "Yuri Gagarin",
+      "Neil Armstrong",
+      "Buzz Aldrin",
+      "Aleksey Leonov"
+    ],
+    "answer": 0,
+    "style": "classic"
+  },
+  {
+    "category": "Tarih",
+    "question": "1969 yılında Apollo 11 göreviyle Ay'a ayak basan ilk insan kimdir?",
+    "options": [
+      "Neil Armstrong",
+      "Yuri Gagarin",
+      "Michael Collins",
+      "John Glenn"
+    ],
+    "answer": 0,
+    "style": "classic"
+  },
+  {
+    "category": "Tarih",
+    "question": "Güney Afrika'da ırk ayrımcılığına (Apartheid) karşı mücadele eden ve ülkenin ilk siyahi devlet başkanı olan Nobel Barış Ödüllü lider kimdir?",
+    "options": [
+      "Nelson Mandela",
+      "Kofi Annan",
+      "Malcolm X",
+      "Desmond Tutu"
+    ],
+    "answer": 0,
+    "style": "classic"
+  },
+  {
+    "category": "Tarih",
+    "question": "Hindistan'ın bağımsızlık mücadelesinde şiddet içermeyen sivil itaatsizlik felsefesiyle önderlik eden ulu ruh lakaplı lider kimdir?",
+    "options": [
+      "Mahatma Gandi",
+      "Jawaharlal Nehru",
+      "İndira Gandi",
+      "Subhas Chandra Bose"
+    ],
+    "answer": 0,
+    "style": "classic"
+  },
+  {
+    "category": "Tarih",
+    "question": "Kuzey Atlantik Antlaşması Örgütü (NATO) 1949 yılında hangi ülkenin başkenti Washington'da kurulmuştur?",
+    "options": [
+      "Amerika Birleşik Devletleri",
+      "İngiltere",
+      "Fransa",
+      "Belçika"
+    ],
+    "answer": 0,
+    "style": "classic"
+  },
+  {
+    "category": "Tarih",
+    "question": "Türkiye Cumhuriyeti kaç yılında NATO'ya üye olmuştur?",
+    "options": [
+      "1952",
+      "1949",
+      "1960",
+      "1945"
+    ],
+    "answer": 0,
+    "style": "classic"
+  },
+  {
+    "category": "Tarih",
+    "question": "1974 yılında Türk Silahlı Kuvvetleri tarafından Kıbrıs adasındaki Türkleri korumak amacıyla düzenlenen harekatın adı nedir?",
+    "options": [
+      "Kıbrıs Barış Harekatı",
+      "Akdeniz Kalkanı Harekatı",
+      "Yıldız Harekatı",
+      "Zafer Harekatı"
+    ],
+    "answer": 0,
+    "style": "classic"
+  },
+  {
+    "category": "Tarih",
+    "question": "Mimar Sinan'ın 'çıraklık eserim' dediği İstanbul'daki tarihi cami hangisidir?",
+    "options": [
+      "Şehzadebaşı Camii",
+      "Süleymaniye Camii",
+      "Selimiye Camii",
+      "Rüstem Paşa Camii"
+    ],
+    "answer": 0,
+    "style": "classic"
+  },
+  {
+    "category": "Tarih",
+    "question": "Mimar Sinan'ın 'kalfalık eserim' olarak nitelendirdiği muhteşem külliye ve cami hangisidir?",
+    "options": [
+      "Süleymaniye Camii",
+      "Şehzade Camii",
+      "Selimiye Camii",
+      "Mihrimah Sultan Camii"
+    ],
+    "answer": 0,
+    "style": "classic"
+  },
+  {
+    "category": "Tarih",
+    "question": "Mimar Sinan'ın Edirne'de inşa ettiği ve 'ustalık eserim' dediği dünya mimarlık şaheseri cami hangisidir?",
+    "options": [
+      "Selimiye Camii",
+      "Süleymaniye Camii",
+      "Eski Cami",
+      "Üç Şerefeli Cami"
+    ],
+    "answer": 0,
+    "style": "classic"
+  },
+  {
+    "category": "Tarih",
+    "question": "1513 yılında ceylan derisi üzerine çizdiği ve Amerika kıtasını da gösteren ilk dünya haritasıyla ünlü denizcimiz kimdir?",
+    "options": [
+      "Piri Reis",
+      "Seydi Ali Reis",
+      "Barbaros Hayreddin Paşa",
+      "Oruç Reis"
+    ],
+    "answer": 0,
+    "style": "classic"
+  },
+  {
+    "category": "Tarih",
+    "question": "10 ciltlik muazzam 'Seyahatname' eseriyle Osmanlı coğrafyasını ve dünyayı anlatan ünlü seyyahımız kimdir?",
+    "options": [
+      "Evliya Çelebi",
+      "Katip Çelebi",
+      "İbn-i Battuta",
+      "Aşıkpaşazade"
+    ],
+    "answer": 0,
+    "style": "classic"
+  },
+  {
+    "category": "Tarih",
+    "question": "Cihannüma ve Keşfü'z-Zünun adlı devasa coğrafya ve bibliyografya eserlerini yazan 17. yüzyıl Osmanlı bilgini kimdir?",
+    "options": [
+      "Katip Çelebi",
+      "Evliya Çelebi",
+      "Naima",
+      "Taşköprülüzade"
+    ],
+    "answer": 0,
+    "style": "classic"
+  },
+  {
+    "category": "Tarih",
+    "question": "Fatih Sultan Mehmet'in hocası olan ve İstanbul'un fethinde ordunun manevi mimarı sayılan büyük alim kimdir?",
+    "options": [
+      "Akşemseddin",
+      "Molla Gürani",
+      "Molla Fenari",
+      "Ali Kuşçu"
+    ],
+    "answer": 0,
+    "style": "classic"
+  },
+  {
+    "category": "Tarih",
+    "question": "Savaş meydanında şehit düşen tek Osmanlı padişahı olan ve 1389 I. Kosova Zaferi'ni kazanan hükümdar kimdir?",
+    "options": [
+      "I. Murad",
+      "Orhan Gazi",
+      "Yıldırım Bayezid",
+      "I. Mehmed"
+    ],
+    "answer": 0,
+    "style": "classic"
+  },
+  {
+    "category": "Tarih",
+    "question": "1444 yılında tahtını 12 yaşındaki oğlu II. Mehmed'e (Fatih) bırakan ve Varna Zaferi'ni kazanan padişah kimdir?",
+    "options": [
+      "II. Murad",
+      "I. Mehmed",
+      "Yıldırım Bayezid",
+      "II. Bayezid"
+    ],
+    "answer": 0,
+    "style": "classic"
+  },
+  {
+    "category": "Tarih",
+    "question": "1473 Otlukbeli Savaşı'nda Akkoyunlu hükümdarı Uzun Hasan'ı yenilgiye uğratan Osmanlı padişahı kimdir?",
+    "options": [
+      "Fatih Sultan Mehmet",
+      "Yavuz Sultan Selim",
+      "II. Murad",
+      "Yıldırım Bayezid"
+    ],
+    "answer": 0,
+    "style": "classic"
+  },
+  {
+    "category": "Tarih",
+    "question": "1571 yılında Venediklilerden fethedilen ve Doğu Akdeniz'in güvenliğini sağlayan ada hangisidir?",
+    "options": [
+      "Kıbrıs",
+      "Girit",
+      "Rodos",
+      "Sakız"
+    ],
+    "answer": 0,
+    "style": "classic"
+  },
+  {
+    "category": "Tarih",
+    "question": "Osmanlı donanmasının 1571 yılında Haçlı donanması tarafından yakıldığı tarihi deniz muharebesi hangisidir?",
+    "options": [
+      "İnebahtı Deniz Savaşı",
+      "Navarin Baskını",
+      "Sinop Baskını",
+      "Çeşme Baskını"
+    ],
+    "answer": 0,
+    "style": "classic"
+  },
+  {
+    "category": "Tarih",
+    "question": "1711 yılında Rus ordusunu Prut Nehri kıyısında kuşatarak teslim olmaya zorlayan Osmanlı sadrazamı kimdir?",
+    "options": [
+      "Baltacı Mehmed Paşa",
+      "Merzifonlu Kara Mustafa Paşa",
+      "Rami Mehmed Paşa",
+      "Nevşehirli İbrahim Paşa"
+    ],
+    "answer": 0,
+    "style": "classic"
+  },
+  {
+    "category": "Tarih",
+    "question": "Anadolu'da inşa edilen ilk demiryolu hattı hangi iki şehrimiz arasında yapılmıştır?",
+    "options": [
+      "İzmir - Aydın",
+      "İstanbul - Edirne",
+      "Ankara - Eskişehir",
+      "Adana - Mersin"
+    ],
+    "answer": 0,
+    "style": "classic"
+  },
+  {
+    "category": "Tarih",
+    "question": "Osmanlı Devleti'nde telgraf hattı ilk kez 1855 yılında hangi savaş sırasında döşenmiştir?",
+    "options": [
+      "Kırım Savaşı",
+      "93 Harbi",
+      "Trablusgarp Savaşı",
+      "Balkan Savaşı"
+    ],
+    "answer": 0,
+    "style": "classic"
+  },
+  {
+    "category": "Tarih",
+    "question": "1877-1878 Osmanlı-Rus Savaşı'nda (93 Harbi) Erzurum Aziziye Tabyası'nı savunan milli kadın kahramanımız kimdir?",
+    "options": [
+      "Nene Hatun",
+      "Şerife Bacı",
+      "Kara Fatma",
+      "Gördesli Makbule"
+    ],
+    "answer": 0,
+    "style": "classic"
+  },
+  {
+    "category": "Tarih",
+    "question": "93 Harbi'nde Plevne Savunması ile destan yazan ve 'Plevne Kahramanı' olarak tarihe geçen Osmanlı mareşali kimdir?",
+    "options": [
+      "Gazi Osman Paşa",
+      "Ahmet Muhtar Paşa",
+      "Hüseyin Avni Paşa",
+      "Mahmut Şevket Paşa"
+    ],
+    "answer": 0,
+    "style": "classic"
+  },
+  {
+    "category": "Tarih",
+    "question": "1911 Trablusgarp Savaşı'nda Derne ve Tobruk'ta yerel halkı İtalyanlara karşı örgütleyen genç subay kimdir?",
+    "options": [
+      "Mustafa Kemal Paşa",
+      "Enver Paşa",
+      "Fevzi Çakmak",
+      "Kazım Karabekir"
+    ],
+    "answer": 0,
+    "style": "classic"
+  },
+  {
+    "category": "Tarih",
+    "question": "Kurtuluş Savaşı'nda İnebolu'dan Ankara'ya kağnısıyla cephane taşırken donarak şehit olan sembol kadın kahramanımız kimdir?",
+    "options": [
+      "Şerife Bacı",
+      "Nene Hatun",
+      "Kara Fatma",
+      "Halide Edib"
+    ],
+    "answer": 0,
+    "style": "classic"
+  },
+  {
+    "category": "Tarih",
+    "question": "Milli Mücadele'de kendi kurduğu müfreze ile Batı Cephesi'nde savaşan İstiklal Madalyalı kadın kahraman kimdir?",
+    "options": [
+      "Kara Fatma",
+      "Nene Hatun",
+      "Çete Emir Ayşe",
+      "Tayyar Rahmiye"
+    ],
+    "answer": 0,
+    "style": "classic"
+  },
+  {
+    "category": "Tarih",
+    "question": "Kurtuluş Savaşı'nda Maraş savunmasını Fransızlara karşı başlatan ve ilk kurşunu sıkan kahraman kimdir?",
+    "options": [
+      "Sütçü İmam",
+      "Şahin Bey",
+      "Rıdvan Hoca",
+      "Ali Saip Bey"
+    ],
+    "answer": 0,
+    "style": "classic"
+  },
+  {
+    "category": "Tarih",
+    "question": "Antep savunmasında 'Düşman cesedimi çiğnemeden Antep'e giremez' diyerek şehit düşen Kuvayı Milliye komutanı kimdir?",
+    "options": [
+      "Şahin Bey",
+      "Sütçü İmam",
+      "Yörük Ali Efe",
+      "Demirci Mehmet Efe"
+    ],
+    "answer": 0,
+    "style": "classic"
+  },
+  {
+    "category": "Tarih",
+    "question": "Türkiye Cumhuriyeti'nin ve dünyanın ilk kadın savaş pilotu kimdir?",
+    "options": [
+      "Sabiha Gökçen",
+      "Bedriye Tahir Gökmen",
+      "Afife Jale",
+      "Safiye Ali"
+    ],
+    "answer": 0,
+    "style": "classic"
+  },
+  {
+    "category": "Tarih",
+    "question": "Türkiye'nin ilk kadın tıp doktoru kimdir?",
+    "options": [
+      "Safiye Ali",
+      "Sabiha Gökçen",
+      "Afife Jale",
+      "Türkan Saylan"
+    ],
+    "answer": 0,
+    "style": "classic"
+  },
+  {
+    "category": "Tarih",
+    "question": "Türk tiyatrosunda sahneye çıkan ilk Müslüman Türk kadın tiyatro oyuncusu kimdir?",
+    "options": [
+      "Afife Jale",
+      "Bedia Muvahhit",
+      "Cahide Sonku",
+      "Nezihe Muhiddin"
+    ],
+    "answer": 0,
+    "style": "classic"
+  },
+  {
+    "category": "Tarih",
+    "question": "Türkiye Cumhuriyeti'nin ilk yerli uçağını (Vecihi K-VI) üreten efsanevi Türk havacısı kimdir?",
+    "options": [
+      "Vecihi Hürkuş",
+      "Nuri Demirağ",
+      "Şakir Zümre",
+      "Nuri Killigil"
+    ],
+    "answer": 0,
+    "style": "classic"
+  },
+  {
+    "category": "Tarih",
+    "question": "Türkiye'nin ilk uçak fabrikasını kuran ve demiryolu hamlesine öncülük eden ünlü vatansever iş insanı kimdir?",
+    "options": [
+      "Nuri Demirağ",
+      "Vecihi Hürkuş",
+      "Vehbi Koç",
+      "Kazım Taşkent"
+    ],
+    "answer": 0,
+    "style": "classic"
+  },
+  {
+    "category": "Tarih",
+    "question": "Türkiye Cumhuriyeti'nin ilk milli bankası olarak 1924 yılında kurulan banka hangisidir?",
+    "options": [
+      "Türkiye İş Bankası",
+      "Ziraat Bankası",
+      "Sümerbank",
+      "Merkez Bankası"
+    ],
+    "answer": 0,
+    "style": "classic"
+  },
+  {
+    "category": "Tarih",
+    "question": "1923 yılında yeni kurulan devletin ekonomik hedeflerini belirlemek üzere toplanan kongre hangisidir?",
+    "options": [
+      "İzmir İktisat Kongresi",
+      "Sivas İktisat Kongresi",
+      "Ankara Sanayi Kongresi",
+      "Eskişehir Kongresi"
+    ],
+    "answer": 0,
+    "style": "classic"
+  },
+  {
+    "category": "Tarih",
+    "question": "Cumhuriyetimizin 10. Yıl Marşı'nı besteleyen ünlü bestecimiz kimdir?",
+    "options": [
+      "Cemal Reşit Rey",
+      "Ulvi Cemal Erkin",
+      "Adnan Saygun",
+      "Hasan Ferit Alnar"
+    ],
+    "answer": 0,
+    "style": "classic"
+  },
+  {
+    "category": "Tarih",
+    "question": "UNESCO Dünya Mirası Listesi'nde yer alan ve taş işçiliğiyle bilinen Divriği Ulu Camii ve Darüşşifası hangi beylik döneminde yapılmıştır?",
+    "options": [
+      "Mengücekliler",
+      "Danişmentliler",
+      "Artuklular",
+      "Saltuklular"
+    ],
+    "answer": 0,
+    "style": "classic"
+  },
+  {
+    "category": "Tarih",
+    "question": "Anadolu'da ilk medrese olan Yağıbasan Medresesi (Tokat-Niksar) hangi beylik tarafından kurulmuştur?",
+    "options": [
+      "Danişmentliler",
+      "Mengücekliler",
+      "Saltuklular",
+      "Artuklular"
+    ],
+    "answer": 0,
+    "style": "classic"
+  },
+  {
+    "category": "Tarih",
+    "question": "Güneydoğu Anadolu'da hüküm süren ve robotik bilimin babası El-Cezeri'yi sarayında himaye eden beylik hangisidir?",
+    "options": [
+      "Artuklular",
+      "Akkoyunlular",
+      "Eyyubiler",
+      "Karakoyunlular"
+    ],
+    "answer": 0,
+    "style": "classic"
+  },
+  {
+    "category": "Tarih",
+    "question": "Orta Asya'da kurulan ve ilk kez kağıt ve matbaayı Batı'ya aktaran tarihi savaş hangisidir?",
+    "options": [
+      "Talas Savaşı",
+      "Dandanakan Savaşı",
+      "Malazgirt Savaşı",
+      "Yassıçemen Savaşı"
+    ],
+    "answer": 0,
+    "style": "classic"
+  },
+  {
+    "category": "Tarih",
+    "question": "Batı Roma İmparatorluğu hangi yılda yıkılarak İlk Çağ'ın sona ermesine zemin hazırlamıştır?",
+    "options": [
+      "Milattan Sonra 476",
+      "Milattan Sonra 395",
+      "Milattan Sonra 1453",
+      "Milattan Önce 44"
+    ],
+    "answer": 0,
+    "style": "classic"
+  },
+  {
+    "category": "Tarih",
+    "question": "Doğu Roma (Bizans) İmparatorluğu'nun varlığına hangi büyük fetihle son verilmiştir?",
+    "options": [
+      "1453 İstanbul'un Fethi",
+      "1071 Malazgirt Zaferi",
+      "1389 Kosova Savaşı",
+      "1526 Mohaç Zaferi"
+    ],
+    "answer": 0,
+    "style": "classic"
+  },
+  {
+    "category": "Tarih",
+    "question": "1912 yılında İngiltere'den New York'a giderken bir buzdağına çarparak batan dönemin en büyük yolcu gemisi hangisidir?",
+    "options": [
+      "Titanik",
+      "Britannic",
+      "Lusitania",
+      "Queen Mary"
+    ],
+    "answer": 0,
+    "style": "classic"
+  },
+  {
+    "category": "Tarih",
+    "question": "15. yüzyılda hareketli harflerle modern matbaayı icat eden Alman mucit kimdir?",
+    "options": [
+      "Johannes Gutenberg",
+      "Martin Luther",
+      "Johannes Kepler",
+      "Albrecht Dürer"
+    ],
+    "answer": 0,
+    "style": "classic"
+  },
+  {
+    "category": "Tarih",
+    "question": "Dünyanın kendi ekseni ve Güneş etrafında döndüğünü savunarak modern astronominin temellerini atan Polonyalı bilim insanı kimdir?",
+    "options": [
+      "Nicolaus Copernicus",
+      "Galileo Galilei",
+      "Johannes Kepler",
+      "Tycho Brahe"
+    ],
+    "answer": 0,
+    "style": "classic"
+  },
+  {
+    "category": "Tarih",
+    "question": "Geliştirdiği teleskopla Jüpiter'in dört büyük uydusunu keşfeden ve modern fiziğin babası sayılan İtalyan bilgin kimdir?",
+    "options": [
+      "Galileo Galilei",
+      "Leonardo da Vinci",
+      "Giordano Bruno",
+      "Torricelli"
+    ],
+    "answer": 0,
+    "style": "classic"
+  },
+  {
+    "category": "Tarih",
+    "question": "Kütle çekim kanununu (yerçekimi) matematiksel olarak formüle eden İngiliz bilim dehası kimdir?",
+    "options": [
+      "Isaac Newton",
+      "Robert Hooke",
+      "Michael Faraday",
+      "James Clerk Maxwell"
+    ],
+    "answer": 0,
+    "style": "classic"
+  },
+  {
+    "category": "Tarih",
+    "question": "1986 yılında nükleer santralinde patlama meydana gelen ve radyoaktif sızıntıya yol açan tarihi kaza nerede yaşanmıştır?",
+    "options": [
+      "Çernobil",
+      "Fukuşima",
+      "Three Mile Island",
+      "Kyshtym"
+    ],
+    "answer": 0,
+    "style": "classic"
+  },
+  {
+    "category": "Tarih",
+    "question": "1989 yılında Doğu ve Batı Almanya'yı ayıran hangi simgesel yapının yıkılması Soğuk Savaş'ın sonunu getirdi?",
+    "options": [
+      "Berlin Duvarı",
+      "Demir Perde",
+      "Maginot Hattı",
+      "Siegfried Hattı"
+    ],
+    "answer": 0,
+    "style": "classic"
+  },
+  {
+    "category": "Tarih",
+    "question": "Sovyetler Birliği'nin (SSCB) resmi olarak dağıldığı yıl hangisidir?",
+    "options": [
+      "1991",
+      "1989",
+      "1995",
+      "1985"
+    ],
+    "answer": 0,
+    "style": "classic"
+  },
+  {
+    "category": "Tarih",
+    "question": "1992-1995 yılları arasında Bosna Savaşı'nda halkına önderlik eden ve Bilge Kral olarak anılan Bosna-Hersek lideri kimdir?",
+    "options": [
+      "Aliya İzzetbegoviç",
+      "Haris Silayciç",
+      "Ejup Ganiç",
+      "Bakir İzzetbegoviç"
+    ],
+    "answer": 0,
+    "style": "classic"
+  },
+  {
+    "category": "Tarih",
+    "question": "Osmanlı ordusunda kalelerin altından tüneller kazarak surları barutla patlatan askeri sınıfa ne ad verilirdi?",
+    "options": [
+      "Lağımcılar",
+      "Humbaracılar",
+      "Cebeciler",
+      "Akıncılar"
+    ],
+    "answer": 0,
+    "style": "classic"
+  },
+  {
+    "category": "Tarih",
+    "question": "Osmanlı ordusunda havan topu, el bombası ve mayın dökümünden sorumlu olan askeri ocağa ne ad verilirdi?",
+    "options": [
+      "Humbaracı Ocağı",
+      "Lağımcı Ocağı",
+      "Topçu Ocağı",
+      "Cebeci Ocağı"
+    ],
+    "answer": 0,
+    "style": "classic"
+  },
+  {
+    "category": "Tarih",
+    "question": "Osmanlı Devleti'nde ordunun silahlarının bakım, onarım ve muhafazasından sorumlu ocak hangisidir?",
+    "options": [
+      "Cebeci Ocağı",
+      "Topçu Ocağı",
+      "Sipahi Ocağı",
+      "Yeniçeri Ocağı"
+    ],
+    "answer": 0,
+    "style": "classic"
+  },
+  {
+    "category": "Tarih",
+    "question": "Osmanlı sınır boylarında düşman hatlarına ani akınlar düzenleyen, cesaretleri ve kurt-kartal postlu giysileriyle tanınan hafif süvari birliğine ne ad verilirdi?",
+    "options": [
+      "Deliler",
+      "Yeniçeriler",
+      "Lağımcılar",
+      "Azaplar"
+    ],
+    "answer": 0,
+    "style": "classic"
+  },
+  {
+    "category": "Tarih",
+    "question": "Osmanlı Devleti'nde saray bünyesinde devlet adamı, kumandan ve bürokrat yetiştiren köklü saray okulunun adı nedir?",
+    "options": [
+      "Enderun Mektebi",
+      "Rüştiye",
+      "Medrese",
+      "Darülfünun"
+    ],
+    "answer": 0,
+    "style": "classic"
+  },
+  {
+    "category": "Tarih",
+    "question": "Bursa'da Yıldırım Bayezid tarafından Niğbolu Zaferi'nin şükranı olarak 20 kubbeli inşa ettirilen ulu mabet hangisidir?",
+    "options": [
+      "Bursa Ulu Camii",
+      "Yeşil Cami",
+      "Muradiye Camii",
+      "Emir Sultan Camii"
+    ],
+    "answer": 0,
+    "style": "classic"
+  },
+  {
+    "category": "Tarih",
+    "question": "Osmanlı Devleti'nde sadrazamların ve Divan-ı Hümayun üyelerinin devlet işlerini yürüttüğü Bab-ı Ali tabiri ne anlama gelir?",
+    "options": [
+      "Yüce Kapı",
+      "Saray Kapısı",
+      "Divan Kapısı",
+      "Hazine Kapısı"
+    ],
+    "answer": 0,
+    "style": "classic"
+  },
+  {
+    "category": "Tarih",
+    "question": "Osmanlı'da ilk altın para hangi padişah döneminde bastırılmıştır?",
+    "options": [
+      "Fatih Sultan Mehmet",
+      "Orhan Gazi",
+      "Yavuz Sultan Selim",
+      "Kanuni Sultan Süleyman"
+    ],
+    "answer": 0,
+    "style": "classic"
+  },
+  {
+    "category": "Tarih",
+    "question": "Osmanlı Devleti'nde ilk gümüş akçe hangi padişah zamanında darp edilmiştir?",
+    "options": [
+      "Orhan Gazi",
+      "Osman Gazi",
+      "I. Murad",
+      "I. Bayezid"
+    ],
+    "answer": 0,
+    "style": "classic"
+  },
+  {
+    "category": "Tarih",
+    "question": "1402 Ankara Savaşı'nda Yıldırım Bayezid ile karşılaşarak Osmanlı'yı 11 yıllık Fetret Devri'ne sokan büyük fatih kimdir?",
+    "options": [
+      "Emir Timur",
+      "Cengiz Han",
+      "Hülagü Han",
+      "Babür Şah"
+    ],
+    "answer": 0,
+    "style": "classic"
+  },
+  {
+    "category": "Tarih",
+    "question": "Hindistan'da Babür İmparatorluğu'nu kuran ve 'Babürname' adlı hatıratıyla ünlü Türk hükümdarı kimdir?",
+    "options": [
+      "Babür Şah",
+      "Ekber Şah",
+      "Şah Cihan",
+      "Cihangir Şah"
+    ],
+    "answer": 0,
+    "style": "classic"
+  },
+  {
+    "category": "Tarih",
+    "question": "Eşi Mümtaz Mahal için Hindistan'ın Agra şehrinde Tac Mahal'i yaptıran Babür hükümdarı kimdir?",
+    "options": [
+      "Şah Cihan",
+      "Ekber Şah",
+      "Babür Şah",
+      "Evrengzib"
+    ],
+    "answer": 0,
+    "style": "classic"
+  },
+  {
+    "category": "Tarih",
+    "question": "Kurtuluş Savaşı'nda TBMM ile Ermenistan arasında imzalanan ve TBMM'nin uluslararası ilk siyasi antlaşması olan metin hangisidir?",
+    "options": [
+      "Gümrü Antlaşması",
+      "Moskova Antlaşması",
+      "Kars Antlaşması",
+      "Ankara Antlaşması"
+    ],
+    "answer": 0,
+    "style": "classic"
+  },
+  {
+    "category": "Tarih",
+    "question": "Türkiye'nin doğu sınırını kesin ve nihai olarak çizen 1921 tarihli antlaşma hangisidir?",
+    "options": [
+      "Kars Antlaşması",
+      "Gümrü Antlaşması",
+      "Moskova Antlaşması",
+      "Lozan Antlaşması"
+    ],
+    "answer": 0,
+    "style": "classic"
+  },
+  {
+    "category": "Tarih",
+    "question": "Milli Mücadele'de Mustafa Kemal Paşa'nın 'Siz orada yalnız düşmanı değil, milletin makûs talihini de yendiniz' telgrafını çektiği zafer hangisidir?",
+    "options": [
+      "II. İnönü Zaferi",
+      "I. İnönü Zaferi",
+      "Sakarya Zaferi",
+      "Büyük Taarruz"
+    ],
+    "answer": 0,
+    "style": "classic"
+  },
+  {
+    "category": "Tarih",
+    "question": "Kurtuluş Savaşı'nda Batı Cephesi Komutanlığı karargahı olarak kullanılan ve tarihi tren istasyonuyla bilinen Konya ilçesi hangisidir?",
+    "options": [
+      "Akşehir",
+      "Ereğli",
+      "Beyşehir",
+      "Seydişehir"
+    ],
+    "answer": 0,
+    "style": "classic"
+  },
+  {
+    "category": "Tarih",
+    "question": "Türkiye Cumhuriyeti'nde Latin esaslı yeni Türk harflerinin kabul edildiği tarihi yıl hangisidir?",
+    "options": [
+      "1928",
+      "1923",
+      "1926",
+      "1934"
+    ],
+    "answer": 0,
+    "style": "classic"
+  },
+  {
+    "category": "Tarih",
+    "question": "Türkiye Cumhuriyeti'nde kadınlara belediye seçimlerinde oy kullanma hakkı hangi yıl tanınmıştır?",
+    "options": [
+      "1930",
+      "1934",
+      "1926",
+      "1923"
+    ],
+    "answer": 0,
+    "style": "classic"
+  },
+  {
+    "category": "Tarih",
+    "question": "Atatürk'ün isteğiyle kurulan ve Türk tarihinin köklerini bilimsel olarak araştıran Türk Tarih Kurumu kaç yılında kurulmuştur?",
+    "options": [
+      "1931",
+      "1923",
+      "1938",
+      "1945"
+    ],
+    "answer": 0,
+    "style": "classic"
+  },
+  {
+    "category": "Tarih",
+    "question": "Türkçenin özleştirilmesi ve zenginleştirilmesi amacıyla 1932 yılında kurulan kurum hangisidir?",
+    "options": [
+      "Türk Dil Kurumu",
+      "Türk Ocağı",
+      "Halkevi",
+      "Tercüme Odası"
+    ],
+    "answer": 0,
+    "style": "classic"
+  },
+  {
+    "category": "Tarih",
+    "question": "Atatürk döneminde Ankara'da kurulan Dil ve Tarih-Coğrafya Fakültesi hangi yıl açılmıştır?",
+    "options": [
+      "1935",
+      "1925",
+      "1940",
+      "1950"
+    ],
+    "answer": 0,
+    "style": "classic"
+  },
+  {
+    "category": "Tarih",
+    "question": "1937 yılında Türkiye, İran, Irak ve Afganistan arasında kurulan bölgesel barış paktı hangisidir?",
+    "options": [
+      "Sadabat Paktı",
+      "Balkan Antantı",
+      "Bağdat Paktı",
+      "Varşova Paktı"
+    ],
+    "answer": 0,
+    "style": "classic"
+  },
+  {
+    "category": "Tarih",
+    "question": "1934 yılında Türkiye, Yunanistan, Yugoslavya ve Romanya arasında Batı sınırlarını korumak için imzalanan antlaşma hangisidir?",
+    "options": [
+      "Balkan Antantı",
+      "Sadabat Paktı",
+      "Küçük Antant",
+      "Akdeniz Paktı"
+    ],
+    "answer": 0,
+    "style": "classic"
+  },
+  {
+    "category": "Tarih",
+    "question": "Dünya tarihinde filleriyle Alpleri aşarak Roma kapılarına dayanan Kartacalı efsanevi komutan kimdir?",
+    "options": [
+      "Hannibal Barca",
+      "Scipio",
+      "Spartaküs",
+      "Büyük İskender"
+    ],
+    "answer": 0,
+    "style": "classic"
+  },
+  {
+    "category": "Tarih",
+    "question": "Makedonya Krallığı'ndan Hindistan sınırlarına kadar uzanan devasa bir imparatorluk kuran ve Aristo'nun öğrencisi olan fatih kimdir?",
+    "options": [
+      "Büyük İskender",
+      "II. Filip",
+      "Sezar",
+      "Perikles"
+    ],
+    "answer": 0,
+    "style": "classic"
+  },
+  {
+    "category": "Tarih",
+    "question": "Roma Cumhuriyeti'nde kölelerin ve gladyatörlerin isyanına önderlik eden efsanevi gladyatör kimdir?",
+    "options": [
+      "Spartaküs",
+      "Crixus",
+      "Gannicus",
+      "Maximus"
+    ],
+    "answer": 0,
+    "style": "classic"
+  },
+  {
+    "category": "Tarih",
+    "question": "Fransa'da Yüzyıl Savaşları sırasında Orleans kuşatmasını kırarak halkına zafer getiren ve milli kahraman sayılan genç kadın kimdir?",
+    "options": [
+      "Jeanne d'Arc",
+      "Marie Antoinette",
+      "Madam Roland",
+      "Eleanor"
+    ],
+    "answer": 0,
+    "style": "classic"
+  },
+  {
+    "category": "Tarih",
+    "question": "1815 yılında Napolyon Bonapart'ın kesin yenilgisiyle sonuçlanan ve sürgüne gönderilmesine yol açan savaş hangisidir?",
+    "options": [
+      "Waterloo Savaşı",
+      "Austerlitz Savaşı",
+      "Borodino Savaşı",
+      "Trafalgar Savaşı"
+    ],
+    "answer": 0,
+    "style": "classic"
+  },
+  {
+    "category": "Tarih",
+    "question": "Amerika Birleşik Devletleri'nin kurucu babası ve ilk başkanı kimdir?",
+    "options": [
+      "George Washington",
+      "Thomas Jefferson",
+      "Benjamin Franklin",
+      "John Adams"
+    ],
+    "answer": 0,
+    "style": "classic"
+  },
+  {
+    "category": "Tarih",
+    "question": "ABD'de iç savaşı sona erdirerek köleliği resmen kaldıran Amerikan başkanı kimdir?",
+    "options": [
+      "Abraham Lincoln",
+      "Ulysses S. Grant",
+      "Theodore Roosevelt",
+      "Woodrow Wilson"
+    ],
+    "answer": 0,
+    "style": "classic"
+  },
+  {
+    "category": "Tarih",
+    "question": "II. Dünya Savaşı sırasında İngiltere başbakanı olarak 'Size kandan, terden ve gözyaşından başka vaat edecek bir şeyim yok' diyen lider kimdir?",
+    "options": [
+      "Winston Churchill",
+      "Neville Chamberlain",
+      "Clement Attlee",
+      "Anthony Eden"
+    ],
+    "answer": 0,
+    "style": "classic"
+  },
+  {
+    "category": "Tarih",
+    "question": "II. Dünya Savaşı'nda Özgür Fransa hareketine önderlik eden ve daha sonra cumhurbaşkanı olan general kimdir?",
+    "options": [
+      "Charles de Gaulle",
+      "Philippe Pétain",
+      "Jean de Lattre",
+      "Henri Giraud"
+    ],
+    "answer": 0,
+    "style": "classic"
+  },
+  {
+    "category": "Tarih",
+    "question": "Çin Seddi'nin yapımına hangi hanedanlık döneminde Türk (Hun) akınlarını durdurmak amacıyla başlanmıştır?",
+    "options": [
+      "Qin Hanedanlığı",
+      "Han Hanedanlığı",
+      "Tang Hanedanlığı",
+      "Ming Hanedanlığı"
+    ],
+    "answer": 0,
+    "style": "classic"
+  },
+  {
+    "category": "Tarih",
+    "question": "İtalya'da doğan ve 'Güneş batmayan imparatorluk' teriminin kullanıldığı dönemde İspanya ve Kutsal Roma İmparatorluğu'nu yöneten hükümdar kimdir?",
+    "options": [
+      "V. Karl",
+      "II. Felipe",
+      "I. Franz",
+      "VIII. Henry"
+    ],
+    "answer": 0,
+    "style": "classic"
+  },
+  {
+    "category": "Tarih",
+    "question": "1962 yılında ABD ile Sovyetler Birliği'ni nükleer savaşın eşiğine getiren tarihi kriz hangisidir?",
+    "options": [
+      "Küba Füze Krizi",
+      "Süveyş Krizi",
+      "Berlin Krizi",
+      "Kore Krizi"
+    ],
+    "answer": 0,
+    "style": "classic"
+  },
+  {
+    "category": "Tarih",
+    "question": "1950-1953 yılları arasında yaşanan ve Türk Tugayı'nın Kunuri Muharebesi'nde kahramanlık gösterdiği savaş hangisidir?",
+    "options": [
+      "Kore Savaşı",
+      "Vietnam Savaşı",
+      "Körfez Savaşı",
+      "Afganistan Savaşı"
+    ],
+    "answer": 0,
+    "style": "classic"
+  },
+  {
+    "category": "Tarih",
+    "question": "Osmanlı Devleti'nde ilk nüfus sayımı hangi padişah döneminde (askeri ve vergi amaçlı) yapılmıştır?",
+    "options": [
+      "II. Mahmud",
+      "Abdülmecid",
+      "III. Selim",
+      "II. Abdülhamid"
+    ],
+    "answer": 0,
+    "style": "classic"
+  },
+  {
+    "category": "Tarih",
+    "question": "Osmanlı Devleti'nde posta teşkilatı (Postahane-i Amire) hangi yıl kurulmuştur?",
+    "options": [
+      "1840",
+      "1808",
+      "1876",
+      "1908"
+    ],
+    "answer": 0,
+    "style": "classic"
+  },
+  {
+    "category": "Tarih",
+    "question": "Türkiye Cumhuriyeti'nin ilk kadın başbakanı kimdir?",
+    "options": [
+      "Tansu Çiller",
+      "Meral Akşener",
+      "Türkan Akyol",
+      "Gülten Kazgan"
+    ],
+    "answer": 0,
+    "style": "classic"
+  },
+  {
+    "category": "Tarih",
+    "question": "Türkiye Cumhuriyeti'nin ilk kadın valisi kimdir?",
+    "options": [
+      "Lale Aytaman",
+      "Tansu Çiller",
+      "Ayşe Işıl Karakaş",
+      "Behice Boran"
+    ],
+    "answer": 0,
+    "style": "classic"
+  },
+  {
+    "category": "Genel Kültür",
+    "question": "Dünyanın en yüksek dağı olan Everest Dağı hangi sıradağlar üzerinde yer alır?",
+    "options": [
+      "Himalayalar",
+      "Alpler",
+      "And Dağları",
+      "Kayalık Dağlar"
+    ],
+    "answer": 0,
+    "style": "classic"
+  },
+  {
+    "category": "Genel Kültür",
+    "question": "Türkiye'nin yüzölçümü bakımından en büyük gölü hangisidir?",
+    "options": [
+      "Van Gölü",
+      "Tuz Gölü",
+      "Beyşehir Gölü",
+      "İznik Gölü"
+    ],
+    "answer": 0,
+    "style": "classic"
+  },
+  {
+    "category": "Genel Kültür",
+    "question": "Dünyanın en uzun nehri kabul edilen Nil Nehri hangi kıtadadır?",
+    "options": [
+      "Afrika",
+      "Asya",
+      "Güney Amerika",
+      "Avrupa"
+    ],
+    "answer": 0,
+    "style": "classic"
+  },
+  {
+    "category": "Genel Kültür",
+    "question": "Avustralya'nın başkenti neresidir?",
+    "options": [
+      "Kanberra",
+      "Sidney",
+      "Melburn",
+      "Brisbane"
+    ],
+    "answer": 0,
+    "style": "classic"
+  },
+  {
+    "category": "Genel Kültür",
+    "question": "Kanada'nın başkenti neresidir?",
+    "options": [
+      "Ottava",
+      "Toronto",
+      "Montreal",
+      "Vancouver"
+    ],
+    "answer": 0,
+    "style": "classic"
+  },
+  {
+    "category": "Genel Kültür",
+    "question": "Brezilya'nın başkenti neresidir?",
+    "options": [
+      "Brasilia",
+      "Rio de Janeiro",
+      "Sao Paulo",
+      "Salvador"
+    ],
+    "answer": 0,
+    "style": "classic"
+  },
+  {
+    "category": "Genel Kültür",
+    "question": "Dünyanın en derin noktası olan Mariana Çukuru hangi okyanustadır?",
+    "options": [
+      "Büyük Okyanus",
+      "Atlas Okyanusu",
+      "Hint Okyanusu",
+      "Kuzey Buz Denizi"
+    ],
+    "answer": 0,
+    "style": "classic"
+  },
+  {
+    "category": "Genel Kültür",
+    "question": "Dünyanın en büyük adası hangisidir?",
+    "options": [
+      "Grönland",
+      "Madagaskar",
+      "Borneo",
+      "Yeni Gine"
+    ],
+    "answer": 0,
+    "style": "classic"
+  },
+  {
+    "category": "Genel Kültür",
+    "question": "İsviçre'nin fiili başkenti olan şehir hangisidir?",
+    "options": [
+      "Bern",
+      "Cenevre",
+      "Zürih",
+      "Basel"
+    ],
+    "answer": 0,
+    "style": "classic"
+  },
+  {
+    "category": "Genel Kültür",
+    "question": "Türkiye'nin en uzun akarsuyu olan ve tamamen sınırlarımız içinde denize dökülen nehir hangisidir?",
+    "options": [
+      "Kızılırmak",
+      "Yeşilırmak",
+      "Fırat",
+      "Dicle"
+    ],
+    "answer": 0,
+    "style": "classic"
+  },
+  {
+    "category": "Genel Kültür",
+    "question": "Kuzey Kıbrıs Türk Cumhuriyeti'nin para birimi nedir?",
+    "options": [
+      "Türk Lirası",
+      "Euro",
+      "Sterlin",
+      "Dolar"
+    ],
+    "answer": 0,
+    "style": "classic"
+  },
+  {
+    "category": "Genel Kültür",
+    "question": "Tarihi İpek Yolu'nun başlangıç noktası hangi ülkedir?",
+    "options": [
+      "Çin",
+      "Hindistan",
+      "İran",
+      "Özbekistan"
+    ],
+    "answer": 0,
+    "style": "classic"
+  },
+  {
+    "category": "Genel Kültür",
+    "question": "Hangi gezegen Güneş'e en yakındır?",
+    "options": [
+      "Merkür",
+      "Venüs",
+      "Dünya",
+      "Mars"
+    ],
+    "answer": 0,
+    "style": "classic"
+  },
+  {
+    "category": "Genel Kültür",
+    "question": "Sfenks ve Keops Piramidi hangi şehrin yakınlarındadır?",
+    "options": [
+      "Kahire",
+      "İskenderiye",
+      "Luksor",
+      "Asvan"
+    ],
+    "answer": 0,
+    "style": "classic"
+  },
+  {
+    "category": "Genel Kültür",
+    "question": "Nemrut Dağı heykelleri hangi ilimizin sınırları içerisindedir?",
+    "options": [
+      "Adıyaman",
+      "Malatya",
+      "Şanlıurfa",
+      "Gaziantep"
+    ],
+    "answer": 0,
+    "style": "classic"
+  },
+  {
+    "category": "Genel Kültür",
+    "question": "Dünyanın bilinen en eski tapınak kompleksi Göbeklitepe hangi ilimizdedir?",
+    "options": [
+      "Şanlıurfa",
+      "Mardin",
+      "Diyarbakır",
+      "Batman"
+    ],
+    "answer": 0,
+    "style": "classic"
+  },
+  {
+    "category": "Genel Kültür",
+    "question": "Travertenleri ve antik havuzuyla ünlü Pamukkale hangi ilimizdedir?",
+    "options": [
+      "Denizli",
+      "Aydın",
+      "Muğla",
+      "Afyonkarahisar"
+    ],
+    "answer": 0,
+    "style": "classic"
+  },
+  {
+    "category": "Genel Kültür",
+    "question": "Peri bacaları ile ünlü Kapadokya bölgesi ağırlıklı olarak hangi ilimizdedir?",
+    "options": [
+      "Nevşehir",
+      "Kayseri",
+      "Aksaray",
+      "Kırşehir"
+    ],
+    "answer": 0,
+    "style": "classic"
+  },
+  {
+    "category": "Genel Kültür",
+    "question": "Sümela Manastırı hangi Karadeniz ilimizdedir?",
+    "options": [
+      "Trabzon",
+      "Rize",
+      "Artvin",
+      "Giresun"
+    ],
+    "answer": 0,
+    "style": "classic"
+  },
+  {
+    "category": "Genel Kültür",
+    "question": "İshak Paşa Sarayı hangi ilimizin Doğubayazıt ilçesindedir?",
+    "options": [
+      "Ağrı",
+      "Kars",
+      "Iğdır",
+      "Van"
+    ],
+    "answer": 0,
+    "style": "classic"
+  },
+  {
+    "category": "Genel Kültür",
+    "question": "Zeytinburnu açıklarında boğazın incisi olan Kız Kulesi hangi semte daha yakındır?",
+    "options": [
+      "Üsküdar",
+      "Beşiktaş",
+      "Kadıköy",
+      "Eminönü"
+    ],
+    "answer": 0,
+    "style": "classic"
+  },
+  {
+    "category": "Genel Kültür",
+    "question": "Dünyanın en tuzlu deniz veya göllerinden biri olan Lut Gölü hangi iki ülke arasındadır?",
+    "options": [
+      "İsrail ve Ürdün",
+      "Mısır ve Suudi Arabistan",
+      "İran ve Irak",
+      "Türkiye ve Suriye"
+    ],
+    "answer": 0,
+    "style": "classic"
+  },
+  {
+    "category": "Genel Kültür",
+    "question": "Akdeniz ile Kızıldeniz'i birbirine bağlayan insan yapımı su kanalı hangisidir?",
+    "options": [
+      "Süveyş Kanalı",
+      "Panama Kanalı",
+      "Korint Kanalı",
+      "Kiel Kanalı"
+    ],
+    "answer": 0,
+    "style": "classic"
+  },
+  {
+    "category": "Genel Kültür",
+    "question": "Atlas Okyanusu ile Büyük Okyanus'u bağlayan Orta Amerika kanalı hangisidir?",
+    "options": [
+      "Panama Kanalı",
+      "Süveyş Kanalı",
+      "Kiel Kanalı",
+      "Hürmüz Boğazı"
+    ],
+    "answer": 0,
+    "style": "classic"
+  },
+  {
+    "category": "Genel Kültür",
+    "question": "Avrupa ile Afrika kıtalarını ayıran ve Akdeniz'i Atlas Okyanusu'na bağlayan boğaz hangisidir?",
+    "options": [
+      "Cebelitarık Boğazı",
+      "Babülmendep Boğazı",
+      "Hürmüz Boğazı",
+      "Malakka Boğazı"
+    ],
+    "answer": 0,
+    "style": "classic"
+  },
+  {
+    "category": "Genel Kültür",
+    "question": "Dünya petrol taşımacılığının kalbi sayılan ve Basra Körfezi'ni Umman Denizi'ne bağlayan boğaz hangisidir?",
+    "options": [
+      "Hürmüz Boğazı",
+      "Malakka Boğazı",
+      "Cebelitarık Boğazı",
+      "Süveyş Kanalı"
+    ],
+    "answer": 0,
+    "style": "classic"
+  },
+  {
+    "category": "Genel Kültür",
+    "question": "Dünyanın en kalabalık ülkesi hangisidir?",
+    "options": [
+      "Hindistan",
+      "Çin",
+      "ABD",
+      "Endonezya"
+    ],
+    "answer": 0,
+    "style": "classic"
+  },
+  {
+    "category": "Genel Kültür",
+    "question": "Güney Amerika kıtasında resmi dili Portekizce olan tek ülke hangisidir?",
+    "options": [
+      "Brezilya",
+      "Arjantin",
+      "Şili",
+      "Kolombiya"
+    ],
+    "answer": 0,
+    "style": "classic"
+  },
+  {
+    "category": "Genel Kültür",
+    "question": "Dünyanın en kurak çölü kabul edilen Atacama Çölü hangi ülkededir?",
+    "options": [
+      "Şili",
+      "Mısır",
+      "Moğolistan",
+      "Avustralya"
+    ],
+    "answer": 0,
+    "style": "classic"
+  },
+  {
+    "category": "Genel Kültür",
+    "question": "Gökkuşağının en dış çemberinde hangi renk bulunur?",
+    "options": [
+      "Kırmızı",
+      "Mor",
+      "Sarı",
+      "Mavi"
+    ],
+    "answer": 0,
+    "style": "classic"
+  },
+  {
+    "category": "Genel Kültür",
+    "question": "Pusulada 'S' harfi hangi yönü gösterir?",
+    "options": [
+      "Güney",
+      "Kuzey",
+      "Doğu",
+      "Batı"
+    ],
+    "answer": 0,
+    "style": "classic"
+  },
+  {
+    "category": "Genel Kültür",
+    "question": "Pusulada 'W' harfi hangi yönü gösterir?",
+    "options": [
+      "Batı",
+      "Doğu",
+      "Kuzey",
+      "Güney"
+    ],
+    "answer": 0,
+    "style": "classic"
+  },
+  {
+    "category": "Genel Kültür",
+    "question": "Türkiye'nin kaç coğrafi bölgesi vardır?",
+    "options": [
+      "7",
+      "6",
+      "8",
+      "9"
+    ],
+    "answer": 0,
+    "style": "classic"
+  },
+  {
+    "category": "Genel Kültür",
+    "question": "Türkiye'nin en fazla yağış alan ili hangisidir?",
+    "options": [
+      "Rize",
+      "Trabzon",
+      "Artvin",
+      "Muğla"
+    ],
+    "answer": 0,
+    "style": "classic"
+  },
+  {
+    "category": "Genel Kültür",
+    "question": "Anadolu'yu Avrupa'ya bağlayan Çanakkale Boğazı üzerindeki 1915 Çanakkale Köprüsü hangi iki ilçe arasındadır?",
+    "options": [
+      "Gelibolu ve Lapseki",
+      "Eceabat ve Kilitbahir",
+      "Biga ve Çan",
+      "Ayvacık ve Ezine"
+    ],
+    "answer": 0,
+    "style": "classic"
+  },
+  {
+    "category": "Genel Kültür",
+    "question": "Güneş Sistemi'nde Güneş'e olan uzaklık sıralamasında Dünya kaçıncı gezegendir?",
+    "options": [
+      "3.",
+      "2.",
+      "4.",
+      "1."
+    ],
+    "answer": 0,
+    "style": "classic"
+  },
+  {
+    "category": "Genel Kültür",
+    "question": "Kahvesiyle ünlü Kolombiya hangi kıtadadır?",
+    "options": [
+      "Güney Amerika",
+      "Afrika",
+      "Kuzey Amerika",
+      "Asya"
+    ],
+    "answer": 0,
+    "style": "classic"
+  },
+  {
+    "category": "Genel Kültür",
+    "question": "Hollanda'nın resmi başkenti neresidir?",
+    "options": [
+      "Amsterdam",
+      "Lahey",
+      "Rotterdam",
+      "Utrecht"
+    ],
+    "answer": 0,
+    "style": "classic"
+  },
+  {
+    "category": "Genel Kültür",
+    "question": "İspanya'nın başkenti neresidir?",
+    "options": [
+      "Madrid",
+      "Barselona",
+      "Sevilla",
+      "Valensiya"
+    ],
+    "answer": 0,
+    "style": "classic"
+  },
+  {
+    "category": "Genel Kültür",
+    "question": "Almanya'nın başkenti neresidir?",
+    "options": [
+      "Berlin",
+      "Münih",
+      "Frankfurt",
+      "Hamburg"
+    ],
+    "answer": 0,
+    "style": "classic"
+  },
+  {
+    "category": "Genel Kültür",
+    "question": "İtalya'nın başkenti neresidir?",
+    "options": [
+      "Roma",
+      "Milano",
+      "Floransa",
+      "Venedik"
+    ],
+    "answer": 0,
+    "style": "classic"
+  },
+  {
+    "category": "Genel Kültür",
+    "question": "Avusturya'nın başkenti neresidir?",
+    "options": [
+      "Viyana",
+      "Salzburg",
+      "Graz",
+      "İnnsbruck"
+    ],
+    "answer": 0,
+    "style": "classic"
+  },
+  {
+    "category": "Genel Kültür",
+    "question": "Macaristan'ın başkenti neresidir?",
+    "options": [
+      "Budapeşte",
+      "Bükreş",
+      "Varşova",
+      "Prag"
+    ],
+    "answer": 0,
+    "style": "classic"
+  },
+  {
+    "category": "Genel Kültür",
+    "question": "Çekya'nın başkenti neresidir?",
+    "options": [
+      "Prag",
+      "Bratislava",
+      "Viyana",
+      "Krakow"
+    ],
+    "answer": 0,
+    "style": "classic"
+  },
+  {
+    "category": "Genel Kültür",
+    "question": "Polonya'nın başkenti neresidir?",
+    "options": [
+      "Varşova",
+      "Krakow",
+      "Gdansk",
+      "Wroclaw"
+    ],
+    "answer": 0,
+    "style": "classic"
+  },
+  {
+    "category": "Genel Kültür",
+    "question": "Norveç'in başkenti neresidir?",
+    "options": [
+      "Oslo",
+      "Bergen",
+      "Stavanger",
+      "Trondheim"
+    ],
+    "answer": 0,
+    "style": "classic"
+  },
+  {
+    "category": "Genel Kültür",
+    "question": "İsveç'in başkenti neresidir?",
+    "options": [
+      "Stockholm",
+      "Göteborg",
+      "Malmö",
+      "Uppsala"
+    ],
+    "answer": 0,
+    "style": "classic"
+  },
+  {
+    "category": "Genel Kültür",
+    "question": "Finlandiya'nın başkenti neresidir?",
+    "options": [
+      "Helsinki",
+      "Tampere",
+      "Turku",
+      "Espoo"
+    ],
+    "answer": 0,
+    "style": "classic"
+  },
+  {
+    "category": "Genel Kültür",
+    "question": "Danimarka'nın başkenti neresidir?",
+    "options": [
+      "Kopenhag",
+      "Aarhus",
+      "Odense",
+      "Aalborg"
+    ],
+    "answer": 0,
+    "style": "classic"
+  },
+  {
+    "category": "Genel Kültür",
+    "question": "Yunanistan'ın başkenti neresidir?",
+    "options": [
+      "Atina",
+      "Selanik",
+      "Patras",
+      "Kandiye"
+    ],
+    "answer": 0,
+    "style": "classic"
+  },
+  {
+    "category": "Genel Kültür",
+    "question": "Mısır'ın başkenti neresidir?",
+    "options": [
+      "Kahire",
+      "İskenderiye",
+      "Gize",
+      "Port Said"
+    ],
+    "answer": 0,
+    "style": "classic"
+  },
+  {
+    "category": "Genel Kültür",
+    "question": "Azerbaycan'ın başkenti neresidir?",
+    "options": [
+      "Bakü",
+      "Gence",
+      "Sumgayıt",
+      "Şuşa"
+    ],
+    "answer": 0,
+    "style": "classic"
+  },
+  {
+    "category": "Genel Kültür",
+    "question": "Kazakistan'ın başkenti neresidir?",
+    "options": [
+      "Astana",
+      "Almatı",
+      "Çimkent",
+      "Aktau"
+    ],
+    "answer": 0,
+    "style": "classic"
+  },
+  {
+    "category": "Genel Kültür",
+    "question": "Özbekistan'ın başkenti neresidir?",
+    "options": [
+      "Taşkent",
+      "Semerkant",
+      "Buhara",
+      "Hiva"
+    ],
+    "answer": 0,
+    "style": "classic"
+  },
+  {
+    "category": "Genel Kültür",
+    "question": "Türkmenistan'ın başkenti neresidir?",
+    "options": [
+      "Aşkabat",
+      "Türkmenbaşı",
+      "Merv",
+      "Daşoğuz"
+    ],
+    "answer": 0,
+    "style": "classic"
+  },
+  {
+    "category": "Genel Kültür",
+    "question": "Kırgızistan'ın başkenti neresidir?",
+    "options": [
+      "Bişkek",
+      "Oş",
+      "Celalabad",
+      "Karakol"
+    ],
+    "answer": 0,
+    "style": "classic"
+  },
+  {
+    "category": "Genel Kültür",
+    "question": "Güney Kore'nin başkenti neresidir?",
+    "options": [
+      "Seul",
+      "Busan",
+      "Incheon",
+      "Daegu"
+    ],
+    "answer": 0,
+    "style": "classic"
+  },
+  {
+    "category": "Genel Kültür",
+    "question": "Türkiye'nin ilk milli parkı neresidir?",
+    "options": [
+      "Yozgat Çamlığı",
+      "Kızılcahamam Soğuksu",
+      "Uludağ",
+      "Yedigöller"
+    ],
+    "answer": 0,
+    "style": "classic"
+  },
+  {
+    "category": "Genel Kültür",
+    "question": "Bolu ilimizde bulunan ünlü göller topluluğunun adı nedir?",
+    "options": [
+      "Yedigöller",
+      "Abant",
+      "Gölcük",
+      "Uzungöl"
+    ],
+    "answer": 0,
+    "style": "classic"
+  },
+  {
+    "category": "Genel Kültür",
+    "question": "Dünyanın en büyük tatlı su gölü yüzölçümü olarak hangisidir?",
+    "options": [
+      "Superior Gölü",
+      "Victoria Gölü",
+      "Baykal Gölü",
+      "Huron Gölü"
+    ],
+    "answer": 0,
+    "style": "classic"
+  },
+  {
+    "category": "Genel Kültür",
+    "question": "Dünyanın en derin tatlı su gölü hangisidir?",
+    "options": [
+      "Baykal Gölü",
+      "Tanganika Gölü",
+      "Vostok Gölü",
+      "Titicaca Gölü"
+    ],
+    "answer": 0,
+    "style": "classic"
+  },
+  {
+    "category": "Genel Kültür",
+    "question": "Avrupa'nın en uzun nehri hangisidir?",
+    "options": [
+      "Volga Nehri",
+      "Tuna Nehri",
+      "Ren Nehri",
+      "Elbe Nehri"
+    ],
+    "answer": 0,
+    "style": "classic"
+  },
+  {
+    "category": "Genel Kültür",
+    "question": "Karadeniz'e kıyısı olan kaç ülke vardır?",
+    "options": [
+      "6",
+      "5",
+      "7",
+      "8"
+    ],
+    "answer": 0,
+    "style": "classic"
+  },
+  {
+    "category": "Genel Kültür",
+    "question": "Türkiye'nin en güneydeki uç noktası hangi ilimizdedir?",
+    "options": [
+      "Hatay",
+      "Antalya",
+      "Mersin",
+      "Kilis"
+    ],
+    "answer": 0,
+    "style": "classic"
+  },
+  {
+    "category": "Genel Kültür",
+    "question": "Türkiye'nin en kuzeydeki uç noktası İnceburun hangi ilimizdedir?",
+    "options": [
+      "Sinop",
+      "Kastamonu",
+      "Kırklareli",
+      "Bartın"
+    ],
+    "answer": 0,
+    "style": "classic"
+  },
+  {
+    "category": "Genel Kültür",
+    "question": "UNESCO Dünya Mirası olan Safranbolu Evleri hangi ilimizdedir?",
+    "options": [
+      "Karabük",
+      "Kastamonu",
+      "Bolu",
+      "Zonguldak"
+    ],
+    "answer": 0,
+    "style": "classic"
+  },
+  {
+    "category": "Genel Kültür",
+    "question": "Büyük İskender'in kördüğümü kestiği antik kent Gordion hangi ilimizin sınırları içindedir?",
+    "options": [
+      "Ankara",
+      "Eskişehir",
+      "Afyonkarahisar",
+      "Konya"
+    ],
+    "answer": 0,
+    "style": "classic"
+  },
+  {
+    "category": "Bilim & Teknoloji",
+    "question": "Güneş Sistemi'ndeki en sıcak gezegen hangisidir?",
+    "options": [
+      "Venüs",
+      "Merkür",
+      "Mars",
+      "Jüpiter"
+    ],
+    "answer": 0,
+    "style": "classic"
+  },
+  {
+    "category": "Bilim & Teknoloji",
+    "question": "Göz alıcı dev halkalarıyla tanınan gaz devi gezegen hangisidir?",
+    "options": [
+      "Satürn",
+      "Jüpiter",
+      "Uranüs",
+      "Neptün"
+    ],
+    "answer": 0,
+    "style": "classic"
+  },
+  {
+    "category": "Bilim & Teknoloji",
+    "question": "Yüzeyindeki demiroksit tozu nedeniyle Kızıl Gezegen olarak bilinen gezegen hangisidir?",
+    "options": [
+      "Mars",
+      "Venüs",
+      "Merkür",
+      "Jüpiter"
+    ],
+    "answer": 0,
+    "style": "classic"
+  },
+  {
+    "category": "Bilim & Teknoloji",
+    "question": "Güneş Sistemi'nde yana yatık olarak dönen ve buz devi olarak adlandırılan gezegen hangisidir?",
+    "options": [
+      "Uranüs",
+      "Neptün",
+      "Satürn",
+      "Mars"
+    ],
+    "answer": 0,
+    "style": "classic"
+  },
+  {
+    "category": "Bilim & Teknoloji",
+    "question": "2006 yılında cüce gezegen sınıfına dahil edilen eski 9. gezegen hangisidir?",
+    "options": [
+      "Plüton",
+      "Ceres",
+      "Eris",
+      "Sedna"
+    ],
+    "answer": 0,
+    "style": "classic"
+  },
+  {
+    "category": "Bilim & Teknoloji",
+    "question": "Işığın boşluktaki hızı yaklaşık olarak saniyede kaç kilometredir?",
+    "options": [
+      "300 bin km/s",
+      "150 bin km/s",
+      "500 bin km/s",
+      "1 milyon km/s"
+    ],
+    "answer": 0,
+    "style": "classic"
+  },
+  {
+    "category": "Bilim & Teknoloji",
+    "question": "Soluduğumuz havadaki oksijenin kimyasal sembolü nedir?",
+    "options": [
+      "O",
+      "N",
+      "H",
+      "C"
+    ],
+    "answer": 0,
+    "style": "classic"
+  },
+  {
+    "category": "Bilim & Teknoloji",
+    "question": "Dünya atmosferinde yüzde 78 oranıyla en fazla bulunan gaz hangisidir?",
+    "options": [
+      "Azot",
+      "Oksijen",
+      "Karbondioksit",
+      "Argon"
+    ],
+    "answer": 0,
+    "style": "classic"
+  },
+  {
+    "category": "Bilim & Teknoloji",
+    "question": "İnsan vücudunun en büyük organı genel olarak nedir?",
+    "options": [
+      "Deri",
+      "Karaciğer",
+      "Beyin",
+      "İnce Bağırsak"
+    ],
+    "answer": 0,
+    "style": "classic"
+  },
+  {
+    "category": "Bilim & Teknoloji",
+    "question": "Yetişkin bir insan vücudunda normalde kaç kemik bulunur?",
+    "options": [
+      "206",
+      "180",
+      "250",
+      "300"
+    ],
+    "answer": 0,
+    "style": "classic"
+  },
+  {
+    "category": "Bilim & Teknoloji",
+    "question": "İnsan vücudundaki en küçük kemik olan üzengi kemiği nerede bulunur?",
+    "options": [
+      "Kulakta",
+      "Burunda",
+      "Parmakta",
+      "Ayakta"
+    ],
+    "answer": 0,
+    "style": "classic"
+  },
+  {
+    "category": "Bilim & Teknoloji",
+    "question": "İnsan vücudundaki en uzun ve en güçlü kemik olan uyluk kemiği nerede bulunur?",
+    "options": [
+      "Bacakta",
+      "Kolda",
+      "Omurgada",
+      "Göğüste"
+    ],
+    "answer": 0,
+    "style": "classic"
+  },
+  {
+    "category": "Bilim & Teknoloji",
+    "question": "Bitkilerin güneş ışığını kullanarak besin ve oksijen üretmesi olayına ne ad verilir?",
+    "options": [
+      "Fotosentez",
+      "Kemosentez",
+      "Fermantasyon",
+      "Solunum"
+    ],
+    "answer": 0,
+    "style": "classic"
+  },
+  {
+    "category": "Bilim & Teknoloji",
+    "question": "Bitkilere yeşil rengini veren ve fotosentezi sağlayan pigment nedir?",
+    "options": [
+      "Klorofil",
+      "Karoten",
+      "Melanin",
+      "Hemoglobin"
+    ],
+    "answer": 0,
+    "style": "classic"
+  },
+  {
+    "category": "Bilim & Teknoloji",
+    "question": "Kanda oksijen taşıyan kırmızı kan hücrelerine ne ad verilir?",
+    "options": [
+      "Alyuvar",
+      "Akyuvar",
+      "Trombosit",
+      "Plazma"
+    ],
+    "answer": 0,
+    "style": "classic"
+  },
+  {
+    "category": "Bilim & Teknoloji",
+    "question": "Vücudumuzu mikroplara ve hastalıklara karşı koruyan beyaz kan hücrelerine ne denir?",
+    "options": [
+      "Akyuvar",
+      "Alyuvar",
+      "Trombosit",
+      "Hemoglobin"
+    ],
+    "answer": 0,
+    "style": "classic"
+  },
+  {
+    "category": "Bilim & Teknoloji",
+    "question": "Kanın pıhtılaşmasını sağlayarak kanamayı durduran kan pulcuklarına ne ad verilir?",
+    "options": [
+      "Trombosit",
+      "Alyuvar",
+      "Akyuvar",
+      "Lenfosit"
+    ],
+    "answer": 0,
+    "style": "classic"
+  },
+  {
+    "category": "Bilim & Teknoloji",
+    "question": "Periyodik tablodaki ilk ve en hafif element hangisidir?",
+    "options": [
+      "Hidrojen",
+      "Helyum",
+      "Lityum",
+      "Karbon"
+    ],
+    "answer": 0,
+    "style": "classic"
+  },
+  {
+    "category": "Bilim & Teknoloji",
+    "question": "Uçan balonların doldurulmasında kullanılan hafif ve yanıcı olmayan soy gaz hangisidir?",
+    "options": [
+      "Helyum",
+      "Hidrojen",
+      "Azot",
+      "Neon"
+    ],
+    "answer": 0,
+    "style": "classic"
+  },
+  {
+    "category": "Bilim & Teknoloji",
+    "question": "Doğada bilinen en sert doğal mineral hangisidir?",
+    "options": [
+      "Elmas",
+      "Kuvars",
+      "Yakut",
+      "Safir"
+    ],
+    "answer": 0,
+    "style": "classic"
+  },
+  {
+    "category": "Bilim & Teknoloji",
+    "question": "Kuduz aşısını ve sütün bozulmasını önleyen pastörizasyon yöntemini bulan Fransız bilim insanı kimdir?",
+    "options": [
+      "Louis Pasteur",
+      "Robert Koch",
+      "Alexander Fleming",
+      "Edward Jenner"
+    ],
+    "answer": 0,
+    "style": "classic"
+  },
+  {
+    "category": "Bilim & Teknoloji",
+    "question": "1928 yılında küf mantarından ilk antibiyotik olan penisilini keşfeden bilim insanı kimdir?",
+    "options": [
+      "Alexander Fleming",
+      "Louis Pasteur",
+      "Joseph Lister",
+      "Robert Hooke"
+    ],
+    "answer": 0,
+    "style": "classic"
+  },
+  {
+    "category": "Bilim & Teknoloji",
+    "question": "Yerçekimi kanununu ve hareket yasalarını formüle eden İngiliz fizikçi kimdir?",
+    "options": [
+      "Isaac Newton",
+      "Albert Einstein",
+      "Galileo Galilei",
+      "Michael Faraday"
+    ],
+    "answer": 0,
+    "style": "classic"
+  },
+  {
+    "category": "Bilim & Teknoloji",
+    "question": "İzafiyet Teorisi ile E=mc² formülünü geliştiren Nobel Fizik Ödüllü dahi kimdir?",
+    "options": [
+      "Albert Einstein",
+      "Niels Bohr",
+      "Max Planck",
+      "Erwin Schrödinger"
+    ],
+    "answer": 0,
+    "style": "classic"
+  },
+  {
+    "category": "Bilim & Teknoloji",
+    "question": "Radyoaktivite alanındaki çalışmalarıyla iki farklı bilim dalında Nobel Ödülü alan ilk kadın bilim insanı kimdir?",
+    "options": [
+      "Marie Curie",
+      "Rosalind Franklin",
+      "Lise Meitner",
+      "Ada Lovelace"
+    ],
+    "answer": 0,
+    "style": "classic"
+  },
+  {
+    "category": "Bilim & Teknoloji",
+    "question": "Tarihte ilk bilgisayar programcısı kabul edilen İngiliz kadın matematikçi kimdir?",
+    "options": [
+      "Ada Lovelace",
+      "Grace Hopper",
+      "Margaret Hamilton",
+      "Joan Clarke"
+    ],
+    "answer": 0,
+    "style": "classic"
+  },
+  {
+    "category": "Bilim & Teknoloji",
+    "question": "Modern bilgisayarların atası sayılan mekanik hesap makinesi Fark Motoru'nu tasarlayan mucit kimdir?",
+    "options": [
+      "Charles Babbage",
+      "Alan Turing",
+      "John von Neumann",
+      "Blaise Pascal"
+    ],
+    "answer": 0,
+    "style": "classic"
+  },
+  {
+    "category": "Bilim & Teknoloji",
+    "question": "II. Dünya Savaşı'nda Almanların Enigma şifresini kıran ve yapay zekanın babası sayılan dahi kimdir?",
+    "options": [
+      "Alan Turing",
+      "John Nash",
+      "Claude Shannon",
+      "Norbert Wiener"
+    ],
+    "answer": 0,
+    "style": "classic"
+  },
+  {
+    "category": "Bilim & Teknoloji",
+    "question": "1989 yılında CERN'de World Wide Web (WWW) sistemini icat eden İngiliz mühendis kimdir?",
+    "options": [
+      "Tim Berners-Lee",
+      "Vint Cerf",
+      "Marc Andreessen",
+      "Linus Torvalds"
+    ],
+    "answer": 0,
+    "style": "classic"
+  },
+  {
+    "category": "Bilim & Teknoloji",
+    "question": "Açık kaynak kodlu Linux işletim sistemi çekirdeğini 1991'de geliştiren yazılımcı kimdir?",
+    "options": [
+      "Linus Torvalds",
+      "Richard Stallman",
+      "Steve Wozniak",
+      "Bill Gates"
+    ],
+    "answer": 0,
+    "style": "classic"
+  },
+  {
+    "category": "Bilim & Teknoloji",
+    "question": "Telefonu 1876 yılında icat eden mucit kimdir?",
+    "options": [
+      "Alexander Graham Bell",
+      "Thomas Edison",
+      "Guglielmo Marconi",
+      "Nikola Tesla"
+    ],
+    "answer": 0,
+    "style": "classic"
+  },
+  {
+    "category": "Bilim & Teknoloji",
+    "question": "Ampulü pratik ve ticari olarak kullanıma sokan ünlü Amerikalı mucit kimdir?",
+    "options": [
+      "Thomas Edison",
+      "Nikola Tesla",
+      "Benjamin Franklin",
+      "Samuel Morse"
+    ],
+    "answer": 0,
+    "style": "classic"
+  },
+  {
+    "category": "Bilim & Teknoloji",
+    "question": "Radyoyu icat ederek kablosuz telgraf patentini alan İtalyan mucit kimdir?",
+    "options": [
+      "Guglielmo Marconi",
+      "Nikola Tesla",
+      "Heinrich Hertz",
+      "Michael Faraday"
+    ],
+    "answer": 0,
+    "style": "classic"
+  },
+  {
+    "category": "Bilim & Teknoloji",
+    "question": "1903 yılında motorlu uçakla ilk kontrollü insanlı uçuşu gerçekleştiren kardeşler kimlerdir?",
+    "options": [
+      "Wright Kardeşler",
+      "Montgolfier Kardeşler",
+      "Lumiere Kardeşler",
+      "Grimm Kardeşler"
+    ],
+    "answer": 0,
+    "style": "classic"
+  },
+  {
+    "category": "Bilim & Teknoloji",
+    "question": "Suyun donma noktası Celsius ölçeğinde kaç derecedir?",
+    "options": [
+      "0 derece",
+      "-4 derece",
+      "10 derece",
+      "32 derece"
+    ],
+    "answer": 0,
+    "style": "classic"
+  },
+  {
+    "category": "Bilim & Teknoloji",
+    "question": "Suyun deniz seviyesinde kaynama noktası Celsius ölçeğinde kaç derecedir?",
+    "options": [
+      "100 derece",
+      "90 derece",
+      "120 derece",
+      "212 derece"
+    ],
+    "answer": 0,
+    "style": "classic"
+  },
+  {
+    "category": "Bilim & Teknoloji",
+    "question": "Mutlak sıfır noktası olarak kabul edilen ve moleküler hareketin durduğu sıcaklık kaç derecedir?",
+    "options": [
+      "-273,15 °C",
+      "-100 °C",
+      "-200 °C",
+      "-350 °C"
+    ],
+    "answer": 0,
+    "style": "classic"
+  },
+  {
+    "category": "Bilim & Teknoloji",
+    "question": "Ozon tabakasının temel görevi dünyayı neye karşı korumaktır?",
+    "options": [
+      "Zararlı ultraviyole ışınlarına",
+      "Göktaşlarına",
+      "Kutup rüzgarlarına",
+      "Radyo dalgalarına"
+    ],
+    "answer": 0,
+    "style": "classic"
+  },
+  {
+    "category": "Bilim & Teknoloji",
+    "question": "Hücrenin enerji santrali olarak bilinen organel hangisidir?",
+    "options": [
+      "Mitokondri",
+      "Ribozom",
+      "Lizozom",
+      "Golgi cisimciği"
+    ],
+    "answer": 0,
+    "style": "classic"
+  },
+  {
+    "category": "Bilim & Teknoloji",
+    "question": "Hücrede protein sentezinin yapıldığı organel hangisidir?",
+    "options": [
+      "Ribozom",
+      "Mitokondri",
+      "Koful",
+      "Sentrozom"
+    ],
+    "answer": 0,
+    "style": "classic"
+  },
+  {
+    "category": "Bilim & Teknoloji",
+    "question": "Hücrenin genetik bilgisini taşıyan çift sarmal yapıdaki nükleik asit hangisidir?",
+    "options": [
+      "DNA",
+      "RNA",
+      "ATP",
+      "Glikojen"
+    ],
+    "answer": 0,
+    "style": "classic"
+  },
+  {
+    "category": "Bilim & Teknoloji",
+    "question": "İnsan vücudunda insülin hormonunu salgılayarak kan şekerini düzenleyen organ hangisidir?",
+    "options": [
+      "Pankreas",
+      "Karaciğer",
+      "Böbrek",
+      "Dalak"
+    ],
+    "answer": 0,
+    "style": "classic"
+  },
+  {
+    "category": "Bilim & Teknoloji",
+    "question": "İnsan vücudunda kanı süzerek idrar üreten ve atıkları temizleyen organ hangisidir?",
+    "options": [
+      "Böbrekler",
+      "Akciğerler",
+      "Mide",
+      "Pankreas"
+    ],
+    "answer": 0,
+    "style": "classic"
+  },
+  {
+    "category": "Bilim & Teknoloji",
+    "question": "Dünya'nın kendi etrafında 1 tam dönüşünü tamamlaması ne kadar sürer?",
+    "options": [
+      "24 Saat",
+      "12 Saat",
+      "30 Gün",
+      "365 Gün"
+    ],
+    "answer": 0,
+    "style": "classic"
+  },
+  {
+    "category": "Bilim & Teknoloji",
+    "question": "Dünya'nın Güneş etrafında dolanması sonucu aşağıdakilerden hangisi oluşur?",
+    "options": [
+      "Mevsimler",
+      "Gece ve Gündüz",
+      "Gelgitler",
+      "Ay tutulması"
+    ],
+    "answer": 0,
+    "style": "classic"
+  },
+  {
+    "category": "Bilim & Teknoloji",
+    "question": "Denizlerde gelgit (medcezir) olayının meydana gelmesindeki ana etken nedir?",
+    "options": [
+      "Ay'ın kütle çekim kuvveti",
+      "Güneş patlamaları",
+      "Rüzgarlar",
+      "Dünya'nın manyetik alanı"
+    ],
+    "answer": 0,
+    "style": "classic"
+  },
+  {
+    "category": "Bilim & Teknoloji",
+    "question": "Ay'ın Dünya etrafındaki turunu tamamlaması yaklaşık ne kadar sürer?",
+    "options": [
+      "27-29 Gün",
+      "14 Gün",
+      "365 Gün",
+      "24 Saat"
+    ],
+    "answer": 0,
+    "style": "classic"
+  },
+  {
+    "category": "İslam & Dini Bilgiler",
+    "question": "Kur'an-ı Kerim'in ilk indirilen ayetleri hangi surededir?",
+    "options": [
+      "Alak Suresi",
+      "Fatiha Suresi",
+      "Bakara Suresi",
+      "İhlas Suresi"
+    ],
+    "answer": 0,
+    "style": "classic"
+  },
+  {
+    "category": "İslam & Dini Bilgiler",
+    "question": "Kur'an-ı Kerim'in ilk suresi ve namazların her rekatında okunan sure hangisidir?",
+    "options": [
+      "Fatiha Suresi",
+      "Bakara Suresi",
+      "Yasin Suresi",
+      "Kevser Suresi"
+    ],
+    "answer": 0,
+    "style": "classic"
+  },
+  {
+    "category": "İslam & Dini Bilgiler",
+    "question": "Kur'an-ı Kerim'in en kısa suresi hangisidir?",
+    "options": [
+      "Kevser Suresi",
+      "İhlas Suresi",
+      "Asr Suresi",
+      "Nas Suresi"
+    ],
+    "answer": 0,
+    "style": "classic"
+  },
+  {
+    "category": "İslam & Dini Bilgiler",
+    "question": "Kur'an-ı Kerim'in kalbi olarak nitelendirilen sure hangisidir?",
+    "options": [
+      "Yasin Suresi",
+      "Mülk Suresi",
+      "Rahman Suresi",
+      "Fetih Suresi"
+    ],
+    "answer": 0,
+    "style": "classic"
+  },
+  {
+    "category": "İslam & Dini Bilgiler",
+    "question": "Kur'an-ı Kerim'de toplam kaç sure bulunmaktadır?",
+    "options": [
+      "114",
+      "110",
+      "124",
+      "100"
+    ],
+    "answer": 0,
+    "style": "classic"
+  },
+  {
+    "category": "İslam & Dini Bilgiler",
+    "question": "Kur'an-ı Kerim'de toplam kaç cüz bulunmaktadır?",
+    "options": [
+      "30",
+      "25",
+      "40",
+      "20"
+    ],
+    "answer": 0,
+    "style": "classic"
+  },
+  {
+    "category": "İslam & Dini Bilgiler",
+    "question": "İslam'ın şartları kaç tanedir?",
+    "options": [
+      "5",
+      "6",
+      "4",
+      "7"
+    ],
+    "answer": 0,
+    "style": "classic"
+  },
+  {
+    "category": "İslam & Dini Bilgiler",
+    "question": "İmanın şartları kaç tanedir?",
+    "options": [
+      "6",
+      "5",
+      "7",
+      "4"
+    ],
+    "answer": 0,
+    "style": "classic"
+  },
+  {
+    "category": "İslam & Dini Bilgiler",
+    "question": "Vahiy getirmekle görevli dört büyük melekten biri hangisidir?",
+    "options": [
+      "Cebrail",
+      "Mikail",
+      "İsrafil",
+      "Azrail"
+    ],
+    "answer": 0,
+    "style": "classic"
+  },
+  {
+    "category": "İslam & Dini Bilgiler",
+    "question": "Tabiat olaylarını ve rızıkları idare etmekle görevli büyük melek kimdir?",
+    "options": [
+      "Mikail",
+      "Cebrail",
+      "İsrafil",
+      "Azrail"
+    ],
+    "answer": 0,
+    "style": "classic"
+  },
+  {
+    "category": "İslam & Dini Bilgiler",
+    "question": "Kıyamet günü Sûr borusunu üflemekle görevli melek kimdir?",
+    "options": [
+      "İsrafil",
+      "Azrail",
+      "Cebrail",
+      "Mikail"
+    ],
+    "answer": 0,
+    "style": "classic"
+  },
+  {
+    "category": "İslam & Dini Bilgiler",
+    "question": "Eceli gelenlerin ruhunu teslim almakla görevli melek kimdir?",
+    "options": [
+      "Azrail",
+      "İsrafil",
+      "Mikail",
+      "Cebrail"
+    ],
+    "answer": 0,
+    "style": "classic"
+  },
+  {
+    "category": "İslam & Dini Bilgiler",
+    "question": "İnsanların sağında ve solunda bulunup sevap ve günahları yazan meleklere ne denir?",
+    "options": [
+      "Kiramen Katibin",
+      "Münker ve Nekir",
+      "Hamele-i Arş",
+      "Muakkibe"
+    ],
+    "answer": 0,
+    "style": "classic"
+  },
+  {
+    "category": "İslam & Dini Bilgiler",
+    "question": "Kabirde insanları sorguya çekecek olan meleklere ne ad verilir?",
+    "options": [
+      "Münker ve Nekir",
+      "Kiramen Katibin",
+      "Rıdvan ve Malik",
+      "Zebani"
+    ],
+    "answer": 0,
+    "style": "classic"
+  },
+  {
+    "category": "İslam & Dini Bilgiler",
+    "question": "İslam tarihinde ilk ezanı okuyan ve ilk müezzin olan sahabi kimdir?",
+    "options": [
+      "Bilal-i Habeşi",
+      "Abdullah bin Zeyd",
+      "Ebu Mahzure",
+      "Sad bin Ebi Vakkas"
+    ],
+    "answer": 0,
+    "style": "classic"
+  },
+  {
+    "category": "İslam & Dini Bilgiler",
+    "question": "İslamiyet'i kabul eden ilk hür erkek sahabi ve ilk halife kimdir?",
+    "options": [
+      "Hz. Ebubekir",
+      "Hz. Ömer",
+      "Hz. Osman",
+      "Hz. Ali"
+    ],
+    "answer": 0,
+    "style": "classic"
+  },
+  {
+    "category": "İslam & Dini Bilgiler",
+    "question": "İslamiyet'i kabul eden ilk kadın ve Peygamberimiz'in ilk eşi kimdir?",
+    "options": [
+      "Hz. Hatice",
+      "Hz. Aişe",
+      "Hz. Fatıma",
+      "Hz. Zeynep"
+    ],
+    "answer": 0,
+    "style": "classic"
+  },
+  {
+    "category": "İslam & Dini Bilgiler",
+    "question": "İslamiyet'i çocuk yaşta kabul eden ilk kişi ve dördüncü halife kimdir?",
+    "options": [
+      "Hz. Ali",
+      "Zeyd bin Harise",
+      "Hz. Hasan",
+      "Hz. Hüseyin"
+    ],
+    "answer": 0,
+    "style": "classic"
+  },
+  {
+    "category": "İslam & Dini Bilgiler",
+    "question": "Adaletiyle tanınan ve Faruk unvanına sahip olan ikinci halife kimdir?",
+    "options": [
+      "Hz. Ömer",
+      "Hz. Ebubekir",
+      "Hz. Osman",
+      "Hz. Ali"
+    ],
+    "answer": 0,
+    "style": "classic"
+  },
+  {
+    "category": "İslam & Dini Bilgiler",
+    "question": "Peygamber Efendimiz'in Medine'ye hicret ettiği tarihi yıl hangisidir?",
+    "options": [
+      "622",
+      "610",
+      "630",
+      "632"
+    ],
+    "answer": 0,
+    "style": "classic"
+  },
+  {
+    "category": "İslam & Dini Bilgiler",
+    "question": "İslam tarihinde inşa edilen ilk mescit hangisidir?",
+    "options": [
+      "Kuba Mescidi",
+      "Mescid-i Nebevi",
+      "Mescid-i Kıbleteyn",
+      "Mescid-i Aksa"
+    ],
+    "answer": 0,
+    "style": "classic"
+  },
+  {
+    "category": "İslam & Dini Bilgiler",
+    "question": "Müslümanlar ile Mekkeli müşrikler arasında yapılan ilk büyük zafer savaşı hangisidir?",
+    "options": [
+      "Bedir Savaşı",
+      "Uhud Savaşı",
+      "Hendek Savaşı",
+      "Hayber Fethi"
+    ],
+    "answer": 0,
+    "style": "classic"
+  },
+  {
+    "category": "İslam & Dini Bilgiler",
+    "question": "Peygamberimiz'in amcası Hz. Hamza'nın şehit düştüğü tarihi savaş hangisidir?",
+    "options": [
+      "Uhud Savaşı",
+      "Bedir Savaşı",
+      "Hendek Savaşı",
+      "Mute Savaşı"
+    ],
+    "answer": 0,
+    "style": "classic"
+  },
+  {
+    "category": "İslam & Dini Bilgiler",
+    "question": "Mekke'nin fethi hangi yılda kansız bir şekilde gerçekleşmiştir?",
+    "options": [
+      "630",
+      "628",
+      "622",
+      "632"
+    ],
+    "answer": 0,
+    "style": "classic"
+  },
+  {
+    "category": "İslam & Dini Bilgiler",
+    "question": "Peygamber Efendimiz Hz. Muhammed kaç yılında vefat etmiştir?",
+    "options": [
+      "632",
+      "630",
+      "622",
+      "634"
+    ],
+    "answer": 0,
+    "style": "classic"
+  },
+  {
+    "category": "İslam & Dini Bilgiler",
+    "question": "Büyük tufandan kurtulmak için devasa bir gemi inşa eden peygamber kimdir?",
+    "options": [
+      "Hz. Nuh",
+      "Hz. İbrahim",
+      "Hz. Musa",
+      "Hz. Hud"
+    ],
+    "answer": 0,
+    "style": "classic"
+  },
+  {
+    "category": "İslam & Dini Bilgiler",
+    "question": "Ateşe atıldığı halde ateşin kendisini yakmadığı ve Kabe'yi oğluyla yeniden inşa eden peygamber kimdir?",
+    "options": [
+      "Hz. İbrahim",
+      "Hz. İsmail",
+      "Hz. İshak",
+      "Hz. Yakup"
+    ],
+    "answer": 0,
+    "style": "classic"
+  },
+  {
+    "category": "İslam & Dini Bilgiler",
+    "question": "Kızıldeniz'i asasıyla ikiye yararak kavmini Firavun'un zulmünden kurtaran peygamber kimdir?",
+    "options": [
+      "Hz. Musa",
+      "Hz. Harun",
+      "Hz. Davud",
+      "Hz. İsa"
+    ],
+    "answer": 0,
+    "style": "classic"
+  },
+  {
+    "category": "İslam & Dini Bilgiler",
+    "question": "Kuyuya atılan, köle olarak satılan ve sonunda Mısır'a vezir olan peygamber kimdir?",
+    "options": [
+      "Hz. Yusuf",
+      "Hz. Yakup",
+      "Hz. Bünyamin",
+      "Hz. İlyas"
+    ],
+    "answer": 0,
+    "style": "classic"
+  },
+  {
+    "category": "İslam & Dini Bilgiler",
+    "question": "Uğradığı ağır hastalıklara ve dertlere gösterdiği sabırla sabır timsali olan peygamber kimdir?",
+    "options": [
+      "Hz. Eyyub",
+      "Hz. Zekeriyya",
+      "Hz. Yahya",
+      "Hz. Yunus"
+    ],
+    "answer": 0,
+    "style": "classic"
+  },
+  {
+    "category": "İslam & Dini Bilgiler",
+    "question": "Büyük bir balığın karnında kalarak tövbe eden ve kurtulan peygamber kimdir?",
+    "options": [
+      "Hz. Yunus",
+      "Hz. İlyas",
+      "Hz. Elyesa",
+      "Hz. Lut"
+    ],
+    "answer": 0,
+    "style": "classic"
+  },
+  {
+    "category": "İslam & Dini Bilgiler",
+    "question": "Demiri hamur gibi şekillendirebilen, zırh yapan ve güzel sesiyle Zebur'u okuyan peygamber kimdir?",
+    "options": [
+      "Hz. Davud",
+      "Hz. Süleyman",
+      "Hz. Zülkifl",
+      "Hz. Şuayb"
+    ],
+    "answer": 0,
+    "style": "classic"
+  },
+  {
+    "category": "İslam & Dini Bilgiler",
+    "question": "Rüzgara, cinlere ve kuşların diline hükmeden zenginliğiyle ünlü peygamber kimdir?",
+    "options": [
+      "Hz. Süleyman",
+      "Hz. Davud",
+      "Hz. Yusuf",
+      "Hz. İdris"
+    ],
+    "answer": 0,
+    "style": "classic"
+  },
+  {
+    "category": "İslam & Dini Bilgiler",
+    "question": "Babası olmadan mucizevi şekilde Hz. Meryem'den dünyaya gelen peygamber kimdir?",
+    "options": [
+      "Hz. İsa",
+      "Hz. Yahya",
+      "Hz. Zekeriyya",
+      "Hz. İshak"
+    ],
+    "answer": 0,
+    "style": "classic"
+  },
+  {
+    "category": "İslam & Dini Bilgiler",
+    "question": "İlk insan ve ilk peygamber kimdir?",
+    "options": [
+      "Hz. Adem",
+      "Hz. Şit",
+      "Hz. İdris",
+      "Hz. Nuh"
+    ],
+    "answer": 0,
+    "style": "classic"
+  },
+  {
+    "category": "İslam & Dini Bilgiler",
+    "question": "Günde kaç vakit farz namaz kılınır?",
+    "options": [
+      "5 vakit",
+      "3 vakit",
+      "4 vakit",
+      "6 vakit"
+    ],
+    "answer": 0,
+    "style": "classic"
+  },
+  {
+    "category": "İslam & Dini Bilgiler",
+    "question": "Ramazan ayında yatsı namazından sonra kılınan sünnet namazın adı nedir?",
+    "options": [
+      "Teravih Namazı",
+      "Teheccüd Namazı",
+      "Kuşluk Namazı",
+      "Evvabin Namazı"
+    ],
+    "answer": 0,
+    "style": "classic"
+  },
+  {
+    "category": "İslam & Dini Bilgiler",
+    "question": "Gecenin bir vaktinde uyanılarak kılınan faziletli nafile namaz hangisidir?",
+    "options": [
+      "Teheccüd Namazı",
+      "İşrak Namazı",
+      "Hacet Namazı",
+      "Tesbih Namazı"
+    ],
+    "answer": 0,
+    "style": "classic"
+  },
+  {
+    "category": "İslam & Dini Bilgiler",
+    "question": "Hac ve umre ibadeti sırasında Kabe'nin etrafında 7 kez dönmeye ne denir?",
+    "options": [
+      "Tavaf",
+      "Say",
+      "Vakfe",
+      "İhram"
+    ],
+    "answer": 0,
+    "style": "classic"
+  },
+  {
+    "category": "İslam & Dini Bilgiler",
+    "question": "Safa ve Merve tepeleri arasında 4 gidiş 3 geliş şeklinde yapılan yürüyüşe ne ad verilir?",
+    "options": [
+      "Say",
+      "Tavaf",
+      "Remi",
+      "İhram"
+    ],
+    "answer": 0,
+    "style": "classic"
+  },
+  {
+    "category": "İslam & Dini Bilgiler",
+    "question": "Dinen zengin sayılan Müslümanların yılda bir kez mallarının kırkta birini fakirlere vermesine ne denir?",
+    "options": [
+      "Zekat",
+      "Sadaka",
+      "Öşür",
+      "Fitre"
+    ],
+    "answer": 0,
+    "style": "classic"
+  },
+  {
+    "category": "İslam & Dini Bilgiler",
+    "question": "Ramazan ayında oruç tutamayacak kadar yaşlı veya iyileşme ümidi olmayan hastaların ödediği bedele ne denir?",
+    "options": [
+      "Fidye",
+      "Kefaret",
+      "Sadaka",
+      "Nezir"
+    ],
+    "answer": 0,
+    "style": "classic"
+  },
+  {
+    "category": "Spor",
+    "question": "Futbolda bir takım sahaya kaç oyuncu ile çıkar?",
+    "options": [
+      "11",
+      "10",
+      "12",
+      "9"
+    ],
+    "answer": 0,
+    "style": "classic"
+  },
+  {
+    "category": "Spor",
+    "question": "Voleybolda bir takım sahada aynı anda kaç oyuncu ile oynar?",
+    "options": [
+      "6",
+      "5",
+      "7",
+      "8"
+    ],
+    "answer": 0,
+    "style": "classic"
+  },
+  {
+    "category": "Spor",
+    "question": "Futbolda normal oyun süresi kaç dakikadır?",
+    "options": [
+      "90 dakika",
+      "80 dakika",
+      "100 dakika",
+      "60 dakika"
+    ],
+    "answer": 0,
+    "style": "classic"
+  },
+  {
+    "category": "Spor",
+    "question": "Basketbolda normal oyun süresi NBA maçlarında her periyot kaç dakikadır?",
+    "options": [
+      "12 dakika",
+      "10 dakika",
+      "15 dakika",
+      "8 dakika"
+    ],
+    "answer": 0,
+    "style": "classic"
+  },
+  {
+    "category": "Spor",
+    "question": "Modern Olimpiyat Oyunları kaç yılda bir düzenlenir?",
+    "options": [
+      "4 yılda bir",
+      "2 yılda bir",
+      "3 yılda bir",
+      "5 yılda bir"
+    ],
+    "answer": 0,
+    "style": "classic"
+  },
+  {
+    "category": "Spor",
+    "question": "Olimpiyat halkalarında toplam kaç renkli halka bulunur?",
+    "options": [
+      "5 halka",
+      "6 halka",
+      "4 halka",
+      "7 halka"
+    ],
+    "answer": 0,
+    "style": "classic"
+  },
+  {
+    "category": "Spor",
+    "question": "Maraton koşusunun resmi mesafesi kaç kilometredir?",
+    "options": [
+      "42 kilometre 195 metre",
+      "40 kilometre",
+      "45 kilometre",
+      "50 kilometre"
+    ],
+    "answer": 0,
+    "style": "classic"
+  },
+  {
+    "category": "Spor",
+    "question": "2023 yılında UEFA Şampiyonlar Ligi finaline ev sahipliği yapan İstanbul'daki stadyum hangisidir?",
+    "options": [
+      "Atatürk Olimpiyat Stadyumu",
+      "RAMS Park",
+      "Ülker Stadyumu",
+      "Tüpraş Stadyumu"
+    ],
+    "answer": 0,
+    "style": "classic"
+  },
+  {
+    "category": "Spor",
+    "question": "Futbolda 'Taç Atışı' sahanın hangi çizgisinden kullanılır?",
+    "options": [
+      "Yan çizgiden",
+      "Kale çizgisinden",
+      "Ceza sahası çizgisinden",
+      "Orta saha çizgisinden"
+    ],
+    "answer": 0,
+    "style": "classic"
+  },
+  {
+    "category": "Spor",
+    "question": "Futbolda köşe vuruşuna ne ad verilir?",
+    "options": [
+      "Korner",
+      "Frikik",
+      "Penaltı",
+      "Ofsayt"
+    ],
+    "answer": 0,
+    "style": "classic"
+  },
+  {
+    "category": "Spor",
+    "question": "Teniste puanlama sisteminde kazanılan ilk sayı kaç puan olarak sayılır?",
+    "options": [
+      "15",
+      "10",
+      "1",
+      "30"
+    ],
+    "answer": 0,
+    "style": "classic"
+  },
+  {
+    "category": "Spor",
+    "question": "Teniste topun oyuna sokulması için yapılan ilk vuruşa ne denir?",
+    "options": [
+      "Servis",
+      "Smaç",
+      "Vole",
+      "Drop shot"
+    ],
+    "answer": 0,
+    "style": "classic"
+  },
+  {
+    "category": "Spor",
+    "question": "Tarihi Kırkpınar Yağlı Güreşleri hangi ilimizde düzenlenmektedir?",
+    "options": [
+      "Edirne",
+      "Kocaeli",
+      "Antalya",
+      "Balıkesir"
+    ],
+    "answer": 0,
+    "style": "classic"
+  },
+  {
+    "category": "Spor",
+    "question": "Yağlı güreşte pehlivanların giydiği manda veya dana derisinden yapılan pantolona ne denir?",
+    "options": [
+      "Kısbet",
+      "Pırpıt",
+      "Kaftan",
+      "Peşrev"
+    ],
+    "answer": 0,
+    "style": "classic"
+  },
+  {
+    "category": "Spor",
+    "question": "Kırkpınar'da başpehlivan olan güreşçiye ödül olarak ne verilir?",
+    "options": [
+      "Altın Kemer",
+      "Altın Madalya",
+      "Kupa",
+      "Kılıç"
+    ],
+    "answer": 0,
+    "style": "classic"
+  },
+  {
+    "category": "Spor",
+    "question": "Formula 1 yarışlarında yarışın bittiğini belirten siyah-beyaz kareli bayrağa ne denir?",
+    "options": [
+      "Dama bayrağı",
+      "Sarı bayrak",
+      "Kırmızı bayrak",
+      "Mavi bayrak"
+    ],
+    "answer": 0,
+    "style": "classic"
+  },
+  {
+    "category": "Spor",
+    "question": "100 metre ve 200 metre dünya rekorlarını elinde bulunduran efsanevi Jamaikalı atlet kimdir?",
+    "options": [
+      "Usain Bolt",
+      "Tyson Gay",
+      "Yohan Blake",
+      "Carl Lewis"
+    ],
+    "answer": 0,
+    "style": "classic"
+  },
+  {
+    "category": "Spor",
+    "question": "Olimpiyatlarda toplam 28 madalya (23 altın) kazanarak tarihin en çok madalya kazanan sporcusu olan Amerikalı yüzücü kimdir?",
+    "options": [
+      "Michael Phelps",
+      "Ian Thorpe",
+      "Ryan Lochte",
+      "Mark Spitz"
+    ],
+    "answer": 0,
+    "style": "classic"
+  },
+  {
+    "category": "Spor",
+    "question": "Güreşte grekoromen stilde serbest stilden farklı olarak hangi vücut bölgesine temas ve hamle yasaktır?",
+    "options": [
+      "Belden aşağısına",
+      "Kollara",
+      "Göğse",
+      "Omuzlara"
+    ],
+    "answer": 0,
+    "style": "classic"
+  },
+  {
+    "category": "Spor",
+    "question": "Türkiye'nin olimpiyatlarda en çok madalya kazandığı geleneksel ata sporumuz hangisidir?",
+    "options": [
+      "Güreş",
+      "Halter",
+      "Tekvando",
+      "Boks"
+    ],
+    "answer": 0,
+    "style": "classic"
+  },
+  {
+    "category": "Spor",
+    "question": "Futbolda ceza sahası içindeki kusurlu hareketlerde kullanılan penaltı noktası kaleye kaç metre mesafededir?",
+    "options": [
+      "11 metre",
+      "9 metre",
+      "13 metre",
+      "10 metre"
+    ],
+    "answer": 0,
+    "style": "classic"
+  },
+  {
+    "category": "Spor",
+    "question": "Basketbolda serbest atış çizgisi çemberden kaç metre uzaklıktadır?",
+    "options": [
+      "4,60 metre",
+      "5,20 metre",
+      "3,50 metre",
+      "6,75 metre"
+    ],
+    "answer": 0,
+    "style": "classic"
+  },
+  {
+    "category": "Spor",
+    "question": "Basketbolda 3 sayılık atış çizgisinin NBA standartlarındaki yaklaşık mesafesi nedir?",
+    "options": [
+      "7,24 metre",
+      "6,75 metre",
+      "8,00 metre",
+      "6,25 metre"
+    ],
+    "answer": 0,
+    "style": "classic"
+  },
+  {
+    "category": "Spor",
+    "question": "Voleybolda sadece savunma yapan ve diğer oyunculardan farklı renkte forma giyen oyuncu mevkiisi nedir?",
+    "options": [
+      "Libero",
+      "Pasör",
+      "Smaçör",
+      "Orta oyuncu"
+    ],
+    "answer": 0,
+    "style": "classic"
+  },
+  {
+    "category": "Spor",
+    "question": "Futbolda hakemin oyunu durdurup oyuncuya sarı kart göstermesi ne anlama gelir?",
+    "options": [
+      "Uyarı / İhtar",
+      "Oyundan ihraç",
+      "Penaltı",
+      "Gol iptali"
+    ],
+    "answer": 0,
+    "style": "classic"
+  },
+  {
+    "category": "Spor",
+    "question": "Futbolda bir maçta aynı oyuncunun gördüğü ikinci sarı kart hangi renge dönüşür ve oyuncu ihraç edilir?",
+    "options": [
+      "Kırmızı kart",
+      "Mavi kart",
+      "Beyaz kart",
+      "Siyah kart"
+    ],
+    "answer": 0,
+    "style": "classic"
+  },
+  {
+    "category": "Spor",
+    "question": "Hentbolda bir takım sahada kaç oyuncu ile mücadele eder?",
+    "options": [
+      "7",
+      "6",
+      "8",
+      "5"
+    ],
+    "answer": 0,
+    "style": "classic"
+  },
+  {
+    "category": "Spor",
+    "question": "Buz hokeyinde kullanılan sert kauçuk diske ne ad verilir?",
+    "options": [
+      "Puck",
+      "Top",
+      "Disk",
+      "Halka"
+    ],
+    "answer": 0,
+    "style": "classic"
+  },
+  {
+    "category": "Spor",
+    "question": "Su topu (Water Polo) maçlarında her takım kaç oyuncuyla havuzda yer alır?",
+    "options": [
+      "7",
+      "6",
+      "8",
+      "5"
+    ],
+    "answer": 0,
+    "style": "classic"
+  },
+  {
+    "category": "Spor",
+    "question": "Formula 1'de 7 kez dünya şampiyonu olan efsane Alman pilot kimdir?",
+    "options": [
+      "Michael Schumacher",
+      "Sebastian Vettel",
+      "Niki Lauda",
+      "Ayrton Senna"
+    ],
+    "answer": 0,
+    "style": "classic"
+  },
+  {
+    "category": "Spor",
+    "question": "Kariyerinde 24 Grand Slam tekler şampiyonluğu kazanarak tek erkeklerde rekor kıran Sırp tenisçi kimdir?",
+    "options": [
+      "Novak Djokovic",
+      "Rafael Nadal",
+      "Roger Federer",
+      "Andy Murray"
+    ],
+    "answer": 0,
+    "style": "classic"
+  },
+  {
+    "category": "Spor",
+    "question": "Toprak kortun kralı olarak bilinen ve 14 kez Fransa Açık (Roland Garros) kazanan İspanyol tenisçi kimdir?",
+    "options": [
+      "Rafael Nadal",
+      "Carlos Alcaraz",
+      "David Ferrer",
+      "Novak Djokovic"
+    ],
+    "answer": 0,
+    "style": "classic"
+  },
+  {
+    "category": "Spor",
+    "question": "İsviçreli zarafet timsali olan ve 8 kez Wimbledon kazanan tenis efsanesi kimdir?",
+    "options": [
+      "Roger Federer",
+      "Stan Wawrinka",
+      "Novak Djokovic",
+      "Pete Sampras"
+    ],
+    "answer": 0,
+    "style": "classic"
+  },
+  {
+    "category": "Sanat & Sinema",
+    "question": "Tosun Paşa, Süt Kardeşler ve Şabanoğlu Şaban filmlerinde Damat Ferit veya Paşa rollerini oynayan jönümüz kimdir?",
+    "options": [
+      "Tarık Akan",
+      "Kadir İnanır",
+      "Cüneyt Arkın",
+      "Ediz Hun"
+    ],
+    "answer": 0,
+    "style": "classic"
+  },
+  {
+    "category": "Sanat & Sinema",
+    "question": "Malkoçoğlu ve Battal Gazi gibi tarihi kahramanları canlandıran Yeşilçam'ın aksiyon yıldızı kimdir?",
+    "options": [
+      "Cüneyt Arkın",
+      "Kadir İnanır",
+      "Fikret Hakan",
+      "Serdar Gökhan"
+    ],
+    "answer": 0,
+    "style": "classic"
+  },
+  {
+    "category": "Sanat & Sinema",
+    "question": "Selvi Boylum Al Yazmalım filminde İlyas karakterini canlandıran ünlü Yeşilçam aktörü kimdir?",
+    "options": [
+      "Kadir İnanır",
+      "Tarık Akan",
+      "Ahmet Mekin",
+      "Cüneyt Arkın"
+    ],
+    "answer": 0,
+    "style": "classic"
+  },
+  {
+    "category": "Sanat & Sinema",
+    "question": "Yeşilçam filmlerinin unutulmaz tonton anne figürü olan 'Hafize Ana' rolüyle bilinen usta oyuncu kimdir?",
+    "options": [
+      "Adile Naşit",
+      "Ayşen Gruda",
+      "Mürüvvet Sim",
+      "Suna Pekuysal"
+    ],
+    "answer": 0,
+    "style": "classic"
+  },
+  {
+    "category": "Sanat & Sinema",
+    "question": "Yeşilçam'da 'Domates Güzeli' lakabıyla tanınan komedi oyuncusu kimdir?",
+    "options": [
+      "Ayşen Gruda",
+      "Adile Naşit",
+      "Perran Kutman",
+      "Nevra Serezli"
+    ],
+    "answer": 0,
+    "style": "classic"
+  },
+  {
+    "category": "Sanat & Sinema",
+    "question": "Hababam Sınıfı'nda Mahmut Hoca rolüyle tanınan ve Neşeli Günler filminde turşucu Kazım Efendi'yi oynayan usta kimdir?",
+    "options": [
+      "Münir Özkul",
+      "Hulusi Kentmen",
+      "İhsan Yüce",
+      "Ali Şen"
+    ],
+    "answer": 0,
+    "style": "classic"
+  },
+  {
+    "category": "Sanat & Sinema",
+    "question": "Yeşilçam'da fabrikatör, hakim ve altın kalpli baba/dede rollerinin vazgeçilmez aktörü kimdir?",
+    "options": [
+      "Hulusi Kentmen",
+      "Nubar Terziyan",
+      "Necdet Tosun",
+      "Kadir Savun"
+    ],
+    "answer": 0,
+    "style": "classic"
+  },
+  {
+    "category": "Sanat & Sinema",
+    "question": "Kış Uykusu filmiyle 2014 Cannes Film Festivali'nde Altın Palmiye kazanan Türk yönetmen kimdir?",
+    "options": [
+      "Nuri Bilge Ceylan",
+      "Semih Kaplanoğlu",
+      "Zeki Demirkubuz",
+      "Fatih Akın"
+    ],
+    "answer": 0,
+    "style": "classic"
+  },
+  {
+    "category": "Sanat & Sinema",
+    "question": "G.O.R.A., A.R.O.G. ve Yahşi Batı filmlerinin senaristi ve başrol oyuncusu komedyen kimdir?",
+    "options": [
+      "Cem Yılmaz",
+      "Şahan Gökbakar",
+      "Ata Demirer",
+      "Yılmaz Erdoğan"
+    ],
+    "answer": 0,
+    "style": "classic"
+  },
+  {
+    "category": "Sanat & Sinema",
+    "question": "Eyvah Eyvah film serisinde klarnetçi Hüseyin Badem karakterini canlandıran komedyen kimdir?",
+    "options": [
+      "Ata Demirer",
+      "Cem Yılmaz",
+      "Şahan Gökbakar",
+      "Tolga Çevik"
+    ],
+    "answer": 0,
+    "style": "classic"
+  },
+  {
+    "category": "Sanat & Sinema",
+    "question": "Vizontele ve Organize İşler filmlerinin yönetmeni ve yazarı olan sanatçımız kimdir?",
+    "options": [
+      "Yılmaz Erdoğan",
+      "Cem Yılmaz",
+      "Mahsun Kırmızıgül",
+      "Sinan Çetin"
+    ],
+    "answer": 0,
+    "style": "classic"
+  },
+  {
+    "category": "Sanat & Sinema",
+    "question": "Baba (The Godfather) üçlemesinde Don Vito Corleone karakterini canlandıran efsane aktör kimdir?",
+    "options": [
+      "Marlon Brando",
+      "Al Pacino",
+      "Robert De Niro",
+      "Joe Pesci"
+    ],
+    "answer": 0,
+    "style": "classic"
+  },
+  {
+    "category": "Sanat & Sinema",
+    "question": "Yüzüklerin Efendisi film üçlemesinin yönetmeni olan Yeni Zelandalı sinemacı kimdir?",
+    "options": [
+      "Peter Jackson",
+      "James Cameron",
+      "Steven Spielberg",
+      "Christopher Nolan"
+    ],
+    "answer": 0,
+    "style": "classic"
+  },
+  {
+    "category": "Sanat & Sinema",
+    "question": "Yıldızlararası (Interstellar) ve Kara Şövalye filmlerinin ünlü yönetmeni kimdir?",
+    "options": [
+      "Christopher Nolan",
+      "Quentin Tarantino",
+      "David Fincher",
+      "Ridley Scott"
+    ],
+    "answer": 0,
+    "style": "classic"
+  },
+  {
+    "category": "Sanat & Sinema",
+    "question": "Ucuz Roman (Pulp Fiction) ve Rezervuar Köpekleri filmlerinin yönetmeni kimdir?",
+    "options": [
+      "Quentin Tarantino",
+      "Martin Scorsese",
+      "Stanley Kubrick",
+      "Wes Anderson"
+    ],
+    "answer": 0,
+    "style": "classic"
+  },
+  {
+    "category": "Sanat & Sinema",
+    "question": "Titanik ve Avatar filmlerinin Akademi Ödüllü yönetmeni kimdir?",
+    "options": [
+      "James Cameron",
+      "Steven Spielberg",
+      "George Lucas",
+      "Ridley Scott"
+    ],
+    "answer": 0,
+    "style": "classic"
+  },
+  {
+    "category": "Sanat & Sinema",
+    "question": "Mona Lisa tablosunu yapan İtalyan Rönesans dehası kimdir?",
+    "options": [
+      "Leonardo da Vinci",
+      "Michelangelo",
+      "Raffaello",
+      "Donatello"
+    ],
+    "answer": 0,
+    "style": "classic"
+  },
+  {
+    "category": "Sanat & Sinema",
+    "question": "Yıldızlı Gece tablosunun ve Ayçiçekleri serisinin yaratıcısı Hollandalı ressam kimdir?",
+    "options": [
+      "Vincent van Gogh",
+      "Rembrandt",
+      "Claude Monet",
+      "Johannes Vermeer"
+    ],
+    "answer": 0,
+    "style": "classic"
+  },
+  {
+    "category": "Sanat & Sinema",
+    "question": "İnci Küpeli Kız tablosunu yapan Hollandalı Barok ressam kimdir?",
+    "options": [
+      "Johannes Vermeer",
+      "Rembrandt",
+      "Van Gogh",
+      "Frans Hals"
+    ],
+    "answer": 0,
+    "style": "classic"
+  },
+  {
+    "category": "Sanat & Sinema",
+    "question": "Guernica tablosuyla savaşın yıkımını anlatan kübizm akımının öncüsü İspanyol ressam kimdir?",
+    "options": [
+      "Pablo Picasso",
+      "Salvador Dali",
+      "Francisco Goya",
+      "Diego Velazquez"
+    ],
+    "answer": 0,
+    "style": "classic"
+  },
+  {
+    "category": "Sanat & Sinema",
+    "question": "Belleğin Azmi (Eriyen Saatler) tablosuyla ünlü sürrealist İspanyol ressam kimdir?",
+    "options": [
+      "Salvador Dali",
+      "Pablo Picasso",
+      "Rene Magritte",
+      "Joan Miro"
+    ],
+    "answer": 0,
+    "style": "classic"
+  },
+  {
+    "category": "Sanat & Sinema",
+    "question": "Kaplumbağa Terbiyecisi tablosunu yapan Türk müzeci ve ressam kimdir?",
+    "options": [
+      "Osman Hamdi Bey",
+      "Şeker Ahmet Paşa",
+      "İbrahim Çallı",
+      "Hoca Ali Rıza"
+    ],
+    "answer": 0,
+    "style": "classic"
+  },
+  {
+    "category": "Sanat & Edebiyat",
+    "question": "Saatleri Ayarlama Enstitüsü ve Huzur romanlarının büyük Türk yazarı kimdir?",
+    "options": [
+      "Ahmet Hamdi Tanpınar",
+      "Tarık Buğra",
+      "Oğuz Atay",
+      "Yakup Kadri Karaosmanoğlu"
+    ],
+    "answer": 0,
+    "style": "classic"
+  },
+  {
+    "category": "Sanat & Edebiyat",
+    "question": "Tutunamayanlar ve Tehlikeli Oyunlar romanlarının yazarı kimdir?",
+    "options": [
+      "Oğuz Atay",
+      "Yusuf Atılgan",
+      "Bilge Karasu",
+      "Orhan Pamuk"
+    ],
+    "answer": 0,
+    "style": "classic"
+  },
+  {
+    "category": "Sanat & Edebiyat",
+    "question": "İnce Memed dörtlüsünün Çukurova'yı anlatan dünyaca ünlü Türk yazarı kimdir?",
+    "options": [
+      "Yaşar Kemal",
+      "Orhan Kemal",
+      "Kemal Tahir",
+      "Fakir Baykurt"
+    ],
+    "answer": 0,
+    "style": "classic"
+  },
+  {
+    "category": "Sanat & Edebiyat",
+    "question": "Ateşten Gömlek ve Vurun Kahpeye romanlarının yazarı olan kadın edebiyatçımız kimdir?",
+    "options": [
+      "Halide Edib Adıvar",
+      "Fatma Aliye",
+      "Halide Nusret Zorlutuna",
+      "Samiha Ayverdi"
+    ],
+    "answer": 0,
+    "style": "classic"
+  },
+  {
+    "category": "Sanat & Edebiyat",
+    "question": "Yaban, Kiralık Konak ve Sodom ve Gomore romanlarının yazarı kimdir?",
+    "options": [
+      "Yakup Kadri Karaosmanoğlu",
+      "Reşat Nuri Güntekin",
+      "Refik Halit Karay",
+      "Memduh Şevket Esendal"
+    ],
+    "answer": 0,
+    "style": "classic"
+  },
+  {
+    "category": "Sanat & Edebiyat",
+    "question": "Çalıkuşu ve Acımak romanlarının yazarı kimdir?",
+    "options": [
+      "Reşat Nuri Güntekin",
+      "Peyami Safa",
+      "Ömer Seyfettin",
+      "Halit Ziya Uşaklıgil"
+    ],
+    "answer": 0,
+    "style": "classic"
+  },
+  {
+    "category": "Sanat & Edebiyat",
+    "question": "Aşk-ı Memnu ve Mai ve Siyah romanlarının Servet-i Fünun dönemi yazarı kimdir?",
+    "options": [
+      "Halit Ziya Uşaklıgil",
+      "Cenap Şahabettin",
+      "Tevfik Fikret",
+      "Mehmet Rauf"
+    ],
+    "answer": 0,
+    "style": "classic"
+  },
+  {
+    "category": "Sanat & Edebiyat",
+    "question": "Kaşağı, Diyet ve Pembe İncili Kaftan hikayelerinin ünlü yazarı kimdir?",
+    "options": [
+      "Ömer Seyfettin",
+      "Sait Faik Abasıyanık",
+      "Memduh Şevket Esendal",
+      "Haldun Taner"
+    ],
+    "answer": 0,
+    "style": "classic"
+  },
+  {
+    "category": "Sanat & Edebiyat",
+    "question": "Semaver ve Sarnıç hikayeleriyle Burgazada'yı anlatan büyük Türk öykücüsü kimdir?",
+    "options": [
+      "Sait Faik Abasıyanık",
+      "Sabahattin Ali",
+      "Cevat Şakir Kabaağaçlı",
+      "Necati Cumalı"
+    ],
+    "answer": 0,
+    "style": "classic"
+  },
+  {
+    "category": "Sanat & Edebiyat",
+    "question": "Halikarnas Balıkçısı mahlasıyla deniz hikayeleri ve Bodrum'u anlatan yazar kimdir?",
+    "options": [
+      "Cevat Şakir Kabaağaçlı",
+      "Sait Faik Abasıyanık",
+      "Aziz Nesin",
+      "Zeyyat Selimoğlu"
+    ],
+    "answer": 0,
+    "style": "classic"
+  },
+  {
+    "category": "Sanat & Edebiyat",
+    "question": "Dokuzuncu Hariciye Koğuşu ve Fatih-Harbiye romanlarının yazarı kimdir?",
+    "options": [
+      "Peyami Safa",
+      "Tarık Buğra",
+      "Kemal Tahir",
+      "Ahmet Mithat Efendi"
+    ],
+    "answer": 0,
+    "style": "classic"
+  },
+  {
+    "category": "Sanat & Edebiyat",
+    "question": "Suç ve Ceza, Karamazov Kardeşler romanlarının Rus yazarı kimdir?",
+    "options": [
+      "Fyodor Dostoyevski",
+      "Lev Tolstoy",
+      "Anton Çehov",
+      "Maksim Gorki"
+    ],
+    "answer": 0,
+    "style": "classic"
+  },
+  {
+    "category": "Sanat & Edebiyat",
+    "question": "Savaş ve Barış ile Anna Karenina romanlarının devasa Rus yazarı kimdir?",
+    "options": [
+      "Lev Tolstoy",
+      "Fyodor Dostoyevski",
+      "Turgenyev",
+      "Gogol"
+    ],
+    "answer": 0,
+    "style": "classic"
+  },
+  {
+    "category": "Sanat & Edebiyat",
+    "question": "Dönüşüm (Gregor Samsa'nın bir böceğe dönüşmesi) romanının yazarı kimdir?",
+    "options": [
+      "Franz Kafka",
+      "Albert Camus",
+      "Stefan Zweig",
+      "Thomas Mann"
+    ],
+    "answer": 0,
+    "style": "classic"
+  },
+  {
+    "category": "Sanat & Edebiyat",
+    "question": "Satranç, Bilinmeyen Bir Kadının Mektubu gibi psikolojik novellaların Avusturyalı yazarı kimdir?",
+    "options": [
+      "Stefan Zweig",
+      "Franz Kafka",
+      "Hermann Hesse",
+      "Arthur Schnitzler"
+    ],
+    "answer": 0,
+    "style": "classic"
+  },
+  {
+    "category": "Sanat & Edebiyat",
+    "question": "1984 ve Hayvan Çiftliği romanlarının distopya ustası İngiliz yazarı kimdir?",
+    "options": [
+      "George Orwell",
+      "Aldous Huxley",
+      "Ray Bradbury",
+      "H.G. Wells"
+    ],
+    "answer": 0,
+    "style": "classic"
+  },
+  {
+    "category": "Sanat & Edebiyat",
+    "question": "Simyacı romanıyla dünya çapında milyonlarca okura ulaşan Brezilyalı yazar kimdir?",
+    "options": [
+      "Paulo Coelho",
+      "Gabriel Garcia Marquez",
+      "Jorge Luis Borges",
+      "Mario Vargas Llosa"
+    ],
+    "answer": 0,
+    "style": "classic"
+  },
+  {
+    "category": "Sanat & Edebiyat",
+    "question": "Yüzyıllık Yalnızlık romanıyla Büyülü Gerçekçilik akımını dünyaya duyuran Kolombiyalı Nobel ödüllü yazar kimdir?",
+    "options": [
+      "Gabriel Garcia Marquez",
+      "Paulo Coelho",
+      "Pablo Neruda",
+      "Octavio Paz"
+    ],
+    "answer": 0,
+    "style": "classic"
+  },
+  {
+    "category": "Sanat & Edebiyat",
+    "question": "Küçük Prens kitabının Fransız pilot ve yazarı kimdir?",
+    "options": [
+      "Antoine de Saint-Exupéry",
+      "Albert Camus",
+      "Jean-Paul Sartre",
+      "Victor Hugo"
+    ],
+    "answer": 0,
+    "style": "classic"
+  },
+  {
+    "category": "Sanat & Edebiyat",
+    "question": "Sherlock Holmes dedektif serisini yaratan İskoç yazar kimdir?",
+    "options": [
+      "Arthur Conan Doyle",
+      "Agatha Christie",
+      "Edgar Allan Poe",
+      "Charles Dickens"
+    ],
+    "answer": 0,
+    "style": "classic"
+  },
+  {
+    "category": "Sanat & Edebiyat",
+    "question": "Doğu Ekspresinde Cinayet ve On Küçük Zenci kitaplarının kraliçesi İngiliz polisiye yazarı kimdir?",
+    "options": [
+      "Agatha Christie",
+      "Arthur Conan Doyle",
+      "Mary Shelley",
+      "Jane Austen"
+    ],
+    "answer": 0,
+    "style": "classic"
+  },
+  {
+    "category": "Matematik & Mantık",
+    "question": "Bir dik üçgende 90 derecelik açının tam karşısındaki en uzun kenara ne ad verilir?",
+    "options": [
+      "Hipotenüs",
+      "Komşu kenar",
+      "Karşı kenar",
+      "Ayrıt"
+    ],
+    "answer": 0,
+    "style": "classic"
+  },
+  {
+    "category": "Matematik & Mantık",
+    "question": "Üçgenin iç açılarının toplamı kaç derecedir?",
+    "options": [
+      "180 derece",
+      "360 derece",
+      "90 derece",
+      "270 derece"
+    ],
+    "answer": 0,
+    "style": "classic"
+  },
+  {
+    "category": "Matematik & Mantık",
+    "question": "Dörtgenlerin iç açılarının toplamı kaç derecedir?",
+    "options": [
+      "360 derece",
+      "180 derece",
+      "540 derece",
+      "270 derece"
+    ],
+    "answer": 0,
+    "style": "classic"
+  },
+  {
+    "category": "Matematik & Mantık",
+    "question": "Bir düzinede kaç adet nesne bulunur?",
+    "options": [
+      "12",
+      "10",
+      "15",
+      "20"
+    ],
+    "answer": 0,
+    "style": "classic"
+  },
+  {
+    "category": "Matematik & Mantık",
+    "question": "Bir destede kaç adet nesne bulunur?",
+    "options": [
+      "10",
+      "12",
+      "15",
+      "20"
+    ],
+    "answer": 0,
+    "style": "classic"
+  },
+  {
+    "category": "Matematik & Mantık",
+    "question": "Sadece 1'e ve kendisine bölünebilen 1'den büyük doğal sayılara ne denir?",
+    "options": [
+      "Asal sayı",
+      "Tam kare sayı",
+      "Çift sayı",
+      "Bileşik sayı"
+    ],
+    "answer": 0,
+    "style": "classic"
+  },
+  {
+    "category": "Matematik & Mantık",
+    "question": "Hem çift olan hem de asal olan tek sayı hangisidir?",
+    "options": [
+      "2",
+      "0",
+      "4",
+      "1"
+    ],
+    "answer": 0,
+    "style": "classic"
+  },
+  {
+    "category": "Matematik & Mantık",
+    "question": "En küçük iki basamaklı asal sayı kaçtır?",
+    "options": [
+      "11",
+      "13",
+      "10",
+      "17"
+    ],
+    "answer": 0,
+    "style": "classic"
+  },
+  {
+    "category": "Matematik & Mantık",
+    "question": "Sıfır çarpmada hangi özelliğe sahiptir?",
+    "options": [
+      "Yutan eleman",
+      "Etkisiz eleman",
+      "Ters eleman",
+      "Birim eleman"
+    ],
+    "answer": 0,
+    "style": "classic"
+  },
+  {
+    "category": "Matematik & Mantık",
+    "question": "Çarpma işleminde etkisiz (birim) eleman hangi sayıdır?",
+    "options": [
+      "1",
+      "0",
+      "-1",
+      "10"
+    ],
+    "answer": 0,
+    "style": "classic"
+  },
+  {
+    "category": "Matematik & Mantık",
+    "question": "Bir dairenin çevresinin çapına bölünmesiyle elde edilen sabit sayı nedir?",
+    "options": [
+      "Pi sayısı",
+      "Euler sayısı",
+      "Altın oran",
+      "Karekök iki"
+    ],
+    "answer": 0,
+    "style": "classic"
+  },
+  {
+    "category": "Matematik & Mantık",
+    "question": "Bir kenarı 5 cm olan karenin çevresi kaç santimetredir?",
+    "options": [
+      "20 cm",
+      "25 cm",
+      "15 cm",
+      "10 cm"
+    ],
+    "answer": 0,
+    "style": "classic"
+  },
+  {
+    "category": "Matematik & Mantık",
+    "question": "Bir kenarı 6 cm olan karenin alanı kaç santimetrekaredir?",
+    "options": [
+      "36 cm²",
+      "24 cm²",
+      "12 cm²",
+      "30 cm²"
+    ],
+    "answer": 0,
+    "style": "classic"
+  },
+  {
+    "category": "Matematik & Mantık",
+    "question": "Kısa kenarı 4 cm, uzun kenarı 8 cm olan dikdörtgenin alanı kaç cm² dir?",
+    "options": [
+      "32 cm²",
+      "24 cm²",
+      "16 cm²",
+      "40 cm²"
+    ],
+    "answer": 0,
+    "style": "classic"
+  },
+  {
+    "category": "Matematik & Mantık",
+    "question": "1 kilogram kaç grama eşittir?",
+    "options": [
+      "1000 gram",
+      "100 gram",
+      "500 gram",
+      "10000 gram"
+    ],
+    "answer": 0,
+    "style": "classic"
+  },
+  {
+    "category": "Matematik & Mantık",
+    "question": "1 kilometre kaç metreye eşittir?",
+    "options": [
+      "1000 metre",
+      "100 metre",
+      "10000 metre",
+      "500 metre"
+    ],
+    "answer": 0,
+    "style": "classic"
+  },
+  {
+    "category": "Matematik & Mantık",
+    "question": "1 saat kaç saniyedir?",
+    "options": [
+      "3600 saniye",
+      "60 saniye",
+      "600 saniye",
+      "1800 saniye"
+    ],
+    "answer": 0,
+    "style": "classic"
+  },
+  {
+    "category": "Matematik & Mantık",
+    "question": "Bir gün kaç dakikadır?",
+    "options": [
+      "1440 dakika",
+      "1200 dakika",
+      "1000 dakika",
+      "1800 dakika"
+    ],
+    "answer": 0,
+    "style": "classic"
+  },
+  {
+    "category": "Matematik & Mantık",
+    "question": "Roma rakamlarında 'X' harfi hangi sayıyı temsil eder?",
+    "options": [
+      "10",
+      "5",
+      "50",
+      "100"
+    ],
+    "answer": 0,
+    "style": "classic"
+  },
+  {
+    "category": "Matematik & Mantık",
+    "question": "Roma rakamlarında 'L' harfi hangi sayıyı temsil eder?",
+    "options": [
+      "50",
+      "100",
+      "500",
+      "10"
+    ],
+    "answer": 0,
+    "style": "classic"
+  },
+  {
+    "category": "Matematik & Mantık",
+    "question": "Roma rakamlarında 'C' harfi hangi sayıyı temsil eder?",
+    "options": [
+      "100",
+      "50",
+      "500",
+      "1000"
+    ],
+    "answer": 0,
+    "style": "classic"
+  },
+  {
+    "category": "Matematik & Mantık",
+    "question": "Roma rakamlarında 'M' harfi hangi sayıyı temsil eder?",
+    "options": [
+      "1000",
+      "500",
+      "100",
+      "50"
+    ],
+    "answer": 0,
+    "style": "classic"
+  },
+  {
+    "category": "Çocuk Dünyası & Çizgi Film",
+    "question": "Pinokyo yalan söylediğinde vücudunda neresi uzar?",
+    "options": [
+      "Burnu",
+      "Kulakları",
+      "Kolları",
+      "Ayakları"
+    ],
+    "answer": 0,
+    "style": "classic"
+  },
+  {
+    "category": "Çocuk Dünyası & Çizgi Film",
+    "question": "Kırmızı Başlıklı Kız ormanda kime kurabiye götürürken kurda rastlar?",
+    "options": [
+      "Büyükannesine",
+      "Teyzesine",
+      "Öğretmenine",
+      "Arkadaşına"
+    ],
+    "answer": 0,
+    "style": "classic"
+  },
+  {
+    "category": "Çocuk Dünyası & Çizgi Film",
+    "question": "Külkedisi balodan kaçarken merdivende neyini düşürmüştür?",
+    "options": [
+      "Cam ayakkabısını",
+      "Tacını",
+      "Yüzüğünü",
+      "Eldivenini"
+    ],
+    "answer": 0,
+    "style": "classic"
+  },
+  {
+    "category": "Çocuk Dünyası & Çizgi Film",
+    "question": "Aladdin'in sihirli lambasından çıkan ve dilekleri gerçekleştiren varlık nedir?",
+    "options": [
+      "Cin",
+      "Peri",
+      "Ejderha",
+      "Sihirbaz"
+    ],
+    "answer": 0,
+    "style": "classic"
+  },
+  {
+    "category": "Çocuk Dünyası & Çizgi Film",
+    "question": "Uzun saçlarıyla kuleye hapsedilen masal prensesi kimdir?",
+    "options": [
+      "Rapunzel",
+      "Pamuk Prenses",
+      "Külkedisi",
+      "Uyuyan Güzel"
+    ],
+    "answer": 0,
+    "style": "classic"
+  },
+  {
+    "category": "Çocuk Dünyası & Çizgi Film",
+    "question": "Zehirli elmayı ısırınca derin bir uykuya dalan masal kahramanı kimdir?",
+    "options": [
+      "Pamuk Prenses",
+      "Külkedisi",
+      "Rapunzel",
+      "Ariel"
+    ],
+    "answer": 0,
+    "style": "classic"
+  },
+  {
+    "category": "Çocuk Dünyası & Çizgi Film",
+    "question": "Şirinler çizgi filminde Şirin Baba'nın şapkasının rengi nedir?",
+    "options": [
+      "Kırmızı",
+      "Mavi",
+      "Beyaz",
+      "Sarı"
+    ],
+    "answer": 0,
+    "style": "classic"
+  },
+  {
+    "category": "Çocuk Dünyası & Çizgi Film",
+    "question": "Şirinler'i yakalamaya çalışan kötü büyücünün adı nedir?",
+    "options": [
+      "Gargamel",
+      "Azman",
+      "Voldemort",
+      "Jafar"
+    ],
+    "answer": 0,
+    "style": "classic"
+  },
+  {
+    "category": "Çocuk Dünyası & Çizgi Film",
+    "question": "Gargamel'in peşinden ayrılmayan kedisinin adı nedir?",
+    "options": [
+      "Azman",
+      "Tom",
+      "Sylvester",
+      "Garfield"
+    ],
+    "answer": 0,
+    "style": "classic"
+  },
+  {
+    "category": "Çocuk Dünyası & Çizgi Film",
+    "question": "Tom ve Jerry çizgi filminde sevimli ve kurnaz kahverengi fare kimdir?",
+    "options": [
+      "Jerry",
+      "Tom",
+      "Spike",
+      "Tweety"
+    ],
+    "answer": 0,
+    "style": "classic"
+  },
+  {
+    "category": "Çocuk Dünyası & Çizgi Film",
+    "question": "Bugs Bunny çizgi filminde sürekli hangi sebzeyi yer?",
+    "options": [
+      "Havuç",
+      "Salatalık",
+      "Ispanak",
+      "Lahana"
+    ],
+    "answer": 0,
+    "style": "classic"
+  },
+  {
+    "category": "Çocuk Dünyası & Çizgi Film",
+    "question": "Temel Reis güçlenmek ve kaslarını şişirmek için hangi sebzeyi yer?",
+    "options": [
+      "Ispanak",
+      "Brokoli",
+      "Pırasa",
+      "Havuç"
+    ],
+    "answer": 0,
+    "style": "classic"
+  },
+  {
+    "category": "Çocuk Dünyası & Çizgi Film",
+    "question": "Orman Çocuğu masalında kurtlar tarafından büyütülen çocuğun adı nedir?",
+    "options": [
+      "Mowgli",
+      "Tarzan",
+      "Peter Pan",
+      "Simba"
+    ],
+    "answer": 0,
+    "style": "classic"
+  },
+  {
+    "category": "VIP: Çocuk Bilim & Zeka",
+    "question": "Geceleri gökyüzünde parlayan Ay kendi ışığını nereden alır?",
+    "options": [
+      "Güneş'ten yansıtır",
+      "Kendi üretir",
+      "Yıldızlardan toplar",
+      "Dünya'dan alır"
+    ],
+    "answer": 0,
+    "style": "classic"
+  },
+  {
+    "category": "VIP: Çocuk Bilim & Zeka",
+    "question": "Dünyamızın tek doğal uydusu nedir?",
+    "options": [
+      "Ay",
+      "Güneş",
+      "Mars",
+      "Venüs"
+    ],
+    "answer": 0,
+    "style": "classic"
+  },
+  {
+    "category": "VIP: Çocuk Bilim & Zeka",
+    "question": "Gündüzleri gökyüzünde gördüğümüz en parlak ısı ve ışık kaynağımız nedir?",
+    "options": [
+      "Güneş",
+      "Kutup Yıldızı",
+      "Ay",
+      "Kuyrukluyıldız"
+    ],
+    "answer": 0,
+    "style": "classic"
+  },
+  {
+    "category": "VIP: Çocuk Bilim & Zeka",
+    "question": "Su buharlaştığında havaya karışıp soğuk hava tabakasıyla karşılaşınca ne oluşur?",
+    "options": [
+      "Bulutlar",
+      "Gökkuşağı",
+      "Rüzgar",
+      "Şimşek"
+    ],
+    "answer": 0,
+    "style": "classic"
+  },
+  {
+    "category": "VIP: Çocuk Bilim & Zeka",
+    "question": "Kutup bölgelerinde yaşayan ve bembeyaz tüyleri olan güçlü yırtıcı ayı hangisidir?",
+    "options": [
+      "Kutup ayısı",
+      "Bozayı",
+      "Panda",
+      "Koala"
+    ],
+    "answer": 0,
+    "style": "classic"
+  },
+  {
+    "category": "VIP: Çocuk Bilim & Zeka",
+    "question": "Sadece okaliptüs yaprakları yiyen ve ağaçlarda uyuyan sevimli Avustralya hayvanı nedir?",
+    "options": [
+      "Koala",
+      "Kanguru",
+      "Vombat",
+      "Platipus"
+    ],
+    "answer": 0,
+    "style": "classic"
+  },
+  {
+    "category": "VIP: Çocuk Bilim & Zeka",
+    "question": "Yavrularını karnındaki kesesinde taşıyarak zıplayan Avustralya simgesi hayvan hangisidir?",
+    "options": [
+      "Kanguru",
+      "Koala",
+      "Zürafa",
+      "Deve"
+    ],
+    "answer": 0,
+    "style": "classic"
+  },
+  {
+    "category": "VIP: Çocuk Bilim & Zeka",
+    "question": "Dünyanın en uzun boylu kara hayvanı hangisidir?",
+    "options": [
+      "Zürafa",
+      "Fil",
+      "Deve",
+      "Gergedan"
+    ],
+    "answer": 0,
+    "style": "classic"
+  },
+  {
+    "category": "VIP: Çocuk Bilim & Zeka",
+    "question": "Karasal hayvanlar arasında en ağır ve uzun hortumlu dev memeli hangisidir?",
+    "options": [
+      "Afrika fili",
+      "Su aygırı",
+      "Gergedan",
+      "Manda"
+    ],
+    "answer": 0,
+    "style": "classic"
+  },
+  {
+    "category": "VIP: Çocuk Bilim & Zeka",
+    "question": "Okyanuslarda yaşayan ve dünyanın gelmiş geçmiş en büyük hayvanı olan memeli hangisidir?",
+    "options": [
+      "Mavi balina",
+      "Megalodon",
+      "Katil balina",
+      "Beyaz köpekbalığı"
+    ],
+    "answer": 0,
+    "style": "classic"
+  },
+  {
+    "category": "VIP: Çocuk Bilim & Zeka",
+    "question": "Kuşlar sınıfında olmasına rağmen uçamayan ama saatte 70 km hızla koşabilen en büyük kuş hangisidir?",
+    "options": [
+      "Devekuşu",
+      "Penguen",
+      "Kivi",
+      "Pelikan"
+    ],
+    "answer": 0,
+    "style": "classic"
+  },
+  {
+    "category": "Spor",
+    "question": "Futbolda kalecinin ceza sahası dışında topa elle dokunması durumunda hakem ne kararı verir?",
+    "options": [
+      "Direkt serbest vuruş",
+      "Penaltı",
+      "Taç atışı",
+      "Hakem atışı"
+    ],
+    "answer": 0,
+    "style": "classic"
+  },
+  {
+    "category": "Spor",
+    "question": "Futbolda bir oyuncu kendi kalesine gol atarsa bu gole ne ad verilir?",
+    "options": [
+      "Kendi kalesine gol",
+      "Ofsayt gol",
+      "Geçersiz gol",
+      "Endirekt gol"
+    ],
+    "answer": 0,
+    "style": "classic"
+  },
+  {
+    "category": "Spor",
+    "question": "Basketbolda oyuncunun topu sektirmeden elinde tutarak iki adımdan fazla yürümesine ne denir?",
+    "options": [
+      "Hatalı yürüme",
+      "Faul",
+      "Teknik faul",
+      "Kural ihlali"
+    ],
+    "answer": 0,
+    "style": "classic"
+  },
+  {
+    "category": "Spor",
+    "question": "Basketbolda hücum eden takımın topu kendi yarı sahasından rakip yarı sahaya geçirmesi için kaç saniyesi vardır?",
+    "options": [
+      "8 saniye",
+      "5 saniye",
+      "10 saniye",
+      "24 saniye"
+    ],
+    "answer": 0,
+    "style": "classic"
+  },
+  {
+    "category": "Spor",
+    "question": "Basketbolda bir hücumun tamamlanması için verilen toplam hücum süresi kaç saniyedir?",
+    "options": [
+      "24 saniye",
+      "30 saniye",
+      "20 saniye",
+      "14 saniye"
+    ],
+    "answer": 0,
+    "style": "classic"
+  },
+  {
+    "category": "Spor",
+    "question": "Voleybolda bir takımın topu rakip sahaya göndermek için en fazla kaç vuruş hakkı vardır?",
+    "options": [
+      "3 vuruş",
+      "2 vuruş",
+      "4 vuruş",
+      "1 vuruş"
+    ],
+    "answer": 0,
+    "style": "classic"
+  },
+  {
+    "category": "Spor",
+    "question": "Voleybolda servis atışından doğrudan sayı kazanılmasına ne ad verilir?",
+    "options": [
+      "Ace",
+      "Blok",
+      "Duble",
+      "Manşet"
+    ],
+    "answer": 0,
+    "style": "classic"
+  },
+  {
+    "category": "Spor",
+    "question": "Halterde ağırlığın tek bir kesintisiz hareketle yerden baş üstüne kaldırıldığı hareket hangisidir?",
+    "options": [
+      "Koparma",
+      "Silkme",
+      "Pres",
+      "Deadlift"
+    ],
+    "answer": 0,
+    "style": "classic"
+  },
+  {
+    "category": "Spor",
+    "question": "Halterde ağırlığın önce omuzlara, ardından baş üstüne iki aşamada kaldırıldığı stil hangisidir?",
+    "options": [
+      "Silkme",
+      "Koparma",
+      "Kürsü",
+      "Squat"
+    ],
+    "answer": 0,
+    "style": "classic"
+  },
+  {
+    "category": "Spor",
+    "question": "Boks maçlarında raundlar arasındaki mola süresi kural olarak kaç dakikadır?",
+    "options": [
+      "1 dakika",
+      "30 saniye",
+      "2 dakika",
+      "45 saniye"
+    ],
+    "answer": 0,
+    "style": "classic"
+  },
+  {
+    "category": "Spor",
+    "question": "Boksta sporcunun yere düşüp 10 saniye içinde ayağa kalkamaması sonucu maçı kaybetmesine ne denir?",
+    "options": [
+      "Nakavt",
+      "Teknik arıza",
+      "Diskalifiye",
+      "Puanla mağlubiyet"
+    ],
+    "answer": 0,
+    "style": "classic"
+  },
+  {
+    "category": "Spor",
+    "question": "Judo sporunun kökeni hangi Uzak Doğu ülkesine aittir?",
+    "options": [
+      "Japonya",
+      "Çin",
+      "Kore",
+      "Tayland"
+    ],
+    "answer": 0,
+    "style": "classic"
+  },
+  {
+    "category": "Spor",
+    "question": "Tekvando (Taekwondo) sporu hangi ülkenin milli dövüş sanatıdır?",
+    "options": [
+      "Güney Kore",
+      "Japonya",
+      "Çin",
+      "Vietnam"
+    ],
+    "answer": 0,
+    "style": "classic"
+  },
+  {
+    "category": "Spor",
+    "question": "Karate sporu hangi ülkede ortaya çıkmıştır?",
+    "options": [
+      "Japonya",
+      "Çin",
+      "Tayvan",
+      "Hindistan"
+    ],
+    "answer": 0,
+    "style": "classic"
+  },
+  {
+    "category": "Spor",
+    "question": "Okçulukta hedefin tam merkezinde yer alan en yüksek puanlı sarı bölge kaç puan değerindedir?",
+    "options": [
+      "10 puan",
+      "9 puan",
+      "8 puan",
+      "12 puan"
+    ],
+    "answer": 0,
+    "style": "classic"
+  },
+  {
+    "category": "Spor",
+    "question": "Eskrim sporunda kullanılan üç silahtan biri hangisidir?",
+    "options": [
+      "Flöre",
+      "Kılıçkalkan",
+      "Pala",
+      "Mızrak"
+    ],
+    "answer": 0,
+    "style": "classic"
+  },
+  {
+    "category": "Spor",
+    "question": "Masa tenisinde bir seti kazanmak için kural olarak en az kaç sayıya ulaşmak gerekir?",
+    "options": [
+      "11 sayı",
+      "21 sayı",
+      "15 sayı",
+      "25 sayı"
+    ],
+    "answer": 0,
+    "style": "classic"
+  },
+  {
+    "category": "Spor",
+    "question": "Badminton sporunda kullanılan tüylü topa ne ad verilir?",
+    "options": [
+      "Kaztüyü top",
+      "Puck",
+      "Plastik top",
+      "Gülle"
+    ],
+    "answer": 0,
+    "style": "classic"
+  },
+  {
+    "category": "Spor",
+    "question": "Bilardoda oyunu başlatmak için masaya dizilen renkli topların oluşturduğu üçgene ne ad verilir?",
+    "options": [
+      "Rake",
+      "Bant",
+      "Istaka",
+      "Tebeşir"
+    ],
+    "answer": 0,
+    "style": "classic"
+  },
+  {
+    "category": "Spor",
+    "question": "Dart oyununda hedef tahtasının tam merkezindeki kırmızı noktaya ne ad verilir?",
+    "options": [
+      "Bullseye",
+      "Double",
+      "Triple",
+      "Outer ring"
+    ],
+    "answer": 0,
+    "style": "classic"
+  },
+  {
+    "category": "Spor",
+    "question": "Golf sporunda topun sokulmaya çalışıldığı çim alanlara ve parkura genel olarak ne denir?",
+    "options": [
+      "Hole",
+      "Ring",
+      "Kort",
+      "Tatami"
+    ],
+    "answer": 0,
+    "style": "classic"
+  },
+  {
+    "category": "Spor",
+    "question": "Amerikan Futbolu'nda topun rakip kale çizgisine taşınarak kazanılan 6 puanlık sayıya ne denir?",
+    "options": [
+      "Touchdown",
+      "Field Goal",
+      "Safety",
+      "Try"
+    ],
+    "answer": 0,
+    "style": "classic"
+  },
+  {
+    "category": "Spor",
+    "question": "2024 Paris Olimpiyatları'nda Türkiye'ye atıcılık branşında rahat duruşu ve gümüş madalyasıyla dünya çapında viral olan milli sporcumuz kimdir?",
+    "options": [
+      "Yusuf Dikeç",
+      "İsmail Keleş",
+      "Şevval İlayda Tarhan",
+      "Ömer Vardarlı"
+    ],
+    "answer": 0,
+    "style": "classic"
+  },
+  {
+    "category": "Spor",
+    "question": "A Milli Kadın Voleybol Takımımızın yıldız pasör çaprazı olan 2023 MVP ödüllü oyuncusu kimdir?",
+    "options": [
+      "Melissa Vargas",
+      "Ebrar Karakurt",
+      "Zehra Güneş",
+      "Eda Erdem"
+    ],
+    "answer": 0,
+    "style": "classic"
+  },
+  {
+    "category": "Spor",
+    "question": "A Milli Kadın Voleybol Takımımızın efsanevi kaptanı olan orta oyuncumuz kimdir?",
+    "options": [
+      "Eda Erdem Dündar",
+      "Gizem Örge",
+      "Cansu Özbay",
+      "Hande Baladın"
+    ],
+    "answer": 0,
+    "style": "classic"
+  },
+  {
+    "category": "Sanat & Sinema",
+    "question": "Yeşilçam'da 'Güdük Necmi' karakterini canlandıran usta sinema ve tiyatro sanatçımız kimdir?",
+    "options": [
+      "Halit Akçatepe",
+      "Zeki Alasya",
+      "Metin Akpınar",
+      "Feridun Karakaya"
+    ],
+    "answer": 0,
+    "style": "classic"
+  },
+  {
+    "category": "Sanat & Sinema",
+    "question": "Devekuşu Kabare'yi kurarak Türk tiyatro ve sinemasına damga vuran muhteşem ikili kimlerdir?",
+    "options": [
+      "Zeki Alasya ve Metin Akpınar",
+      "Ahmet Kural ve Murat Cemcir",
+      "Süheyl ve Behzat Uygur",
+      "Nejat ve Süleyman"
+    ],
+    "answer": 0,
+    "style": "classic"
+  },
+  {
+    "category": "Sanat & Sinema",
+    "question": "Gırgıriye ve Bizim Aile gibi unutulmaz filmlerde rol alan, Türk sinemasının zarif hanımefendisi kimdir?",
+    "options": [
+      "Gülşen Bubikoğlu",
+      "Hülya Koçyiğit",
+      "Fatma Girik",
+      "Filiz Akın"
+    ],
+    "answer": 0,
+    "style": "classic"
+  },
+  {
+    "category": "Sanat & Sinema",
+    "question": "Türk sinemasının dört yapraklı yoncası kimlerden oluşur?",
+    "options": [
+      "Türkan Şoray, Hülya Koçyiğit, Fatma Girik, Filiz Akın",
+      "Adile Naşit, Ayşen Gruda, Perran Kutman, Mürüvvet Sim",
+      "Gülşen Bubikoğlu, Müjde Ar, Hale Soygazi, Itır Esen",
+      "Oya Aydoğan, Bahar Öztan, Ahu Tuğba, Harika Avcı"
+    ],
+    "answer": 0,
+    "style": "classic"
+  },
+  {
+    "category": "Sanat & Sinema",
+    "question": "Yüz Numaralı Adam, Bekçiler Kralı ve Kapıcılar Kralı filmlerinin yönetmeni olan usta kimdir?",
+    "options": [
+      "Zeki Ökten",
+      "Kartal Tibet",
+      "Ertem Eğilmez",
+      "Atıf Yılmaz"
+    ],
+    "answer": 0,
+    "style": "classic"
+  },
+  {
+    "category": "Sanat & Sinema",
+    "question": "Arzu Film ekolünün kurucusu ve Hababam Sınıfı, Neşeli Günler gibi başyapıtların efsane yönetmeni kimdir?",
+    "options": [
+      "Ertem Eğilmez",
+      "Osman Seden",
+      "Memduh Ün",
+      "Lütfi Akad"
+    ],
+    "answer": 0,
+    "style": "classic"
+  },
+  {
+    "category": "Sanat & Sinema",
+    "question": "Tosun Paşa, Davaro ve Şaban Oğlu Şaban gibi filmleri yöneten, aynı zamanda Tarkan rolüyle tanınan aktör ve yönetmen kimdir?",
+    "options": [
+      "Kartal Tibet",
+      "Sırrı Gültekin",
+      "Natuk Baytan",
+      "Orhan Aksoy"
+    ],
+    "answer": 0,
+    "style": "classic"
+  },
+  {
+    "category": "Sanat & Sinema",
+    "question": "Korkusuz Korkak ve Sahte Kabadayı gibi efsanevi absürt komedilerin yönetmeni kimdir?",
+    "options": [
+      "Natuk Baytan",
+      "Hulki Saner",
+      "Yücel Çakmaklı",
+      "Şerif Gören"
+    ],
+    "answer": 0,
+    "style": "classic"
+  },
+  {
+    "category": "Sanat & Sinema",
+    "question": "Selvi Boylum Al Yazmalım filminin yürekleri dağlayan film müziğini besteleyen ünlü müzisyen kimdir?",
+    "options": [
+      "Cahit Berkay",
+      "Atilla Özdemiroğlu",
+      "Melih Kibar",
+      "Erkin Koray"
+    ],
+    "answer": 0,
+    "style": "classic"
+  },
+  {
+    "category": "Sanat & Sinema",
+    "question": "Hababam Sınıfı'nın o meşhur hüzünlü ve neşeli jenerik müziğini besteleyen bestecimiz kimdir?",
+    "options": [
+      "Melih Kibar",
+      "Cahit Berkay",
+      "Fahir Atakoğlu",
+      "Esin Engin"
+    ],
+    "answer": 0,
+    "style": "classic"
+  },
+  {
+    "category": "Sanat & Sinema",
+    "question": "Matrix filminde Keanu Reeves'in canlandırdığı Neo karakterine gerçeği gösteren kırmızı ve mavi hapı sunan karakter kimdir?",
+    "options": [
+      "Morpheus",
+      "Trinity",
+      "Ajan Smith",
+      "Kahin"
+    ],
+    "answer": 0,
+    "style": "classic"
+  },
+  {
+    "category": "Sanat & Sinema",
+    "question": "Yıldız Savaşları (Star Wars) serisinde 'Güç seninle olsun' sözüyle bilinen bilge Jedi ustası kimdir?",
+    "options": [
+      "Yoda",
+      "Obi-Wan Kenobi",
+      "Luke Skywalker",
+      "Mace Windu"
+    ],
+    "answer": 0,
+    "style": "classic"
+  },
+  {
+    "category": "Sanat & Sinema",
+    "question": "Star Wars serisinin ikonik siyah kasklı ve nefes sesli karanlık lordu kimdir?",
+    "options": [
+      "Darth Vader",
+      "Darth Maul",
+      "İmparator Palpatine",
+      "Kylo Ren"
+    ],
+    "answer": 0,
+    "style": "classic"
+  },
+  {
+    "category": "Sanat & Sinema",
+    "question": "Karayip Korsanları serisinde Kaptan Jack Sparrow karakterini canlandıran ünlü aktör kimdir?",
+    "options": [
+      "Johnny Depp",
+      "Orlando Bloom",
+      "Geoffrey Rush",
+      "Brad Pitt"
+    ],
+    "answer": 0,
+    "style": "classic"
+  },
+  {
+    "category": "Sanat & Sinema",
+    "question": "Gladyatör filminde General Maximus karakterini canlandırarak Oscar kazanan aktör kimdir?",
+    "options": [
+      "Russell Crowe",
+      "Joaquin Phoenix",
+      "Mel Gibson",
+      "Christian Bale"
+    ],
+    "answer": 0,
+    "style": "classic"
+  },
+  {
+    "category": "Sanat & Sinema",
+    "question": "Cesur Yürek (Braveheart) filminde İskoç kahraman William Wallace'ı canlandıran ve filmi yöneten aktör kimdir?",
+    "options": [
+      "Mel Gibson",
+      "Liam Neeson",
+      "Sean Connery",
+      "Pierce Brosnan"
+    ],
+    "answer": 0,
+    "style": "classic"
+  },
+  {
+    "category": "Sanat & Sinema",
+    "question": "007 kod adlı İngiliz gizli ajan James Bond karakterini sinemada ilk canlandıran efsane İskoç aktör kimdir?",
+    "options": [
+      "Sean Connery",
+      "Roger Moore",
+      "Pierce Brosnan",
+      "Daniel Craig"
+    ],
+    "answer": 0,
+    "style": "classic"
+  },
+  {
+    "category": "Sanat & Sinema",
+    "question": "Forrest Gump ve Er Ryan'ı Kurtarmak filmlerinin başrol oyuncusu iki Oscar ödüllü aktör kimdir?",
+    "options": [
+      "Tom Hanks",
+      "Robin Williams",
+      "Kevin Costner",
+      "Denzel Washington"
+    ],
+    "answer": 0,
+    "style": "classic"
+  },
+  {
+    "category": "Sanat & Sinema",
+    "question": "Schindler'in Listesi, Jurassic Park ve E.T. filmlerinin efsanevi yönetmeni kimdir?",
+    "options": [
+      "Steven Spielberg",
+      "George Lucas",
+      "Francis Ford Coppola",
+      "Martin Scorsese"
+    ],
+    "answer": 0,
+    "style": "classic"
+  },
+  {
+    "category": "Sanat & Sinema",
+    "question": "Piyanist (The Pianist) filminde Wladyslaw Szpilman'ı canlandırarak En İyi Erkek Oyuncu Oscarı alan aktör kimdir?",
+    "options": [
+      "Adrien Brody",
+      "Ralph Fiennes",
+      "Edward Norton",
+      "Mark Ruffalo"
+    ],
+    "answer": 0,
+    "style": "classic"
+  },
+  {
+    "category": "Sanat & Edebiyat",
+    "question": "İstiklal Marşımızın kabul edildiği tarihi gün hangisidir?",
+    "options": [
+      "12 Mart 1921",
+      "23 Nisan 1920",
+      "29 Ekim 1923",
+      "19 Mayıs 1919"
+    ],
+    "answer": 0,
+    "style": "classic"
+  },
+  {
+    "category": "Sanat & Edebiyat",
+    "question": "İstiklal Marşı'nın bugünkü bestesini yapan ünlü Türk besteci kimdir?",
+    "options": [
+      "Osman Zeki Üngör",
+      "Ali Rıfat Çağatay",
+      "İsmail Hakkı Bey",
+      "Cemal Reşit Rey"
+    ],
+    "answer": 0,
+    "style": "classic"
+  },
+  {
+    "category": "Sanat & Edebiyat",
+    "question": "Dede Korkut Hikayeleri'nde anlatılan Türk boyu hangisidir?",
+    "options": [
+      "Oğuzlar",
+      "Kıpçaklar",
+      "Peçenekler",
+      "Karluklar"
+    ],
+    "answer": 0,
+    "style": "classic"
+  },
+  {
+    "category": "Sanat & Edebiyat",
+    "question": "Kırk Haramiler ve Açıl Susam Açıl şifresiyle bilinen masal hangi eserde yer alır?",
+    "options": [
+      "Binbir Gece Masalları",
+      "La Fontaine Masalları",
+      "Ezop Masalları",
+      "Andersen Masalları"
+    ],
+    "answer": 0,
+    "style": "classic"
+  },
+  {
+    "category": "Sanat & Edebiyat",
+    "question": "Mesnevi adlı 25 bin beyitlik dev tasavvufi şaheserin yazarı kimdir?",
+    "options": [
+      "Mevlana Celaleddin-i Rumi",
+      "Şems-i Tebrizi",
+      "Sultan Veled",
+      "Feridüddin Attar"
+    ],
+    "answer": 0,
+    "style": "classic"
+  },
+  {
+    "category": "Sanat & Edebiyat",
+    "question": "Risaletü'n-Nushiyye adlı didaktik eserin ve ilahileriyle gönülleri fetheden halk ozanımızın adı nedir?",
+    "options": [
+      "Yunus Emre",
+      "Hacı Bektaş-ı Veli",
+      "Pir Sultan Abdal",
+      "Kaygusuz Abdal"
+    ],
+    "answer": 0,
+    "style": "classic"
+  },
+  {
+    "category": "Sanat & Edebiyat",
+    "question": "Makalat adlı eseriyle bilinen ve 'İncinsen de incitme' sözüyle tanınan ulu mutasavvıf kimdir?",
+    "options": [
+      "Hacı Bektaş-ı Veli",
+      "Yunus Emre",
+      "Ahi Evran",
+      "Seyyid Burhaneddin"
+    ],
+    "answer": 0,
+    "style": "classic"
+  },
+  {
+    "category": "Sanat & Edebiyat",
+    "question": "Divan edebiyatında Su Kasidesi ve Leyla ile Mecnun mesnevisiyle tanınan 16. yüzyıl büyük şairi kimdir?",
+    "options": [
+      "Fuzuli",
+      "Baki",
+      "Nedim",
+      "Şeyh Galip"
+    ],
+    "answer": 0,
+    "style": "classic"
+  },
+  {
+    "category": "Sanat & Edebiyat",
+    "question": "Kanuni Sultan Süleyman döneminde yaşayan ve Şairler Sultanı unvanını alan Divan şairi kimdir?",
+    "options": [
+      "Baki",
+      "Fuzuli",
+      "Nef'i",
+      "Taşlıcalı Yahya"
+    ],
+    "answer": 0,
+    "style": "classic"
+  },
+  {
+    "category": "Sanat & Edebiyat",
+    "question": "Lale Devri'nin neşesini, şarkılarını ve İstanbul sefasını şiirlerine yansıtan Divan şairi kimdir?",
+    "options": [
+      "Nedim",
+      "Nabi",
+      "Şeyh Galip",
+      "Nef'i"
+    ],
+    "answer": 0,
+    "style": "classic"
+  },
+  {
+    "category": "Sanat & Edebiyat",
+    "question": "Hüsn ü Aşk adlı tasavvufi mesnevisiyle Türk edebiyatının zirve şairlerinden sayılan Galata Mevlevihanesi şeyhi kimdir?",
+    "options": [
+      "Şeyh Galip",
+      "Nabi",
+      "Fuzuli",
+      "Eşrefoğlu Rumi"
+    ],
+    "answer": 0,
+    "style": "classic"
+  },
+  {
+    "category": "Sanat & Edebiyat",
+    "question": "Koroğlu destanında 'Benden selam olsun Bolu Beyi'ne' diyerek haksızlığa başkaldıran halk şairi kimdir?",
+    "options": [
+      "Köroğlu",
+      "Dadaloğlu",
+      "Karacaoğlan",
+      "Aşık Veysel"
+    ],
+    "answer": 0,
+    "style": "classic"
+  },
+  {
+    "category": "Sanat & Edebiyat",
+    "question": "Toroslar'da Türkmen boylarının özgürlüğünü 'Ferman padişahınsa dağlar bizimdir' sözüyle haykıran halk ozanı kimdir?",
+    "options": [
+      "Dadaloğlu",
+      "Köroğlu",
+      "Gevheri",
+      "Dertli"
+    ],
+    "answer": 0,
+    "style": "classic"
+  },
+  {
+    "category": "Sanat & Edebiyat",
+    "question": "Güzelliğin On Par'etmez, Uzun İnce Bir Yoldayım ve Dostlar Beni Hatırlasın türkülerinin görme engelli Sivaslı halk ozanı kimdir?",
+    "options": [
+      "Aşık Veysel Şatıroğlu",
+      "Aşık Mahzuni Şerif",
+      "Neşet Ertaş",
+      "Muharrem Ertaş"
+    ],
+    "answer": 0,
+    "style": "classic"
+  },
+  {
+    "category": "Sanat & Edebiyat",
+    "question": "Bozkırın Tezenesi lakaplı Kırşehirli büyük halk ozanı ve halk müziği virtüözü kimdir?",
+    "options": [
+      "Neşet Ertaş",
+      "Aşık Veysel",
+      "Musa Eroğlu",
+      "Arif Sağ"
+    ],
+    "answer": 0,
+    "style": "classic"
+  },
+  {
+    "category": "Sanat & Edebiyat",
+    "question": "Kuvayi Milliye Destanı ve Memleketimden İnsan Manzaraları eserlerinin şairi kimdir?",
+    "options": [
+      "Nazım Hikmet",
+      "Attila İlhan",
+      "Ahmed Arif",
+      "Cahit Külebi"
+    ],
+    "answer": 0,
+    "style": "classic"
+  },
+  {
+    "category": "Sanat & Edebiyat",
+    "question": "Çile, Kaldırımlar ve Sakarya Türküsü şiirlerinin Şairler Sultanı unvanlı usta şairi kimdir?",
+    "options": [
+      "Necip Fazıl Kısakürek",
+      "Mehmet Akif İnan",
+      "Sezai Karakoç",
+      "Cahit Zarifoğlu"
+    ],
+    "answer": 0,
+    "style": "classic"
+  },
+  {
+    "category": "Sanat & Edebiyat",
+    "question": "Mona Roza şiiri ve Diriliş düşüncesiyle tanınan lirik İslamcı şairimiz kimdir?",
+    "options": [
+      "Sezai Karakoç",
+      "Cahit Zarifoğlu",
+      "Erdem Bayazıt",
+      "Rasim Özdenören"
+    ],
+    "answer": 0,
+    "style": "classic"
+  },
+  {
+    "category": "Sanat & Edebiyat",
+    "question": "Yaş Otuz Beş şiiriyle ölüm ve hayatı anlatan şairimiz kimdir?",
+    "options": [
+      "Cahit Sıtkı Tarancı",
+      "Ahmet Muhip Dıranas",
+      "Ziya Osman Saba",
+      "Orhan Veli Kanık"
+    ],
+    "answer": 0,
+    "style": "classic"
+  },
+  {
+    "category": "Sanat & Edebiyat",
+    "question": "Garip akımının öncüsü olan ve 'İstanbul'u dinliyorum gözlerim kapalı' şiirinin yazarı kimdir?",
+    "options": [
+      "Orhan Veli Kanık",
+      "Melih Cevdet Anday",
+      "Oktay Rifat",
+      "İlhan Berk"
+    ],
+    "answer": 0,
+    "style": "classic"
   }
 ]
