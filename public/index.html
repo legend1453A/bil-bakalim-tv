@@ -2516,6 +2516,7 @@
     let localStreak = 0;
 
     function startCategoryGameHybrid(catName) {
+      window.hasShownRoundEndAd = false;
       activeSelectedCategory = catName;
       soundFX.playGameStart();
       if (socket && socket.connected) {
@@ -3760,6 +3761,44 @@
         btnCloseHof.focus();
       }
       else if (state.status === 'GAME_OVER') {
+        // 🎬 1. KATEGORİ KİLİTLEME: Eğer 10 soruluk VIP pası bittiyse kategoriyi hem hafızadan hem ekrandan hemen kilitle
+        if (state.vipPassExpiredCategory) {
+          const expiredCat = state.vipPassExpiredCategory;
+          unlockedCategoriesList = unlockedCategoriesList.filter(c => c !== expiredCat);
+          try { localStorage.setItem('bil_bakalim_unlocked_cats', JSON.stringify(unlockedCategoriesList)); } catch(e) {}
+          allCategories.forEach(c => {
+            if (c.name === expiredCat || c.id === expiredCat) c.isUnlocked = false;
+          });
+          renderCategoryCards(allCategories);
+        }
+
+        // 🎬 2. OTOMATİK GEÇİŞ REKLAMI: 10 soru bittiğinde araya AdMob tam ekran geçiş reklamı girer
+        if (!window.hasShownRoundEndAd) {
+          window.hasShownRoundEndAd = true;
+          screenGameOver.style.display = 'none';
+          screenQuestion.style.display = 'none';
+          screenAd.style.display = 'flex';
+          screenAd.style.zIndex = '999999';
+          let adCount = 4;
+          const adTimerEl = document.getElementById('ad-timer');
+          if (adTimerEl) adTimerEl.textContent = adCount;
+          if (btnSkipAd) btnSkipAd.focus();
+
+          if (window.interstitialAdInterval) clearInterval(window.interstitialAdInterval);
+          window.interstitialAdInterval = setInterval(() => {
+            adCount--;
+            if (adTimerEl) adTimerEl.textContent = adCount;
+            if (adCount <= 0) {
+              clearInterval(window.interstitialAdInterval);
+              screenAd.style.display = 'none';
+              screenGameOver.style.display = 'block';
+              soundFX.playVictoryFanfare();
+              triggerTvConfetti();
+            }
+          }, 1000);
+          return;
+        }
+
         screenGameOver.style.display = 'block';
         soundFX.playCorrect();
 
@@ -3968,6 +4007,10 @@
         const cb = window.pendingAdCallback;
         window.pendingAdCallback = null;
         cb();
+      } else if (screenGameOver && screenGameOver.style.display === 'none') {
+        screenGameOver.style.display = 'block';
+        soundFX.playVictoryFanfare();
+        triggerTvConfetti();
       } else if (isLocalModeActive || !socket.connected) {
         nextLocalQuestion();
       } else {
