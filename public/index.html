@@ -3205,21 +3205,28 @@
           if (sec <= 0) {
             clearInterval(window.adMobTestInterval);
             rewardedModal.style.display = 'none';
+            closeVipModal();
             if (soundFX && soundFX.playRewardSuccess) soundFX.playRewardSuccess();
             speakText(`Tebrikler! Google AdMob reklamı başarıyla izlendi, ${targetCat} paketi 10 soru için açıldı! Salonda yarışma başlıyor!`);
             showTvToast(`🎉 ${targetCat} Paketi 10 Soru İçin Açıldı!`, '🎁');
 
-            // 1. Sunucuya haber ver ve 10 soruluk VIP oyununu sunucudan başlat
+            // 1. Yerel istemci listesine ekle ve kartları "PAKET AÇIK" yap
+            if (!unlockedCategoriesList.includes(targetCat)) {
+              unlockedCategoriesList.push(targetCat);
+              try { localStorage.setItem('bil_bakalim_unlocked_cats', JSON.stringify(unlockedCategoriesList)); } catch(e) {}
+            }
+            allCategories.forEach(c => {
+              if (c.name === targetCat || c.id === targetCat) c.isUnlocked = true;
+            });
+            renderCategoryCards(allCategories);
+
+            // 2. Sunucuya bildir
             if (socket && socket.connected) {
               socket.emit('host_watch_rewarded_ad', { categoryName: targetCat, roomCode: myRoomCode });
-            } else {
-              if (!unlockedCategoriesList.includes(targetCat)) {
-                unlockedCategoriesList.push(targetCat);
-                try { localStorage.setItem('bil_bakalim_unlocked_cats', JSON.stringify(unlockedCategoriesList)); } catch(e) {}
-              }
-              renderCategoryCards(allCategories);
-              startCategoryGameHybrid(targetCat);
             }
+
+            // 3. 10 soruluk oyunu hemen başlat
+            startCategoryGameHybrid(targetCat);
           }
         }, 1000);
       }

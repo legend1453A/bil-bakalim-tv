@@ -490,7 +490,8 @@ function isCategoryLockedForRoom(room, categoryName) {
   if (!isVip) return false;
   if (room.isPro) return false;
   const unlocked = room.unlockedCategories || [];
-  if (unlocked.includes(categoryName) || (config && unlocked.includes(config.name))) return false;
+  if (unlocked.includes(categoryName) || (config && (unlocked.includes(config.name) || unlocked.includes(config.id)))) return false;
+  if (room.adUnlockedVipPasses && (room.adUnlockedVipPasses[categoryName] || (config && room.adUnlockedVipPasses[config.name]))) return false;
   return true;
 }
 
@@ -1169,6 +1170,12 @@ io.on('connection', (socket) => {
     };
     if (!room.unlockedCategories.includes(categoryName)) {
       room.unlockedCategories.push(categoryName);
+    }
+    const config = CATEGORY_CONFIG.find(c => c.name === categoryName || c.id === categoryName);
+    if (config) {
+      if (!room.unlockedCategories.includes(config.name)) room.unlockedCategories.push(config.name);
+      if (!room.unlockedCategories.includes(config.id)) room.unlockedCategories.push(config.id);
+      room.adUnlockedVipPasses[config.name] = { questionsGranted: 10, timestamp: Date.now() };
     }
     room.selectedCategory = categoryName;
     room.vipPassExpiredCategory = null;
