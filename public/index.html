@@ -1543,6 +1543,7 @@
       </div>
       <button class="top-btn" id="btn-tts-toggle" onclick="toggleTts()" title="Soruları sesli okuyan Türkçe spiker">🎙️ Spiker: Açık</button>
       <button class="top-btn" id="btn-header-pro" onclick="openProModal()" style="background:linear-gradient(135deg, #f59e0b, #d97706); color:#000; font-weight:900; border:none; box-shadow:0 0 14px rgba(245,158,11,0.5);">👑 PRO Al</button>
+      <button class="top-btn" onclick="openAdMobTestModal()" style="background:rgba(16,185,129,0.22); border-color:#10b981; color:#34d399; font-weight:900;" title="Google AdMob Test Reklamını Canlı İzle">📺 Test Reklamı</button>
       <button class="top-btn" onclick="goHomeLobby()">🏠 Ana Sayfa</button>
       <button class="top-btn" onclick="goCategories()">🗂️ Kategoriler</button>
       <button class="top-btn" id="btn-open-hof">🏆 Liderlik Tablosu</button>
@@ -2020,15 +2021,18 @@
     </div>
 
     <!-- 9. GOOGLE ADMOB ÖDÜLLÜ REKLAM MODALI (TV REWARDED VIDEO TEST) -->
-    <div id="tv-rewarded-ad-modal" class="tv-modal-backdrop" style="display:none; z-index:9999;">
-      <div class="tv-modal-box" style="border-color:#10b981; max-width:580px; text-align:center; padding:20px 24px; background:radial-gradient(circle at 50% 20%, #064e3b 0%, #022c22 85%); box-shadow:0 0 45px rgba(16,185,129,0.55);">
-        <!-- ÜST ADMOB TEST ROZETİ -->
+    <div id="tv-rewarded-ad-modal" class="tv-modal-backdrop" style="display:none; z-index:999999;">
+      <div class="tv-modal-box" style="border-color:#10b981; max-width:580px; text-align:center; padding:20px 24px; background:radial-gradient(circle at 50% 20%, #064e3b 0%, #022c22 85%); box-shadow:0 0 50px rgba(16,185,129,0.7); position:relative;">
+        <!-- ÜST ADMOB TEST ROZETİ VE KAPAT BUTONU -->
         <div style="display:flex; justify-content:space-between; align-items:center; border-bottom:1px solid rgba(255,255,255,0.15); padding-bottom:8px; margin-bottom:12px;">
           <div style="display:flex; align-items:center; gap:8px;">
             <span style="background:#facc15; color:#000; font-weight:900; font-size:11px; padding:3px 7px; border-radius:5px; letter-spacing:0.5px;">AdMob Test Ad</span>
             <span style="font-size:12px; color:#a7f3d0; font-weight:700;">Google TV Rewarded Video</span>
           </div>
-          <span style="font-size:11px; color:#94a3b8; font-family:monospace;">ID: ca-app-pub-3940...5224354917</span>
+          <div style="display:flex; align-items:center; gap:10px;">
+            <span style="font-size:11px; color:#94a3b8; font-family:monospace;">ID: ca-app-pub-3940...5224354917</span>
+            <button type="button" class="top-btn" onclick="closeAdMobTestModal()" style="font-size:12px; padding:2px 8px; border-color:rgba(255,255,255,0.3); color:#cbd5e1;">✕ Kapat</button>
+          </div>
         </div>
 
         <div style="font-size:44px; margin-bottom:4px;">🎁</div>
@@ -3160,46 +3164,63 @@
       });
     };
 
-    window.testAdMobRewardedDirect = function() {
+    window.openAdMobTestModal = function() {
       if (soundFX && soundFX.playPop) soundFX.playPop();
       pendingVipCategory = 'VIP: Sinema & Dizi';
-      watchRewardedAdForVip();
-    };
-
-    window.watchRewardedAdForVip = function() {
-      if (!pendingVipCategory) pendingVipCategory = 'VIP: Sinema & Dizi';
-      const vipModal = document.getElementById('tv-vip-modal');
-      if (vipModal) vipModal.style.display = 'none';
-
-      const catNameEl = document.getElementById('rewarded-ad-cat-name');
-      if (catNameEl) catNameEl.textContent = pendingVipCategory;
-
       const rewardedModal = document.getElementById('tv-rewarded-ad-modal');
       const bar = document.getElementById('rewarded-ad-bar');
       const cd = document.getElementById('rewarded-ad-countdown');
-      rewardedModal.style.display = 'flex';
-      let sec = 8;
-      cd.textContent = sec;
-      bar.style.width = '0%';
-      setTimeout(() => { bar.style.width = '100%'; }, 50);
+      const catEl = document.getElementById('rewarded-ad-cat-name');
+      if (catEl) catEl.textContent = 'VIP: Sinema & Dizi';
 
-      const targetCat = pendingVipCategory;
-      const intv = setInterval(() => {
-        sec--;
-        cd.textContent = sec;
-        if (soundFX && soundFX.playTick) soundFX.playTick();
-        if (sec <= 0) {
-          clearInterval(intv);
-          rewardedModal.style.display = 'none';
-          if (!unlockedCategoriesList.includes(targetCat)) unlockedCategoriesList.push(targetCat);
-          try { localStorage.setItem('bil_bakalim_unlocked_cats', JSON.stringify(unlockedCategoriesList)); } catch(e) {}
-          renderCategoryCards(allCategories);
-          if (soundFX && soundFX.playRewardSuccess) soundFX.playRewardSuccess();
-          speakText('Tebrikler! Reklam izlendi, ' + targetCat + ' bu tur için açıldı!');
-          showTvToast(targetCat + ' Bu Tur İçin Ücretsiz Açıldı!', '🎬');
-          socket.emit('host_watch_rewarded_ad', { categoryName: targetCat, roomCode: myRoomCode });
+      if (rewardedModal) {
+        rewardedModal.style.display = 'flex';
+        rewardedModal.style.zIndex = '999999';
+        let sec = 6;
+        if (cd) cd.textContent = sec;
+        if (bar) {
+          bar.style.transition = 'none';
+          bar.style.width = '0%';
+          setTimeout(() => {
+            bar.style.transition = 'width 6s linear';
+            bar.style.width = '100%';
+          }, 50);
         }
-      }, 1000);
+
+        if (window.adMobTestInterval) clearInterval(window.adMobTestInterval);
+        window.adMobTestInterval = setInterval(() => {
+          sec--;
+          if (cd) cd.textContent = sec;
+          if (soundFX && soundFX.playTick) soundFX.playTick();
+          if (sec <= 0) {
+            clearInterval(window.adMobTestInterval);
+            rewardedModal.style.display = 'none';
+            if (soundFX && soundFX.playRewardSuccess) soundFX.playRewardSuccess();
+            speakText('Tebrikler! Google AdMob test reklamı başarıyla izlendi, VIP Sinema ve Dizi paketi açıldı!');
+            showTvToast('🎉 Google AdMob Test Reklamı Başarılı! VIP Paket Açıldı!', '🎁');
+            if (!unlockedCategoriesList.includes('VIP: Sinema & Dizi')) {
+              unlockedCategoriesList.push('VIP: Sinema & Dizi');
+              try { localStorage.setItem('bil_bakalim_unlocked_cats', JSON.stringify(unlockedCategoriesList)); } catch(e) {}
+              renderCategoryCards(allCategories);
+            }
+          }
+        }, 1000);
+      }
+    };
+
+    window.closeAdMobTestModal = function() {
+      if (soundFX && soundFX.playPop) soundFX.playPop();
+      if (window.adMobTestInterval) clearInterval(window.adMobTestInterval);
+      const rewardedModal = document.getElementById('tv-rewarded-ad-modal');
+      if (rewardedModal) rewardedModal.style.display = 'none';
+    };
+
+    window.testAdMobRewardedDirect = function() {
+      openAdMobTestModal();
+    };
+
+    window.watchRewardedAdForVip = function() {
+      openAdMobTestModal();
     };
 
     socket.on('payment_unlocked', ({ isPro, unlockedCategories, pkgName, method }) => {
@@ -3588,10 +3609,40 @@
           const firstOpt = document.getElementById('opt-card-0');
           if (firstOpt) firstOpt.focus();
         } else if (state.status === 'ANSWER_REVEAL') {
-          soundFX.playCorrect();
-          if (state.question && state.correctAnswer !== null) {
-            const optLetter = ['A', 'B', 'C', 'D'][state.correctAnswer];
-            speakText(`Harika! Doğru cevap: ${optLetter} şıkkı! ${state.question.options[state.correctAnswer]}!`, 'cheer');
+          const players = state.players || [];
+          const correctPlayers = players.filter(p => p.isCorrect);
+          const hasCorrect = correctPlayers.length > 0;
+          const isLocalPlayerWrong = (localCurrentAnswer !== null && localCurrentAnswer !== state.correctAnswer);
+          const isEveryoneWrong = (players.length > 0 && !hasCorrect);
+
+          if (isEveryoneWrong || (players.length === 1 && !hasCorrect) || isLocalPlayerWrong) {
+            // YANLIŞ CEVAP DURUMU: Yanlış sesi çal, asla "Harika" deme!
+            if (soundFX && soundFX.playWrong) soundFX.playWrong();
+            if (state.question && state.correctAnswer !== null) {
+              const isTF = state.question.type === 'TRUE_FALSE' || (state.question.options && state.question.options.length === 2);
+              const ansText = state.question.options[state.correctAnswer];
+              if (isTF) {
+                speakText(`Maalesef bilemediniz! Doğru cevap: ${ansText} olacaktı.`, 'disappointed');
+              } else {
+                const optLetter = ['A', 'B', 'C', 'D'][state.correctAnswer];
+                speakText(`Maalesef yanlış cevap! Doğru cevap: ${optLetter} şıkkı, ${ansText} olacaktı.`, 'disappointed');
+              }
+            }
+          } else {
+            // DOĞRU CEVAP DURUMU
+            if (soundFX && soundFX.playCorrect) soundFX.playCorrect();
+            if (state.question && state.correctAnswer !== null) {
+              const isTF = state.question.type === 'TRUE_FALSE' || (state.question.options && state.question.options.length === 2);
+              const ansText = state.question.options[state.correctAnswer];
+              if (isTF) {
+                speakText(`Tebrikler! Doğru cevap: ${ansText}!`, 'cheer');
+              } else {
+                const optLetter = ['A', 'B', 'C', 'D'][state.correctAnswer];
+                const fastestName = correctPlayers.find(p => p.isFastest)?.name;
+                const mention = fastestName ? `Tebrikler, en hızlı ${fastestName} bildi!` : 'Tebrikler!';
+                speakText(`${mention} Doğru cevap: ${optLetter} şıkkı, ${ansText}!`, 'cheer');
+              }
+            }
           }
 
           // 2. TAKIM COMBOSU (1.5X) KUTLAMASI
