@@ -727,6 +727,24 @@
       joinErrorBox.style.display = 'block';
     });
 
+    // 🚨 ODA KAPASİTESİ DOLDUĞUNDA (3/3) 4. KİŞİYE ÖZEL TELEFON UYARISI
+    socket.on('ROOM_FULL_PRO_REQUIRED', ({ title, message }) => {
+      triggerHaptic([150, 100, 150]);
+      joinErrorBox.innerHTML = `
+        <div style="font-weight:900; font-size:15px; margin-bottom:6px; color:#facc15;">
+          🚫 ${title || 'Oda Kapasitesi Doldu (3/3)!'}
+        </div>
+        <div style="font-size:13px; line-height:1.4; color:#f8fafc;">
+          ${message || 'Ücretsiz sürümde odaya en fazla 3 oyuncu katılabilir. 4 ve daha fazla kişiyle sınırsız yarışmak için TV ekranından PRO pakete (29,99 TL\'den başlayan Parti Bileti veya PRO Üyelik) geçiş yapın!'}
+        </div>
+      `;
+      joinErrorBox.style.display = 'block';
+      joinErrorBox.style.background = 'rgba(239, 68, 68, 0.25)';
+      joinErrorBox.style.borderColor = '#ef4444';
+      joinErrorBox.style.padding = '14px 16px';
+      joinErrorBox.style.borderRadius = '14px';
+    });
+
     // ⚡ 4 TAKTİKSEL GÜÇ İŞLEVLERİ
     window.useJokerFifty = function() {
       if (hasAnsweredCurrentQuestion) return;

@@ -104,7 +104,7 @@ const CATEGORY_CONFIG = [
     id: 'VIP: Tarih Ustası', 
     name: 'VIP: Tarih Ustası', 
     isVip: true, 
-    price: '59,99 TL',
+    price: '49,99 TL',
     questionCount: 1200,
     icon: '🏛️', 
     desc: 'Osmanlı, Kurtuluş Savaşı, Antik Çağ ve Dünya Tarihinin derinlikleri',
@@ -114,7 +114,7 @@ const CATEGORY_CONFIG = [
     id: 'VIP: Genel Kültür Master', 
     name: 'VIP: Genel Kültür Master', 
     isVip: true, 
-    price: '59,99 TL',
+    price: '49,99 TL',
     questionCount: 1000,
     icon: '👑', 
     desc: 'Dünya coğrafyası, başkentler, ilginç bilgiler ve rekorlar',
@@ -164,29 +164,39 @@ const CATEGORY_CONFIG = [
 
 
 
-// PRO Üyelik Modeli
+// PRO Üyelik Modeli (Parti Bileti 24 Saat, Aylık PRO, Ömür Boyu Sınırsız)
 const PRO_TIERS = [
   {
+    id: 'pro_party',
+    name: 'Parti Bileti (24 Saat)',
+    price: '29,99 TL (Tek Sefer)',
+    tag: 'Bu Akşamlık',
+    features: [
+      '24 Saat Tüm VIP Paketler Açık',
+      'Sınırsız Oyuncu Katılımı',
+      'Sıfır Reklam ile Kesintisiz Eğlence'
+    ]
+  },
+  {
     id: 'pro_monthly',
-    name: 'PRO Aylık Abonelik',
-    price: '59,99 TL / Ay',
+    name: 'Aylık PRO Abonelik',
+    price: '79,99 TL / ay',
     tag: 'Popüler',
     features: [
-      'Tüm 5.500+ Soru ve Tüm VIP Paketler Açık',
-      'Sıfır Reklam ile Kesintisiz Hızlı Oyun',
-      'Sınırsız Oyuncu Katılımı',
-      'Haftalık Yeni Soru Güncellemeleri'
+      'Tüm 12 VIP Kategori Açık',
+      'Reklamsız & Sınırsız Oyuncu',
+      'Düzenli Soru Güncellemeleri'
     ]
   },
   {
     id: 'pro_lifetime',
-    name: 'PRO Ömür Boyu Sınırsız',
-    price: '149,99 TL (Tek Seferlik)',
+    name: 'Ömür Boyu Sınırsız',
+    price: '299,99 TL (Tek Sefer)',
     tag: 'En Avantajlı',
     features: [
-      'Tüm Mevcut ve Gelecek 500 Soruluk Paketler Açık',
-      'Ömür Boyu Reklamsız Deneyim',
-      'Özel Şampiyonluk Temaları'
+      'Ömür Boyu Reklamsız & Sınırsız',
+      'Gelecek Tüm VIP Paketler Bedava',
+      'Özel Şampiyonluk Ayrıcalıkları'
     ]
   }
 ];
@@ -469,6 +479,33 @@ function saveProSubscriber(roomCode, details = {}) {
   }
 }
 
+// ODA KAPASİTE SINIRI: Ücretsiz odalarda maksimum 3 oyuncu
+const MAX_FREE_PLAYERS = 3;
+
+// Kullanıcının / Odanın aktif PRO veya 24 Saatlik Parti Bileti olup olmadığını kontrol eden fonksiyon
+function isRoomPro(room) {
+  if (!room) return false;
+  if (room.hasLifetimePro || room.hasActiveMonthlySub) return true;
+  if (room.partyPassExpiry && Date.now() < room.partyPassExpiry) return true;
+  if (room.proExpiresAt && new Date(room.proExpiresAt).getTime() < Date.now()) {
+    room.isPro = false;
+    room.proExpiresAt = null;
+    return false;
+  }
+  if (room.isPro) return true;
+  if (room.roomCode && isRoomOrDevicePro(room.roomCode)) return true;
+  return false;
+}
+
+// 24 Saatlik Parti Bileti satın alındığında tetiklenecek fonksiyon
+function activatePartyPass(room) {
+  room.partyPassExpiry = Date.now() + (24 * 60 * 60 * 1000); // Şu an + 24 saat
+  room.isPro = true;
+  room.proExpiresAt = new Date(room.partyPassExpiry).toISOString();
+  room.proDurationLabel = 'Parti Bileti (24 Saat)';
+  room.unlockedCategories = CATEGORY_CONFIG.map(c => c.name);
+}
+
 function isRoomOrDevicePro(roomCode, deviceId) {
   const data = loadProSubscribers();
   const now = Date.now();
@@ -629,25 +666,53 @@ app.post('/api/payment/process', async (req, res) => {
   }
 
   targetRooms.forEach(room => {
+    let durationLabel = 'PRO Üyelik';
+    let expiresAt = null;
+
     if (pkgType === 'VIP_PACK' && pkgName) {
       if (!room.unlockedCategories.includes(pkgName)) {
         room.unlockedCategories.push(pkgName);
       }
-    } else {
+      durationLabel = 'VIP Kategori Açıldı';
+    } else if (pkgType === 'PARTY_PASS' || (pkgName && pkgName.includes('Parti'))) {
+      activatePartyPass(room);
+      durationLabel = 'Parti Bileti (24 Saat)';
+      expiresAt = new Date(room.partyPassExpiry).toISOString();
+    } else if (pkgType === 'PRO_LIFETIME' || (pkgName && pkgName.includes('Ömür'))) {
       room.isPro = true;
+      room.hasLifetimePro = true;
+      room.proExpiresAt = null;
+      room.proDurationLabel = 'Ömür Boyu Sınırsız';
       room.unlockedCategories = CATEGORY_CONFIG.map(c => c.name);
+      durationLabel = 'Ömür Boyu Sınırsız';
+    } else {
+      // Aylık PRO
+      room.isPro = true;
+      room.hasActiveMonthlySub = true;
+      const oneMonth = Date.now() + (30 * 24 * 60 * 60 * 1000);
+      room.proExpiresAt = new Date(oneMonth).toISOString();
+      room.proDurationLabel = 'Aylık PRO Abonelik';
+      room.unlockedCategories = CATEGORY_CONFIG.map(c => c.name);
+      durationLabel = 'Aylık PRO Abonelik';
+      expiresAt = room.proExpiresAt;
     }
+
     saveProSubscriber(room.roomCode, {
       method: result.provider || 'CARD',
       transactionId: result.transactionId,
       pkgName: pkgName || 'BİL BAKALIM PRO',
+      pkgType: pkgType,
+      expiresAt: expiresAt,
+      durationLabel: durationLabel,
       date: new Date().toISOString()
     });
 
     const payload = {
       isPro: !!room.isPro,
       unlockedCategories: room.unlockedCategories,
-      pkgName: pkgName || 'BİL BAKALIM PRO',
+      pkgName: pkgName || `BİL BAKALIM PRO (${durationLabel})`,
+      durationLabel: durationLabel,
+      expiresAt: expiresAt,
       method: result.provider || 'CARD',
       transactionId: result.transactionId
     };
@@ -834,20 +899,52 @@ app.post('/api/unlock', (req, res) => {
     }
 
     targetRooms.forEach(room => {
+      let durationLabel = 'PRO Üyelik';
+      let expiresAt = null;
+
       if (pkgType === 'VIP_PACK' && pkgName) {
         if (!room.unlockedCategories.includes(pkgName)) {
           room.unlockedCategories.push(pkgName);
         }
-      } else {
+        durationLabel = 'VIP Kategori Açıldı';
+      } else if (pkgType === 'PARTY_PASS' || (pkgName && pkgName.includes('Parti'))) {
+        activatePartyPass(room);
+        durationLabel = 'Parti Bileti (24 Saat)';
+        expiresAt = new Date(room.partyPassExpiry).toISOString();
+      } else if (pkgType === 'PRO_LIFETIME' || (pkgName && pkgName.includes('Ömür'))) {
         room.isPro = true;
+        room.hasLifetimePro = true;
+        room.proExpiresAt = null;
+        room.proDurationLabel = 'Ömür Boyu Sınırsız';
         room.unlockedCategories = CATEGORY_CONFIG.map(c => c.name);
+        durationLabel = 'Ömür Boyu Sınırsız';
+      } else {
+        // Aylık PRO
+        room.isPro = true;
+        room.hasActiveMonthlySub = true;
+        const oneMonth = Date.now() + (30 * 24 * 60 * 60 * 1000);
+        room.proExpiresAt = new Date(oneMonth).toISOString();
+        room.proDurationLabel = 'Aylık PRO Abonelik';
+        room.unlockedCategories = CATEGORY_CONFIG.map(c => c.name);
+        durationLabel = 'Aylık PRO Abonelik';
+        expiresAt = room.proExpiresAt;
       }
-      saveProSubscriber(room.roomCode, { method: 'CARD_QR', pkgName: pkgName || 'BİL BAKALIM PRO', date: new Date().toISOString() });
+
+      saveProSubscriber(room.roomCode, { 
+        method: 'CARD_QR', 
+        pkgName: pkgName || `BİL BAKALIM PRO (${durationLabel})`,
+        pkgType: pkgType,
+        expiresAt: expiresAt,
+        durationLabel: durationLabel,
+        date: new Date().toISOString() 
+      });
 
       const payload = {
         isPro: !!room.isPro,
         unlockedCategories: room.unlockedCategories,
-        pkgName: pkgName || 'BİL BAKALIM PRO',
+        pkgName: pkgName || `BİL BAKALIM PRO (${durationLabel})`,
+        durationLabel: durationLabel,
+        expiresAt: expiresAt,
         method: 'CARD_QR'
       };
       io.to(`room_${room.roomCode}`).emit('payment_unlocked', payload);
@@ -1006,6 +1103,36 @@ io.on('connection', (socket) => {
     }
 
     const cleanName = (name || '').trim().substring(0, 15) || `Oyuncu-${Math.floor(Math.random()*1000)}`;
+
+    // 🚨 ODA KAPASİTE KONTROLÜ (Ücretsiz sürümde MAX 3 Oyuncu, 4. kişi kapıda bekletilir)
+    const proStatus = isRoomPro(room);
+    const currentPlayerCount = Object.values(room.players).filter(p => !p.isDisconnected).length;
+
+    if (!proStatus && currentPlayerCount >= MAX_FREE_PLAYERS) {
+      // 1. Telefondan girmeye çalışan 4. oyuncuya uyarı gönder
+      socket.emit('ROOM_FULL_PRO_REQUIRED', {
+        type: 'ROOM_FULL_PRO_REQUIRED',
+        title: 'Oda Kapasitesi Doldu (3/3)!',
+        message: 'Ücretsiz sürümde odaya en fazla 3 oyuncu katılabilir. 4 ve daha fazla kişiyle sınırsız yarışmak için TV ekranından PRO pakete (29,99 TL\'den başlayan Parti Bileti veya PRO Üyelik) geçiş yapın!'
+      });
+      // Geriye dönük uyumluluk için standart join_error da ilet
+      socket.emit('join_error', {
+        message: 'Oda Kapasitesi Doldu (3/3)! 4 ve daha fazla kişiyle sınırsız yarışmak için TV ekranından PRO pakete geçiş yapın.'
+      });
+
+      // 2. TV ekranına bildirim gönder ve otomatik PRO modalı aç
+      const tvPayload = {
+        type: 'OPEN_PRO_MODAL',
+        badgeText: 'ODA DOLDU (3/3)',
+        headerTitle: `${cleanName} Odaya Katılmak İstiyor! 🚀`,
+        subTitle: 'Ücretsiz 3 kişilik oda sınırına ulaştınız. Tüm ailenin ve arkadaş grubunun oyuna katılması için hemen Sınırsız Oyuncu kilidini açın!'
+      };
+      io.to(`tv_${currentRoomCode}`).emit('OPEN_PRO_MODAL', tvPayload);
+      io.to(`room_${currentRoomCode}`).emit('OPEN_PRO_MODAL', tvPayload);
+
+      return; // 4. oyuncuyu odaya eklemeden işlemi durdur
+    }
+
     const randomAvatar = AVATARS[Math.floor(Math.random() * AVATARS.length)];
     const assignedTeam = assignBalancedTeam(room, team);
     const newSessionToken = sessionToken || `tok_${Date.now()}_${Math.random().toString(36).substring(2, 9)}`;

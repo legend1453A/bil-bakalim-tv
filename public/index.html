@@ -1595,7 +1595,7 @@
         </div>
 
         <div class="lobby-header">
-          <span>Odadaki Oyuncular (<span id="player-count">0</span>)</span>
+          <span id="lbl-lobby-player-counter">Odadaki Oyuncular (<span id="player-count">0</span>/3)</span>
           <span style="font-size: 14.5px; color: #a5b4fc; font-weight:700;">Telefonunuzdan Emoji Fırlatabilirsiniz 🔥👏</span>
         </div>
         <div class="player-pill-grid" id="players-list">
@@ -1642,13 +1642,13 @@
         <div style="display:flex; align-items:center; gap:10px;">
           <span style="font-size:20px;">👑</span>
           <div style="display:flex; align-items:baseline; gap:8px;">
-            <span style="font-size:13px; font-weight:900; color:#facc15;" id="lbl-pro-banner-title">PRO AVANTAJLARI:</span>
-            <span style="font-size:11.5px; color:#FFFFFF; font-weight:500;">Tüm VIP paketler açık • Sıfır reklam • Sınırsız oyuncu</span>
+            <span style="font-size:13px; font-weight:900; color:#facc15;" id="lbl-pro-banner-title">BİL BAKALIM PRO AVANTAJLARI:</span>
+            <span style="font-size:11.5px; color:#FFFFFF; font-weight:500;" id="lbl-pro-banner-desc">Tüm VIP paketler açık • Sıfır reklam • Sınırsız oyuncu (Ücretsiz sınır: 3 Kişi) • 29,99 TL'den başlayan fiyatlarla</span>
           </div>
         </div>
 
         <div style="display:flex; align-items:center; gap:10px;">
-          <span style="font-size:14px; font-weight:900; color:#fff;" id="lbl-pro-price-tag">59,99 TL <span style="font-size:11px; color:var(--text-muted); font-weight:600;">/ay</span></span>
+          <span style="font-size:14px; font-weight:900; color:#fff;" id="lbl-pro-price-tag">29,99 TL'den başlayan</span>
           <button class="tv-btn" onclick="openProModal()" style="padding:4px 14px; font-size:12px;">PRO'ya Geç ➔</button>
         </div>
       </div>
@@ -1847,41 +1847,67 @@
 
     <!-- 7. ÖZEL TV PRO MODAL (POPUP) -->
     <div id="tv-pro-modal" class="tv-modal-backdrop">
-      <div class="tv-modal-box" style="padding:10px 18px; gap:8px; max-height:92vh;">
+      <div class="tv-modal-box" style="padding:14px 22px; gap:10px; max-height:94vh; max-width:820px; width:95%;">
         <div style="display:flex; justify-content:space-between; align-items:center;">
-          <div style="display:flex; align-items:center; gap:10px;">
-            <span style="font-size:28px;">👑</span>
-            <h2 style="font-size:22px; font-weight:900; color:#facc15; margin:0;">BİL BAKALIM PRO ÜYELİK</h2>
+          <div style="display:flex; align-items:center; gap:12px;">
+            <span style="font-size:32px;">👑</span>
+            <div>
+              <div id="tv-pro-modal-badge" style="display:inline-block; background:#ef4444; color:#fff; font-size:11px; font-weight:900; padding:2px 8px; border-radius:6px; margin-bottom:2px; letter-spacing:0.5px;">BİL BAKALIM PRO</div>
+              <h2 id="tv-pro-modal-title" style="font-size:22px; font-weight:900; color:#facc15; margin:0;">BİL BAKALIM PRO ÜYELİK</h2>
+              <div id="tv-pro-modal-subtitle" style="font-size:12.5px; color:#cbd5e1; margin-top:2px;">Tüm VIP paketler açık • Sıfır reklam • Sınırsız oyuncu katılımı</div>
+            </div>
           </div>
-          <button class="top-btn" onclick="closeProModal()" style="font-size:15px; padding:4px 12px;">✕ Kapat</button>
+          <button class="top-btn" onclick="closeProModal()" style="font-size:15px; padding:6px 14px;">✕ Kapat</button>
         </div>
 
-        <!-- 2 SEÇENEKLİ PLAN SEÇİM KARTLARI -->
-        <div style="display:grid; grid-template-columns:1fr 1fr; gap:12px;">
-          <div id="pro-opt-monthly" onclick="selectProOption('MONTHLY', '59,99 TL')" style="background:rgba(79,70,229,0.3); border:2.5px solid #facc15; border-radius:14px; padding:10px 14px; display:flex; flex-direction:column; gap:4px; cursor:pointer; transition:all 0.2s; box-shadow:0 0 20px rgba(250,204,21,0.35); opacity:1;">
+        <!-- 3 SÜTUNLU KUTU METİNLERİ (PARTİ BİLETİ, AYLIK PRO, ÖMÜR BOYU) -->
+        <div style="display:grid; grid-template-columns:1fr 1fr 1fr; gap:10px;">
+          <!-- 1. SEÇENEK: PARTİ BİLETİ (24 SAAT) -->
+          <div id="pro-opt-party" onclick="selectProOption('PARTY_PASS', '29,99 TL')" style="background:rgba(255,255,255,0.06); border:1.5px solid rgba(255,255,255,0.18); border-radius:14px; padding:12px 14px; display:flex; flex-direction:column; gap:6px; cursor:pointer; transition:all 0.2s; opacity:0.8;">
             <div style="display:flex; justify-content:space-between; align-items:center;">
-              <span style="background:#4f46e5; color:#fff; font-size:11px; font-weight:900; padding:2px 8px; border-radius:6px;">1. SEÇENEK</span>
-              <span id="pro-badge-monthly" style="color:#34d399; font-size:18px; font-weight:900;">✓</span>
+              <span style="background:#3b82f6; color:#fff; font-size:10.5px; font-weight:900; padding:2px 7px; border-radius:6px;">1. SEÇENEK (BU AKŞAMLIK)</span>
+              <span id="pro-badge-party" style="display:none; color:#34d399; font-size:18px; font-weight:900;">✓</span>
             </div>
-            <div style="font-size:18px; font-weight:900; color:#fff;">Aylık Abonelik</div>
-            <div style="font-size:22px; font-weight:900; color:#facc15;">59,99 TL <span style="font-size:13px; color:#cbd5e1; font-weight:600;">/ay</span></div>
-            <div style="font-size:12px; color:#cbd5e1; line-height:1.3;">✓ Tüm 12 VIP Kategori Açık • Reklamsız</div>
+            <div style="font-size:17px; font-weight:900; color:#fff;">Parti Bileti (24 Saat)</div>
+            <div style="font-size:22px; font-weight:900; color:#facc15;">29,99 TL <span style="font-size:12px; color:#cbd5e1; font-weight:600;">(Tek Sefer)</span></div>
+            <div style="font-size:12px; color:#cbd5e1; line-height:1.4;">
+              <div>✓ 24 Saat Tüm VIP Paketler Açık</div>
+              <div>✓ Sınırsız Oyuncu Katılımı</div>
+            </div>
           </div>
 
-          <div id="pro-opt-lifetime" onclick="selectProOption('LIFETIME', '149,99 TL')" style="background:rgba(255,255,255,0.06); border:1px solid rgba(255,255,255,0.18); border-radius:14px; padding:10px 14px; display:flex; flex-direction:column; gap:4px; cursor:pointer; transition:all 0.2s; opacity:0.65;">
+          <!-- 2. SEÇENEK: AYLIK PRO ABONELİK -->
+          <div id="pro-opt-monthly" onclick="selectProOption('MONTHLY', '79,99 TL')" style="background:rgba(79,70,229,0.3); border:2.5px solid #facc15; border-radius:14px; padding:12px 14px; display:flex; flex-direction:column; gap:6px; cursor:pointer; transition:all 0.2s; box-shadow:0 0 20px rgba(250,204,21,0.35); opacity:1;">
             <div style="display:flex; justify-content:space-between; align-items:center;">
-              <span style="background:#eab308; color:#000; font-size:11px; font-weight:900; padding:2px 8px; border-radius:6px;">2. SEÇENEK (ÖMÜR BOYU)</span>
+              <span style="background:#4f46e5; color:#fff; font-size:10.5px; font-weight:900; padding:2px 7px; border-radius:6px;">2. SEÇENEK (POPÜLER)</span>
+              <span id="pro-badge-monthly" style="color:#34d399; font-size:18px; font-weight:900;">✓</span>
+            </div>
+            <div style="font-size:17px; font-weight:900; color:#fff;">Aylık PRO Abonelik</div>
+            <div style="font-size:22px; font-weight:900; color:#facc15;">79,99 TL <span style="font-size:12px; color:#cbd5e1; font-weight:600;">/ ay</span></div>
+            <div style="font-size:12px; color:#cbd5e1; line-height:1.4;">
+              <div>✓ Tüm 12 VIP Kategori Açık</div>
+              <div>✓ Reklamsız & Sınırsız Oyuncu</div>
+            </div>
+          </div>
+
+          <!-- 3. SEÇENEK: ÖMÜR BOYU SINIRSIZ -->
+          <div id="pro-opt-lifetime" onclick="selectProOption('LIFETIME', '299,99 TL')" style="background:rgba(255,255,255,0.06); border:1.5px solid rgba(255,255,255,0.18); border-radius:14px; padding:12px 14px; display:flex; flex-direction:column; gap:6px; cursor:pointer; transition:all 0.2s; opacity:0.8;">
+            <div style="display:flex; justify-content:space-between; align-items:center;">
+              <span style="background:#eab308; color:#000; font-size:10.5px; font-weight:900; padding:2px 7px; border-radius:6px;">3. SEÇENEK (EN AVANTAJLI)</span>
               <span id="pro-badge-lifetime" style="display:none; color:#34d399; font-size:18px; font-weight:900;">✓</span>
             </div>
-            <div style="font-size:18px; font-weight:900; color:#fff;">Ömür Boyu Sınırsız</div>
-            <div style="font-size:22px; font-weight:900; color:#facc15;">149,99 TL <span style="font-size:13px; color:#cbd5e1; font-weight:600;">(Tek Sefer)</span></div>
-            <div style="font-size:12px; color:#cbd5e1; line-height:1.3;">✓ Ömür Boyu Reklamsız • Gelecek Paketler Bedava</div>
+            <div style="font-size:17px; font-weight:900; color:#fff;">Ömür Boyu Sınırsız</div>
+            <div style="font-size:22px; font-weight:900; color:#facc15;">299,99 TL <span style="font-size:12px; color:#cbd5e1; font-weight:600;">(Tek Sefer)</span></div>
+            <div style="font-size:12px; color:#cbd5e1; line-height:1.4;">
+              <div>✓ Ömür Boyu Reklamsız & Sınırsız</div>
+              <div>✓ Gelecek Tüm VIP Paketler Bedava</div>
+            </div>
           </div>
         </div>
 
         <!-- DOĞRUDAN PRO SATIN AL BUTONU -->
         <button id="btn-pro-direct-buy" class="tv-btn" onclick="directBuyPro()" style="background:linear-gradient(135deg, #10b981, #059669); color:#0f172a; border-color:#34d399; font-size:18px; font-weight:900; padding:10px 18px; width:100%; border-radius:12px; justify-content:center; box-shadow:0 4px 18px rgba(16, 185, 129, 0.4); cursor:pointer;">
-          💳 Hemen Satın Al & Tümünü Aç (<span id="pro-buy-btn-price">59,99 TL</span>) ➔
+          💳 Hemen Satın Al & Tümünü Aç (<span id="pro-buy-btn-price">79,99 TL</span>) ➔
         </button>
 
         <!-- KUPON ALANI VE TELEFONLA QR ÖDEME -->
@@ -2091,8 +2117,8 @@
       { id: 'İslam & Dini Bilgiler', name: 'İslam & Din Kültürü', isVip: false, price: 'Ücretsiz', questionCount: 200, icon: '🕌', desc: 'İslam tarihi, peygamberler, Kuran-ı Kerim ve fıkıh', badge: '200 Soru' },
       { id: 'Çocuk Dünyası', name: 'Çocuk Dünyası (7-12 Yaş)', isVip: false, price: 'Ücretsiz', questionCount: 250, icon: '🚀', desc: 'Çizgi filmler, hayvanlar alemi, masallar ve eğlenceli okul bilgileri', badge: '250 Soru' },
       { id: 'VIP: Çocuk Bilim & Zeka', name: 'VIP: Çocuk Bilim & Zeka', isVip: true, price: '49,99 TL', questionCount: 500, icon: '🌟', desc: 'Dinozorlar, uzay, eğlenceli bilmeceler ve oyun dünyası', badge: '👑 500 VIP Soru' },
-      { id: 'VIP: Tarih Ustası', name: 'VIP: Tarih Ustası', isVip: true, price: '59,99 TL', questionCount: 1200, icon: '🏛️', desc: 'Osmanlı, Kurtuluş Savaşı, Antik Çağ ve Dünya Tarihinin derinlikleri', badge: '👑 1.200 Soru' },
-      { id: 'VIP: Genel Kültür Master', name: 'VIP: Genel Kültür Master', isVip: true, price: '59,99 TL', questionCount: 1000, icon: '👑', desc: 'Dünya coğrafyası, başkentler, ilginç bilgiler ve rekorlar', badge: '👑 1.000 Soru' },
+      { id: 'VIP: Tarih Ustası', name: 'VIP: Tarih Ustası', isVip: true, price: '49,99 TL', questionCount: 1200, icon: '🏛️', desc: 'Osmanlı, Kurtuluş Savaşı, Antik Çağ ve Dünya Tarihinin derinlikleri', badge: '👑 1.200 Soru' },
+      { id: 'VIP: Genel Kültür Master', name: 'VIP: Genel Kültür Master', isVip: true, price: '49,99 TL', questionCount: 1000, icon: '👑', desc: 'Dünya coğrafyası, başkentler, ilginç bilgiler ve rekorlar', badge: '👑 1.000 Soru' },
       { id: 'Sanat & Sinema', name: 'VIP: Sinema & Dizi', isVip: true, price: '49,99 TL', questionCount: 500, icon: '🎬', desc: 'Yeşilçam klasikleri, kült filmler, Netflix ve efsane diziler', badge: '👑 500 VIP Soru' },
       { id: 'Matematik & Mantık', name: 'VIP: Zeka & Mantık', isVip: true, price: '49,99 TL', questionCount: 500, icon: '⚡', desc: 'Hızlı hesaplamalar, mantık bilmeceleri ve zeka soruları', badge: '👑 500 VIP Soru' },
       { id: 'Spor', name: 'VIP: Futbol & Spor Tarihi', isVip: true, price: '49,99 TL', questionCount: 500, icon: '⚽', desc: 'Süper Lig, Dünya Kupası, Şampiyonlar Ligi ve olimpiyatlar', badge: '👑 500 VIP Soru' },
@@ -2897,7 +2923,7 @@
     }
 
     let selectedProPlan = 'MONTHLY';
-    let selectedProPrice = '59,99 TL';
+    let selectedProPrice = '79,99 TL';
 
     window.refreshProQr = function() {
       const qrImg = document.getElementById('pro-qr-img');
@@ -2905,13 +2931,15 @@
       if (errBox) errBox.style.display = 'none';
       if (qrImg) qrImg.dataset.triedFallback = '';
 
-      const payUrl = `https://bil-bakalim-tv.onrender.com/pay.html?room=${encodeURIComponent(myRoomCode)}&type=PRO&name=${encodeURIComponent('BIL BAKALIM PRO')}&price=${encodeURIComponent(selectedProPrice)}`;
+      const pkgParamType = (selectedProPlan === 'PARTY_PASS') ? 'PARTY_PASS' : ((selectedProPlan === 'LIFETIME') ? 'PRO_LIFETIME' : 'PRO');
+      const pkgParamName = (selectedProPlan === 'PARTY_PASS') ? 'Parti Bileti (24 Saat)' : ((selectedProPlan === 'LIFETIME') ? 'Ömür Boyu Sınırsız' : 'Aylık PRO Abonelik');
+      const payUrl = `https://bil-bakalim-tv.onrender.com/pay.html?room=${encodeURIComponent(myRoomCode)}&type=${encodeURIComponent(pkgParamType)}&name=${encodeURIComponent(pkgParamName)}&price=${encodeURIComponent(selectedProPrice)}`;
       if (qrImg) {
         qrImg.src = `https://api.qrserver.com/v1/create-qr-code/?size=250x250&margin=2&data=${encodeURIComponent(payUrl)}`;
         qrImg.style.display = 'block';
       }
 
-      fetch(`${BACKEND_URL}/api/pay-qr?room=${encodeURIComponent(myRoomCode)}&type=PRO&name=${encodeURIComponent('BIL BAKALIM PRO')}&price=${encodeURIComponent(selectedProPrice)}`)
+      fetch(`${BACKEND_URL}/api/pay-qr?room=${encodeURIComponent(myRoomCode)}&type=${encodeURIComponent(pkgParamType)}&name=${encodeURIComponent(pkgParamName)}&price=${encodeURIComponent(selectedProPrice)}`)
         .then(r => r.json())
         .then(d => {
           if (d && d.qrDataUrl && qrImg) {
@@ -2928,7 +2956,9 @@
       const errBox = document.getElementById('pro-qr-error-box');
       if (qrImg && !qrImg.dataset.triedFallback) {
         qrImg.dataset.triedFallback = 'true';
-        const payUrl = `https://bil-bakalim-tv.onrender.com/pay.html?room=${encodeURIComponent(myRoomCode)}&type=PRO&name=${encodeURIComponent('BIL BAKALIM PRO')}&price=${encodeURIComponent(selectedProPrice)}`;
+        const pkgParamType = (selectedProPlan === 'PARTY_PASS') ? 'PARTY_PASS' : ((selectedProPlan === 'LIFETIME') ? 'PRO_LIFETIME' : 'PRO');
+        const pkgParamName = (selectedProPlan === 'PARTY_PASS') ? 'Parti Bileti (24 Saat)' : ((selectedProPlan === 'LIFETIME') ? 'Ömür Boyu Sınırsız' : 'Aylık PRO Abonelik');
+        const payUrl = `https://bil-bakalim-tv.onrender.com/pay.html?room=${encodeURIComponent(myRoomCode)}&type=${encodeURIComponent(pkgParamType)}&name=${encodeURIComponent(pkgParamName)}&price=${encodeURIComponent(selectedProPrice)}`;
         qrImg.src = `https://chart.googleapis.com/chart?chs=250x250&cht=qr&chl=${encodeURIComponent(payUrl)}`;
         return;
       }
@@ -2979,42 +3009,51 @@
       soundFX.playPop();
       selectedProPlan = planType;
       selectedProPrice = priceText;
+      const optParty = document.getElementById('pro-opt-party');
       const optMonthly = document.getElementById('pro-opt-monthly');
       const optLifetime = document.getElementById('pro-opt-lifetime');
+      const badgeParty = document.getElementById('pro-badge-party');
       const badgeMonthly = document.getElementById('pro-badge-monthly');
       const badgeLifetime = document.getElementById('pro-badge-lifetime');
       const buyPrice = document.getElementById('pro-buy-btn-price');
       if (buyPrice) buyPrice.textContent = priceText;
 
-      if (planType === 'MONTHLY') {
+      // Hepsini pasif yap
+      [optParty, optMonthly, optLifetime].forEach(el => {
+        if (el) {
+          el.style.background = 'rgba(255,255,255,0.06)';
+          el.style.border = '1.5px solid rgba(255,255,255,0.18)';
+          el.style.boxShadow = 'none';
+          el.style.opacity = '0.7';
+        }
+      });
+      if (badgeParty) badgeParty.style.display = 'none';
+      if (badgeMonthly) badgeMonthly.style.display = 'none';
+      if (badgeLifetime) badgeLifetime.style.display = 'none';
+
+      if (planType === 'PARTY_PASS') {
+        if (optParty) {
+          optParty.style.background = 'rgba(59,130,246,0.25)';
+          optParty.style.border = '2.5px solid #60a5fa';
+          optParty.style.boxShadow = '0 0 22px rgba(59,130,246,0.45)';
+          optParty.style.opacity = '1';
+        }
+        if (badgeParty) badgeParty.style.display = 'inline';
+      } else if (planType === 'MONTHLY') {
         if (optMonthly) {
           optMonthly.style.background = 'rgba(79,70,229,0.3)';
           optMonthly.style.border = '3px solid #facc15';
           optMonthly.style.boxShadow = '0 0 24px rgba(250,204,21,0.4)';
           optMonthly.style.opacity = '1';
         }
-        if (optLifetime) {
-          optLifetime.style.background = 'rgba(255,255,255,0.06)';
-          optLifetime.style.border = '1px solid rgba(255,255,255,0.18)';
-          optLifetime.style.boxShadow = 'none';
-          optLifetime.style.opacity = '0.55';
-        }
         if (badgeMonthly) badgeMonthly.style.display = 'inline';
-        if (badgeLifetime) badgeLifetime.style.display = 'none';
       } else {
-        if (optMonthly) {
-          optMonthly.style.background = 'rgba(255,255,255,0.06)';
-          optMonthly.style.border = '1px solid rgba(255,255,255,0.18)';
-          optMonthly.style.boxShadow = 'none';
-          optMonthly.style.opacity = '0.55';
-        }
         if (optLifetime) {
           optLifetime.style.background = 'rgba(234,179,8,0.25)';
           optLifetime.style.border = '3px solid #facc15';
           optLifetime.style.boxShadow = '0 0 24px rgba(250,204,21,0.4)';
           optLifetime.style.opacity = '1';
         }
-        if (badgeMonthly) badgeMonthly.style.display = 'none';
         if (badgeLifetime) badgeLifetime.style.display = 'inline';
       }
 
@@ -3053,9 +3092,22 @@
       pendingVipCategory = null;
     };
 
-    window.openProModal = function() {
+    window.openProModal = function(customInfo) {
       soundFX.playPop();
-      selectProOption('MONTHLY', '59,99 TL');
+      const badgeEl = document.getElementById('tv-pro-modal-badge');
+      const titleEl = document.getElementById('tv-pro-modal-title');
+      const subEl = document.getElementById('tv-pro-modal-subtitle');
+      if (customInfo && customInfo.headerTitle) {
+        if (badgeEl) badgeEl.textContent = customInfo.badgeText || 'ODA KAPASİTESİ (3/3)';
+        if (titleEl) titleEl.textContent = customInfo.headerTitle;
+        if (subEl) subEl.textContent = customInfo.subTitle || 'Ücretsiz 3 kişilik oda sınırına ulaştınız. Tüm ailenin ve arkadaş grubunun oyuna katılması için hemen Sınırsız Oyuncu kilidini açın!';
+        speakText((customInfo.headerTitle || '4. oyuncu kapıda bekliyor') + '. Sınırsız oyuncu için PRO üyeliğe geçiş yapabilirsiniz.');
+      } else {
+        if (badgeEl) badgeEl.textContent = 'BİL BAKALIM PRO';
+        if (titleEl) titleEl.textContent = 'BİL BAKALIM PRO ÜYELİK';
+        if (subEl) subEl.textContent = 'Tüm VIP paketler açık • Sıfır reklam • Sınırsız oyuncu katılımı';
+      }
+      selectProOption('MONTHLY', '79,99 TL');
       startModalCountdown('pro-qr-countdown', 300, 'proCountdownTimer');
       refreshProQr();
       document.getElementById('tv-pro-modal').style.display = 'flex';
@@ -3303,6 +3355,12 @@
       }, 1000);
     };
 
+    // 🚨 4. OYUNCU GİRMEYE ÇALIŞTIĞINDA TV'DE OTOMATİK PRO MODAL AÇILMASI
+    socket.on('OPEN_PRO_MODAL', (data) => {
+      openProModal(data);
+      showTvToast(data.headerTitle || '4. Oyuncu Kapıda Bekliyor! 🚀', '👑');
+    });
+
     socket.on('payment_unlocked', ({ isPro, unlockedCategories, pkgName, method, expiresAt, durationLabel }) => {
       if (isPro) {
         isProActive = true;
@@ -3433,8 +3491,8 @@
         try { localStorage.setItem('bil_bakalim_is_pro', state.isPro ? 'true' : 'false'); } catch(e) {}
         const proTitle = document.getElementById('lbl-pro-banner-title');
         const proPrice = document.getElementById('lbl-pro-price-tag');
-        if (proTitle) proTitle.textContent = state.isPro ? '👑 BİL BAKALIM PRO AKTİF! (TÜM PAKETLER AÇIK)' : 'BİL BAKALIM PRO AVANTAJLARI';
-        if (proPrice) proPrice.textContent = state.isPro ? '✓ AKTİF' : '59,99 TL /ay';
+        if (proTitle) proTitle.textContent = state.isPro ? '👑 BİL BAKALIM PRO AKTİF! (TÜM PAKETLER AÇIK)' : 'BİL BAKALIM PRO AVANTAJLARI:';
+        if (proPrice) proPrice.textContent = state.isPro ? '✓ AKTİF' : "29,99 TL'den başlayan";
       }
 
       if (Array.isArray(state.unlockedCategories)) {
@@ -3451,7 +3509,16 @@
 
       if (state.status === 'LOBBY') {
         screenLobby.style.display = 'flex';
-        playerCount.textContent = (state.players || []).length;
+        const curCount = (state.players || []).length;
+        playerCount.textContent = curCount;
+        const lblCounter = document.getElementById('lbl-lobby-player-counter');
+        if (lblCounter) {
+          if (state.isPro) {
+            lblCounter.innerHTML = `Odadaki Oyuncular (<span id="player-count">${curCount}</span> - Sınırsız)`;
+          } else {
+            lblCounter.innerHTML = `Odadaki Oyuncular (<span id="player-count">${curCount}</span>/3)`;
+          }
+        }
         playersList.innerHTML = (state.players || []).map((p, idx) => `
           <div class="player-avatar-card ${isTeamMode ? (p.team === 'RED' ? 'team-red' : 'team-blue') : ''}" style="animation-delay: ${idx * 0.05}s;">
             <div class="avatar-circle ${isTeamMode ? (p.team === 'RED' ? 'avatar-red' : 'avatar-blue') : ''}">
