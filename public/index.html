@@ -1807,8 +1807,20 @@
       <div id="game-over-team-banner"></div>
       <!-- 3D PODYUM (İLK 3) -->
       <div class="podium-container" id="podium-display-area"></div>
-      <!-- DİĞER SIRALAMALAR -->
-      <div class="hof-container" id="game-over-list" style="max-height:160px;"></div>
+      <!-- 🏆 TÜM ZAMANLARIN LİDERLİK TABLOSU (SALON REKORLARI) -->
+      <div id="game-over-hof-box" style="margin-top: 14px; background: rgba(15, 23, 42, 0.75); border: 1.5px solid rgba(250, 204, 21, 0.4); border-radius: 18px; padding: 12px 18px;">
+        <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:8px;">
+          <div style="font-size:16px; font-weight:900; color:#facc15; display:flex; align-items:center; gap:8px;">
+            <span>🏆 TÜM ZAMANLARIN LİDERLİK TABLOSU</span>
+            <span style="font-size:11px; background:rgba(250,204,21,0.2); color:#fde047; padding:2px 8px; border-radius:6px; font-weight:800;">Salon Rekorları</span>
+          </div>
+          <span style="font-size:12px; color:var(--text-muted);">En Yüksek Tekil Skorlar</span>
+        </div>
+        <div class="hof-container" id="game-over-hof-list" style="max-height:160px; overflow-y:auto; display:flex; flex-direction:column; gap:6px;"></div>
+      </div>
+
+      <!-- DİĞER SIRALAMALAR (Bu Turun 4. ve Sonrası) -->
+      <div class="hof-container" id="game-over-list" style="max-height:140px; margin-top:8px;"></div>
 
       <!-- 📱 DOMİNO ETKİSİ: MİSAFİR KENDİ TV'SİNE İNDİRME ÇAĞRISI -->
       <div style="margin-top: 14px; padding: 10px 18px; background: rgba(255,255,255,0.06); border: 2px dashed rgba(250,204,21,0.5); border-radius: 16px; display: flex; align-items: center; justify-content: space-between; gap: 14px;">
@@ -1825,8 +1837,9 @@
       <!-- 🎬 10 SORULUK VIP TURU BİTİNCE ÇIKAN REKLAMLI DEVAM ALANI -->
       <div id="vip-expired-container" style="display:none; width:100%; margin-top:14px;"></div>
 
-      <div style="text-align: center; margin-top: 16px; display:flex; justify-content:center; gap:16px;">
+      <div style="text-align: center; margin-top: 16px; display:flex; justify-content:center; gap:16px; flex-wrap:wrap;">
         <button id="btn-restart-game" class="tv-btn">Yeni Tura Başla 🚀</button>
+        <button id="btn-gameover-hof" class="top-btn" style="padding: 12px 24px; font-size:17px; background:rgba(250,204,21,0.2); border-color:#facc15; color:#fde047; font-weight:800;">🏆 Tüm Rekorlar (Top 20)</button>
         <button id="btn-return-categories" class="top-btn" style="padding: 12px 24px; font-size:17px;">Kategori Değiştir 🗂️</button>
       </div>
     </div>
@@ -2252,8 +2265,8 @@
       }
       const proTitle = document.getElementById('lbl-pro-banner-title');
       const proPrice = document.getElementById('lbl-pro-price-tag');
-      if (proTitle) proTitle.textContent = isPro ? '👑 BİL BAKALIM PRO AKTİF! (TÜM PAKETLER AÇIK)' : 'BİL BAKALIM PRO AVANTAJLARI';
-      if (proPrice) proPrice.textContent = isPro ? '✓ AKTİF' : '59,99 TL /ay';
+      if (proTitle) proTitle.textContent = isPro ? '👑 BİL BAKALIM PRO AKTİF! (TÜM PAKETLER AÇIK)' : 'BİL BAKALIM PRO AVANTAJLARI:';
+      if (proPrice) proPrice.textContent = isPro ? '✓ AKTİF' : "29,99 TL'den başlayan";
       renderCategoryCards(allCategories);
     });
 
@@ -3392,6 +3405,26 @@
       showTvToast((pkgName || 'Paket') + ' Başarıyla Açıldı!', '🎉');
     });
 
+    function deduplicateHofList(rawList) {
+      if (!Array.isArray(rawList)) return [];
+      const map = new Map();
+      rawList.forEach(item => {
+        if (!item || !item.name) return;
+        const key = String(item.name).trim().toLowerCase();
+        if (!key) return;
+        const score = Number(item.score) || 0;
+        if (!map.has(key) || score > map.get(key).score) {
+          map.set(key, {
+            name: String(item.name).trim(),
+            avatar: item.avatar || '👑',
+            score: score,
+            date: item.date || 'Yeni'
+          });
+        }
+      });
+      return Array.from(map.values()).sort((a,b) => b.score - a.score).slice(0, 20);
+    }
+
     function renderState(state) {
       hideAllScreens();
 
@@ -3839,16 +3872,16 @@
       }
       else if (state.status === 'HALL_OF_FAME') {
         screenHallOfFame.style.display = 'flex';
-        const hofData = state.persistentLeaderboard || [];
+        const hofData = deduplicateHofList(state.persistentLeaderboard || []);
         hofListContainer.innerHTML = hofData.map((item, idx) => `
           <div class="hof-row">
             <div style="display:flex; align-items:center; gap:16px;">
               <span style="font-size:26px;">${idx === 0 ? '👑' : idx === 1 ? '🥈' : idx === 2 ? '🥉' : `#${idx+1}`}</span>
-              <span style="font-size:26px;">${item.avatar}</span>
+              <span style="font-size:26px;">${item.avatar || '👑'}</span>
               <span>${item.name}</span>
               <span style="font-size:14px; color:var(--text-muted);">(${item.date || 'Yeni'})</span>
             </div>
-            <div style="color:#facc15; font-size:26px;">${item.score} P</div>
+            <div style="color:#facc15; font-size:26px; font-weight:900;">${item.score} P</div>
           </div>
         `).join('') || '<div style="color:var(--text-muted); font-size:20px; text-align:center;">Henüz kayıtlı rekor yok.</div>';
         btnCloseHof.focus();
@@ -3997,6 +4030,28 @@
           gameOverList.style.display = 'none';
         }
 
+        // 🏆 TÜM ZAMANLARIN LİDERLİK TABLOSU (TOP 5 SALON REKORLARI)
+        const gameOverHofList = document.getElementById('game-over-hof-list');
+        if (gameOverHofList) {
+          const hofData = deduplicateHofList(state.persistentLeaderboard || []);
+          const topHof = hofData.slice(0, 5);
+          if (topHof.length > 0) {
+            gameOverHofList.innerHTML = topHof.map((item, idx) => `
+              <div class="hof-row" style="padding:6px 14px; margin-bottom:4px;">
+                <div style="display:flex; align-items:center; gap:12px;">
+                  <span style="font-size:18px; font-weight:900; width:26px;">${idx === 0 ? '👑' : idx === 1 ? '🥈' : idx === 2 ? '🥉' : `#${idx+1}`}</span>
+                  <span style="font-size:20px;">${item.avatar || '👑'}</span>
+                  <span style="font-weight:800; font-size:15px; color:#fff;">${item.name}</span>
+                  <span style="font-size:12px; color:var(--text-muted);">(${item.date || 'Yeni'})</span>
+                </div>
+                <div style="color:#facc15; font-size:17px; font-weight:900;">${item.score} P</div>
+              </div>
+            `).join('');
+          } else {
+            gameOverHofList.innerHTML = '<div style="color:var(--text-muted); font-size:13px; text-align:center; padding:8px;">Henüz kayıtlı salon rekoru yok.</div>';
+          }
+        }
+
         // 🎬 10 Soruluk VIP Reklamlı Pas Süresi Dolduysa Göster
         const vipExpiredBox = document.getElementById('vip-expired-container');
         if (vipExpiredBox) {
@@ -4117,6 +4172,7 @@
 
     btnOpenHof.addEventListener('click', () => {
       soundFX.playPop();
+      window.previousScreenBeforeHof = 'LOBBY';
       if (socket && socket.connected) {
         socket.emit('host_open_hall_of_fame');
       } else {
@@ -4124,8 +4180,35 @@
       }
     });
 
+    const btnGameOverHof = document.getElementById('btn-gameover-hof');
+    if (btnGameOverHof) {
+      btnGameOverHof.addEventListener('click', () => {
+        soundFX.playPop();
+        window.previousScreenBeforeHof = 'GAME_OVER';
+        if (socket && socket.connected) {
+          socket.emit('host_open_hall_of_fame');
+        } else {
+          hideAllScreens();
+          screenHallOfFame.style.display = 'flex';
+          btnCloseHof.focus();
+        }
+      });
+    }
+
     btnCloseHof.addEventListener('click', () => {
-      window.goHomeLobby();
+      soundFX.playPop();
+      if (socket && socket.connected) {
+        socket.emit('host_close_hall_of_fame');
+      } else {
+        if (window.previousScreenBeforeHof === 'GAME_OVER') {
+          window.previousScreenBeforeHof = null;
+          hideAllScreens();
+          screenGameOver.style.display = 'block';
+          if (btnRestartGame) btnRestartGame.focus();
+        } else {
+          window.goHomeLobby();
+        }
+      }
     });
 
     btnResetHof.addEventListener('click', () => {
@@ -4223,17 +4306,40 @@
         if (reportModal && reportModal.style.display === 'flex') { closeReportModal(); return; }
         if (tvExitDialog && tvExitDialog.style.display === 'flex') { hideExitDialog(); return; }
 
-        // B. Soru ekranındaysa Kategori paneline dön
+        // B. Liderlik Tablosundaysa Geri Dön
+        if (screenHallOfFame && screenHallOfFame.style.display === 'flex') {
+          if (socket && socket.connected) {
+            socket.emit('host_close_hall_of_fame');
+          } else {
+            if (window.previousScreenBeforeHof === 'GAME_OVER') {
+              window.previousScreenBeforeHof = null;
+              hideAllScreens();
+              screenGameOver.style.display = 'block';
+              if (btnRestartGame) btnRestartGame.focus();
+            } else {
+              window.goHomeLobby();
+            }
+          }
+          return;
+        }
+
+        // C. Oyun sonu ekranındaysa Kategorilere dön
+        if (screenGameOver && screenGameOver.style.display === 'block') {
+          goCategories();
+          return;
+        }
+
+        // D. Soru ekranındaysa Kategori paneline dön
         if (screenQuestion && screenQuestion.style.display === 'flex') {
           goCategories();
           return;
         }
-        // C. Kategori ekranındaysa Lobiye dön
+        // E. Kategori ekranındaysa Lobiye dön
         if (screenCategories && screenCategories.style.display === 'flex') {
           goHomeLobby();
           return;
         }
-        // D. Lobideyse TV Çıkış onayını aç
+        // F. Lobideyse TV Çıkış onayını aç
         showExitDialog();
         return;
       }
@@ -4354,6 +4460,22 @@
             else if (activeEl.id === 'btn-mode-team') document.getElementById('btn-mode-solo').focus();
             e.preventDefault();
           }
+        }
+      }
+
+      // 5. OYUN SONU EKRANINDA D-PAD GEZİNME (Yeni Tura Başla <-> Liderlik Tablosu <-> Kategori Değiştir)
+      if (screenGameOver && screenGameOver.style.display === 'block') {
+        const activeEl = document.activeElement;
+        const btnRestart = document.getElementById('btn-restart-game');
+        const btnHof = document.getElementById('btn-gameover-hof');
+        const btnCats = document.getElementById('btn-return-categories');
+
+        if (isRight) {
+          if (activeEl === btnRestart && btnHof) { e.preventDefault(); btnHof.focus(); }
+          else if (activeEl === btnHof && btnCats) { e.preventDefault(); btnCats.focus(); }
+        } else if (isLeft) {
+          if (activeEl === btnCats && btnHof) { e.preventDefault(); btnHof.focus(); }
+          else if (activeEl === btnHof && btnRestart) { e.preventDefault(); btnRestart.focus(); }
         }
       }
     });

@@ -208,14 +208,45 @@ const LEADERBOARD_FILE = path.join(__dirname, 'leaderboard.json');
 function loadLeaderboard() {
   if (fs.existsSync(LEADERBOARD_FILE)) {
     try {
-      return JSON.parse(fs.readFileSync(LEADERBOARD_FILE, 'utf8'));
+      const list = JSON.parse(fs.readFileSync(LEADERBOARD_FILE, 'utf8'));
+      if (Array.isArray(list)) {
+        // Otomatik temizleme: Aynı isimlerin en yüksek skorunu tut
+        const map = new Map();
+        list.forEach(item => {
+          const key = (item.name || '').trim().toLowerCase();
+          if (!key) return;
+          if (!map.has(key) || (item.score || 0) > map.get(key).score) {
+            map.set(key, item);
+          }
+        });
+        return Array.from(map.values()).sort((a,b) => b.score - a.score).slice(0, 20);
+      }
     } catch(e) {}
   }
   return [];
 }
 
 function saveLeaderboard(data) {
-  fs.writeFileSync(LEADERBOARD_FILE, JSON.stringify(data, null, 2), 'utf8');
+  if (!Array.isArray(data)) data = [];
+  const map = new Map();
+  data.forEach(item => {
+    if (!item || !item.name) return;
+    const key = String(item.name).trim().toLowerCase();
+    if (!key) return;
+    const score = Number(item.score) || 0;
+    if (!map.has(key) || score > map.get(key).score) {
+      map.set(key, {
+        name: String(item.name).trim(),
+        avatar: item.avatar || '👑',
+        score: score,
+        date: item.date || new Date().toLocaleDateString('tr-TR')
+      });
+    }
+  });
+  const deduped = Array.from(map.values()).sort((a,b) => b.score - a.score).slice(0, 20);
+  try {
+    fs.writeFileSync(LEADERBOARD_FILE, JSON.stringify(deduped, null, 2), 'utf8');
+  } catch(e) {}
 }
 
 let persistentLeaderboard = loadLeaderboard();
@@ -1526,7 +1557,15 @@ io.on('connection', (socket) => {
   socket.on('host_open_hall_of_fame', (data) => {
     const room = resolveRoom(data);
     if (!room) return;
+    room.previousStatus = room.status;
     room.status = 'HALL_OF_FAME';
+    io.to(`room_${room.roomCode}`).emit('state_update', getPublicGameState(room));
+  });
+
+  socket.on('host_close_hall_of_fame', (data) => {
+    const room = resolveRoom(data);
+    if (!room) return;
+    room.status = (room.previousStatus && room.previousStatus !== 'HALL_OF_FAME') ? room.previousStatus : 'LOBBY';
     io.to(`room_${room.roomCode}`).emit('state_update', getPublicGameState(room));
   });
 
@@ -2013,19 +2052,32 @@ function endGame(room) {
   }
 
   const playersSorted = Object.values(room.players).sort((a,b) => b.score - a.score);
+  
+  // Liderlik Tablosu: Aynı isimden birden fazla kayıt oluşmasını engelle, her oyuncunun EN YÜKSEK skorunu koru
+  const bestScoresMap = new Map();
+  // Mevcut tablodakileri ekle
+  persistentLeaderboard.forEach(item => {
+    const key = (item.name || '').trim().toLowerCase();
+    if (key) bestScoresMap.set(key, { ...item });
+  });
+
+  // Bu turdaki oyuncuların skorlarını güncelle/ekle
   playersSorted.forEach(p => {
     if (p.score > 0) {
-      persistentLeaderboard.push({
-        name: p.name,
-        avatar: p.avatar,
-        score: p.score,
-        date: new Date().toLocaleDateString('tr-TR')
-      });
+      const key = (p.name || '').trim().toLowerCase();
+      const existing = bestScoresMap.get(key);
+      if (!existing || p.score > existing.score) {
+        bestScoresMap.set(key, {
+          name: p.name,
+          avatar: p.avatar,
+          score: p.score,
+          date: new Date().toLocaleDateString('tr-TR')
+        });
+      }
     }
   });
 
-  persistentLeaderboard.sort((a,b) => b.score - a.score);
-  persistentLeaderboard = persistentLeaderboard.slice(0, 20);
+  persistentLeaderboard = Array.from(bestScoresMap.values()).sort((a,b) => b.score - a.score).slice(0, 20);
   saveLeaderboard(persistentLeaderboard);
 
   io.to(`room_${room.roomCode}`).emit('state_update', getPublicGameState(room));
