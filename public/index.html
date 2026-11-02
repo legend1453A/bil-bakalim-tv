@@ -1665,14 +1665,17 @@
             <span style="font-size:26px;">🔴</span>
             <div>
               <div style="font-size:15px; font-weight:900;">KIRMIZI TAKIM</div>
-              <div id="lbl-red-members" style="font-size:11px; color:#fca5a5;">0 Oyuncu</div>
+              <div style="display:flex; align-items:center; gap:6px;">
+                <span id="lbl-red-members" style="font-size:11px; color:#fca5a5;">0 Oyuncu</span>
+                <span id="lbl-red-hp" style="font-size:11px; font-weight:900; background:#dc2626; color:#fff; padding:1px 6px; border-radius:6px;">❤️ 100 HP</span>
+              </div>
             </div>
             <span id="lbl-red-score" class="tug-score-badge tug-score-red">0 P</span>
           </div>
 
           <div style="text-align:center;">
             <div id="lbl-tug-title" style="font-size:13px; font-weight:900; color:#facc15; letter-spacing:1px;">
-              ⚔️ HALAT ÇEKME ARENASI ⚔️
+              ⚔️ CAN SAVAŞI & HALAT ARENASI ⚔️
             </div>
             <div id="lbl-tug-advantage" class="tug-status-text">⚔️ Halat Tam Ortada (Berabere)</div>
           </div>
@@ -1681,7 +1684,10 @@
             <span style="font-size:26px;">🔵</span>
             <div>
               <div style="font-size:15px; font-weight:900;">MAVİ TAKIM</div>
-              <div id="lbl-blue-members" style="font-size:11px; color:#93c5fd;">0 Oyuncu</div>
+              <div style="display:flex; align-items:center; gap:6px; justify-content:flex-end;">
+                <span id="lbl-blue-hp" style="font-size:11px; font-weight:900; background:#2563eb; color:#fff; padding:1px 6px; border-radius:6px;">💙 100 HP</span>
+                <span id="lbl-blue-members" style="font-size:11px; color:#93c5fd;">0 Oyuncu</span>
+              </div>
             </div>
             <span id="lbl-blue-score" class="tug-score-badge tug-score-blue">0 P</span>
           </div>
@@ -1695,6 +1701,35 @@
             ⚔️
           </div>
         </div>
+      </div>
+
+      <!-- 🥊 1v1 KAPTAN DÜELLOSU CANLI BANNER (5. SORU) -->
+      <div id="team-duel-popup" style="display:none; margin: 6px 0; background: linear-gradient(135deg, rgba(239,68,68,0.3), rgba(59,130,246,0.3)); border: 2px solid #facc15; border-radius: 14px; padding: 8px 16px; text-align: center; box-shadow: 0 0 25px rgba(250,204,21,0.4); animation: popIn 0.3s ease;">
+        <div style="font-size: 12px; font-weight: 900; color: #fde047; letter-spacing: 1px;">🥊 1'E 1 KAPTAN DÜELLOSU 🥊</div>
+        <div style="display:flex; justify-content:center; align-items:center; gap:16px; margin-top:2px;">
+          <div style="display:flex; align-items:center; gap:6px; color:#ef4444; font-weight:900; font-size:15px;">
+            <span id="duel-red-avatar" style="font-size:22px;">🦁</span>
+            <span id="duel-red-name">Kırmızı Kaptan</span>
+          </div>
+          <div style="font-size:18px; font-weight:900; color:#facc15; text-shadow:0 0 10px #facc15;">⚡ VS ⚡</div>
+          <div style="display:flex; align-items:center; gap:6px; color:#3b82f6; font-weight:900; font-size:15px;">
+            <span id="duel-blue-name">Mavi Kaptan</span>
+            <span id="duel-blue-avatar" style="font-size:22px;">🦉</span>
+          </div>
+        </div>
+        <div style="font-size: 11px; color: #cbd5e1;">Sadece bu 2 yarışmacı cevap verebilir! Kazanan takımına +1.500 Puan kazandırır!</div>
+      </div>
+
+      <!-- ⚠️ DOST ATEŞİ BİLDİRİMİ -->
+      <div id="tv-friendly-fire-notice" style="display:none; margin:4px 0; background:rgba(239,68,68,0.25); border:1.5px solid #ef4444; border-radius:10px; padding:6px 12px; text-align:center; color:#fca5a5; font-size:12.5px; font-weight:800; animation:popIn 0.3s ease;">
+        <span id="tv-friendly-fire-text">⚠️ DOST ATEŞİ! Yanlış cevap takımdan 5 can eksiltti!</span>
+      </div>
+
+      <!-- 💩 ÇAMUR SABOTAJI EFEKT KUTUSU (TV ANİMASYONU) -->
+      <div id="tv-mud-notice" style="display:none; position:fixed; top:22%; left:50%; transform:translateX(-50%); background:rgba(40,20,5,0.95); border:2.5px solid #b45309; border-radius:20px; padding:12px 24px; z-index:99999; box-shadow:0 0 35px rgba(180,83,9,0.8); text-align:center; animation:popIn 0.3s ease;">
+        <div style="font-size:40px;">💩💥</div>
+        <div id="tv-mud-title" style="font-size:18px; font-weight:900; color:#fde047;">ÇAMUR FIRLATILDI!</div>
+        <div id="tv-mud-desc" style="font-size:13px; color:#cbd5e1; margin-top:2px;">Rakip takımın ekranı çamurla kaplandı!</div>
       </div>
 
       <!-- TAKIM COMBOSU (1.5X) KUTLAMA OVERLAY -->
@@ -2423,6 +2458,23 @@
       setTimeout(() => {
         if (bubble.parentNode) bubble.parentNode.removeChild(bubble);
       }, 3800);
+    });
+
+    // 💩 TELEFONDAN GELEN ÇAMUR SABOTAJI (TV EKRANINDA ÇAMUR PATLAMASI)
+    socket.on('mud_thrown_event', ({ throwerName, throwerAvatar, throwerTeam, targetName, targetAvatar, targetTeam }) => {
+      soundFX.playPop();
+      const mudNotice = document.getElementById('tv-mud-notice');
+      if (mudNotice) {
+        const titleEl = document.getElementById('tv-mud-title');
+        const descEl = document.getElementById('tv-mud-desc');
+        const isRed = (throwerTeam === 'RED');
+        if (titleEl) titleEl.textContent = `💩 ${isRed ? 'KIRMIZI' : 'MAVİ'} TAKIM ÇAMUR FIRLATTI!`;
+        if (descEl) descEl.textContent = `${throwerAvatar} ${throwerName} ➔ ${targetAvatar} ${targetName} adlı oyuncunun ekranını kapladı!`;
+        mudNotice.style.display = 'block';
+        setTimeout(() => {
+          mudNotice.style.display = 'none';
+        }, 3200);
+      }
     });
 
     function hideAllScreens() {
@@ -3439,6 +3491,82 @@
           const lblBlue = document.getElementById('lbl-blue-score');
           if (lblRed) lblRed.textContent = `${redScore} P`;
           if (lblBlue) lblBlue.textContent = `${blueScore} P`;
+
+          // Takım Can Değerleri
+          if (state.teamHealth) {
+            const redHp = document.getElementById('lbl-red-hp');
+            const blueHp = document.getElementById('lbl-blue-hp');
+            if (redHp) redHp.textContent = `❤️ ${state.teamHealth.RED || 100} HP`;
+            if (blueHp) blueHp.textContent = `💙 ${state.teamHealth.BLUE || 100} HP`;
+          }
+
+          // Özel Tur Başlığı (10 Soruluk Heyecan Akışı)
+          const tugTitle = document.getElementById('lbl-tug-title');
+          if (tugTitle) {
+            if (state.specialRound === 'HEALTH_BATTLE') {
+              tugTitle.textContent = '⚔️ 1-3. TUR: CAN SAVAŞI (DOĞRU = HASAR, YANLIŞ = DOST ATEŞİ!) ⚔️';
+            } else if (state.specialRound === 'SABOTAGE') {
+              tugTitle.textContent = '💩 4. TUR: SABOTAJ DALGASI (TELEFONDAN ÇAMUR FIRLAT!) 💩';
+            } else if (state.specialRound === 'DUEL') {
+              tugTitle.textContent = '🥊 5. TUR: TEKE TEK KAPTAN DÜELLOSU! 🥊';
+            } else if (state.specialRound === 'CONSENSUS') {
+              tugTitle.textContent = '🤝 6-7. TUR: TAKIM İTTİFAKI (MUTABAKATA +1.000 P) 🤝';
+            } else if (state.specialRound === 'COMEBACK') {
+              tugTitle.textContent = '🔥 8-9. TUR: GERİ DÖNÜŞ RİSKİ (ALL-IN ÇİFTE BAHİS) 🔥';
+            } else if (state.specialRound === 'KNOCKOUT') {
+              tugTitle.textContent = '👑 10. TUR: ALTIN NAKAVT FİNALİ (2X PUAN) 👑';
+            } else {
+              tugTitle.textContent = '⚔️ TAKIM HALAT ÇEKME ARENASI ⚔️';
+            }
+          }
+
+          // 🥊 Düello Popup Banner
+          const duelPopup = document.getElementById('team-duel-popup');
+          if (duelPopup) {
+            if (state.specialRound === 'DUEL' && state.currentDuel) {
+              const dRedAv = document.getElementById('duel-red-avatar');
+              const dRedNm = document.getElementById('duel-red-name');
+              const dBluAv = document.getElementById('duel-blue-avatar');
+              const dBluNm = document.getElementById('duel-blue-name');
+              if (dRedAv) dRedAv.textContent = state.currentDuel.redAvatar || '🦁';
+              if (dRedNm) dRedNm.textContent = state.currentDuel.redName || 'Kırmızı';
+              if (dBluAv) dBluAv.textContent = state.currentDuel.blueAvatar || '🦉';
+              if (dBluNm) dBluNm.textContent = state.currentDuel.blueName || 'Mavi';
+              duelPopup.style.display = 'block';
+            } else {
+              duelPopup.style.display = 'none';
+            }
+          }
+
+          // ⚠️ Dost Ateşi Bildirimi
+          const ffNotice = document.getElementById('tv-friendly-fire-notice');
+          if (ffNotice) {
+            if (state.status === 'ANSWER_REVEAL' && state.lastRoundDamage && state.lastRoundDamage.friendlyFires && state.lastRoundDamage.friendlyFires.length > 0) {
+              const names = state.lastRoundDamage.friendlyFires.map(f => `${f.avatar} ${f.name}`).join(', ');
+              const ffText = document.getElementById('tv-friendly-fire-text');
+              if (ffText) ffText.innerHTML = `⚠️ DOST ATEŞİ! <strong>${names}</strong> yanlış yaparak kendi takımına 5 Can hasar verdi!`;
+              ffNotice.style.display = 'block';
+              soundFX.playHeartbeat();
+            } else {
+              ffNotice.style.display = 'none';
+            }
+          }
+
+          // 🎙️ Derbi Spikeri Özel Tur Yorumları
+          if (isTeamMode && state.status === 'QUESTION' && window.lastSpokenSpecialQ !== state.questionIndex) {
+            window.lastSpokenSpecialQ = state.questionIndex;
+            if (state.specialRound === 'DUEL' && state.currentDuel) {
+              speakText(`Salonda nefesler tutuldu! Devlerin kapışması: Kırmızı takımdan ${state.currentDuel.redName} ile Mavi takımdan ${state.currentDuel.blueName} düelloda!`);
+            } else if (state.specialRound === 'SABOTAGE') {
+              speakText('Dikkat! Sabotaj turu başladı! Telefonlarınızdan rakip takıma çamur fırlatabilirsiniz!');
+            } else if (state.specialRound === 'COMEBACK') {
+              speakText('Gerideki takım için büyük geri dönüş şansı! Risk alıp maçı çevirebilirsiniz!');
+            } else if (state.specialRound === 'KNOCKOUT') {
+              speakText('Ve işte büyük final! Altın nakavt sorusu!');
+            }
+          } else if (state.status !== 'QUESTION') {
+            window.lastSpokenSpecialQ = null;
+          }
 
           // Üye sayıları
           const redCount = (state.players || []).filter(p => p.team === 'RED').length;

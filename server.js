@@ -307,6 +307,10 @@ function createOrGetRoom(roomCode) {
     askedQuestions: new Set(),
     askedQuestionsByCategory: {},
     lastTeamCombo: null,
+    teamHealth: { RED: 100, BLUE: 100 },
+    specialRound: 'NORMAL',
+    currentDuel: null,
+    lastRoundDamage: null,
     players: {},
     timerInterval: null,
     createdAt: Date.now()
@@ -1476,6 +1480,15 @@ io.on('connection', (socket) => {
       return;
     }
 
+    // 🥊 DÜELLO KONTROLÜ (5. Soru): Sadece seçilen iki kaptan cevap verebilir
+    if (room.specialRound === 'DUEL' && room.currentDuel) {
+      const isDuelist = (player.id === room.currentDuel.redId || player.id === room.currentDuel.blueId);
+      if (!isDuelist) {
+        socket.emit('duel_spectator_blocked');
+        return;
+      }
+    }
+
     if (player.currentAnswer === null) {
       if (player.doubleChanceActive && player.doubleChanceFirstTry) {
         if (answerIndex !== currentQ.answer) {
@@ -1504,12 +1517,63 @@ io.on('connection', (socket) => {
       io.to(`room_${currentRoomCode}`).emit('state_update', getPublicGameState(room));
       socket.emit('answer_received', { answerIndex });
 
+      // Düello turunda iki kaptan da cevap verdiyse hemen açıkla
+      if (room.specialRound === 'DUEL' && room.currentDuel) {
+        const redP = room.players[room.currentDuel.redId];
+        const blueP = room.players[room.currentDuel.blueId];
+        const duelDone = (!redP || redP.currentAnswer !== null) && (!blueP || blueP.currentAnswer !== null);
+        if (duelDone) {
+          revealAnswers(room);
+          return;
+        }
+      }
+
       const playerList = Object.values(room.players);
       const allAnswered = playerList.length > 0 && playerList.every(p => p.currentAnswer !== null);
       if (allAnswered) {
         revealAnswers(room);
       }
     }
+  });
+
+  // 💩 ÇAMUR / MÜREKKEP FIRLATMA SABOTAJI (Soru 4)
+  socket.on('use_sabotage_mud', () => {
+    if (!currentRoomCode || !rooms[currentRoomCode]) return;
+    const room = rooms[currentRoomCode];
+    const player = room.players[socket.id];
+    if (!player || room.status !== 'QUESTION' || room.specialRound !== 'SABOTAGE' || !player.hasMudJoker) return;
+    player.hasMudJoker = false;
+
+    const otherPlayers = Object.values(room.players).filter(p => p.id !== socket.id && !p.isDisconnected);
+    if (otherPlayers.length === 0) return;
+
+    let target;
+    if (room.gameMode === 'TEAM') {
+      const opposing = otherPlayers.filter(p => p.team !== player.team);
+      target = opposing.length > 0 ? opposing[Math.floor(Math.random() * opposing.length)] : otherPlayers[0];
+    } else {
+      target = otherPlayers[Math.floor(Math.random() * otherPlayers.length)];
+    }
+    if (!target) return;
+
+    target.isMudded = true;
+    io.to(target.id).emit('player_mudded', { throwerName: player.name, throwerAvatar: player.avatar, duration: 4000 });
+    io.to(`room_${currentRoomCode}`).emit('mud_thrown_event', {
+      throwerName: player.name,
+      throwerAvatar: player.avatar,
+      throwerTeam: player.team,
+      targetName: target.name,
+      targetAvatar: target.avatar,
+      targetTeam: target.team
+    });
+    io.to(`room_${currentRoomCode}`).emit('state_update', getPublicGameState(room));
+
+    setTimeout(() => {
+      if (target) target.isMudded = false;
+      if (rooms[currentRoomCode]) {
+        io.to(`room_${currentRoomCode}`).emit('state_update', getPublicGameState(rooms[currentRoomCode]));
+      }
+    }, 4000);
   });
 
   // TV Kumandasından doğrudan şık seçilirse (Tek oyunculu / Kumanda modu)
@@ -1631,6 +1695,11 @@ function getPublicGameState(room) {
     proDurationLabel: room.proDurationLabel || null,
     unlockedCategories: room.unlockedCategories || [],
     teamScores: { RED: redScore, BLUE: blueScore },
+    teamHealth: room.teamHealth || { RED: 100, BLUE: 100 },
+    specialRound: room.specialRound || 'NORMAL',
+    currentDuel: room.currentDuel || null,
+    lastRoundDamage: isRevealed ? (room.lastRoundDamage || null) : null,
+    trailingTeam: (redScore < blueScore ? 'RED' : (blueScore < redScore ? 'BLUE' : null)),
     teamCombo: room.lastTeamCombo || { red: false, blue: false, active: false },
     isFinalDuel: isFinalDuel,
     questionIndex: room.currentQuestionIndex,
@@ -1673,6 +1742,9 @@ function getPublicGameState(room) {
       isFastest: isRevealed ? p.isFastest : false,
       lastPointsEarned: isRevealed ? p.lastPointsEarned : 0,
       hadTeamCombo: isRevealed ? !!p.hadTeamCombo : false,
+      friendlyFire: isRevealed ? !!p.friendlyFire : false,
+      hasMudJoker: !!p.hasMudJoker,
+      isMudded: !!p.isMudded,
       streak: p.streak,
       hasJoker: p.jokerFiftyFifty,
       hasDoubleChance: p.jokerDoubleChance,
@@ -1835,7 +1907,14 @@ function startNewGame(room) {
     p.doubleChanceFirstTry = null;
     p.wagerActive = false;
     p.isFrozen = false;
+    p.friendlyFire = false;
+    p.hasMudJoker = false;
+    p.isMudded = false;
   });
+  room.teamHealth = { RED: 100, BLUE: 100 };
+  room.specialRound = 'NORMAL';
+  room.currentDuel = null;
+  room.lastRoundDamage = null;
   room.currentQuestionIndex = -1;
   nextQuestion(room);
 }
@@ -1851,6 +1930,49 @@ function nextQuestion(room) {
 
   room.lastTeamCombo = null;
 
+  // 10 Soruluk Heyecan Akışı (Survivor / Mario Party Temposu)
+  if (room.gameMode === 'TEAM') {
+    const qIdx = room.currentQuestionIndex;
+    if (qIdx <= 2) {
+      room.specialRound = 'HEALTH_BATTLE'; // Soru 1-3: Can Savaşı & Dost Ateşi
+      room.currentDuel = null;
+    } else if (qIdx === 3) {
+      room.specialRound = 'SABOTAGE'; // Soru 4: Çamur / Mürekkep Fırlatma
+      room.currentDuel = null;
+    } else if (qIdx === 4) {
+      room.specialRound = 'DUEL'; // Soru 5: Teke Tek Kaptan Düellosu
+      const redPlayers = Object.values(room.players).filter(p => p.team === 'RED' && !p.isDisconnected);
+      const bluePlayers = Object.values(room.players).filter(p => p.team === 'BLUE' && !p.isDisconnected);
+      const redP = redPlayers.length > 0 ? redPlayers[Math.floor(Math.random() * redPlayers.length)] : null;
+      const blueP = bluePlayers.length > 0 ? bluePlayers[Math.floor(Math.random() * bluePlayers.length)] : null;
+      if (redP && blueP) {
+        room.currentDuel = {
+          redId: redP.id,
+          redName: redP.name,
+          redAvatar: redP.avatar,
+          blueId: blueP.id,
+          blueName: blueP.name,
+          blueAvatar: blueP.avatar
+        };
+      } else {
+        room.currentDuel = null;
+        room.specialRound = 'HEALTH_BATTLE';
+      }
+    } else if (qIdx === 5 || qIdx === 6) {
+      room.specialRound = 'CONSENSUS'; // Soru 6-7: Takım İttifakı (Mutabakat Bonusu)
+      room.currentDuel = null;
+    } else if (qIdx === 7 || qIdx === 8) {
+      room.specialRound = 'COMEBACK'; // Soru 8-9: Geri Dönüş Masası (Risk / All-in)
+      room.currentDuel = null;
+    } else if (qIdx === 9) {
+      room.specialRound = 'KNOCKOUT'; // Soru 10: Altın Nakavt (2X)
+      room.currentDuel = null;
+    }
+  } else {
+    room.specialRound = (room.currentQuestionIndex === 9) ? 'KNOCKOUT' : 'NORMAL';
+    room.currentDuel = null;
+  }
+
   Object.values(room.players).forEach(p => {
     p.currentAnswer = null;
     p.answerTime = null;
@@ -1863,6 +1985,9 @@ function nextQuestion(room) {
     p.doubleChanceFirstTry = null;
     p.wagerActive = false;
     p.isFrozen = false;
+    p.friendlyFire = false;
+    p.hasMudJoker = (room.specialRound === 'SABOTAGE');
+    p.isMudded = false;
   });
 
   const q = room.currentRoundQuestions[room.currentQuestionIndex];
@@ -2008,6 +2133,88 @@ function revealAnswers(room) {
         p.lastPointsEarned += 200;
       });
     }
+
+    // 4. TAKIM CAN BARI & DOST ATEŞİ (FRIENDLY FIRE) VE ÖZEL TUR HESAPLAMALARI
+    if (!room.teamHealth) room.teamHealth = { RED: 100, BLUE: 100 };
+    let redDamageDealt = 0;
+    let blueDamageDealt = 0;
+    const friendlyFires = [];
+    let duelResult = null;
+    let redConsensus = false;
+    let blueConsensus = false;
+
+    Object.values(room.players).forEach(p => {
+      if (p.isDisconnected) return;
+      if (p.isCorrect) {
+        const dmg = (room.specialRound === 'KNOCKOUT' ? 20 : 10);
+        if (p.team === 'RED') {
+          room.teamHealth.BLUE = Math.max(0, room.teamHealth.BLUE - dmg);
+          redDamageDealt += dmg;
+        } else if (p.team === 'BLUE') {
+          room.teamHealth.RED = Math.max(0, room.teamHealth.RED - dmg);
+          blueDamageDealt += dmg;
+        }
+      } else if (p.currentAnswer !== null) {
+        // 🔥 DOST ATEŞİ: Yanlış yapan oyuncu kendi takımına 5 can hasar verir!
+        p.friendlyFire = true;
+        friendlyFires.push({ name: p.name, avatar: p.avatar, team: p.team });
+        if (p.team === 'RED') {
+          room.teamHealth.RED = Math.max(0, room.teamHealth.RED - 5);
+        } else if (p.team === 'BLUE') {
+          room.teamHealth.BLUE = Math.max(0, room.teamHealth.BLUE - 5);
+        }
+      }
+    });
+
+    // 🥊 DÜELLO ÖZEL HESAPLAMASI (5. Soru)
+    if (room.specialRound === 'DUEL' && room.currentDuel) {
+      const redDuelist = room.players[room.currentDuel.redId];
+      const blueDuelist = room.players[room.currentDuel.blueId];
+      const redWin = redDuelist && redDuelist.isCorrect && (!blueDuelist || !blueDuelist.isCorrect);
+      const blueWin = blueDuelist && blueDuelist.isCorrect && (!redDuelist || !redDuelist.isCorrect);
+      if (redWin) {
+        duelResult = { winner: 'RED', winnerName: redDuelist.name, winnerAvatar: redDuelist.avatar };
+        redPlayers.forEach(p => { p.score += 1500; p.lastPointsEarned += 1500; });
+        room.teamHealth.BLUE = Math.max(0, room.teamHealth.BLUE - 20);
+      } else if (blueWin) {
+        duelResult = { winner: 'BLUE', winnerName: blueDuelist.name, winnerAvatar: blueDuelist.avatar };
+        bluePlayers.forEach(p => { p.score += 1500; p.lastPointsEarned += 1500; });
+        room.teamHealth.RED = Math.max(0, room.teamHealth.RED - 20);
+      } else {
+        duelResult = { winner: 'TIE' };
+      }
+    }
+
+    // 🤝 MUTABAKAT / TAKIM İTTİFAKI (6-7. Sorular)
+    if (room.specialRound === 'CONSENSUS') {
+      if (redPlayers.length > 0 && redPlayers.every(p => p.currentAnswer === q.answer)) {
+        redConsensus = true;
+        redPlayers.forEach(p => { p.score += 1000; p.lastPointsEarned += 1000; });
+      }
+      if (bluePlayers.length > 0 && bluePlayers.every(p => p.currentAnswer === q.answer)) {
+        blueConsensus = true;
+        bluePlayers.forEach(p => { p.score += 1000; p.lastPointsEarned += 1000; });
+      }
+    }
+
+    // 🔥 GERİ DÖNÜŞ (COMEBACK) RİSK MASASI (8-9. Sorular)
+    if (room.specialRound === 'COMEBACK') {
+      Object.values(room.players).forEach(p => {
+        if (p.wagerActive && p.isCorrect) {
+          p.score += 1000; // Çifte geri dönüş bonusu
+          p.lastPointsEarned += 1000;
+        }
+      });
+    }
+
+    room.lastRoundDamage = {
+      redDamageDealt,
+      blueDamageDealt,
+      friendlyFires,
+      duelResult,
+      redConsensus,
+      blueConsensus
+    };
   }
 
   room.lastTeamCombo = {

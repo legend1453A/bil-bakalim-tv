@@ -475,6 +475,28 @@
       <div id="mobile-kids-banner" style="display:none; background:linear-gradient(135deg, #ec4899, #8b5cf6); color:#fff; font-weight:900; font-size:12px; padding:6px 10px; border-radius:10px; border:2px solid #f472b6; align-items:center; gap:4px;">🧒 Çocuk Sorusu!</div>
     </div>
 
+    <!-- 🥊 DÜELLO ÖZEL BİLGİLENDİRMESİ (5. SORU) -->
+    <div id="mobile-duel-banner" style="display:none; padding:10px; border-radius:14px; background:linear-gradient(135deg, #ef4444, #3b82f6); color:#fff; font-weight:900; font-size:13.5px; text-align:center; box-shadow:0 0 20px rgba(250,204,21,0.6); margin-top:4px;">
+      🥊 SEN SEÇİLDİN! DÜELLO SENİN ELLERİNDE! 🔥
+    </div>
+    <div id="mobile-spectator-banner" style="display:none; padding:10px; border-radius:14px; background:rgba(30,41,59,0.95); border:1.5px solid #facc15; color:#fde047; font-weight:900; font-size:12.5px; text-align:center; margin-top:4px;">
+      👀 SEYİRCİSİN: Kaptanların kapışmasını izle! Aşağıdan tezahürat yap! 📣
+    </div>
+
+    <!-- 💩 SABOTAJ ÇAMUR FIRLATMA BUTONU (4. SORU) -->
+    <button type="button" id="btn-sabotage-mud" onclick="throwSabotageMud()" style="display:none; width:100%; padding:11px; border-radius:14px; background:linear-gradient(135deg, #b45309, #78350f); border:2px solid #f59e0b; color:#fff; font-size:14px; font-weight:900; box-shadow:0 0 16px rgba(180,83,9,0.5); cursor:pointer; margin-top:4px;">
+      💩 RAKİBE ÇAMUR FIRLAT! (Ekranını Kapat)
+    </button>
+
+    <!-- 🔥 GERİ DÖNÜŞ RİSK MASASI BUTONU (8-9. SORU) -->
+    <div id="mobile-comeback-box" style="display:none; padding:8px 12px; border-radius:14px; background:linear-gradient(135deg, rgba(239,68,68,0.25), rgba(245,158,11,0.25)); border:1.5px solid #f59e0b; justify-content:space-between; align-items:center; margin-top:4px;">
+      <div style="text-align:left;">
+        <div style="font-size:12px; font-weight:900; color:#fde047;">🔥 GERİ DÖNÜŞ ŞANSI: RİSK AL (2X)</div>
+        <div style="font-size:10px; color:#cbd5e1;">Doğru: +1500 P | Yanlış: -500 P</div>
+      </div>
+      <button type="button" id="btn-toggle-comeback" onclick="toggleComebackRisk()" style="padding:6px 12px; border-radius:10px; background:#f59e0b; color:#000; font-weight:900; font-size:11.5px; border:none; cursor:pointer;">RİSK AL ➔</button>
+    </div>
+
     <!-- 4 CEVAP BUTONU -->
     <div class="button-pad" id="answer-buttons">
       <button class="pad-btn pad-0" id="btn-opt-0" onclick="sendAnswer(0)">
@@ -561,6 +583,14 @@
     <h2 style="font-size:24px; font-weight:900; color:#38bdf8; margin-bottom:6px;">DONDURULDUN!</h2>
     <p id="freeze-sender-desc" style="font-size:14px; color:#cbd5e1; margin-bottom:12px;">Rakip sana buz fırlattı! 3.5 saniye boyunca seçim yapamazsın.</p>
     <div style="font-size:32px; font-weight:900; color:#facc15;" id="freeze-timer-val">3.5</div>
+  </div>
+
+  <!-- 💩 ÇAMURLANMA EKRANI (DOKUNARAK TEMİZLEME) -->
+  <div id="mobile-mud-overlay" onclick="cleanMud()" style="display:none; position:fixed; top:0; left:0; width:100vw; height:100vh; background:rgba(50, 25, 8, 0.95); z-index:999999; flex-direction:column; align-items:center; justify-content:center; text-align:center; padding:24px; box-sizing:border-box; cursor:pointer;">
+    <div style="font-size:72px;">💩🎨</div>
+    <h2 style="font-size:24px; font-weight:900; color:#fde047; margin:6px 0;">ÇAMURLANDIN!</h2>
+    <p style="font-size:14px; color:#cbd5e1; margin:0 0 16px 0;">Rakip takım ekranını çamurla kapladı!<br><strong>Ekrana parmağınla dokun ve çamuru temizle!</strong></p>
+    <div id="mud-clean-count" style="font-size:15px; font-weight:900; background:#f59e0b; color:#000; padding:8px 20px; border-radius:20px;">Temizlemek için dokun (3) 🧽</div>
   </div>
 
   <!-- 3. OYUN SONU VİRAL ŞAMPİYONLUK KARTI & TV'YE İNDİR -->
@@ -900,6 +930,7 @@
     });
 
     socket.on('state_update', (state) => {
+      window.lastState = state;
       if (!myPlayerId) return;
 
       const me = state.players.find(p => p.id === myPlayerId);
@@ -1163,6 +1194,42 @@
       hasAnsweredCurrentQuestion = false;
       setButtonsDisabled(false);
 
+      // 1. Düello Kontrolü (5. Soru):
+      const duelBanner = document.getElementById('mobile-duel-banner');
+      const specBanner = document.getElementById('mobile-spectator-banner');
+      const isDuel = (window.lastState && window.lastState.specialRound === 'DUEL' && window.lastState.currentDuel);
+      if (isDuel) {
+        const isMeDuelist = (myPlayerId === window.lastState.currentDuel.redId || myPlayerId === window.lastState.currentDuel.blueId);
+        if (isMeDuelist) {
+          if (duelBanner) duelBanner.style.display = 'block';
+          if (specBanner) specBanner.style.display = 'none';
+          setButtonsDisabled(false);
+        } else {
+          if (duelBanner) duelBanner.style.display = 'none';
+          if (specBanner) specBanner.style.display = 'block';
+          setButtonsDisabled(true); // Seyirciler cevap veremez!
+        }
+      } else {
+        if (duelBanner) duelBanner.style.display = 'none';
+        if (specBanner) specBanner.style.display = 'none';
+      }
+
+      // 2. Çamur Sabotajı Butonu (4. Soru):
+      const btnMud = document.getElementById('btn-sabotage-mud');
+      const meData = (window.lastState && window.lastState.players) ? window.lastState.players.find(p => p.id === myPlayerId) : null;
+      if (btnMud) {
+        const isSabotage = (window.lastState && window.lastState.specialRound === 'SABOTAGE');
+        btnMud.style.display = (isSabotage && meData && meData.hasMudJoker) ? 'block' : 'none';
+      }
+
+      // 3. Geri Dönüş Riski Masası (8-9. Soru):
+      const comebackBox = document.getElementById('mobile-comeback-box');
+      if (comebackBox) {
+        const isComeback = (window.lastState && window.lastState.specialRound === 'COMEBACK');
+        const isTrailing = (window.lastState && meData && window.lastState.trailingTeam === meData.team);
+        comebackBox.style.display = (isComeback && isTrailing) ? 'flex' : 'none';
+      }
+
       const isTrueFalse = question && (question.type === 'TRUE_FALSE' || (question.options && question.options.length === 2));
       const btn0 = document.getElementById('btn-opt-0');
       const btn1 = document.getElementById('btn-opt-1');
@@ -1235,6 +1302,48 @@
       triggerHaptic(45);
       socket.emit('submit_answer', { answerIndex: index });
       showWaiting('Cevabın İletildi! ⚡', 'TV ekranına bakın...', '🔒');
+    };
+
+    window.throwSabotageMud = function() {
+      const btnMud = document.getElementById('btn-sabotage-mud');
+      if (btnMud) btnMud.style.display = 'none';
+      triggerHaptic([50, 100]);
+      socket.emit('use_sabotage_mud');
+    };
+
+    let mudClicksLeft = 3;
+    socket.on('player_mudded', ({ throwerName, throwerAvatar, duration }) => {
+      triggerHaptic([200, 100, 200]);
+      const overlay = document.getElementById('mobile-mud-overlay');
+      const counter = document.getElementById('mud-clean-count');
+      mudClicksLeft = 3;
+      if (counter) counter.textContent = `Temizlemek için dokun (${mudClicksLeft}) 🧽`;
+      if (overlay) overlay.style.display = 'flex';
+      setTimeout(() => {
+        if (overlay) overlay.style.display = 'none';
+      }, duration || 4000);
+    });
+
+    window.cleanMud = function() {
+      mudClicksLeft--;
+      triggerHaptic(60);
+      const counter = document.getElementById('mud-clean-count');
+      if (counter) counter.textContent = `Temizlemek için dokun (${mudClicksLeft}) 🧽`;
+      if (mudClicksLeft <= 0) {
+        const overlay = document.getElementById('mobile-mud-overlay');
+        if (overlay) overlay.style.display = 'none';
+      }
+    };
+
+    window.toggleComebackRisk = function() {
+      triggerHaptic([40, 80]);
+      socket.emit('toggle_wager');
+      const btn = document.getElementById('btn-toggle-comeback');
+      if (btn) {
+        const isAct = btn.textContent.includes('✓');
+        btn.textContent = isAct ? 'RİSK AL ➔' : '✓ RİSK AKTİF (2X)';
+        btn.style.background = isAct ? '#f59e0b' : '#10b981';
+      }
     };
 
     window.requestOpenCategories = function() {
