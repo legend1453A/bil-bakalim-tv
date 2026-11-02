@@ -1625,11 +1625,17 @@
         </div>
 
         <!-- HIZLI MOD SEÇİCİ (TV KUMANDASI İÇİN) -->
-        <div style="display:flex; align-items:center; gap:6px; background:rgba(0,0,0,0.35); padding:3px 10px; border-radius:10px; border:1px solid rgba(255,255,255,0.15);">
-          <span style="font-size:11px; font-weight:900; color:#facc15;">MOD:</span>
-          <button type="button" id="btn-cat-age-classic" class="top-btn" onclick="setTvAgeMode('CLASSIC')" style="padding:3px 8px; font-size:11px; background:#4f46e5; border-color:#facc15;">👔 Klasik</button>
-          <button type="button" id="btn-cat-age-kids" class="top-btn" onclick="setTvAgeMode('KIDS')" style="padding:3px 8px; font-size:11px;">🧒 Çocuk</button>
-          <button type="button" id="btn-cat-age-family" class="top-btn" onclick="setTvAgeMode('FAMILY')" style="padding:3px 8px; font-size:11px;">👨‍👩‍👧‍👦 Aile</button>
+        <div style="display:flex; align-items:center; gap:8px;">
+          <div style="display:flex; align-items:center; gap:4px; background:rgba(0,0,0,0.35); padding:3px 8px; border-radius:10px; border:1px solid rgba(255,255,255,0.15);">
+            <button type="button" id="btn-cat-mode-solo" class="top-btn" onclick="setTvGameMode('SOLO')" style="padding:3px 8px; font-size:11px; font-weight:900;">👥 Bireysel</button>
+            <button type="button" id="btn-cat-mode-team" class="top-btn" onclick="setTvGameMode('TEAM')" style="padding:3px 8px; font-size:11px; font-weight:900;">⚔️ Takım Savaşı</button>
+          </div>
+          <div style="display:flex; align-items:center; gap:6px; background:rgba(0,0,0,0.35); padding:3px 10px; border-radius:10px; border:1px solid rgba(255,255,255,0.15);">
+            <span style="font-size:11px; font-weight:900; color:#facc15;">YAŞ:</span>
+            <button type="button" id="btn-cat-age-classic" class="top-btn" onclick="setTvAgeMode('CLASSIC')" style="padding:3px 8px; font-size:11px; background:#4f46e5; border-color:#facc15;">👔 Klasik</button>
+            <button type="button" id="btn-cat-age-kids" class="top-btn" onclick="setTvAgeMode('KIDS')" style="padding:3px 8px; font-size:11px;">🧒 Çocuk</button>
+            <button type="button" id="btn-cat-age-family" class="top-btn" onclick="setTvAgeMode('FAMILY')" style="padding:3px 8px; font-size:11px;">👨‍👩‍👧‍👦 Aile</button>
+          </div>
         </div>
 
         <div style="display:flex; gap:8px;">
@@ -2756,10 +2762,19 @@
     function nextLocalQuestion() {
       clearInterval(localTimer);
       localQIndex++;
+      const isTeam = (currentTvGameMode === 'TEAM');
+
       if (localQIndex >= localRoundQuestions.length) {
         renderState({
           status: 'GAME_OVER',
-          players: [{ id: 'tv', name: 'TV Kumanda Oyuncusu', avatar: '📺', score: localScore }]
+          gameMode: currentTvGameMode,
+          teamScores: isTeam ? { RED: localScore, BLUE: Math.floor(localScore * 0.85) } : undefined,
+          players: isTeam ? [
+            { id: 'tv', name: 'TV Kumanda Oyuncusu', avatar: '📺', score: localScore, team: 'RED' },
+            { id: 'bot', name: '🤖 Akıllı Rakip', avatar: '🦉', score: Math.floor(localScore * 0.85), team: 'BLUE' }
+          ] : [
+            { id: 'tv', name: 'TV Kumanda Oyuncusu', avatar: '📺', score: localScore }
+          ]
         });
         return;
       }
@@ -2769,13 +2784,39 @@
       timerBox.textContent = `${localTimeLeft} sn`;
       timerBox.classList.remove('timer-danger');
 
+      let specialRound = 'HEALTH_BATTLE';
+      let currentDuel = null;
+      if (isTeam) {
+        if (localQIndex === 3) specialRound = 'SABOTAGE';
+        else if (localQIndex === 4) {
+          specialRound = 'DUEL';
+          currentDuel = {
+            redName: 'TV Kumanda', redAvatar: '📺',
+            blueName: '🤖 Akıllı Rakip', blueAvatar: '🦉'
+          };
+        }
+        else if (localQIndex === 5 || localQIndex === 6) specialRound = 'CONSENSUS';
+        else if (localQIndex === 7 || localQIndex === 8) specialRound = 'COMEBACK';
+        else if (localQIndex === 9) specialRound = 'KNOCKOUT';
+      }
+
       renderState({
         status: 'QUESTION',
+        gameMode: currentTvGameMode,
+        specialRound: specialRound,
+        currentDuel: currentDuel,
+        teamHealth: { RED: 100, BLUE: 100 },
+        teamScores: isTeam ? { RED: localScore, BLUE: Math.floor(localScore * 0.85) } : undefined,
         questionIndex: localQIndex,
         totalQuestions: localRoundQuestions.length,
         isDoublePoints: (localQIndex === 9),
         question: q,
-        players: [{ id: 'tv', name: 'TV Kumanda', avatar: '📺', score: localScore, answered: false, streak: localStreak }]
+        players: isTeam ? [
+          { id: 'tv', name: 'TV Kumanda', avatar: '📺', score: localScore, answered: false, streak: localStreak, team: 'RED' },
+          { id: 'bot', name: '🤖 Akıllı Rakip', avatar: '🦉', score: Math.floor(localScore * 0.85), answered: true, team: 'BLUE' }
+        ] : [
+          { id: 'tv', name: 'TV Kumanda', avatar: '📺', score: localScore, answered: false, streak: localStreak }
+        ]
       });
 
 
@@ -2904,22 +2945,32 @@
 
     // ⚔️ TAKIM MODU YÖNETİMİ
     let currentTvGameMode = 'SOLO';
+    try {
+      const savedMode = localStorage.getItem('bil_bakalim_game_mode');
+      if (savedMode === 'TEAM' || savedMode === 'SOLO') currentTvGameMode = savedMode;
+    } catch(e) {}
+
     window.setTvGameMode = function(mode) {
       currentTvGameMode = mode;
+      try { localStorage.setItem('bil_bakalim_game_mode', mode); } catch(e) {}
       const btnSolo = document.getElementById('btn-mode-solo');
       const btnTeam = document.getElementById('btn-mode-team');
-      if (btnSolo) {
-        btnSolo.style.background = mode === 'SOLO' ? 'linear-gradient(135deg, #4f46e5, #6366f1)' : 'rgba(255,255,255,0.06)';
-        btnSolo.style.borderColor = mode === 'SOLO' ? '#facc15' : 'rgba(255,255,255,0.2)';
-        btnSolo.style.color = mode === 'SOLO' ? '#fff' : '#94a3b8';
-        btnSolo.style.boxShadow = mode === 'SOLO' ? '0 0 16px rgba(250,204,21,0.5)' : 'none';
-      }
-      if (btnTeam) {
-        btnTeam.style.background = mode === 'TEAM' ? 'linear-gradient(135deg, #4f46e5, #6366f1)' : 'rgba(255,255,255,0.06)';
-        btnTeam.style.borderColor = mode === 'TEAM' ? '#facc15' : 'rgba(255,255,255,0.2)';
-        btnTeam.style.color = mode === 'TEAM' ? '#fff' : '#94a3b8';
-        btnTeam.style.boxShadow = mode === 'TEAM' ? '0 0 16px rgba(250,204,21,0.5)' : 'none';
-      }
+      const btnCatSolo = document.getElementById('btn-cat-mode-solo');
+      const btnCatTeam = document.getElementById('btn-cat-mode-team');
+
+      [
+        [btnSolo, mode === 'SOLO'],
+        [btnCatSolo, mode === 'SOLO'],
+        [btnTeam, mode === 'TEAM'],
+        [btnCatTeam, mode === 'TEAM']
+      ].forEach(([b, isActive]) => {
+        if (b) {
+          b.style.background = isActive ? 'linear-gradient(135deg, #4f46e5, #6366f1)' : 'rgba(255,255,255,0.06)';
+          b.style.borderColor = isActive ? '#facc15' : 'rgba(255,255,255,0.2)';
+          b.style.color = isActive ? '#fff' : '#94a3b8';
+          b.style.boxShadow = isActive ? '0 0 16px rgba(250,204,21,0.5)' : 'none';
+        }
+      });
       soundFX.playPop();
       if (socket && socket.connected) {
         socket.emit('host_set_game_mode', { gameMode: mode });
@@ -3477,8 +3528,170 @@
       return Array.from(map.values()).sort((a,b) => b.score - a.score).slice(0, 20);
     }
 
+    function renderGameOverContent(state) {
+      if (!state) return;
+      window.lastGameOverState = state;
+      const sortedPlayers = (state.players || []).slice().sort((a,b) => (b.score || 0) - (a.score || 0));
+      const podiumArea = document.getElementById('podium-display-area');
+      const teamBanner = document.getElementById('game-over-team-banner');
+      const gameOverList = document.getElementById('game-over-list');
+      const isTeam = (state.gameMode === 'TEAM' || currentTvGameMode === 'TEAM');
+
+      if (teamBanner) {
+        if (isTeam && state.teamScores) {
+          const redW = (state.teamScores.RED || 0) > (state.teamScores.BLUE || 0);
+          const tie = (state.teamScores.RED || 0) === (state.teamScores.BLUE || 0);
+          const winnerMsg = tie ? 'Dostluk kazandı! Berabere!' : (redW ? '🔴 Kırmızı Takım Şampiyon Oldu!' : '🔵 Mavi Takım Şampiyon Oldu!');
+          speakText(winnerMsg);
+          teamBanner.innerHTML = `
+            <div style="text-align:center; padding:14px; background:linear-gradient(135deg,rgba(250,204,21,0.2),rgba(99,102,241,0.25)); border-radius:18px; margin-bottom:14px; border:2px solid rgba(250,204,21,0.4);">
+              <div style="font-size:24px; font-weight:900; color:#facc15;">🏆 ${winnerMsg}</div>
+              <div style="font-size:16px; color:#fff; margin-top:4px;">
+                🔴 Kırmızı Takım: <strong>${state.teamScores.RED || 0} P</strong> &nbsp;|&nbsp; 🔵 Mavi Takım: <strong>${state.teamScores.BLUE || 0} P</strong>
+              </div>
+            </div>
+          `;
+        } else {
+          teamBanner.innerHTML = '';
+          const topPlayer = sortedPlayers[0];
+          if (topPlayer) speakText(`İnanılmaz bir mücadele! Ve işte 10 soruluk turun büyük şampiyonu: ${topPlayer.name}! Alkışlar şampiyona!`, 'victory');
+        }
+      }
+
+      if (podiumArea) {
+        if (sortedPlayers.length > 0) {
+          const p1 = sortedPlayers[0];
+          const p2 = sortedPlayers[1];
+          const p3 = sortedPlayers[2];
+
+          podiumArea.innerHTML = `
+            ${p2 ? `
+              <div class="podium-step podium-rank-2">
+                <div class="podium-user-badge">
+                  <div class="podium-avatar">${p2.avatar || '🥈'}</div>
+                  <div class="podium-username">${p2.name}</div>
+                  <div class="podium-score">${p2.score || 0} P</div>
+                </div>
+                <div class="podium-pillar pillar-2">
+                  <div style="font-size:28px;">🥈</div>
+                  <div style="font-size:18px;">2.</div>
+                </div>
+              </div>
+            ` : ''}
+
+            <div class="podium-step podium-rank-1">
+              <div class="podium-user-badge">
+                <div style="font-size:24px;">👑</div>
+                <div class="podium-avatar">${p1.avatar || '🥇'}</div>
+                <div class="podium-username">${p1.name}</div>
+                <div class="podium-score" style="font-size:17px; color:#fde047;">${p1.score || 0} P</div>
+              </div>
+              <div class="podium-pillar pillar-1">
+                <div style="font-size:32px;">🥇</div>
+                <div style="font-size:22px;">ŞAMPİYON</div>
+              </div>
+            </div>
+
+            ${p3 ? `
+              <div class="podium-step podium-rank-3">
+                <div class="podium-user-badge">
+                  <div class="podium-avatar">${p3.avatar || '🥉'}</div>
+                  <div class="podium-username">${p3.name}</div>
+                  <div class="podium-score">${p3.score || 0} P</div>
+                </div>
+                <div class="podium-pillar pillar-3">
+                  <div style="font-size:26px;">🥉</div>
+                  <div style="font-size:16px;">3.</div>
+                </div>
+              </div>
+            ` : ''}
+          `;
+        } else {
+          podiumArea.innerHTML = '<div style="color:var(--text-muted); font-size:18px; text-align:center; padding:20px;">Oyuncu verisi yok.</div>';
+        }
+      }
+
+      if (gameOverList) {
+        const restPlayers = sortedPlayers.slice(3);
+        if (restPlayers.length > 0) {
+          gameOverList.innerHTML = restPlayers.map((p, idx) => `
+            <div class="hof-row">
+              <div style="display:flex; align-items:center; gap:14px;">
+                <span>#${idx+4}</span>
+                <span style="font-size:24px;">${p.avatar || '👤'}</span>
+                <span>${p.name} ${isTeam ? (p.team === 'RED' ? '(🔴)' : '(🔵)') : ''}</span>
+              </div>
+              <div style="color:#facc15; font-size:22px;">${p.score || 0} P</div>
+            </div>
+          `).join('');
+          gameOverList.style.display = 'flex';
+        } else {
+          gameOverList.innerHTML = '';
+          gameOverList.style.display = 'none';
+        }
+      }
+
+      const gameOverHofList = document.getElementById('game-over-hof-list');
+      if (gameOverHofList) {
+        const rawHof = (state.persistentLeaderboard && state.persistentLeaderboard.length > 0) ? state.persistentLeaderboard : (window.lastLeaderboard || []);
+        const hofData = deduplicateHofList(rawHof);
+        const topHof = hofData.slice(0, 5);
+        if (topHof.length > 0) {
+          gameOverHofList.innerHTML = topHof.map((item, idx) => `
+            <div class="hof-row" style="padding:6px 14px; margin-bottom:4px;">
+              <div style="display:flex; align-items:center; gap:12px;">
+                <span style="font-size:18px; font-weight:900; width:26px;">${idx === 0 ? '👑' : idx === 1 ? '🥈' : idx === 2 ? '🥉' : `#${idx+1}`}</span>
+                <span style="font-size:20px;">${item.avatar || '👑'}</span>
+                <span style="font-weight:800; font-size:15px; color:#fff;">${item.name}</span>
+                <span style="font-size:12px; color:var(--text-muted);">(${item.date || 'Yeni'})</span>
+              </div>
+              <div style="color:#facc15; font-size:17px; font-weight:900;">${item.score || 0} P</div>
+            </div>
+          `).join('');
+        } else {
+          gameOverHofList.innerHTML = '<div style="color:var(--text-muted); font-size:13px; text-align:center; padding:8px;">Henüz kayıtlı salon rekoru yok.</div>';
+        }
+      }
+
+      const vipExpiredBox = document.getElementById('vip-expired-container');
+      if (vipExpiredBox) {
+        if (state.vipPassExpiredCategory) {
+          vipExpiredBox.style.display = 'block';
+          vipExpiredBox.innerHTML = `
+            <div style="background:linear-gradient(135deg, rgba(245,158,11,0.22), rgba(180,83,9,0.35)); border:2px solid #f59e0b; border-radius:18px; padding:16px 20px; text-align:center; box-shadow:0 0 30px rgba(245,158,11,0.35); animation:popIn 0.3s ease;">
+              <div style="font-size:36px;">🎬🔒</div>
+              <div style="font-size:22px; font-weight:900; color:#fde047; margin:4px 0;">10 Soruluk VIP Turunuz Tamamlandı!</div>
+              <p style="font-size:14.5px; color:#e2e8f0; margin:0 0 14px 0;">
+                <strong>"${state.vipPassExpiredCategory}"</strong> paketi tekrar kilitlendi.<br>
+                Kaldığınız yerden devam etmek için 1 kısa reklam daha izleyebilirsiniz (+10 Yeni Soru)!
+              </p>
+              <div style="display:flex; justify-content:center; gap:12px; flex-wrap:wrap;">
+                <button type="button" class="tv-btn" onclick="continueVipPackageWithAd('${state.vipPassExpiredCategory}')" style="background:linear-gradient(135deg, #10b981, #059669); border-color:#34d399; font-size:16px; padding:12px 26px; box-shadow:0 0 20px rgba(16,185,129,0.5);">
+                  🎬 1 Reklam İzle & Kaldığın Yerden Devam Et (+10 Soru) ➔
+                </button>
+                <button type="button" class="top-btn" onclick="goCategories()" style="font-size:15px; padding:10px 20px;">
+                  🗂️ Kategorilere Dön
+                </button>
+              </div>
+            </div>
+          `;
+          if (btnRestartGame) btnRestartGame.style.display = 'none';
+        } else {
+          vipExpiredBox.style.display = 'none';
+          if (btnRestartGame) btnRestartGame.style.display = 'inline-flex';
+        }
+      }
+    }
+
     function renderState(state) {
       hideAllScreens();
+
+      if (state.persistentLeaderboard && state.persistentLeaderboard.length > 0) {
+        window.lastLeaderboard = state.persistentLeaderboard;
+      }
+      if (state.gameMode) {
+        currentTvGameMode = state.gameMode;
+      }
 
       const teamScoreBar = document.getElementById('team-scoreboard-bar');
       const isTeamMode = state.gameMode === 'TEAM';
@@ -4027,6 +4240,9 @@
           renderCategoryCards(allCategories);
         }
 
+        // 🏆 Podyum, Şampiyon ve Liderlik Tablosunu HEMEN doldur (Reklam olsa bile arkada eksiksiz hazır olsun)
+        renderGameOverContent(state);
+
         // 🎬 2. OTOMATİK GEÇİŞ REKLAMI: 10 soru bittiğinde araya AdMob tam ekran geçiş reklamı girer
         if (!window.hasShownRoundEndAd) {
           window.hasShownRoundEndAd = true;
@@ -4049,168 +4265,18 @@
               screenGameOver.style.display = 'block';
               soundFX.playVictoryFanfare();
               triggerTvConfetti();
-              // Reklamdan sonra kategorilerin kilitlendiğini garantiye al
               temporaryAdVipCategory = null;
               renderCategoryCards(allCategories);
+              if (btnRestartGame) btnRestartGame.focus();
             }
           }, 1000);
           return;
         }
 
         screenGameOver.style.display = 'block';
-        soundFX.playCorrect();
-
-        const sortedPlayers = (state.players || []).slice().sort((a,b) => (b.score || 0) - (a.score || 0));
-        const podiumArea = document.getElementById('podium-display-area');
-        const teamBanner = document.getElementById('game-over-team-banner');
-
-        if (isTeamMode && state.teamScores) {
-          const redW = state.teamScores.RED > state.teamScores.BLUE;
-          const tie = state.teamScores.RED === state.teamScores.BLUE;
-          const winnerMsg = tie ? 'Dostluk kazandı! Berabere!' : (redW ? '🔴 Kırmızı Takım Şampiyon Oldu!' : '🔵 Mavi Takım Şampiyon Oldu!');
-          speakText(winnerMsg);
-          teamBanner.innerHTML = `
-            <div style="text-align:center; padding:14px; background:linear-gradient(135deg,rgba(250,204,21,0.2),rgba(99,102,241,0.25)); border-radius:18px; margin-bottom:14px;">
-              <div style="font-size:24px; font-weight:900; color:#facc15;">🏆 ${winnerMsg}</div>
-              <div style="font-size:16px; color:#fff; margin-top:4px;">
-                🔴 Kırmızı: <strong>${state.teamScores.RED} P</strong> &nbsp;|&nbsp; 🔵 Mavi: <strong>${state.teamScores.BLUE} P</strong>
-              </div>
-            </div>
-          `;
-        } else {
-          teamBanner.innerHTML = '';
-          const topPlayer = sortedPlayers[0];
-          if (topPlayer) speakText(`İnanılmaz bir mücadele! Ve işte 10 soruluk turun büyük şampiyonu: ${topPlayer.name}! Alkışlar şampiyona!`, 'victory');
-        }
-
-        // 🏆 ŞAMPİYONLUK FANFARI VE HAVAİ FİŞEK / KONFETİ
         soundFX.playVictoryFanfare();
         triggerTvConfetti();
-
-        // 3D Podyum (İlk 3 Oyuncu)
-        if (sortedPlayers.length > 0) {
-          const p1 = sortedPlayers[0];
-          const p2 = sortedPlayers[1];
-          const p3 = sortedPlayers[2];
-
-          podiumArea.innerHTML = `
-            ${p2 ? `
-              <div class="podium-step podium-rank-2">
-                <div class="podium-user-badge">
-                  <div class="podium-avatar">${p2.avatar}</div>
-                  <div class="podium-username">${p2.name}</div>
-                  <div class="podium-score">${p2.score} P</div>
-                </div>
-                <div class="podium-pillar pillar-2">
-                  <div style="font-size:28px;">🥈</div>
-                  <div style="font-size:18px;">2.</div>
-                </div>
-              </div>
-            ` : ''}
-
-            <div class="podium-step podium-rank-1">
-              <div class="podium-user-badge">
-                <div style="font-size:24px;">👑</div>
-                <div class="podium-avatar">${p1.avatar}</div>
-                <div class="podium-username">${p1.name}</div>
-                <div class="podium-score" style="font-size:17px; color:#fde047;">${p1.score} P</div>
-              </div>
-              <div class="podium-pillar pillar-1">
-                <div style="font-size:32px;">🥇</div>
-                <div style="font-size:22px;">ŞAMPİYON</div>
-              </div>
-            </div>
-
-            ${p3 ? `
-              <div class="podium-step podium-rank-3">
-                <div class="podium-user-badge">
-                  <div class="podium-avatar">${p3.avatar}</div>
-                  <div class="podium-username">${p3.name}</div>
-                  <div class="podium-score">${p3.score} P</div>
-                </div>
-                <div class="podium-pillar pillar-3">
-                  <div style="font-size:26px;">🥉</div>
-                  <div style="font-size:16px;">3.</div>
-                </div>
-              </div>
-            ` : ''}
-          `;
-        } else {
-          podiumArea.innerHTML = '<div style="color:var(--text-muted); font-size:18px;">Oyuncu verisi yok.</div>';
-        }
-
-        // Podyum harici 4. ve sonrasını liste olarak göster
-        const restPlayers = sortedPlayers.slice(3);
-        if (restPlayers.length > 0) {
-          gameOverList.innerHTML = restPlayers.map((p, idx) => `
-            <div class="hof-row">
-              <div style="display:flex; align-items:center; gap:14px;">
-                <span>#${idx+4}</span>
-                <span style="font-size:24px;">${p.avatar}</span>
-                <span>${p.name} ${isTeamMode ? (p.team === 'RED' ? '(🔴)' : '(🔵)') : ''}</span>
-              </div>
-              <div style="color:#facc15; font-size:22px;">${p.score} P</div>
-            </div>
-          `).join('');
-          gameOverList.style.display = 'flex';
-        } else {
-          gameOverList.innerHTML = '';
-          gameOverList.style.display = 'none';
-        }
-
-        // 🏆 TÜM ZAMANLARIN LİDERLİK TABLOSU (TOP 5 SALON REKORLARI)
-        const gameOverHofList = document.getElementById('game-over-hof-list');
-        if (gameOverHofList) {
-          const hofData = deduplicateHofList(state.persistentLeaderboard || []);
-          const topHof = hofData.slice(0, 5);
-          if (topHof.length > 0) {
-            gameOverHofList.innerHTML = topHof.map((item, idx) => `
-              <div class="hof-row" style="padding:6px 14px; margin-bottom:4px;">
-                <div style="display:flex; align-items:center; gap:12px;">
-                  <span style="font-size:18px; font-weight:900; width:26px;">${idx === 0 ? '👑' : idx === 1 ? '🥈' : idx === 2 ? '🥉' : `#${idx+1}`}</span>
-                  <span style="font-size:20px;">${item.avatar || '👑'}</span>
-                  <span style="font-weight:800; font-size:15px; color:#fff;">${item.name}</span>
-                  <span style="font-size:12px; color:var(--text-muted);">(${item.date || 'Yeni'})</span>
-                </div>
-                <div style="color:#facc15; font-size:17px; font-weight:900;">${item.score} P</div>
-              </div>
-            `).join('');
-          } else {
-            gameOverHofList.innerHTML = '<div style="color:var(--text-muted); font-size:13px; text-align:center; padding:8px;">Henüz kayıtlı salon rekoru yok.</div>';
-          }
-        }
-
-        // 🎬 10 Soruluk VIP Reklamlı Pas Süresi Dolduysa Göster
-        const vipExpiredBox = document.getElementById('vip-expired-container');
-        if (vipExpiredBox) {
-          if (state.vipPassExpiredCategory) {
-            vipExpiredBox.style.display = 'block';
-            vipExpiredBox.innerHTML = `
-              <div style="background:linear-gradient(135deg, rgba(245,158,11,0.22), rgba(180,83,9,0.35)); border:2px solid #f59e0b; border-radius:18px; padding:16px 20px; text-align:center; box-shadow:0 0 30px rgba(245,158,11,0.35); animation:popIn 0.3s ease;">
-                <div style="font-size:36px;">🎬🔒</div>
-                <div style="font-size:22px; font-weight:900; color:#fde047; margin:4px 0;">10 Soruluk VIP Turunuz Tamamlandı!</div>
-                <p style="font-size:14.5px; color:#e2e8f0; margin:0 0 14px 0;">
-                  <strong>"${state.vipPassExpiredCategory}"</strong> paketi tekrar kilitlendi.<br>
-                  Kaldığınız yerden devam etmek için 1 kısa reklam daha izleyebilirsiniz (+10 Yeni Soru)!
-                </p>
-                <div style="display:flex; justify-content:center; gap:12px; flex-wrap:wrap;">
-                  <button type="button" class="tv-btn" onclick="continueVipPackageWithAd('${state.vipPassExpiredCategory}')" style="background:linear-gradient(135deg, #10b981, #059669); border-color:#34d399; font-size:16px; padding:12px 26px; box-shadow:0 0 20px rgba(16,185,129,0.5);">
-                    🎬 1 Reklam İzle & Kaldığın Yerden Devam Et (+10 Soru) ➔
-                  </button>
-                  <button type="button" class="top-btn" onclick="goCategories()" style="font-size:15px; padding:10px 20px;">
-                    🗂️ Kategorilere Dön
-                  </button>
-                </div>
-              </div>
-            `;
-            if (btnRestartGame) btnRestartGame.style.display = 'none';
-          } else {
-            vipExpiredBox.style.display = 'none';
-            if (btnRestartGame) btnRestartGame.style.display = 'inline-flex';
-          }
-        }
-
-        btnRestartGame.focus();
+        if (btnRestartGame) btnRestartGame.focus();
       }
 
     }
@@ -4287,10 +4353,14 @@
         const cb = window.pendingAdCallback;
         window.pendingAdCallback = null;
         cb();
-      } else if (screenGameOver && screenGameOver.style.display === 'none') {
+      } else if (screenGameOver) {
         screenGameOver.style.display = 'block';
+        if (window.lastGameOverState) {
+          renderGameOverContent(window.lastGameOverState);
+        }
         soundFX.playVictoryFanfare();
         triggerTvConfetti();
+        if (btnRestartGame) btnRestartGame.focus();
       } else if (isLocalModeActive || !socket.connected) {
         nextLocalQuestion();
       } else {

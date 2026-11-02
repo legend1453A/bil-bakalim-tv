@@ -279,10 +279,73 @@ function generateRoomCode() {
 
 function assignBalancedTeam(room, preferredTeam) {
   if (preferredTeam === 'RED' || preferredTeam === 'BLUE') return preferredTeam;
-  const players = Object.values(room.players || {});
+  const players = Object.values(room.players || {}).filter(p => !p.isBot);
   const redCount = players.filter(p => p.team === 'RED').length;
   const blueCount = players.filter(p => p.team === 'BLUE').length;
   return redCount <= blueCount ? 'RED' : 'BLUE';
+}
+
+function ensureTeamBalanceWithBot(room) {
+  if (!room) return;
+  if (room.gameMode !== 'TEAM') {
+    if (room.players['bot_rival']) {
+      delete room.players['bot_rival'];
+    }
+    return;
+  }
+  const realPlayers = Object.values(room.players).filter(p => !p.isBot && !p.isDisconnected);
+  if (realPlayers.length === 0) return;
+
+  const redCount = realPlayers.filter(p => p.team === 'RED').length;
+  const blueCount = realPlayers.filter(p => p.team === 'BLUE').length;
+
+  if (redCount > 0 && blueCount === 0) {
+    if (!room.players['bot_rival'] || room.players['bot_rival'].team !== 'BLUE') {
+      room.players['bot_rival'] = {
+        id: 'bot_rival',
+        name: '🤖 Akıllı Rakip',
+        avatar: '🦉',
+        team: 'BLUE',
+        score: 0,
+        streak: 0,
+        isBot: true,
+        isDisconnected: false,
+        jokerFiftyFifty: false,
+        jokerDoubleChance: false,
+        jokerFreeze: false,
+        doubleChanceActive: false,
+        wagerActive: false,
+        isFrozen: false,
+        hasMudJoker: false,
+        isMudded: false
+      };
+    }
+  } else if (blueCount > 0 && redCount === 0) {
+    if (!room.players['bot_rival'] || room.players['bot_rival'].team !== 'RED') {
+      room.players['bot_rival'] = {
+        id: 'bot_rival',
+        name: '🤖 Akıllı Rakip',
+        avatar: '🦁',
+        team: 'RED',
+        score: 0,
+        streak: 0,
+        isBot: true,
+        isDisconnected: false,
+        jokerFiftyFifty: false,
+        jokerDoubleChance: false,
+        jokerFreeze: false,
+        doubleChanceActive: false,
+        wagerActive: false,
+        isFrozen: false,
+        hasMudJoker: false,
+        isMudded: false
+      };
+    }
+  } else if (redCount > 0 && blueCount > 0) {
+    if (room.players['bot_rival']) {
+      delete room.players['bot_rival'];
+    }
+  }
 }
 
 function createOrGetRoom(roomCode) {
@@ -1253,6 +1316,9 @@ io.on('connection', (socket) => {
       Object.values(room.players).forEach((p, idx) => {
         if (!p.team) p.team = (idx % 2 === 0) ? 'RED' : 'BLUE';
       });
+      ensureTeamBalanceWithBot(room);
+    } else {
+      if (room.players['bot_rival']) delete room.players['bot_rival'];
     }
     io.to(`room_${room.roomCode}`).emit('state_update', getPublicGameState(room));
   });
@@ -1499,40 +1565,8 @@ io.on('connection', (socket) => {
         player.doubleChanceActive = false;
       }
 
-      player.currentAnswer = answerIndex;
-      player.answerTime = room.questionTimeLeft;
-      player.answeredAt = Date.now();
-
-      const answeredCount = Object.values(room.players).filter(p => p.currentAnswer !== null).length;
-      const totalCount = Object.keys(room.players).length;
-
-      io.to(`tv_${currentRoomCode}`).emit('player_answered', {
-        id: socket.id,
-        name: player.name,
-        avatar: player.avatar,
-        totalAnswered: answeredCount,
-        totalPlayers: totalCount
-      });
-
-      io.to(`room_${currentRoomCode}`).emit('state_update', getPublicGameState(room));
+      processPlayerAnswer(room, socket.id, answerIndex);
       socket.emit('answer_received', { answerIndex });
-
-      // Düello turunda iki kaptan da cevap verdiyse hemen açıkla
-      if (room.specialRound === 'DUEL' && room.currentDuel) {
-        const redP = room.players[room.currentDuel.redId];
-        const blueP = room.players[room.currentDuel.blueId];
-        const duelDone = (!redP || redP.currentAnswer !== null) && (!blueP || blueP.currentAnswer !== null);
-        if (duelDone) {
-          revealAnswers(room);
-          return;
-        }
-      }
-
-      const playerList = Object.values(room.players);
-      const allAnswered = playerList.length > 0 && playerList.every(p => p.currentAnswer !== null);
-      if (allAnswered) {
-        revealAnswers(room);
-      }
     }
   });
 
@@ -1919,8 +1953,59 @@ function startNewGame(room) {
   nextQuestion(room);
 }
 
+function processPlayerAnswer(room, playerId, answerIndex) {
+  if (!room || !room.players[playerId]) return;
+  const player = room.players[playerId];
+  const currentQ = room.currentRoundQuestions[room.currentQuestionIndex];
+  if (!player || room.status !== 'QUESTION' || !currentQ) return;
+  if (player.isFrozen) return;
+
+  // 🥊 DÜELLO KONTROLÜ (5. Soru): Sadece seçilen iki kaptan cevap verebilir
+  if (room.specialRound === 'DUEL' && room.currentDuel) {
+    const isDuelist = (player.id === room.currentDuel.redId || player.id === room.currentDuel.blueId);
+    if (!isDuelist) return;
+  }
+
+  if (player.currentAnswer === null) {
+    player.currentAnswer = answerIndex;
+    player.answerTime = room.questionTimeLeft;
+    player.answeredAt = Date.now();
+
+    const answeredCount = Object.values(room.players).filter(p => p.currentAnswer !== null).length;
+    const totalCount = Object.keys(room.players).length;
+
+    io.to(`tv_${room.roomCode}`).emit('player_answered', {
+      id: playerId,
+      name: player.name,
+      avatar: player.avatar,
+      totalAnswered: answeredCount,
+      totalPlayers: totalCount
+    });
+
+    io.to(`room_${room.roomCode}`).emit('state_update', getPublicGameState(room));
+
+    // Düello turunda iki kaptan da cevap verdiyse hemen açıkla
+    if (room.specialRound === 'DUEL' && room.currentDuel) {
+      const redP = room.players[room.currentDuel.redId];
+      const blueP = room.players[room.currentDuel.blueId];
+      const duelDone = (!redP || redP.currentAnswer !== null) && (!blueP || blueP.currentAnswer !== null);
+      if (duelDone) {
+        revealAnswers(room);
+        return;
+      }
+    }
+
+    const playerList = Object.values(room.players);
+    const allAnswered = playerList.length > 0 && playerList.every(p => p.currentAnswer !== null);
+    if (allAnswered) {
+      revealAnswers(room);
+    }
+  }
+}
+
 function nextQuestion(room) {
   clearInterval(room.timerInterval);
+  if (room.botAnswerTimeout) clearTimeout(room.botAnswerTimeout);
   room.currentQuestionIndex++;
 
   if (room.currentQuestionIndex >= room.currentRoundQuestions.length) {
@@ -1932,6 +2017,7 @@ function nextQuestion(room) {
 
   // 10 Soruluk Heyecan Akışı (Survivor / Mario Party Temposu)
   if (room.gameMode === 'TEAM') {
+    ensureTeamBalanceWithBot(room);
     const qIdx = room.currentQuestionIndex;
     if (qIdx <= 2) {
       room.specialRound = 'HEALTH_BATTLE'; // Soru 1-3: Can Savaşı & Dost Ateşi
@@ -1997,6 +2083,45 @@ function nextQuestion(room) {
 
   io.to(`room_${room.roomCode}`).emit('state_update', getPublicGameState(room));
 
+  // 🤖 Yapay Zeka Rakip Simülasyonu (Tek kişi test ederken bile Takım Savaşını eksiksiz yaşatır)
+  if (room.players['bot_rival']) {
+    const botDelay = Math.floor(Math.random() * 2000) + 3000;
+    room.botAnswerTimeout = setTimeout(() => {
+      if (!room.players['bot_rival'] || room.status !== 'QUESTION') return;
+      const qNow = room.currentRoundQuestions[room.currentQuestionIndex];
+      if (!qNow) return;
+      let chosenOpt = qNow.answer;
+      if (Math.random() > 0.75) {
+        const wrongOpts = [0, 1, 2, 3].filter(idx => idx !== qNow.answer && idx < qNow.options.length);
+        if (wrongOpts.length > 0) chosenOpt = wrongOpts[Math.floor(Math.random() * wrongOpts.length)];
+      }
+      processPlayerAnswer(room, 'bot_rival', chosenOpt);
+
+      if (room.specialRound === 'SABOTAGE' && room.players['bot_rival'].hasMudJoker) {
+        room.players['bot_rival'].hasMudJoker = false;
+        const targetTeam = room.players['bot_rival'].team === 'BLUE' ? 'RED' : 'BLUE';
+        const targetPlayers = Object.values(room.players).filter(p => p.team === targetTeam && !p.isDisconnected && !p.isBot);
+        if (targetPlayers.length > 0) {
+          const targetP = targetPlayers[Math.floor(Math.random() * targetPlayers.length)];
+          targetP.isMudded = true;
+          io.to(targetP.id).emit('player_mudded', { throwerName: '🤖 Akıllı Rakip', throwerAvatar: '🦉', duration: 4000 });
+          io.to(`room_${room.roomCode}`).emit('mud_thrown_event', {
+            throwerName: '🤖 Akıllı Rakip',
+            throwerAvatar: '🦉',
+            throwerTeam: room.players['bot_rival'].team,
+            targetName: targetP.name,
+            targetAvatar: targetP.avatar,
+            targetTeam: targetP.team
+          });
+          setTimeout(() => {
+            if (targetP) targetP.isMudded = false;
+            io.to(`room_${room.roomCode}`).emit('state_update', getPublicGameState(room));
+          }, 4000);
+        }
+      }
+    }, botDelay);
+  }
+
   room.timerInterval = setInterval(() => {
     room.questionTimeLeft--;
     io.to(`room_${room.roomCode}`).emit('timer_tick', { timeLeft: room.questionTimeLeft });
@@ -2010,6 +2135,7 @@ function nextQuestion(room) {
 
 function revealAnswers(room) {
   clearInterval(room.timerInterval);
+  if (room.botAnswerTimeout) clearTimeout(room.botAnswerTimeout);
   room.status = 'ANSWER_REVEAL';
 
   const q = room.currentRoundQuestions[room.currentQuestionIndex];
@@ -2232,6 +2358,8 @@ function revealAnswers(room) {
 }
 
 function endGame(room) {
+  clearInterval(room.timerInterval);
+  if (room.botAnswerTimeout) clearTimeout(room.botAnswerTimeout);
   room.status = 'GAME_OVER';
 
   // 🎬 10 SORULUK VIP REKLAMLI PAS KONTROLÜ:
@@ -2268,9 +2396,9 @@ function endGame(room) {
     if (key) bestScoresMap.set(key, { ...item });
   });
 
-  // Bu turdaki oyuncuların skorlarını güncelle/ekle
+  // Bu turdaki gerçek oyuncuların skorlarını güncelle/ekle (Bot eklenmez)
   playersSorted.forEach(p => {
-    if (p.score > 0) {
+    if (p.score > 0 && !p.isBot) {
       const key = (p.name || '').trim().toLowerCase();
       const existing = bestScoresMap.get(key);
       if (!existing || p.score > existing.score) {
