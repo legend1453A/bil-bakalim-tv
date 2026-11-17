@@ -1959,12 +1959,20 @@
           </div>
         </div>
 
-        <!-- DOĞRUDAN PRO SATIN AL BUTONU -->
-        <button id="btn-pro-direct-buy" class="tv-btn" onclick="directBuyPro()" style="background:linear-gradient(135deg, #10b981, #059669); color:#0f172a; border-color:#34d399; font-size:18px; font-weight:900; padding:10px 18px; width:100%; border-radius:12px; justify-content:center; box-shadow:0 4px 18px rgba(16, 185, 129, 0.4); cursor:pointer;">
-          💳 Hemen Satın Al & Tümünü Aç (<span id="pro-buy-btn-price">79,99 TL</span>) ➔
-        </button>
+        <!-- DOĞRUDAN GOOGLE PLAY SATIN AL BUTONU -->
+        <div style="display:flex; flex-direction:column; gap:8px;">
+          <button id="btn-pro-direct-buy" class="tv-btn" onclick="directBuyPro()" style="background:linear-gradient(135deg, #10b981, #059669); color:#fff; border-color:#34d399; font-size:18px; font-weight:900; padding:12px 18px; width:100%; border-radius:12px; justify-content:center; box-shadow:0 4px 18px rgba(16, 185, 129, 0.4); cursor:pointer;">
+            <span style="font-size:22px; margin-right:6px;">▶️</span> Google Play ile Satın Al (<span id="pro-buy-btn-price">79,99 TL</span>) ➔
+          </button>
+          <div style="display:flex; justify-content:space-between; align-items:center; padding:0 4px;">
+            <span style="font-size:11.5px; color:#94a3b8;">🔒 Google Play Resmi Güvenli Ödeme Altyapısı</span>
+            <button type="button" class="top-btn" onclick="restoreGooglePlayPurchases()" style="font-size:12px; padding:4px 12px; background:rgba(255,255,255,0.06); border-color:rgba(255,255,255,0.2); color:#cbd5e1;">
+              🔄 Satın Alımları Geri Yükle
+            </button>
+          </div>
+        </div>
 
-        <!-- KUPON ALANI VE TELEFONLA QR ÖDEME -->
+        <!-- KUPON ALANI VE GOOGLE PLAY GÜVENCESİ -->
         <div style="display:grid; grid-template-columns:1fr 1fr; gap:12px; align-items:stretch;">
           <!-- SOL SÜTUN: VIP KUPON DOĞRULAMA -->
           <div style="display:flex; flex-direction:column; justify-content:space-between; gap:6px; background:rgba(255,255,255,0.04); border:1px solid rgba(255,255,255,0.12); border-radius:12px; padding:10px 14px;">
@@ -1975,24 +1983,15 @@
             <button class="top-btn" onclick="applyTvPromo('pro-promo-input')" style="background:#4f46e5; border-color:#facc15; font-size:16px; font-weight:900; justify-content:center; padding:8px 14px; width:100%;">Aktif Et</button>
           </div>
 
-          <!-- SAĞ SÜTUN: TELEFONLA QR KOD İLE ÖDEME -->
-          <div style="display:flex; flex-direction:column; align-items:center; justify-content:space-between; background:rgba(255,255,255,0.04); border:1px solid rgba(250,204,21,0.3); border-radius:12px; padding:10px 14px; text-align:center; gap:6px;">
-            <div style="font-size:13.5px; font-weight:800; color:#facc15;">
-              📱 Telefonunla Tara & Kartla Öde:
+          <!-- SAĞ SÜTUN: GOOGLE PLAY GÜVENCESİ & BİLGİ -->
+          <div style="display:flex; flex-direction:column; justify-content:center; background:rgba(255,255,255,0.04); border:1px solid rgba(250,204,21,0.3); border-radius:12px; padding:12px 14px; text-align:left; gap:6px;">
+            <div style="font-size:13.5px; font-weight:900; color:#facc15; display:flex; align-items:center; gap:6px;">
+              <span>🛡️</span> Google Play Güvencesi:
             </div>
-            <div style="display:flex; align-items:center; justify-content:center; gap:10px;">
-              <div id="pro-qr-container" style="position:relative; background:#fff; padding:4px; border-radius:10px; box-shadow:0 4px 14px rgba(0,0,0,0.5); width:90px; height:90px; display:flex; align-items:center; justify-content:center; box-sizing:border-box;">
-                <img id="pro-qr-img" src="" alt="PRO QR" style="width:82px; height:82px; display:block;" onerror="handleProQrError()">
-                <div id="pro-qr-error-box" style="display:none; color:#b91c1c; font-size:11px; font-weight:800; width:82px; text-align:center;">
-                  QR Hatası<br>
-                  <button type="button" class="top-btn" onclick="refreshProQr()" style="font-size:10px; padding:2px 4px; margin-top:2px;">🔄 Yenile</button>
-                </div>
-              </div>
-              <div style="text-align:left; display:flex; flex-direction:column; gap:3px;">
-                <div style="font-size:12.5px; color:#cbd5e1;">QR Süresi: <span id="pro-qr-countdown" style="font-weight:900; color:#34d399;">04:59</span></div>
-                <div style="font-size:11px; color:#94a3b8;">İyzico • PayTR Güvenli</div>
-                <button class="top-btn" onclick="openProOnPc()" style="font-size:12px; padding:4px 8px; margin-top:2px;">🌐 Tarayıcıda Aç ➔</button>
-              </div>
+            <div style="font-size:11.5px; color:#cbd5e1; line-height:1.5;">
+              • 1 tıkla kayıtlı kartınız veya Google bakiyenizle güvenle ödeyin.<br>
+              • Abonelikler Google Play hesabınızdan dilediğiniz zaman iptal edilebilir.<br>
+              • Yeniden yüklemelerde "Satın Alımları Geri Yükle" ile haklarınız korunur.
             </div>
           </div>
         </div>
@@ -3241,20 +3240,130 @@
       window.open(`/pay.html?room=${encodeURIComponent(myRoomCode)}&type=PRO&name=${encodeURIComponent('BİL BAKALIM PRO')}&price=${encodeURIComponent(selectedProPrice || '59,99 TL')}`, '_blank');
     };
 
-    // GÜVENLİK DÜZELTMESİ: İstemci doğrudan isPro=true yapamaz. Ödeme talimatı verir.
-    window.directBuyPro = function() {
+    // 🛒 GOOGLE PLAY FATURALANDIRMA SİSTEMİ (IN-APP PURCHASES & SUBSCRIPTIONS)
+    window.directBuyPro = async function() {
       soundFX.playPop();
-      showTvToast('Ödemeyi tamamlamak için lütfen QR kodu telefonunuzla tarayın!', '📱');
-      speakText('Lütfen telefonunuzun kamerasıyla QR kodu tarayarak güvenli ödemeyi tamamlayın.');
-      const openBtn = document.querySelector('#tv-pro-modal .top-btn[onclick="openProOnPc()"]');
-      if (openBtn) openBtn.focus();
+      const billing = window.Capacitor?.Plugins?.GooglePlayBilling;
+
+      let productId = 'pro_monthly';
+      let isSub = true;
+      if (selectedProType === 'PARTY_PASS') {
+        productId = 'pro_party';
+        isSub = false;
+      } else if (selectedProType === 'LIFETIME') {
+        productId = 'pro_lifetime';
+        isSub = false;
+      }
+
+      if (billing) {
+        showTvToast('Google Play ödeme penceresi açılıyor...', '▶️');
+        speakText('Google Play ile güvenli satın alma başlatılıyor.');
+        try {
+          const res = await billing.purchase({ productId: productId, isSubscription: isSub });
+          if (res && res.success) {
+            handleSuccessfulPurchase(productId, res.purchaseToken || res.orderId);
+          }
+        } catch (err) {
+          console.warn('Google Play Billing hatası veya iptal:', err);
+          showTvToast('Satın alma tamamlanamadı veya iptal edildi.', '⚠️');
+        }
+      } else {
+        // PC / Web tarayıcı testi veya yerel geliştirme simülasyonu
+        const confirmBuy = confirm(`[GOOGLE PLAY SİMÜLASYONU]\n\nSeçilen Paket: ${selectedProPrice}\nÜrün ID: ${productId}\n\nGoogle Play üzerinden satın almayı test etmek istiyor musunuz?`);
+        if (confirmBuy) {
+          handleSuccessfulPurchase(productId, 'mock_token_' + Date.now());
+        }
+      }
+    };
+
+    window.restoreGooglePlayPurchases = async function() {
+      soundFX.playPop();
+      const billing = window.Capacitor?.Plugins?.GooglePlayBilling;
+      if (billing) {
+        showTvToast('Google Play satın alımları sorgulanıyor...', '🔄');
+        try {
+          const status = await billing.restorePurchases();
+          if (status && status.isPro) {
+            handleSuccessfulPurchase(status.tier || 'pro_monthly', 'restored');
+            showTvToast('Satın alımlarınız başarıyla geri yüklendi!', '✓');
+          } else {
+            showTvToast('Bu Google hesabında aktif bir PRO aboneliği bulunamadı.', 'ℹ️');
+          }
+        } catch(e) {
+          showTvToast('Geri yükleme sırasında hata oluştu.', '⚠️');
+        }
+      } else {
+        showTvToast('Satın alımları geri yükleme Android TV / Mobil cihazlarda geçerlidir.', 'ℹ️');
+      }
+    };
+
+    window.handleSuccessfulPurchase = function(productId, token) {
+      soundFX.playRewardSuccess();
+      isProActive = true;
+      try {
+        localStorage.setItem('bil_bakalim_is_pro', 'true');
+        localStorage.setItem('bil_pro_tier', productId);
+      } catch(e) {}
+
+      // TV ekranında PRO banner ve etiketleri güncelle
+      const proTitle = document.getElementById('lbl-pro-banner-title');
+      const proPrice = document.getElementById('lbl-pro-price-tag');
+      if (proTitle) proTitle.textContent = '👑 BİL BAKALIM PRO AKTİF!';
+      if (proPrice) proPrice.textContent = '✓ AKTİF';
+
+      closeProModal();
+      closeVipModal();
+      speakText('Tebrikler! Google Play ile BİL BAKALIM PRO üyeliğiniz başarıyla aktif edildi! Tüm VIP paketler ve sınırsız oyuncu kilidi açıldı!');
+      showTvToast('🎉 Tebrikler! PRO Üyelik Başarıyla Aktif Edildi!', '👑');
+
+      // Sunucuya bildir ki tüm bağlı telefonlar ve oda da PRO moduna geçsin
+      if (socket && socket.connected) {
+        socket.emit('host_verify_pro_purchase', {
+          productId: productId,
+          purchaseToken: token,
+          roomCode: myRoomCode
+        });
+      }
     };
 
     window.directBuyVip = function() {
       soundFX.playPop();
-      showTvToast('VIP paketi açmak için lütfen QR kodu telefonunuzla okutun!', '📱');
-      speakText('Lütfen telefonunuzla QR kodu okutarak güvenli ödemeyi tamamlayın.');
+      // VIP tek paket yerine PRO üyeliğe yönlendirerek tüm paketleri Google Play ile açmasını sağla
+      closeVipModal();
+      openProModal({
+        headerTitle: 'VIP Paketleri Açın 🚀',
+        badgeText: 'GOOGLE PLAY İLE AÇ',
+        subTitle: 'PRO üyelik alarak seçtiğiniz paket dahil tüm 12 VIP kategoriyi ve sınırsız oyuncuyu anında açabilirsiniz!'
+      });
     };
+
+    // Google Play Satın Alma Durumu Otomatik Kontrolü (Açılışta)
+    async function checkGooglePlayProOnLaunch() {
+      try {
+        const billing = window.Capacitor?.Plugins?.GooglePlayBilling;
+        if (billing) {
+          const status = await billing.getSavedProStatus();
+          if (status && status.isPro) {
+            isProActive = true;
+            try { localStorage.setItem('bil_bakalim_is_pro', 'true'); } catch(e) {}
+            const proTitle = document.getElementById('lbl-pro-banner-title');
+            const proPrice = document.getElementById('lbl-pro-price-tag');
+            if (proTitle) proTitle.textContent = '👑 BİL BAKALIM PRO AKTİF!';
+            if (proPrice) proPrice.textContent = '✓ AKTİF';
+            console.log('[Google Play Billing] Aktif PRO üyeliği doğrulandı:', status.tier);
+          }
+
+          billing.addListener('onPurchaseSuccess', (data) => {
+            if (data && data.productId) {
+              handleSuccessfulPurchase(data.productId, data.purchaseToken);
+            }
+          });
+        }
+      } catch(e) {
+        console.warn('[Billing] Check on launch failed:', e);
+      }
+    }
+    setTimeout(checkGooglePlayProOnLaunch, 1200);
 
     // 🚩 SORU HATA BİLDİRİM FONKSİYONLARI
     let selectedReportReason = 'Yazım / İmla veya Anlatım Hatası';

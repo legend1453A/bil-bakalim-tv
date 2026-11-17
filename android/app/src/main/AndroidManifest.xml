@@ -53,7 +53,8 @@
         </provider>
     </application>
 
-    <!-- İnternet İzinleri -->
+    <!-- İnternet ve Google Play Faturalandırma İzinleri -->
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="com.android.vending.BILLING" />
 </manifest>

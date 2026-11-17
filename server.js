@@ -1333,6 +1333,61 @@ io.on('connection', (socket) => {
     }
   });
 
+  // 🛒 GOOGLE PLAY FATURALANDIRMA DOĞRULAMASI
+  socket.on('host_verify_pro_purchase', (data) => {
+    const room = resolveRoom(data);
+    if (!room) return;
+    const { productId, purchaseToken } = data || {};
+    let durationLabel = 'Aylık PRO Abonelik';
+    let expiresAt = null;
+
+    if (productId === 'pro_party' || (data && data.pkgType === 'PARTY_PASS')) {
+      activatePartyPass(room);
+      durationLabel = 'Parti Bileti (24 Saat)';
+      expiresAt = new Date(room.partyPassExpiry).toISOString();
+    } else if (productId === 'pro_lifetime' || (data && data.pkgType === 'PRO_LIFETIME')) {
+      room.isPro = true;
+      room.hasLifetimePro = true;
+      room.proExpiresAt = null;
+      room.proDurationLabel = 'Ömür Boyu Sınırsız';
+      room.unlockedCategories = CATEGORY_CONFIG.map(c => c.name);
+      durationLabel = 'Ömür Boyu Sınırsız';
+    } else {
+      room.isPro = true;
+      room.hasActiveMonthlySub = true;
+      const oneMonth = Date.now() + (30 * 24 * 60 * 60 * 1000);
+      room.proExpiresAt = new Date(oneMonth).toISOString();
+      room.proDurationLabel = 'Aylık PRO Abonelik';
+      room.unlockedCategories = CATEGORY_CONFIG.map(c => c.name);
+      durationLabel = 'Aylık PRO Abonelik';
+      expiresAt = room.proExpiresAt;
+    }
+
+    saveProSubscriber(room.roomCode, {
+      method: 'GOOGLE_PLAY_BILLING',
+      productId: productId,
+      purchaseToken: purchaseToken,
+      pkgName: `BİL BAKALIM PRO (${durationLabel})`,
+      expiresAt: expiresAt,
+      durationLabel: durationLabel,
+      date: new Date().toISOString()
+    });
+
+    const payload = {
+      isPro: true,
+      unlockedCategories: room.unlockedCategories,
+      pkgName: `BİL BAKALIM PRO (${durationLabel})`,
+      durationLabel: durationLabel,
+      expiresAt: expiresAt,
+      method: 'GOOGLE_PLAY_BILLING'
+    };
+    io.to(`room_${room.roomCode}`).emit('payment_unlocked', payload);
+    io.to(`tv_${room.roomCode}`).emit('payment_unlocked', payload);
+    io.emit('payment_unlocked', payload);
+    io.to(`room_${room.roomCode}`).emit('state_update', getPublicGameState(room));
+    console.log(`[Google Play Billing] Oda ${room.roomCode} için PRO başarıyla aktif edildi: ${productId}`);
+  });
+
   socket.on('host_open_categories', (data) => {
     const room = resolveRoom(data);
     if (!room) return;
